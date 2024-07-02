@@ -22,6 +22,10 @@ import java.math.BigDecimal;
 import org.docksidestage.unit.PlainTestCase;
 //TODO tanaka org.docksidestage.unit.PlainTestCaseクラスをインポート。以降はBigDecimalで呼び出せる。
 
+// TODO tanaryo javatryではJavaDocのauthorのyour_name_hereのところ、ご自分の名前(アカウント名)でお願いします by jflute (2024/07/02)
+// 一応、↓こういうポリシーがあります。ご協力お願いします。
+// 3. 最低限のクラスJavaDoc | ハンズオンのコーディングポリシー
+// https://dbflute.seasar.org/ja/tutorial/handson/review/codingpolicy.html#minjavadoc
 /**
  * The test of variable. <br>
  * Operate exercise as javadoc. If it's question style, write your answer before test execution. <br>
@@ -45,6 +49,7 @@ public class Step01VariableTest extends PlainTestCase {
     //TODO tanaka test_variable_basicメソッドを定義。引数はなし。voidにより戻り値のないメソッドの型に。
     //TODO tanaka Stringは文字列を表す型。
     //TODO tanaka logメソッドはPlainTestCase内で定義。protected修飾子をつけて定義しているため、PlainTestCaseクラスを継承したStep01VariableTestクラスでも利用可能。
+    // TODO tanaka [いいね]おおぉ、そこまで読み込んでるの素晴らしいですね！まさしくそのとおりです by jflute (2024/07/02)
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_variable_initial() {
@@ -56,6 +61,7 @@ public class Step01VariableTest extends PlainTestCase {
         log(sea); // your answer? => mystic8null:mai
     }
     //TODO tanaka 文字列との結合の場合、数値、nullは文字列("")に変換される？
+    // TODO tanaryo [ふぉろー] ↑そのとおりです。型が違っても基本的に文字列に引っ張られます by jflute (2024/07/02)
     //TODO tanaka Integlerはクラス型で整数値を保持する。Integler.~~でメソッドを呼び出せる。またnullを代入できる。intはプリミティブ型で整数値を保持し、nullは代入できない。
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_variable_reassigned_basic() {
@@ -66,7 +72,15 @@ public class Step01VariableTest extends PlainTestCase {
         log(sea); // your answer? => oneman
     }
     //TODO tanaka 変数に変数を代入することができる。今回の場合、sea="oneman"？また59行目に sea = land;を追加すればoneman's dreamsとなる？
+    // TODO tanaryo [ふぉろー]その通りです。landだけワンマンズドリームになってますから、landの値をseaに入れればそうなります by jflute (2024/07/02)
     //TODO tanaka 型を定義したら、2回目以降変数名のみで良い？
+    // TODO tanaryo [ふぉろー]そういう解釈になります。厳密には、変数の宣言と代入というのは別の行為で... by jflute (2024/07/02)
+    //  String sea; // これは変数の宣言 (変数の型宣言)
+    //  sea = "mystic"; // これは代入
+    // というように分かれているものですが、変数の宣言と同時に代入ができるようになっているので、
+    //  String sea = "mystic";
+    // というように一行(一ステートメント)で書くことができます。
+    // "2回目以降変数名のみで良い" というのは、単に「代入だけ」をもう一回やるということですね。
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_variable_reassigned_int() {
@@ -77,8 +91,14 @@ public class Step01VariableTest extends PlainTestCase {
         log(sea); // your answer? => 415
     }
     //TODO tanaka 変数に変数を代入できるが、seaが保持するのはlandではなく415?
+    // TODO tanaryo [ふぉろー]いい視点ですね。sea = land と書いても、seaにlandを入れるわけではなく... by jflute (2024/07/02)
+    // 「seaの中にlandの中に入ってるものを入れる」というニュアンスになりますので、seaとlandで何か関係性を持つわけではありません。
+    // しかも、コンピューターの世界なので、landの中のものを移動してlandが空っぽになるわけでもなく、コピーされるような感覚ですね。
     //TODO tanaka land++はlandに1を足す
+    // TODO tanaryo [ふぉろー]↑yes, インクリメントと呼びます。land = land + 1; と同じことやっています by jflute (2024/07/02)
 
+    // TODO jflute 1on1にて変数の概念のフォロー予定 (2024/07/02)
+    
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_variable_reassigned_BigDecimal() {
         BigDecimal sea = new BigDecimal(94);
@@ -91,6 +111,9 @@ public class Step01VariableTest extends PlainTestCase {
     //TODO tanaka BigDecimalは小数点以下を正確に扱うクラス。new演算子でクラスをインスタンス化。基本構文はクラス名 インスタンス名 = new コンストラクタ名([引数])。
     //TODO tanaka addメソッドはBigDecimalファイルで定義。
     //TODO tanaka 87行目で1を足している？88行目も1を足している？
+    // TODO tanaryo ↑行番号はコメント入れるとズレちゃいますね(^^ by jflute (2024/07/02)
+    
+    // TODO jflute 1on1にてImmutableのフォロー予定 (2024/07/02)
 
     // ===================================================================================
     //                                                                   Instance Variable
@@ -120,6 +143,7 @@ public class Step01VariableTest extends PlainTestCase {
         log(sea); // your answer? => null
     }
     //TODO tanaka Integerはクラス型でnullを入れることができるためnullとなる
+    // TODO tanaryo [ほそく]↑クラス型をオブジェクト型と読んだりもします by jflute (2024/07/02)
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_variable_instance_variable_via_method() {
         instanceBroadway = "bbb";
@@ -130,6 +154,7 @@ public class Step01VariableTest extends PlainTestCase {
     }
     //TODO tanaka メソッドや変数を後に定義しても問題なし。
     //TODO tanaka　なぜburnではなく、magician?
+    // TODO jflute 1on1にて変数の概念をフォロー予定 (2024/07/02)
 
     private void helpInstanceVariableViaMethod(String instanceMagiclamp) {
         instanceBroadway = "bigband";
@@ -178,6 +203,8 @@ public class Step01VariableTest extends PlainTestCase {
     //TODO tanaka concatメソッドは元になる文字列自体を変更させるものではなく、「結合した新しいインスタンスを生む」
     //TODO tanaka appendメソッドはインスタンスを生成させず、元になる文字列自体を変更させる。そのためもともとインスタンスが用意されている状態で使う。
     //TODO tanaka appendメソッドではStringBuilderクラス、StringBufferクラスのいずれかを用いてインスタンスを作成。
+    // TODO tanaryo ↑[いいね]素晴らしい考察ですね。Stringのcancat()とStringBuilderのappend()の違い着目されたのGoodです by jflute (2024/07/02)
+    // TODO jflute 1on1にてインスタンスの概念についてフォロー予定 (2024/07/02)
 
     private void helpMethodArgumentMethodcall(StringBuilder sea, int land) {
         ++land;
@@ -195,6 +222,7 @@ public class Step01VariableTest extends PlainTestCase {
         log(sea); // your answer? => harbor
     }
     //TODO tanaka 当たったけど、よくわからない。下のメソッドに log(sea);を追加したらharbor416と表示された。
+    // TODO tanaryo [いいね]理解のメモありがとうございます。これは変数やインスタンス周りの話なので1on1で一気に説明しますね by jflute (2024/07/02)
     private void helpMethodArgumentVariable(StringBuilder sea, int land) {
         ++land;
         String seaStr = sea.toString(); // is "harbor"
@@ -231,6 +259,8 @@ public class Step01VariableTest extends PlainTestCase {
         // define variables here
     }
     //TODO tanaka mystic,null,0と表示された
+    // TODO tanaryo 厳密には、seaという変数の値を書き換えてしまっていますので、sea変数はそのままでlogに出せるといいですね by jflute (2024/07/02)
+    // hint: 表示するためだけの新しい変数を作ってもいいですし、log()の引数部分のインラインで書いてもいいですし...
 
     // ===================================================================================
     //                                                                           Good Luck
@@ -252,5 +282,6 @@ public class Step01VariableTest extends PlainTestCase {
         // エラーが出る
         // TODO tanaka インスタンス変数とローカル変数が同一の場合、インスタンス変数にアクセスするにはthis.をつける。
         // TODo tanaka this.をつけていないためここでは自身を参照代入している状態
+        // TODO tanakryo ↑状況合ってますね！逆にこのコンパイルエラーをちゃんと直すエクササイズというのも面白いかも(^^ by jflute (2024/07/02)
     }
 }
