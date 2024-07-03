@@ -254,13 +254,13 @@ public class Step01VariableTest extends PlainTestCase {
     public void test_variable_writing() {
         String sea = "mystic";
         Integer land = null;
-        sea= sea +","+land+","+piari;
-        log(sea);
+        log(sea +","+land+","+piari);
         // define variables here
     }
     //TODO tanaka mystic,null,0と表示された
     // TODO tanaryo 厳密には、seaという変数の値を書き換えてしまっていますので、sea変数はそのままでlogに出せるといいですね by jflute (2024/07/02)
     // hint: 表示するためだけの新しい変数を作ってもいいですし、log()の引数部分のインラインで書いてもいいですし...
+    //TODO done tanaryo 直接「sea +","+land+","+piari」を代入
 
     // ===================================================================================
     //                                                                           Good Luck
