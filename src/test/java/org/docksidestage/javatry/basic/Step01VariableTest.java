@@ -31,7 +31,7 @@ import org.docksidestage.unit.PlainTestCase;
  * Operate exercise as javadoc. If it's question style, write your answer before test execution. <br>
  * (javadocの通りにエクササイズを実施。質問形式の場合はテストを実行する前に考えて答えを書いてみましょう)
  * @author jflute
- * @author your_name_here
+ * @author tanaryo
  */
 public class Step01VariableTest extends PlainTestCase {
 //TODO tanaka  Step01VariableTestクラスを定義。PlainTestCaseクラスを継承。アクセス修飾子publicをつけることで他パッケージからも利用可能に。
@@ -277,9 +277,9 @@ public class Step01VariableTest extends PlainTestCase {
      */
     int sea =15;
     public void test_variable_yourExercise() {
-        int sea = sea;
+        int sea = this.sea;
         log(sea);
-        // エラーが出る
+        // 15が出る
         // TODO tanaka インスタンス変数とローカル変数が同一の場合、インスタンス変数にアクセスするにはthis.をつける。
         // TODo tanaka this.をつけていないためここでは自身を参照代入している状態
         // TODO tanakryo ↑状況合ってますね！逆にこのコンパイルエラーをちゃんと直すエクササイズというのも面白いかも(^^ by jflute (2024/07/02)
