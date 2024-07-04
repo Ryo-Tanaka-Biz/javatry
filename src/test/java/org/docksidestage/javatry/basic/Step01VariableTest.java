@@ -22,7 +22,7 @@ import java.math.BigDecimal;
 import org.docksidestage.unit.PlainTestCase;
 //TODO tanaka org.docksidestage.unit.PlainTestCaseクラスをインポート。以降はBigDecimalで呼び出せる。
 
-// TODO tanaryo javatryではJavaDocのauthorのyour_name_hereのところ、ご自分の名前(アカウント名)でお願いします by jflute (2024/07/02)
+// done tanaryo javatryではJavaDocのauthorのyour_name_hereのところ、ご自分の名前(アカウント名)でお願いします by jflute (2024/07/02)
 // 一応、↓こういうポリシーがあります。ご協力お願いします。
 // 3. 最低限のクラスJavaDoc | ハンズオンのコーディングポリシー
 // https://dbflute.seasar.org/ja/tutorial/handson/review/codingpolicy.html#minjavadoc
@@ -61,7 +61,7 @@ public class Step01VariableTest extends PlainTestCase {
         log(sea); // your answer? => mystic8null:mai
     }
     //TODO tanaka 文字列との結合の場合、数値、nullは文字列("")に変換される？
-    // TODO tanaryo [ふぉろー] ↑そのとおりです。型が違っても基本的に文字列に引っ張られます by jflute (2024/07/02)
+    // done tanaryo [ふぉろー] ↑そのとおりです。型が違っても基本的に文字列に引っ張られます by jflute (2024/07/02)
     //TODO tanaka Integlerはクラス型で整数値を保持する。Integler.~~でメソッドを呼び出せる。またnullを代入できる。intはプリミティブ型で整数値を保持し、nullは代入できない。
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_variable_reassigned_basic() {
@@ -71,10 +71,10 @@ public class Step01VariableTest extends PlainTestCase {
         land = land + "'s dreams";
         log(sea); // your answer? => oneman
     }
-    //TODO tanaka 変数に変数を代入することができる。今回の場合、sea="oneman"？また59行目に sea = land;を追加すればoneman's dreamsとなる？
-    // TODO tanaryo [ふぉろー]その通りです。landだけワンマンズドリームになってますから、landの値をseaに入れればそうなります by jflute (2024/07/02)
-    //TODO tanaka 型を定義したら、2回目以降変数名のみで良い？
-    // TODO tanaryo [ふぉろー]そういう解釈になります。厳密には、変数の宣言と代入というのは別の行為で... by jflute (2024/07/02)
+    // done tanaka 変数に変数を代入することができる。今回の場合、sea="oneman"？また59行目に sea = land;を追加すればoneman's dreamsとなる？
+    // done tanaryo [ふぉろー]その通りです。landだけワンマンズドリームになってますから、landの値をseaに入れればそうなります by jflute (2024/07/02)
+    // done tanaka 型を定義したら、2回目以降変数名のみで良い？
+    // done tanaryo [ふぉろー]そういう解釈になります。厳密には、変数の宣言と代入というのは別の行為で... by jflute (2024/07/02)
     //  String sea; // これは変数の宣言 (変数の型宣言)
     //  sea = "mystic"; // これは代入
     // というように分かれているものですが、変数の宣言と同時に代入ができるようになっているので、
@@ -90,30 +90,36 @@ public class Step01VariableTest extends PlainTestCase {
         land++;
         log(sea); // your answer? => 415
     }
-    //TODO tanaka 変数に変数を代入できるが、seaが保持するのはlandではなく415?
-    // TODO tanaryo [ふぉろー]いい視点ですね。sea = land と書いても、seaにlandを入れるわけではなく... by jflute (2024/07/02)
+    // done tanaka 変数に変数を代入できるが、seaが保持するのはlandではなく415?
+    // done tanaryo [ふぉろー]いい視点ですね。sea = land と書いても、seaにlandを入れるわけではなく... by jflute (2024/07/02)
     // 「seaの中にlandの中に入ってるものを入れる」というニュアンスになりますので、seaとlandで何か関係性を持つわけではありません。
     // しかも、コンピューターの世界なので、landの中のものを移動してlandが空っぽになるわけでもなく、コピーされるような感覚ですね。
-    //TODO tanaka land++はlandに1を足す
-    // TODO tanaryo [ふぉろー]↑yes, インクリメントと呼びます。land = land + 1; と同じことやっています by jflute (2024/07/02)
+    // done tanaka land++はlandに1を足す
+    // done tanaryo [ふぉろー]↑yes, インクリメントと呼びます。land = land + 1; と同じことやっています by jflute (2024/07/02)
 
-    // TODO jflute 1on1にて変数の概念のフォロー予定 (2024/07/02)
+    // done jflute 1on1にて変数の概念のフォロー予定 (2024/07/02)
+    // [memo] インスタンスの話もした (2024/07/04)
     
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_variable_reassigned_BigDecimal() {
         BigDecimal sea = new BigDecimal(94);
         BigDecimal land = new BigDecimal(415);
         sea = land;
+        // add():
+        // Returns a BigDecimal whose value is (this + augend),
+        // and whose scale is max(this.scale(), augend.scale()).
+        // Returns: this + augend
         sea = land.add(new BigDecimal(1));
         sea.add(new BigDecimal(1));
         log(sea); // your answer? => 417
     }
     //TODO tanaka BigDecimalは小数点以下を正確に扱うクラス。new演算子でクラスをインスタンス化。基本構文はクラス名 インスタンス名 = new コンストラクタ名([引数])。
     //TODO tanaka addメソッドはBigDecimalファイルで定義。
-    //TODO tanaka 87行目で1を足している？88行目も1を足している？
-    // TODO tanaryo ↑行番号はコメント入れるとズレちゃいますね(^^ by jflute (2024/07/02)
+    // done tanaka 87行目で1を足している？88行目も1を足している？
+    // done tanaryo ↑行番号はコメント入れるとズレちゃいますね(^^ by jflute (2024/07/02)
     
-    // TODO jflute 1on1にてImmutableのフォロー予定 (2024/07/02)
+    // done jflute 1on1にてImmutableのフォロー予定 (2024/07/02)
+    // Immutable/Mutableの違い: BigDecimalはImmutable
 
     // ===================================================================================
     //                                                                   Instance Variable
