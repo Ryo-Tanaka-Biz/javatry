@@ -14,7 +14,6 @@
  * governing permissions and limitations under the License.
  */
 package org.docksidestage.javatry.basic;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +24,7 @@ import org.docksidestage.unit.PlainTestCase;
  * Operate exercise as javadoc. If it's question style, write your answer before test execution. <br>
  * (javadocの通りにエクササイズを実施。質問形式の場合はテストを実行する前に考えて答えを書いてみましょう)
  * @author jflute
- * @author your_name_here
+ * @author tanaryo
  */
 public class Step02IfForTest extends PlainTestCase {
 
@@ -52,8 +51,9 @@ public class Step02IfForTest extends PlainTestCase {
         } else {
             sea = 7;
         }
-        log(sea); // your answer? => 
+        log(sea); // your answer? => 7
     }
+    //MEMO tanaka 当たった。これは簡単。
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_if_elseif_basic() {
@@ -67,12 +67,13 @@ public class Step02IfForTest extends PlainTestCase {
         } else {
             sea = 9;
         }
-        log(sea); // your answer? => 
+        log(sea); // your answer? => 7
     }
-
+    //MEMO tanaryo 当たった。(sea >= 903)も満たしているが、(sea >= 904)を満たさない場合に適用されることを考えると7
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_if_elseif_nested() {
         boolean land = false;
+        //memo tanaryo boolean型はtrueとfalseの2値をとる
         int sea = 904;
         if (sea > 904) {
             sea = 2001;
@@ -97,9 +98,9 @@ public class Step02IfForTest extends PlainTestCase {
         if (land) {
             sea = 10;
         }
-        log(sea); // your answer? => 
+        log(sea); // your answer? => 10
     }
-
+    //memo tanaryo 当たった。(!land)はlandがfalseの場合、(land)はlandがtrueの場合という意味。seaの値も正しく追えてた。最後のif文抜いたらseaは7になる。
     // ===================================================================================
     //                                                                       for Statement
     //                                                                       =============
@@ -113,9 +114,9 @@ public class Step02IfForTest extends PlainTestCase {
                 sea = stage;
             }
         }
-        log(sea); // your answer? => 
+        log(sea); // your answer? =>dockside
     }
-
+    //memo tanaryo 当たった。prepareStageListは下の方で定義されている。要素数は4。
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_for_foreach_basic() {
         List<String> stageList = prepareStageList();
@@ -123,9 +124,9 @@ public class Step02IfForTest extends PlainTestCase {
         for (String stage : stageList) {
             sea = stage;
         }
-        log(sea); // your answer? => 
+        log(sea); // your answer? => magiclamp
     }
-
+    //memo tanaryo 拡張for文。当たった。ローカル変数stageに対し、stagelistのリストを1つずつ代入していく。最後はmagiclampのためseaにはmagiclampが代入される。
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_for_foreach_continueBreak() {
         List<String> stageList = prepareStageList();
@@ -139,9 +140,9 @@ public class Step02IfForTest extends PlainTestCase {
                 break;
             }
         }
-        log(sea); // your answer? => 
+        log(sea); // your answer? => hangar
     }
-
+    //memo tanaryo 当たった。continueはそれ以降の処理をスキップする。breakはループを抜ける。
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_for_listforeach_basic() {
         List<String> stageList = prepareStageList();
@@ -155,9 +156,9 @@ public class Step02IfForTest extends PlainTestCase {
             }
         });
         String sea = sb.toString();
-        log(sea); // your answer? => 
+        log(sea); // your answer? =>dockside
     }
-
+    //memo tanaryo 当たった。
     // ===================================================================================
     //                                                                           Challenge
     //                                                                           =========
@@ -166,9 +167,16 @@ public class Step02IfForTest extends PlainTestCase {
      * (prepareStageList()のリストから "a" が含まれているものだけのリストを作成して、それをループで回してログに表示しましょう。(Stream APIなしで))
      */
     public void test_iffor_making() {
-        // write if-for here
+        List<String> stageList = prepareStageList();
+        List<String> a_list = new ArrayList<>();
+        for (String stage : stageList) {
+            if (stage.contains("a")) {
+                a_list.add(stage);
+            }
+        }
+        log(a_list);
     }
-
+    //memo tanaryo できた。[broadway, hangar, magiclamp]と表示された。
     // ===================================================================================
     //                                                                           Good Luck
     //                                                                           =========
@@ -177,6 +185,7 @@ public class Step02IfForTest extends PlainTestCase {
      * (foreach文をforEach()メソッドへの置き換えてみましょう (修正前と修正後で実行結果が同じになるように))
      */
     public void test_iffor_refactor_foreach_to_forEach() {
+        /*
         List<String> stageList = prepareStageList();
         String sea = null;
         for (String stage : stageList) {
@@ -188,23 +197,71 @@ public class Step02IfForTest extends PlainTestCase {
                 break;
             }
         }
-        log(sea); // should be same as before-fix
+        */
+        List<String> stageList = prepareStageList();
+        StringBuilder sb = new StringBuilder();
+        stageList.forEach(stage -> {
+            if (stage.startsWith("br")) {
+                return;
+            }
+            if (sb.length() > 0) {
+                return;
+            }
+            if (stage.contains("ga")) {
+                sb.append(stage);
+            }
+        });
+        String sea = sb.toString();
+        log(sea); // hangar
     }
+    //TODO tanaka 同様の実行結果は得られた。froEach文ではcontinueはreturnで代替できる。breakは基本的に代替できない。forEach内で扱える変数はインスタンス変数?
 
     /**
      * Make your original exercise as question style about if-for statement. <br>
      * (if文for文についてあなたのオリジナルの質問形式のエクササイズを作ってみましょう)
      * <pre>
      * _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
-     * your question here (ここにあなたの質問を):
-     * 
+     * 出力される座標は？:
+     *
      * _/_/_/_/_/_/_/_/_/_/
      * </pre>
      */
-    public void test_iffor_yourExercise() {
-        // write your code here
+    public void test_iffor_yourExercise_1() {
+        for (int x=0; x<5; x++) {
+            for (int y=0; y<5; y++) {
+                if(y==2){
+                    break;
+                }
+                log(x,y);
+            }
+        }
     }
+    //memo tanaryo breakは直前(引数y)の繰り返し処理を抜ける。そのためy=2,3,4,を含む座標は出力されない。
 
+    public void test_iffor_yourExercise_2() {
+        for (int x=0; x<5; x++) {
+            for (int y=0; y<5; y++) {
+                if(y==2){
+                    continue;
+                }
+                log(x,y);
+            }
+        }
+    }
+    //memo tanaryo continueは以降の処理をスキップし、次の要素のループ処理へ移る。そのためy=2を含む座標は出力されない。
+
+
+    public void test_iffor_yourExercise_3() {
+        for (int x=0; x<5; x++) {
+            for (int y=0; y<5; y++) {
+                if(y==2){
+                    return;
+                }
+                log(x,y);
+            }
+        }
+    }
+    //memo tanaryo returnはメソッドを抜ける。(0,0),(0,1),(0,2)ときて(0,2)が出力される前に終了する。そのため(0,0),(0,1)のみ。
     // ===================================================================================
     //                                                                        Small Helper
     //                                                                        ============
