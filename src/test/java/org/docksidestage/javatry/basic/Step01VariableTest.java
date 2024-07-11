@@ -149,7 +149,7 @@ public class Step01VariableTest extends PlainTestCase {
         log(sea); // your answer? => null
     }
     //TODO tanaka Integerはクラス型でnullを入れることができるためnullとなる
-    // TODO tanaryo [ほそく]↑クラス型をオブジェクト型と読んだりもします by jflute (2024/07/02)
+    // done tanaryo [ほそく]↑クラス型をオブジェクト型とか参照型と読んだりもします by jflute (2024/07/02)
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_variable_instance_variable_via_method() {
         instanceBroadway = "bbb";
@@ -159,8 +159,10 @@ public class Step01VariableTest extends PlainTestCase {
         log(sea); // your answer? => bigband|1|null|burn
     }
     //TODO tanaka メソッドや変数を後に定義しても問題なし。
-    //TODO tanaka　なぜburnではなく、magician?
-    // TODO jflute 1on1にて変数の概念をフォロー予定 (2024/07/02)
+    // done tanaka　なぜburnではなく、magician?
+    // done jflute 1on1にて変数の概念をフォロー予定 (2024/07/02)
+    // 質問: インスタンス化？ => 変数自体においてインスタンス化という言葉は使わないけど...
+    // 引数の変数が作り上げられるのは、メソッドが呼ばれた瞬間に作られる(メモリ上に確保される)
 
     private void helpInstanceVariableViaMethod(String instanceMagiclamp) {
         instanceBroadway = "bigband";
@@ -209,8 +211,8 @@ public class Step01VariableTest extends PlainTestCase {
     //TODO tanaka concatメソッドは元になる文字列自体を変更させるものではなく、「結合した新しいインスタンスを生む」
     //TODO tanaka appendメソッドはインスタンスを生成させず、元になる文字列自体を変更させる。そのためもともとインスタンスが用意されている状態で使う。
     //TODO tanaka appendメソッドではStringBuilderクラス、StringBufferクラスのいずれかを用いてインスタンスを作成。
-    // TODO tanaryo ↑[いいね]素晴らしい考察ですね。Stringのcancat()とStringBuilderのappend()の違い着目されたのGoodです by jflute (2024/07/02)
-    // TODO jflute 1on1にてインスタンスの概念についてフォロー予定 (2024/07/02)
+    // done tanaryo ↑[いいね]素晴らしい考察ですね。Stringのcancat()とStringBuilderのappend()の違い着目されたのGoodです by jflute (2024/07/02)
+    // done jflute 1on1にてインスタンスの概念についてフォロー予定 (2024/07/02)
 
     private void helpMethodArgumentMethodcall(StringBuilder sea, int land) {
         ++land;
@@ -228,7 +230,7 @@ public class Step01VariableTest extends PlainTestCase {
         log(sea); // your answer? => harbor
     }
     //TODO tanaka 当たったけど、よくわからない。下のメソッドに log(sea);を追加したらharbor416と表示された。
-    // TODO tanaryo [いいね]理解のメモありがとうございます。これは変数やインスタンス周りの話なので1on1で一気に説明しますね by jflute (2024/07/02)
+    // done tanaryo [いいね]理解のメモありがとうございます。これは変数やインスタンス周りの話なので1on1で一気に説明しますね by jflute (2024/07/02)
     private void helpMethodArgumentVariable(StringBuilder sea, int land) {
         ++land;
         String seaStr = sea.toString(); // is "harbor"
@@ -264,9 +266,9 @@ public class Step01VariableTest extends PlainTestCase {
         // define variables here
     }
     //TODO tanaka mystic,null,0と表示された
-    // TODO tanaryo 厳密には、seaという変数の値を書き換えてしまっていますので、sea変数はそのままでlogに出せるといいですね by jflute (2024/07/02)
+    // done tanaryo 厳密には、seaという変数の値を書き換えてしまっていますので、sea変数はそのままでlogに出せるといいですね by jflute (2024/07/02)
     // hint: 表示するためだけの新しい変数を作ってもいいですし、log()の引数部分のインラインで書いてもいいですし...
-    //TODO done tanaryo 直接「sea +","+land+","+piari」を代入
+    // done tanaryo 直接「sea +","+land+","+piari」を代入
 
     // ===================================================================================
     //                                                                           Good Luck
@@ -281,6 +283,7 @@ public class Step01VariableTest extends PlainTestCase {
      * _/_/_/_/_/_/_/_/_/_/
      * </pre>
      */
+    // TODO tanaryo ↑log(star)が残骸？ by jflute (2024/07/11)
     int sea =15;
     public void test_variable_yourExercise() {
         int sea = this.sea;
@@ -288,6 +291,6 @@ public class Step01VariableTest extends PlainTestCase {
         // 15が出る
         // TODO tanaka インスタンス変数とローカル変数が同一の場合、インスタンス変数にアクセスするにはthis.をつける。
         // TODo tanaka this.をつけていないためここでは自身を参照代入している状態
-        // TODO tanakryo ↑状況合ってますね！逆にこのコンパイルエラーをちゃんと直すエクササイズというのも面白いかも(^^ by jflute (2024/07/02)
+        // done tanakryo ↑状況合ってますね！逆にこのコンパイルエラーをちゃんと直すエクササイズというのも面白いかも(^^ by jflute (2024/07/02)
     }
 }
