@@ -88,7 +88,7 @@ public class Step03DataTypeTest extends PlainTestCase {
         log(sea); // your answer? => ？？？
     }
 
-    //TODO tanaryo 縮小変換の計算方法がわからない
+    //TODO tanaryo 縮小変換の計算方法がわからない..
 
     // ===================================================================================
     //                                                                              Object
