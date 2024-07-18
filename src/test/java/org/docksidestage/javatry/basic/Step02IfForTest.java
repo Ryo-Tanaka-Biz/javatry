@@ -100,7 +100,9 @@ public class Step02IfForTest extends PlainTestCase {
         }
         log(sea); // your answer? => 10
     }
-    // TODO jflute 次回コードリーディングの補足 (2024/07/11)
+    // done jflute 次回コードリーディングの補足 (2024/07/11)
+    // 目的があってコードを読むので、読まなくていいところを読まないようにする努力を
+    // 漠然読み (全体構造の把握) をしてから、フォーカス当てて飛び飛び読みしていく
     //memo tanaryo 当たった。(!land)はlandがfalseの場合、(land)はlandがtrueの場合という意味。seaの値も正しく追えてた。最後のif文抜いたらseaは7になる。
     // ===================================================================================
     //                                                                       for Statement
@@ -174,6 +176,7 @@ public class Step02IfForTest extends PlainTestCase {
             if (stage.contains("a")) {
                 a_list.add(stage);
             }
+            a_list  = null;
         }
         log(a_list);
     }
@@ -216,8 +219,9 @@ public class Step02IfForTest extends PlainTestCase {
         log(sea); // hangar
     }
     //TODO tanaka 同様の実行結果は得られた。froEach文ではcontinueはreturnで代替できる。breakは基本的に代替できない。forEach内で扱える変数はインスタンス変数?
-    // TODO jflute そもそもforEach()とはなんぞや？ (2024/07/11)
-    // TODO jflute もちょい時間あるときに、forEach()の中で外側のローカル変数への代入ができないのなぜ話する (2024/07/11)
+    // done jflute そもそもforEach()とはなんぞや？ (2024/07/11)
+    // done jflute もちょい時間あるときに、forEach()の中で外側のローカル変数への代入ができないのなぜ話する (2024/07/11)
+    // TODO tanaryo もし、stageListにgaが一個も含まれてないケースだったら、同じ結果になりますか？ by jflute (2024/07/18)
 
     /**
      * Make your original exercise as question style about if-for statement. <br>
