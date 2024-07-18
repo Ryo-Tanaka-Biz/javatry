@@ -26,7 +26,7 @@ import org.docksidestage.unit.PlainTestCase;
  * Operate exercise as javadoc. If it's question style, write your answer before test execution. <br>
  * (javadocの通りにエクササイズを実施。質問形式の場合はテストを実行する前に考えて答えを書いてみましょう)
  * @author jflute
- * @author your_name_here
+ * @author tanaryo
  */
 public class Step03DataTypeTest extends PlainTestCase {
 
@@ -38,52 +38,57 @@ public class Step03DataTypeTest extends PlainTestCase {
      * (メソッド終了時の変数 sea の中身は？)
      */
     public void test_datatype_basicType() {
-        String sea = "mystic";
-        Integer land = 416;
-        LocalDate piari = LocalDate.of(2001, 9, 4);
-        LocalDateTime bonvo = LocalDateTime.of(2001, 9, 4, 12, 34, 56);
-        Boolean dstore = true;
-        BigDecimal amba = new BigDecimal("9.4");
+        String sea = "mystic"; //参照型、メモリ番地はスタック領域、 "mystic"はヒープ領域に格納
+        Integer land = 416; //参照型。416はヒープ領域に格納
+        LocalDate piari = LocalDate.of(2001, 9, 4);//イミュータブル。参照型
+        LocalDateTime bonvo = LocalDateTime.of(2001, 9, 4, 12, 34, 56);//イミュータブル。参照型
+        Boolean dstore = true; //参照型
+        BigDecimal amba = new BigDecimal("9.4");//参照型。イミュータブル
 
-        piari = piari.plusDays(1);
-        land = piari.getYear();
-        bonvo = bonvo.plusMonths(1);
-        land = bonvo.getMonthValue();
-        land--;
+        piari = piari.plusDays(1);//TODO tanaryo piariのdaysに1を加えたインスタンスを新たに生成？その変数名がpiari?
+        land = piari.getYear();//TODO tanaryo piariのyaer取得。ここではインスタンスを新たに生成？
+        bonvo = bonvo.plusMonths(1); //右辺のmonthは10
+        land = bonvo.getMonthValue();//10
+        land--;//9
         if (dstore) {
-            BigDecimal addedDecimal = amba.add(new BigDecimal(land));
-            sea = String.valueOf(addedDecimal);
+            BigDecimal addedDecimal = amba.add(new BigDecimal(land));//Bigdecimal型で18.4
+            sea = String.valueOf(addedDecimal);//Bigdecimal型をストリング型に変更
         }
-        log(sea); // your answer? => 
+        log(sea); // your answer? => 18.4
     }
+    //memo tanaryo 当たった。ここでは18.4は文字列。
 
     // ===================================================================================
     //                                                                           Primitive
     //                                                                           =========
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_datatype_primitive() {
-        byte sea = 127; // max
+        //データ型は扱える値の範囲が異なる
+        byte sea = 127; // max　
         short land = 32767; // max
         int piari = 1;
         long bonvo = 9223372036854775807L; // max
         float dstore = 1.1f;
         double amba = 2.3d;
         char miraco = 'a';
-        boolean dohotel = miraco == 'a';
+        boolean dohotel = miraco == 'a';//TODO tanaryo boolean型でもtrueとfalse以外を代入できる？
         if (dohotel && dstore >= piari) {
-            bonvo = sea;
-            land = (short) bonvo;
-            bonvo = piari;
-            sea = (byte) land;
+            //論理積。どちらもtrueの場合にtrue
+            bonvo = sea;//127//拡大変換
+            land = (short) bonvo;//縮小変換。longからshortへ
+            bonvo = piari;//1//拡大変換
+            sea = (byte) land;//縮小変換。shortからlandへ
             if (amba == 2.3D) {
-                sea = (byte) amba;
+                sea = (byte) amba;//縮小変換。doubleからbyteへ
             }
         }
         if ((int) dstore > piari) {
             sea = 0;
         }
-        log(sea); // your answer? => 
+        log(sea); // your answer? => ？？？
     }
+
+    //TODO 縮小変換の計算方法がわからない
 
     // ===================================================================================
     //                                                                              Object
@@ -91,20 +96,23 @@ public class Step03DataTypeTest extends PlainTestCase {
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_datatype_object() {
         St3ImmutableStage stage = new St3ImmutableStage("hangar");
+        //St3ImmutableStageクラスをインスタンス化。stageNameにhangarをセット
         String sea = stage.getStageName();
-        log(sea); // your answer? => 
+        //stageのgetStageNameメソッドの実行結果をseaに代入。メソッドはstageNameを返す。
+        log(sea); // your answer? => hangar
     }
 
     private static class St3ImmutableStage {
 
-        private final String stageName;
-
+        private final String stageName;//stagenameはインスタンス変数
+        //TODO tanaka privateにする意味は？
         public St3ImmutableStage(String stageName) {
             this.stageName = stageName;
         }
-
+        //St3ImmutableStageメソッド定義。仮引数stagename。左辺のstagenameはインスタンス変数。仮引数と同名のため、thisをつけている。右辺は仮引数。
         public String getStageName() {
             return stageName;
         }
+        //getStageNameメソッドを定義。引数はなし。インスタンス変数stagenameを返す。
     }
 }
