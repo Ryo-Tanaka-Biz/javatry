@@ -88,7 +88,7 @@ public class Step03DataTypeTest extends PlainTestCase {
         log(sea); // your answer? => ？？？
     }
 
-    //TODO 縮小変換の計算方法がわからない
+    //TODO tanaryo 縮小変換の計算方法がわからない
 
     // ===================================================================================
     //                                                                              Object
@@ -101,6 +101,7 @@ public class Step03DataTypeTest extends PlainTestCase {
         //stageのgetStageNameメソッドの実行結果をseaに代入。メソッドはstageNameを返す。
         log(sea); // your answer? => hangar
     }
+    //当たった
 
     private static class St3ImmutableStage {
 
