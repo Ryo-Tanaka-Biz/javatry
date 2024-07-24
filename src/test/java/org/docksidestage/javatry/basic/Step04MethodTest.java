@@ -22,7 +22,7 @@ import org.docksidestage.unit.PlainTestCase;
  * Operate exercise as javadoc. If it's question style, write your answer before test execution. <br>
  * (javadocの通りにエクササイズを実施。質問形式の場合はテストを実行する前に考えて答えを書いてみましょう)
  * @author jflute
- * @author your_name_here
+ * @author tanaryo
  */
 public class Step04MethodTest extends PlainTestCase {
 
@@ -35,19 +35,20 @@ public class Step04MethodTest extends PlainTestCase {
      */
     public void test_method_call_basic() {
         String sea = supplySomething();
-        log(sea); // your answer? =>
+        log(sea); // your answer? =>over
     }
+    //当たった。
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_method_call_many() {
         String sea = functionSomething("mystic");
-        consumeSomething(supplySomething());
+        consumeSomething(supplySomething());//returnでoverを返しているから()の中身はover。メソッド終了後はmystic
         runnableSomething();
-        log(sea); // your answer? => 
+        log(sea); // your answer? => mysmys
     }
-
+    //当たった。
     private String functionSomething(String name) {
-        String replaced = name.replace("tic", "mys");
+        String replaced = name.replace("tic", "mys");//mysmys
         log("in function: {}", replaced);
         return replaced;
     }
@@ -69,15 +70,16 @@ public class Step04MethodTest extends PlainTestCase {
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_method_object() {
-        St4MutableStage mutable = new St4MutableStage();
+        St4MutableStage mutable = new St4MutableStage(); //St4MutableStageクラスをインスタンス化
         int sea = 904;
         boolean land = false;
-        helloMutable(sea - 4, land, mutable);
+        helloMutable(sea - 4, land, mutable);//mutableインスタンスのstagenameにmysticをセット
         if (!land) {
-            sea = sea + mutable.getStageName().length();
+            sea = sea + mutable.getStageName().length();//length()メソッドは文字列の文字数をint型で返す。stageNameはmysticで第2項は6。
         }
-        log(sea); // your answer? => 
+        log(sea); // your answer? => 910
     }
+    //当たった。
 
     private int helloMutable(int sea, Boolean land, St4MutableStage piari) {
         sea++;
@@ -108,19 +110,21 @@ public class Step04MethodTest extends PlainTestCase {
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_method_instanceVariable() {
         hasAnnualPassport = true;
-        int sea = inParkCount;
+        int sea = inParkCount;//右辺は0
         offAnnualPassport(hasAnnualPassport);
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 100; i++) {//100回繰り返す
             goToPark();
         }
-        ++sea;
-        sea = inParkCount;
-        log(sea); // your answer? => 
+        ++sea;//罠
+        sea = inParkCount;//右辺は100
+        log(sea); // your answer? => 100
     }
+    //当たった。罠を見破れた。
 
     private void offAnnualPassport(boolean hasAnnualPassport) {
         hasAnnualPassport = false;
     }
+    //罠
 
     private void goToPark() {
         if (hasAnnualPassport) {
@@ -143,7 +147,7 @@ public class Step04MethodTest extends PlainTestCase {
      * </pre>
      * (privateメソッドを以下のように定義して、テストメソッド内の呼び出しプログラムをコメントアウトしましょう):
      * <pre>
-     * o replaceAwithB(): 一つのString引数、引数の "A" を "B" に置き換えたStringを戻す 
+     * o replaceAwithB(): 一つのString引数、引数の "A" を "B" に置き換えたStringを戻す
      * o replaceCwithB(): 一つのString引数、引数の "C" を "B" に置き換えたStringを戻す 
      * o quote(): 二つのString引数、第一引数を第二引数(引用符)で囲ったものを戻す 
      * o isAvailableLogging(): 引数なし、privateのインスタンス変数 "availableLogging" (初期値:true) を戻す (それも別途作る)  
@@ -152,12 +156,34 @@ public class Step04MethodTest extends PlainTestCase {
      */
     public void test_method_making() {
         // use after making these methods
-        //String replaced = replaceCwithB(replaceAwithB("ABC"));
-        //String sea = quote(replaced, "'");
-        //if (isAvailableLogging()) {
-        //    showSea(sea);
-        //}
+        String replaced = replaceCwithB(replaceAwithB("ABC"));
+        String sea = quote(replaced, "\"");
+        if (isAvailableLogging()) {
+            showSea(sea);
+        }
+    }
+    private boolean availableLogging = true;
+
+    public String replaceAwithB(String string){
+        return string.replace("A","B");
+    }
+    public String replaceCwithB(String string){
+        return string.replace("C","B");
+    }
+    public String quote(String string,String quote){
+        if (quote != "'" && quote != "\""){
+            availableLogging = false;
+            log("quoteメソッドの第二引数には引用符を使用してください");
+        }
+        return quote + string + quote;
+    }
+    public boolean isAvailableLogging(){
+        return availableLogging;
+    }
+    public void showSea(String sea){
+        log(sea);
     }
 
-    // write methods here
+
 }
+    //予想通り'BBB'が出力された。quoteメソッドで第二引数が引用符ではない場合の処理も含めた。
