@@ -46,7 +46,9 @@ public class Step03DataTypeTest extends PlainTestCase {
         BigDecimal amba = new BigDecimal("9.4");//参照型。イミュータブル
 
         piari = piari.plusDays(1);//TODO tanaryo piariのdaysに1を加えたインスタンスを新たに生成？その変数名がpiari?
+        // [1on1フォロー] yes, そして、piariの指し示すインスタンスがswitchされているというニュアンス
         land = piari.getYear();//TODO tanaryo piariのyaer取得。ここではインスタンスを新たに生成？
+        // [1on1フォロー] int自体は新たにnewされるわけじゃないが、Integerに変換されるときにjava内部でIntegerを生成している
         bonvo = bonvo.plusMonths(1); //右辺のmonthは10
         land = bonvo.getMonthValue();//10
         land--;//9
@@ -72,6 +74,7 @@ public class Step03DataTypeTest extends PlainTestCase {
         double amba = 2.3d;
         char miraco = 'a';
         boolean dohotel = miraco == 'a';//TODO tanaryo boolean型でもtrueとfalse以外を代入できる？
+        // [1on1フォロー] miraco == 'a'自体が判定結果となるのでboolean
         if (dohotel && dstore >= piari) {
             //論理積。どちらもtrueの場合にtrue
             bonvo = sea;//127//拡大変換
@@ -90,6 +93,9 @@ public class Step03DataTypeTest extends PlainTestCase {
 
     //TODO tanaryo 縮小変換の計算方法がわからない..
 
+    // TODO tanaryo [読み物課題]プリミティブ型とラッパー型 by jflute (2024/07/18)
+    // https://dbflute.seasar.org/ja/manual/topic/programming/java/beginners.html#primitivewrapper
+    
     // ===================================================================================
     //                                                                              Object
     //                                                                              ======
@@ -107,6 +113,7 @@ public class Step03DataTypeTest extends PlainTestCase {
 
         private final String stageName;//stagenameはインスタンス変数
         //TODO tanaka privateにする意味は？
+        // [1on1フォロー] オブジェクト指向のカプセル化、まあ見せなくていいものは見せない方が間違いが生まれない
         public St3ImmutableStage(String stageName) {
             this.stageName = stageName;
         }
