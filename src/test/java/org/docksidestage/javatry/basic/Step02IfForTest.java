@@ -218,10 +218,13 @@ public class Step02IfForTest extends PlainTestCase {
         String sea = sb.toString();
         log(sea); // hangar
     }
-    //TODO tanaka 同様の実行結果は得られた。froEach文ではcontinueはreturnで代替できる。breakは基本的に代替できない。forEach内で扱える変数はインスタンス変数?
+    //done tanaka 同様の実行結果は得られた。froEach文ではcontinueはreturnで代替できる。breakは基本的に代替できない。forEach内で扱える変数はインスタンス変数?
     // done jflute そもそもforEach()とはなんぞや？ (2024/07/11)
     // done jflute もちょい時間あるときに、forEach()の中で外側のローカル変数への代入ができないのなぜ話する (2024/07/11)
     // TODO tanaryo もし、stageListにgaが一個も含まれてないケースだったら、同じ結果になりますか？ by jflute (2024/07/18)
+    //  ->同じ結果にはならない。何も返されない。
+    //  ->gaが含まれている場合、3つ目のif文にて、sbにhangarが追加。次のメソッド実行時に2つ目のif文でreturnされる。
+    //  ->gaが含まれていない場合、sbには何も追加されず、forEach文が終了。
 
     /**
      * Make your original exercise as question style about if-for statement. <br>
