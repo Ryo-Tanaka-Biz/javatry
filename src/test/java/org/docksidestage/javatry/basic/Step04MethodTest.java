@@ -164,13 +164,19 @@ public class Step04MethodTest extends PlainTestCase {
     }
     private boolean availableLogging = true;
 
+    // TODO tanaryo publicじゃなくてprivateでいいかなと (自分のクラスからしか呼ばれてないので) by jflute (2024/07/25)
+    // [memo] メソッドは、デフォルトprivateな感覚で、必要に応じて公開範囲を広げていくって感じでOK
     public String replaceAwithB(String string){
         return string.replace("A","B");
     }
     public String replaceCwithB(String string){
         return string.replace("C","B");
     }
+
+    // [memo] quoteという引数の名前、とても良い！ by jflute
     public String quote(String string,String quote){
+        // [memo] これはこれで良い発想なので良いです。by jflute
+        // 一方で、本気でやるならquoteBySingle(), quoteByDouble()とかでメソッドで絞る
         if (quote != "'" && quote != "\""){
             availableLogging = false;
             log("quoteメソッドの第二引数には引用符を使用してください");
@@ -183,6 +189,7 @@ public class Step04MethodTest extends PlainTestCase {
     public void showSea(String sea){
         log(sea);
     }
+    // TODO tanaryo 変な空行空いてる (体裁も整えましょう) by jflute (2024/07/25)
 
 
 }

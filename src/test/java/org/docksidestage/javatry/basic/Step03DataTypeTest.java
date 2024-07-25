@@ -90,8 +90,11 @@ public class Step03DataTypeTest extends PlainTestCase {
         }
         log(sea); // your answer? => ？？？
     }
-
+    
     //TODO tanaryo 縮小変換の計算方法がわからない..
+    // [memo] 小数点から数値の場合、基本的には小数点は切り捨て、オーバーしてる値は変換先のmaxになる (Javaの文法(決めごと))
+    // 数値から数値の縮小変換は、なんか確かにパッとわからないルールになっている (-1になったり不思議なマイナスになったり)
+    // ただ、そこ自体はそこまで重要ではなく、型変換はこういった複雑なルールが関わってきやすいので、できるだけ縮小変換起きないようにしていこう。
 
     //done tanaryo [読み物課題]プリミティブ型とラッパー型 by jflute (2024/07/18)
     // https://dbflute.seasar.org/ja/manual/topic/programming/java/beginners.html#primitivewrapper
