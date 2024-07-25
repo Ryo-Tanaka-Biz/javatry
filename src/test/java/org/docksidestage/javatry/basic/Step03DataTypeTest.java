@@ -45,9 +45,9 @@ public class Step03DataTypeTest extends PlainTestCase {
         Boolean dstore = true; //参照型
         BigDecimal amba = new BigDecimal("9.4");//参照型。イミュータブル
 
-        piari = piari.plusDays(1);//TODO tanaryo piariのdaysに1を加えたインスタンスを新たに生成？その変数名がpiari?
+        piari = piari.plusDays(1);//done tanaryo piariのdaysに1を加えたインスタンスを新たに生成？その変数名がpiari?
         // [1on1フォロー] yes, そして、piariの指し示すインスタンスがswitchされているというニュアンス
-        land = piari.getYear();//TODO tanaryo piariのyaer取得。ここではインスタンスを新たに生成？
+        land = piari.getYear();//done tanaryo piariのyaer取得。ここではインスタンスを新たに生成？
         // [1on1フォロー] int自体は新たにnewされるわけじゃないが、Integerに変換されるときにjava内部でIntegerを生成している
         bonvo = bonvo.plusMonths(1); //右辺のmonthは10
         land = bonvo.getMonthValue();//10
@@ -73,7 +73,7 @@ public class Step03DataTypeTest extends PlainTestCase {
         float dstore = 1.1f;
         double amba = 2.3d;
         char miraco = 'a';
-        boolean dohotel = miraco == 'a';//TODO tanaryo boolean型でもtrueとfalse以外を代入できる？
+        boolean dohotel = miraco == 'a';//done tanaryo boolean型でもtrueとfalse以外を代入できる？->右辺は比較演算子==を用いていて、trueかfalse
         // [1on1フォロー] miraco == 'a'自体が判定結果となるのでboolean
         if (dohotel && dstore >= piari) {
             //論理積。どちらもtrueの場合にtrue
@@ -93,7 +93,7 @@ public class Step03DataTypeTest extends PlainTestCase {
 
     //TODO tanaryo 縮小変換の計算方法がわからない..
 
-    // TODO tanaryo [読み物課題]プリミティブ型とラッパー型 by jflute (2024/07/18)
+    //done tanaryo [読み物課題]プリミティブ型とラッパー型 by jflute (2024/07/18)
     // https://dbflute.seasar.org/ja/manual/topic/programming/java/beginners.html#primitivewrapper
     
     // ===================================================================================
@@ -112,7 +112,7 @@ public class Step03DataTypeTest extends PlainTestCase {
     private static class St3ImmutableStage {
 
         private final String stageName;//stagenameはインスタンス変数
-        //TODO tanaka privateにする意味は？
+        //done tanaryo privateにする意味は？
         // [1on1フォロー] オブジェクト指向のカプセル化、まあ見せなくていいものは見せない方が間違いが生まれない
         public St3ImmutableStage(String stageName) {
             this.stageName = stageName;
