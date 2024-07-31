@@ -14,13 +14,13 @@
  * governing permissions and limitations under the License.
  */
 package org.docksidestage.javatry.basic;
-//TODO tanaka org.docksidestage.javatry.basicパッケージを定義
+//done tanaka org.docksidestage.javatry.basicパッケージを定義
 
 import java.math.BigDecimal;
-//TODO tanaka java.math.BigDecimalクラスをインポート。以降はBigDecimalで呼び出せる。
+//done tanaka java.math.BigDecimalクラスをインポート。以降はBigDecimalで呼び出せる。
 
 import org.docksidestage.unit.PlainTestCase;
-//TODO tanaka org.docksidestage.unit.PlainTestCaseクラスをインポート。以降はBigDecimalで呼び出せる。
+//done tanaka org.docksidestage.unit.PlainTestCaseクラスをインポート。以降はBigDecimalで呼び出せる。
 
 // done tanaryo javatryではJavaDocのauthorのyour_name_hereのところ、ご自分の名前(アカウント名)でお願いします by jflute (2024/07/02)
 // 一応、↓こういうポリシーがあります。ご協力お願いします。
@@ -34,7 +34,7 @@ import org.docksidestage.unit.PlainTestCase;
  * @author tanaryo
  */
 public class Step01VariableTest extends PlainTestCase {
-//TODO tanaka  Step01VariableTestクラスを定義。PlainTestCaseクラスを継承。アクセス修飾子publicをつけることで他パッケージからも利用可能に。
+//done tanaka  Step01VariableTestクラスを定義。PlainTestCaseクラスを継承。アクセス修飾子publicをつけることで他パッケージからも利用可能に。
     // ===================================================================================
     //                                                                      Local Variable
     //                                                                      ==============
@@ -46,10 +46,10 @@ public class Step01VariableTest extends PlainTestCase {
         String sea = "mystic";
         log(sea); // your answer? => mystic
     }
-    //TODO tanaka test_variable_basicメソッドを定義。引数はなし。voidにより戻り値のないメソッドの型に。
-    //TODO tanaka Stringは文字列を表す型。
-    //TODO tanaka logメソッドはPlainTestCase内で定義。protected修飾子をつけて定義しているため、PlainTestCaseクラスを継承したStep01VariableTestクラスでも利用可能。
-    // TODO tanaka [いいね]おおぉ、そこまで読み込んでるの素晴らしいですね！まさしくそのとおりです by jflute (2024/07/02)
+    //done tanaka test_variable_basicメソッドを定義。引数はなし。voidにより戻り値のないメソッドの型に。
+    //done tanaka Stringは文字列を表す型。
+    //done tanaka logメソッドはPlainTestCase内で定義。protected修飾子をつけて定義しているため、PlainTestCaseクラスを継承したStep01VariableTestクラスでも利用可能。
+    //done tanaka [いいね]おおぉ、そこまで読み込んでるの素晴らしいですね！まさしくそのとおりです by jflute (2024/07/02)
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_variable_initial() {
@@ -60,9 +60,9 @@ public class Step01VariableTest extends PlainTestCase {
         sea = sea + land + piari + ":" + dstore;
         log(sea); // your answer? => mystic8null:mai
     }
-    //TODO tanaka 文字列との結合の場合、数値、nullは文字列("")に変換される？
+    //done tanaka 文字列との結合の場合、数値、nullは文字列("")に変換される？
     // done tanaryo [ふぉろー] ↑そのとおりです。型が違っても基本的に文字列に引っ張られます by jflute (2024/07/02)
-    //TODO tanaka Integlerはクラス型で整数値を保持する。Integler.~~でメソッドを呼び出せる。またnullを代入できる。intはプリミティブ型で整数値を保持し、nullは代入できない。
+    //done tanaka Integlerはクラス型で整数値を保持する。Integler.~~でメソッドを呼び出せる。またnullを代入できる。intはプリミティブ型で整数値を保持し、nullは代入できない。
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_variable_reassigned_basic() {
         String sea = "mystic";
@@ -113,8 +113,8 @@ public class Step01VariableTest extends PlainTestCase {
         sea.add(new BigDecimal(1));
         log(sea); // your answer? => 417
     }
-    //TODO tanaka BigDecimalは小数点以下を正確に扱うクラス。new演算子でクラスをインスタンス化。基本構文はクラス名 インスタンス名 = new コンストラクタ名([引数])。
-    //TODO tanaka addメソッドはBigDecimalファイルで定義。
+    //done tanaka BigDecimalは小数点以下を正確に扱うクラス。new演算子でクラスをインスタンス化。基本構文はクラス名 インスタンス名 = new コンストラクタ名([引数])。
+    //done tanaka addメソッドはBigDecimalファイルで定義。
     // done tanaka 87行目で1を足している？88行目も1を足している？
     // done tanaryo ↑行番号はコメント入れるとズレちゃいますね(^^ by jflute (2024/07/02)
     
@@ -128,37 +128,37 @@ public class Step01VariableTest extends PlainTestCase {
     private int instanceDockside;
     private Integer instanceHangar;
     private String instanceMagiclamp;
-    //TODO tanaka 変数を4つ定義
+    //done tanaka 変数を4つ定義
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_variable_instance_variable_default_String() {
         String sea = instanceBroadway;
         log(sea); // your answer? => null
     }
-    //TODO tanaka 変数instanceBroadwayに値を代入していないためnullとなる
+    //done tanaka 変数instanceBroadwayに値を代入していないためnullとなる
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_variable_instance_variable_default_int() {
         int sea = instanceDockside;
         log(sea); // your answer? => 0
     }
-    //TODO tanaka 変数instanceDocksideに値を代入しておらず、かつintはプリミティブ型でnullを入れることはできないため0となる
+    //done tanaka 変数instanceDocksideに値を代入しておらず、かつintはプリミティブ型でnullを入れることはできないため0となる
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_variable_instance_variable_default_Integer() {
         Integer sea = instanceHangar;
         log(sea); // your answer? => null
     }
-    //TODO tanaka Integerはクラス型でnullを入れることができるためnullとなる
+    //done tanaka Integerはクラス型でnullを入れることができるためnullとなる
     // done tanaryo [ほそく]↑クラス型をオブジェクト型とか参照型と読んだりもします by jflute (2024/07/02)
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_variable_instance_variable_via_method() {
         instanceBroadway = "bbb";
         instanceMagiclamp = "magician";
-        helpInstanceVariableViaMethod(instanceMagiclamp);
+        helpInstanceVariableViaMethod(instanceBroadway);
         String sea = instanceBroadway + "|" + instanceDockside + "|" + instanceHangar + "|" + instanceMagiclamp;
         log(sea); // your answer? => bigband|1|null|burn
     }
-    //TODO tanaka メソッドや変数を後に定義しても問題なし。
+    //done tanaka メソッドや変数を後に定義しても問題なし。
     // done tanaka　なぜburnではなく、magician?
     // done jflute 1on1にて変数の概念をフォロー予定 (2024/07/02)
     // 質問: インスタンス化？ => 変数自体においてインスタンス化という言葉は使わないけど...
@@ -183,17 +183,17 @@ public class Step01VariableTest extends PlainTestCase {
         helpMethodArgumentImmutableMethodcall(sea, land);
         log(sea); // your answer? => harbor416
     }
-    //TODO tanaka 416いらなかった。seaはあくまで結合元でsea=harbor416とはなっていない。
-    //TODo tanaka helpMethodArgumentImmutableMethodcallメソッドにlog(sea.concat(landStr));を追加したところ、harbor416が表示された
+    //done tanaka 416いらなかった。seaはあくまで結合元でsea=harbor416とはなっていない。
+    //done tanaka helpMethodArgumentImmutableMethodcallメソッドにlog(sea.concat(landStr));を追加したところ、harbor416が表示された
 
     private void helpMethodArgumentImmutableMethodcall(String sea, int land) {
         ++land;
         String landStr = String.valueOf(land); // is "416"
         sea.concat(landStr);
     }
-    //TODO tanaka String.valueOfでstring型に変換
-    //TODO tanaka concatメソッドは、引数で指定した文字列を「結合対象の文字列の最後に結合」するためのメソッド。
-    //TODO tanaka sea.concat(landStr)は文字列seaの最後に文字列landstrを結合
+    //done tanaka String.valueOfでstring型に変換
+    //done tanaka concatメソッドは、引数で指定した文字列を「結合対象の文字列の最後に結合」するためのメソッド。
+    //done tanaka sea.concat(landStr)は文字列seaの最後に文字列landstrを結合
 
     // -----------------------------------------------------
     //                                   Mutable Method-call
@@ -206,11 +206,11 @@ public class Step01VariableTest extends PlainTestCase {
         helpMethodArgumentMethodcall(sea, land);
         log(sea); // your answer? => harbor416
     }
-    //TODO tanaka StringBuilderで複数の文字列や他の値を連結し、最後に文字列として出力する
-    //TODO tanaka 当たった。
-    //TODO tanaka concatメソッドは元になる文字列自体を変更させるものではなく、「結合した新しいインスタンスを生む」
-    //TODO tanaka appendメソッドはインスタンスを生成させず、元になる文字列自体を変更させる。そのためもともとインスタンスが用意されている状態で使う。
-    //TODO tanaka appendメソッドではStringBuilderクラス、StringBufferクラスのいずれかを用いてインスタンスを作成。
+    //done tanaka StringBuilderで複数の文字列や他の値を連結し、最後に文字列として出力する
+    //done tanaka 当たった。
+    //done tanaka concatメソッドは元になる文字列自体を変更させるものではなく、「結合した新しいインスタンスを生む」
+    //done tanaka appendメソッドはインスタンスを生成させず、元になる文字列自体を変更させる。そのためもともとインスタンスが用意されている状態で使う。
+    //done tanaka appendメソッドではStringBuilderクラス、StringBufferクラスのいずれかを用いてインスタンスを作成。
     // done tanaryo ↑[いいね]素晴らしい考察ですね。Stringのcancat()とStringBuilderのappend()の違い着目されたのGoodです by jflute (2024/07/02)
     // done jflute 1on1にてインスタンスの概念についてフォロー予定 (2024/07/02)
 
@@ -229,16 +229,15 @@ public class Step01VariableTest extends PlainTestCase {
         helpMethodArgumentVariable(sea, land);
         log(sea); // your answer? => harbor
     }
-    //TODO tanaka 当たったけど、よくわからない。下のメソッドに log(sea);を追加したらharbor416と表示された。
+    //done tanaka 当たったけど、よくわからない。下のメソッドに log(sea);を追加したらharbor416と表示された。
     // done tanaryo [いいね]理解のメモありがとうございます。これは変数やインスタンス周りの話なので1on1で一気に説明しますね by jflute (2024/07/02)
     private void helpMethodArgumentVariable(StringBuilder sea, int land) {
         ++land;
         String seaStr = sea.toString(); // is "harbor"
-        //TODO tanaka　自作クラスでto.stringメソッドを用いている。
+        //done tanaka　自作クラスでto.stringメソッドを用いている。
         sea = new StringBuilder(seaStr).append(land);
-        //TODO tanaka
     }
-    //TODO tanaka toStringは文字列に変換するメソッド。nullを変換元に入れるとエラーが発生する。ここがvalueofメソッドとの違い
+    //done tanaka toStringは文字列に変換するメソッド。nullを変換元に入れるとエラーが発生する。ここがvalueofメソッドとの違い
     // ===================================================================================
     //                                                                           Challenge
     //                                                                           =========
@@ -265,7 +264,7 @@ public class Step01VariableTest extends PlainTestCase {
         log(sea +","+land+","+piari);
         // define variables here
     }
-    //TODO tanaka mystic,null,0と表示された
+    //done tanaka mystic,null,0と表示された
     // done tanaryo 厳密には、seaという変数の値を書き換えてしまっていますので、sea変数はそのままでlogに出せるといいですね by jflute (2024/07/02)
     // hint: 表示するためだけの新しい変数を作ってもいいですし、log()の引数部分のインラインで書いてもいいですし...
     // done tanaryo 直接「sea +","+land+","+piari」を代入
@@ -283,14 +282,14 @@ public class Step01VariableTest extends PlainTestCase {
      * _/_/_/_/_/_/_/_/_/_/
      * </pre>
      */
-    // TODO tanaryo ↑log(star)が残骸？ by jflute (2024/07/11)
+    // done tanaryo ↑log(star)が残骸？ by jflute (2024/07/11)
     int sea =15;
     public void test_variable_yourExercise() {
         int sea = this.sea;
         log(sea);
         // 15が出る
-        // TODO tanaka インスタンス変数とローカル変数が同一の場合、インスタンス変数にアクセスするにはthis.をつける。
-        // TODo tanaka this.をつけていないためここでは自身を参照代入している状態
+        //done tanaka インスタンス変数とローカル変数が同一の場合、インスタンス変数にアクセスするにはthis.をつける。
+        // done tanaka this.をつけていないためここでは自身を参照代入している状態
         // done tanakryo ↑状況合ってますね！逆にこのコンパイルエラーをちゃんと直すエクササイズというのも面白いかも(^^ by jflute (2024/07/02)
     }
 }
