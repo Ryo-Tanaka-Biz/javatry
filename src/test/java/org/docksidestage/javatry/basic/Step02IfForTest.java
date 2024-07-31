@@ -188,6 +188,7 @@ public class Step02IfForTest extends PlainTestCase {
      * Change foreach statement to List's forEach() (keep result after fix) <br>
      * (foreach文をforEach()メソッドへの置き換えてみましょう (修正前と修正後で実行結果が同じになるように))
      */
+    private String sea;
     public void test_iffor_refactor_foreach_to_forEach() {
         /*
         List<String> stageList = prepareStageList();
@@ -208,15 +209,13 @@ public class Step02IfForTest extends PlainTestCase {
             if (stage.startsWith("br")) {
                 return;
             }
-            if (sb.length() > 0) {
+            if (sb.toString().contains("ga")) {
                 return;
             }
-            if (stage.contains("ga")) {
-                sb.append(stage);
-            }
+            sb.setLength(0);
+            sb.append(stage);
         });
-        String sea = sb.toString();
-        log(sea); // hangar
+        log(sb.toString()); // hangar
     }
     //done tanaka 同様の実行結果は得られた。froEach文ではcontinueはreturnで代替できる。breakは基本的に代替できない。forEach内で扱える変数はインスタンス変数?
     // done jflute そもそもforEach()とはなんぞや？ (2024/07/11)
