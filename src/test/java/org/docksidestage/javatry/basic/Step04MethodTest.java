@@ -164,7 +164,7 @@ public class Step04MethodTest extends PlainTestCase {
     }
     private boolean availableLogging = true;
 
-    // TODO tanaryo publicじゃなくてprivateでいいかなと (自分のクラスからしか呼ばれてないので) by jflute (2024/07/25)
+    // done tanaryo publicじゃなくてprivateでいいかなと (自分のクラスからしか呼ばれてないので) by jflute (2024/07/25)
     // [memo] メソッドは、デフォルトprivateな感覚で、必要に応じて公開範囲を広げていくって感じでOK
     public String replaceAwithB(String string){
         return string.replace("A","B");
@@ -189,8 +189,6 @@ public class Step04MethodTest extends PlainTestCase {
     public void showSea(String sea){
         log(sea);
     }
-    // TODO tanaryo 変な空行空いてる (体裁も整えましょう) by jflute (2024/07/25)
-
-
 }
+    // done tanaryo 変な空行空いてる (体裁も整えましょう) by jflute (2024/07/25)
     //予想通り'BBB'が出力された。quoteメソッドで第二引数が引用符ではない場合の処理も含めた。
