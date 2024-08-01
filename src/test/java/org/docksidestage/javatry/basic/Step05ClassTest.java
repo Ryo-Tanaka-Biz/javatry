@@ -124,6 +124,10 @@ public class Step05ClassTest extends PlainTestCase {
         log(booth.getQuantity());
     }
     //quantityは日数にかかわらず共通？
+    // TODO tanaryo [いいね] ちゃんと迷ったことが素晴らしい by jflute (2024/08/01)
+    //  共有パターン: ブースに白紙チケットが10枚あって、売るときに1dayとか書いて売る
+    //  独立パターン: ブースに1dayチケット2dayチケットが別々に10枚あって、売るときそのまま売る
+    // 独立は実装が難しくなるので、最初は共有でやってもいいかもと by jflute
 
     /**
      * Recycle duplicate logics between one-day and two-day by e.g. private method in class. (And confirm result of both before and after) <br>
