@@ -18,6 +18,7 @@ package org.docksidestage.bizfw.basic.buyticket;
 // TODO tanaryo javadocにauthorの追加をお願いします、せっかくなので自分の名前を刻んでください by jflute (2024/08/01)
 /**
  * @author jflute
+ * @author tanaryo
  */
 public class TicketBooth {
 
@@ -60,7 +61,7 @@ public class TicketBooth {
      * @throws TicketSoldOutException    When ticket in booth is sold out.
      * @throws TicketShortMoneyException When the specified money is short for purchase.
      */
-    public int buyOneDayPassport(Integer handedMoney) {
+    public Ticket buyOneDayPassport(Integer handedMoney) {
         if (quantity <= 0) {
             throw new TicketSoldOutException("Sold out");
         }
@@ -73,7 +74,7 @@ public class TicketBooth {
         } else { // first purchase
             salesProceeds = ONE_DAY_PRICE;
         }
-        return ONE_DAY_PRICE;
+        return new Ticket(ONE_DAY_PRICE);
     }
 
     // [memo] お釣りにnullという概念もないので、intで問題ない (一方で、Integerでも問題はないけど)

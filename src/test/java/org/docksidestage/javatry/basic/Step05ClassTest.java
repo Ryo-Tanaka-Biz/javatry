@@ -149,7 +149,7 @@ public class Step05ClassTest extends PlainTestCase {
      */
     public void test_class_moreFix_return_ticket() {
         TicketBooth booth = new TicketBooth();
-        Ticket oneDayPassport = new Ticket(booth.buyOneDayPassport(10000));
+        Ticket oneDayPassport = booth.buyOneDayPassport(10000);
         log(oneDayPassport.getDisplayPrice()); // should be same as one-day price
         log(oneDayPassport.isAlreadyIn()); // should be false
         oneDayPassport.doInPark();
@@ -171,6 +171,7 @@ public class Step05ClassTest extends PlainTestCase {
         //int change = buyResult.getChange();
         //log(twoDayPassport.getDisplayPrice() + change); // should be same as money
     }
+
 
     /**
      * Now you can use only one in spite of two-day passport, so fix Ticket to be able to handle plural days. <br>
