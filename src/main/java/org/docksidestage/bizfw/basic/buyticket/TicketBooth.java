@@ -15,6 +15,7 @@
  */
 package org.docksidestage.bizfw.basic.buyticket;
 
+// TODO tanaryo javadocにauthorの追加をお願いします、せっかくなので自分の名前を刻んでください by jflute (2024/08/01)
 /**
  * @author jflute
  */
@@ -23,9 +24,12 @@ public class TicketBooth {
     // ===================================================================================
     //                                                                          Definition
     //                                                                          ==========
+    // [memo] 変更する時に見やすいように、一元管理するために、定数化している by jflute
+    // これは原始的なやり方ではあるけど、他にやりようがない場合はこのやり方がよく使われる。
     private static final int MAX_QUANTITY = 10;
     private static final int ONE_DAY_PRICE = 7400; // when 2019/06/15
     private static final int TWO_DAY_PRICE = 13200;
+
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
@@ -72,6 +76,9 @@ public class TicketBooth {
         return ONE_DAY_PRICE;
     }
 
+    // [memo] お釣りにnullという概念もないので、intで問題ない (一方で、Integerでも問題はないけど)
+    // 仮にすでにお釣りのプログラムがそこら中にあって、nullの概念もあってIntegerで広く使われてるなら合わせるとか。
+    // TODO tanaryo javadoc, せめてpublicの重要だと思われるメソッドには追加お願いします (日本語でOK) by jflute (2024/08/01)
     public int buyTwoDayPassport(Integer handedMoney) {
         if (quantity <= 0) {
             throw new TicketSoldOutException("Sold out");
@@ -85,6 +92,8 @@ public class TicketBooth {
         } else { // first purchase
             salesProceeds = TWO_DAY_PRICE;
         }
+        // TODO tanaryo [いいね] 変数でお釣りであることを示してるのがGood by jflute (2024/08/01)
+        // (ただし個人差がある: ぼくも強調したいとき、しなくてもいいとき、ケースバイケースではある)
         int change = handedMoney - TWO_DAY_PRICE;
         return change;
     }

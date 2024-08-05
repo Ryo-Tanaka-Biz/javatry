@@ -188,6 +188,7 @@ public class Step02IfForTest extends PlainTestCase {
      * Change foreach statement to List's forEach() (keep result after fix) <br>
      * (foreach文をforEach()メソッドへの置き換えてみましょう (修正前と修正後で実行結果が同じになるように))
      */
+    // TODO tanaryo unusedがあります。IDEの警告できるだけ見ていきましょう by jflute (2024/08/01)
     private String sea;
     public void test_iffor_refactor_foreach_to_forEach() {
         /*
@@ -209,6 +210,10 @@ public class Step02IfForTest extends PlainTestCase {
             if (stage.startsWith("br")) {
                 return;
             }
+            // [memo] toString()することで、内部の配列のコピー処理が走ってしまうので、直のindexOf()の方が速い by jflute
+            //if (sb.indexOf("ga") >= 0) {
+            //    return;
+            //}
             if (sb.toString().contains("ga")) {
                 return;
             }
@@ -220,7 +225,7 @@ public class Step02IfForTest extends PlainTestCase {
     //done tanaka 同様の実行結果は得られた。froEach文ではcontinueはreturnで代替できる。breakは基本的に代替できない。forEach内で扱える変数はインスタンス変数?
     // done jflute そもそもforEach()とはなんぞや？ (2024/07/11)
     // done jflute もちょい時間あるときに、forEach()の中で外側のローカル変数への代入ができないのなぜ話する (2024/07/11)
-    // TODO tanaryo もし、stageListにgaが一個も含まれてないケースだったら、同じ結果になりますか？ by jflute (2024/07/18)
+    // done tanaryo もし、stageListにgaが一個も含まれてないケースだったら、同じ結果になりますか？ by jflute (2024/07/18)
     //  ->同じ結果にはならない。何も返されない。
     //  ->gaが含まれている場合、3つ目のif文にて、sbにhangarが追加。次のメソッド実行時に2つ目のif文でreturnされる。
     //  ->gaが含まれていない場合、sbには何も追加されず、forEach文が終了。
