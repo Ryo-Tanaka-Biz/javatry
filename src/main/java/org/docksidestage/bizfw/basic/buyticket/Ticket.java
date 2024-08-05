@@ -46,6 +46,12 @@ public class Ticket {
         --dayCount;
         alreadyIn = true;
     }
+    // TODO tanaryo 自己レビューでalreadyInの名前がしっくり来ない話 by jflute (2024/08/05)
+    // 現時点では、alreadyInが2つの役割を持っている
+    //  o nowIn = true;
+    //  o alreadyUsedCompletely = true; // これって dayCount == 0 と言える？
+    // alreadyIn を nowAreadyIn にして...チケットを使い切った判定はdayCount == 0にするという選択肢もある
+    // ちょっと考えてみましょう
 
     // ===================================================================================
     //                                                                             Out Park
@@ -54,6 +60,7 @@ public class Ticket {
         if (!alreadyIn) {
             throw new IllegalStateException("Already out park by this ticket: displayedPrice=" + displayPrice);
         }
+        // TODO tanaryo ifの空白が他のコードと合ってない by jflute (2024/08/05)
         if(dayCount >= 1){
             alreadyIn = false;
         }

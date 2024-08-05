@@ -56,6 +56,7 @@ public class TicketBooth {
     // * @throws TicketSoldOutException ブース内のチケットが売り切れだったら
     // * @throws TicketShortMoneyException 買うのに金額が足りなかったら
     // */
+    // TODO tanaryo javadocでreturnを付けましょう by jflute (2024/08/05)
     /**
      * Buy one-day passport, method for park guest.
      *
@@ -83,6 +84,12 @@ public class TicketBooth {
     // 仮にすでにお釣りのプログラムがそこら中にあって、nullの概念もあってIntegerで広く使われてるなら合わせるとか。
     // done tanaryo javadoc, せめてpublicの重要だと思われるメソッドには追加お願いします (日本語でOK) by jflute (2024/08/01)
 
+    // _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
+    // [ふぉろー] TicketSoldOutExceptionとかTicketShortMoneyExceptionとかは、
+    // システムのバグによるシステム例外ではなく、業務的にあり得るレアケースなので業務例外と言う。
+    // _/_/_/_/_/_/_/_/_/_/
+    
+    // TODO tanaryo javadocの場合は//なくて良いです by jflute (2024/08/05)
     // /**
     // * 2Dayパスポートを買う、パークゲスト用のメソッド。
     // * @param handedMoney パークゲストから手渡しされたお金(金額) (NotNull, NotMinus)
@@ -107,6 +114,10 @@ public class TicketBooth {
         int change = handedMoney - TWO_DAY_PRICE;
         return new TicketBuyResult(TWO_DAY_PRICE, change, TWO_DAY_COUNT);
     }
+
+    // [ふぉろー] OneDayだけchange戻さない要件になってるけど、これはいいのか？と考えることは大事
+    // TODO tanryo [読み物課題] SIとスタートアップの違いを知ろう by jflute (2024/08/05)
+    // https://jflute.hatenadiary.jp/entry/20151007/sista
 
     public static class TicketSoldOutException extends RuntimeException {
 
