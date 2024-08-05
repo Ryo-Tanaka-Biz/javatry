@@ -95,7 +95,7 @@ public class TicketBooth {
         } else { // first purchase
             salesProceeds = TWO_DAY_PRICE;
         }
-        // TODO tanaryo [いいね] 変数でお釣りであることを示してるのがGood by jflute (2024/08/01)
+        // done tanaryo [いいね] 変数でお釣りであることを示してるのがGood by jflute (2024/08/01)
         // (ただし個人差がある: ぼくも強調したいとき、しなくてもいいとき、ケースバイケースではある)
         int change = handedMoney - TWO_DAY_PRICE;
         return new TicketBuyResult(TWO_DAY_PRICE, change, TWO_DAY_COUNT);
