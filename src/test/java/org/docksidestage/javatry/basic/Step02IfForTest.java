@@ -188,8 +188,7 @@ public class Step02IfForTest extends PlainTestCase {
      * Change foreach statement to List's forEach() (keep result after fix) <br>
      * (foreach文をforEach()メソッドへの置き換えてみましょう (修正前と修正後で実行結果が同じになるように))
      */
-    // TODO tanaryo unusedがあります。IDEの警告できるだけ見ていきましょう by jflute (2024/08/01)
-    private String sea;
+    // done tanaryo unusedがあります。IDEの警告できるだけ見ていきましょう by jflute (2024/08/01)
     public void test_iffor_refactor_foreach_to_forEach() {
         /*
         List<String> stageList = prepareStageList();
