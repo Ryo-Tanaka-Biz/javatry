@@ -17,20 +17,23 @@ package org.docksidestage.bizfw.basic.buyticket;
 
 /**
  * @author jflute
+ * @author tanaryo
  */
 public class Ticket {
 
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
-    private final int displayPrice; // written on ticket, park guest can watch this
+    private final int displayPrice;// written on ticket, park guest can watch this
+    private Integer dayCount;
     private boolean alreadyIn; // true means this ticket is unavailable
 
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public Ticket(int displayPrice) {
+    public Ticket(int displayPrice, Integer dayCount) {
         this.displayPrice = displayPrice;
+        this.dayCount = dayCount;
     }
 
     // ===================================================================================
@@ -40,7 +43,20 @@ public class Ticket {
         if (alreadyIn) {
             throw new IllegalStateException("Already in park by this ticket: displayedPrice=" + displayPrice);
         }
+        --dayCount;
         alreadyIn = true;
+    }
+
+    // ===================================================================================
+    //                                                                             Out Park
+    //                                                                             =======
+    public void doOutPark() {
+        if (!alreadyIn) {
+            throw new IllegalStateException("Already out park by this ticket: displayedPrice=" + displayPrice);
+        }
+        if(dayCount >= 1){
+            alreadyIn = false;
+        }
     }
 
     // ===================================================================================
@@ -48,6 +64,10 @@ public class Ticket {
     //                                                                            ========
     public int getDisplayPrice() {
         return displayPrice;
+    }
+
+    public Integer getDayCount() {
+        return dayCount;
     }
 
     public boolean isAlreadyIn() {

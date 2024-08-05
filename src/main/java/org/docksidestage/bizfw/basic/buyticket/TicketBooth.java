@@ -28,7 +28,9 @@ public class TicketBooth {
     // [memo] 変更する時に見やすいように、一元管理するために、定数化している by jflute
     // これは原始的なやり方ではあるけど、他にやりようがない場合はこのやり方がよく使われる。
     private static final int MAX_QUANTITY = 10;
+    private static final int ONE_DAY_COUNT = 1;
     private static final int ONE_DAY_PRICE = 7400; // when 2019/06/15
+    private static final int TWO_DAY_COUNT = 2;
     private static final int TWO_DAY_PRICE = 13200;
 
     // ===================================================================================
@@ -74,13 +76,13 @@ public class TicketBooth {
         } else { // first purchase
             salesProceeds = ONE_DAY_PRICE;
         }
-        return new Ticket(ONE_DAY_PRICE);
+        return new Ticket(ONE_DAY_PRICE,ONE_DAY_COUNT);
     }
 
     // [memo] お釣りにnullという概念もないので、intで問題ない (一方で、Integerでも問題はないけど)
     // 仮にすでにお釣りのプログラムがそこら中にあって、nullの概念もあってIntegerで広く使われてるなら合わせるとか。
     // TODO tanaryo javadoc, せめてpublicの重要だと思われるメソッドには追加お願いします (日本語でOK) by jflute (2024/08/01)
-    public int buyTwoDayPassport(Integer handedMoney) {
+    public TicketBuyResult buyTwoDayPassport(Integer handedMoney) {
         if (quantity <= 0) {
             throw new TicketSoldOutException("Sold out");
         }
@@ -96,7 +98,7 @@ public class TicketBooth {
         // TODO tanaryo [いいね] 変数でお釣りであることを示してるのがGood by jflute (2024/08/01)
         // (ただし個人差がある: ぼくも強調したいとき、しなくてもいいとき、ケースバイケースではある)
         int change = handedMoney - TWO_DAY_PRICE;
-        return change;
+        return new TicketBuyResult(TWO_DAY_PRICE, change, TWO_DAY_COUNT);
     }
 
 
