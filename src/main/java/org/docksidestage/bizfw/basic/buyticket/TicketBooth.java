@@ -81,7 +81,14 @@ public class TicketBooth {
 
     // [memo] お釣りにnullという概念もないので、intで問題ない (一方で、Integerでも問題はないけど)
     // 仮にすでにお釣りのプログラムがそこら中にあって、nullの概念もあってIntegerで広く使われてるなら合わせるとか。
-    // TODO tanaryo javadoc, せめてpublicの重要だと思われるメソッドには追加お願いします (日本語でOK) by jflute (2024/08/01)
+    // done tanaryo javadoc, せめてpublicの重要だと思われるメソッドには追加お願いします (日本語でOK) by jflute (2024/08/01)
+
+    // /**
+    // * 2Dayパスポートを買う、パークゲスト用のメソッド。
+    // * @param handedMoney パークゲストから手渡しされたお金(金額) (NotNull, NotMinus)
+    // * @throws TicketSoldOutException ブース内のチケットが売り切れだったら
+    // * @throws TicketShortMoneyException 買うのに金額が足りなかったら
+    // */
     public TicketBuyResult buyTwoDayPassport(Integer handedMoney) {
         if (quantity <= 0) {
             throw new TicketSoldOutException("Sold out");
@@ -100,7 +107,6 @@ public class TicketBooth {
         int change = handedMoney - TWO_DAY_PRICE;
         return new TicketBuyResult(TWO_DAY_PRICE, change, TWO_DAY_COUNT);
     }
-
 
     public static class TicketSoldOutException extends RuntimeException {
 
