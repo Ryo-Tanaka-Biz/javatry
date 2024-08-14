@@ -89,13 +89,13 @@ public class TicketBooth {
     // システムのバグによるシステム例外ではなく、業務的にあり得るレアケースなので業務例外と言う。
     // _/_/_/_/_/_/_/_/_/_/
     
-    // TODO tanaryo javadocの場合は//なくて良いです by jflute (2024/08/05)
-    // /**
-    // * 2Dayパスポートを買う、パークゲスト用のメソッド。
-    // * @param handedMoney パークゲストから手渡しされたお金(金額) (NotNull, NotMinus)
-    // * @throws TicketSoldOutException ブース内のチケットが売り切れだったら
-    // * @throws TicketShortMoneyException 買うのに金額が足りなかったら
-    // */
+    // done tanaryo javadocの場合は//なくて良いです by jflute (2024/08/05)
+    /**
+     * 2Dayパスポートを買う、パークゲスト用のメソッド。
+     * @param handedMoney パークゲストから手渡しされたお金(金額) (NotNull, NotMinus)
+     * @throws TicketSoldOutException ブース内のチケットが売り切れだったら
+     * @throws TicketShortMoneyException 買うのに金額が足りなかったら
+     */
     public TicketBuyResult buyTwoDayPassport(Integer handedMoney) {
         if (quantity <= 0) {
             throw new TicketSoldOutException("Sold out");

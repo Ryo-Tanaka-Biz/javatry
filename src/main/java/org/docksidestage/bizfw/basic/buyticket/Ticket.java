@@ -60,8 +60,8 @@ public class Ticket {
         if (!alreadyIn) {
             throw new IllegalStateException("Already out park by this ticket: displayedPrice=" + displayPrice);
         }
-        // TODO tanaryo ifの空白が他のコードと合ってない by jflute (2024/08/05)
-        if(dayCount >= 1){
+        // done tanaryo ifの空白が他のコードと合ってない by jflute (2024/08/05)
+        if(dayCount >= 1) {
             alreadyIn = false;
         }
     }
