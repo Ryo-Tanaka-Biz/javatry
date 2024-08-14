@@ -8,11 +8,11 @@ public class TicketBuyResult {
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
-    // TODO tanaryo daycountがfinal付いてない理由がない by jflute (2024/08/05)
+    // done tanaryo daycountがfinal付いてない理由がない by jflute (2024/08/05)
     // TODO tanaryo ここではdaycountだけどTicketではdayCountなので一貫性がない by jflute (2024/08/05)
     private final int displayPrice; // written on ticket, park guest can watch this
     private final int change;
-    private Integer daycount;
+    private final Integer daycount;
 
     // ===================================================================================
     //                                                                         Constructor
