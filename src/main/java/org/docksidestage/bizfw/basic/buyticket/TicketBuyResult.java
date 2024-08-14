@@ -12,22 +12,22 @@ public class TicketBuyResult {
     // TODO tanaryo ここではdaycountだけどTicketではdayCountなので一貫性がない by jflute (2024/08/05)
     private final int displayPrice; // written on ticket, park guest can watch this
     private final int change;
-    private final Integer daycount;
+    private final Integer dayCount;
 
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public TicketBuyResult(int displayPrice, int change, int daycount) {
+    public TicketBuyResult(int displayPrice, int change, int dayCount) {
         this.displayPrice = displayPrice;
         this.change = change;
-        this.daycount = daycount;
+        this.dayCount = dayCount;
     }
 
     // ===================================================================================
     //                                                                            Accessor
     //                                                                            ========
     public Ticket getTicket() {
-        return new Ticket(displayPrice, daycount);
+        return new Ticket(displayPrice, dayCount);
     }
 
     public int getChange(){
