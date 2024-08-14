@@ -25,8 +25,8 @@ public class Ticket {
     //                                                                           Attribute
     //                                                                           =========
     private final int displayPrice;// written on ticket, park guest can watch this
-    private Integer dayCount;
-    private boolean alreadyIn; // true means this ticket is unavailable
+    private Integer dayCount;//dayCountが0の場合入園できない
+    private boolean nowAlreadyIn;// trueは入園中を示す
 
     // ===================================================================================
     //                                                                         Constructor
@@ -40,29 +40,32 @@ public class Ticket {
     //                                                                             In Park
     //                                                                             =======
     public void doInPark() {
-        if (alreadyIn) {
+        if (nowAlreadyIn) {
             throw new IllegalStateException("Already in park by this ticket: displayedPrice=" + displayPrice);
         }
+        if (dayCount == 0) {
+            throw new IllegalStateException("This ticket is unavailable: displayedPrice=" + displayPrice);
+        }
         --dayCount;
-        alreadyIn = true;
+        nowAlreadyIn = true;
     }
     // TODO tanaryo 自己レビューでalreadyInの名前がしっくり来ない話 by jflute (2024/08/05)
     // 現時点では、alreadyInが2つの役割を持っている
     //  o nowIn = true;
     //  o alreadyUsedCompletely = true; // これって dayCount == 0 と言える？
-    // alreadyIn を nowAreadyIn にして...チケットを使い切った判定はdayCount == 0にするという選択肢もある
+    // alreadyIn を nowAlreadyIn にして...チケットを使い切った判定はdayCount == 0にするという選択肢もある
     // ちょっと考えてみましょう
 
     // ===================================================================================
     //                                                                             Out Park
     //                                                                             =======
     public void doOutPark() {
-        if (!alreadyIn) {
+        if (!nowAlreadyIn) {
             throw new IllegalStateException("Already out park by this ticket: displayedPrice=" + displayPrice);
         }
         // done tanaryo ifの空白が他のコードと合ってない by jflute (2024/08/05)
         if(dayCount >= 1) {
-            alreadyIn = false;
+            nowAlreadyIn = false;
         }
     }
 
@@ -78,6 +81,6 @@ public class Ticket {
     }
 
     public boolean isAlreadyIn() {
-        return alreadyIn;
+        return nowAlreadyIn;
     }
 }
