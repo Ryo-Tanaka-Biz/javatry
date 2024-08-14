@@ -49,7 +49,7 @@ public class Ticket {
         --dayCount;
         nowAlreadyIn = true;
     }
-    // TODO tanaryo 自己レビューでalreadyInの名前がしっくり来ない話 by jflute (2024/08/05)
+    // done tanaryo 自己レビューでalreadyInの名前がしっくり来ない話 by jflute (2024/08/05)
     // 現時点では、alreadyInが2つの役割を持っている
     //  o nowIn = true;
     //  o alreadyUsedCompletely = true; // これって dayCount == 0 と言える？
