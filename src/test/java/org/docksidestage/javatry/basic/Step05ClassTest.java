@@ -113,6 +113,7 @@ public class Step05ClassTest extends PlainTestCase {
         Integer sea = booth.getSalesProceeds();
         log(sea); // should be same as one-day price, visual check here
     }
+
     //7400になった。handedmoney->ONE_DAY_PRICEにした
     /**
      * Make method for buying two-day passport (price is 13200). (which can return change as method return value)
@@ -139,6 +140,7 @@ public class Step05ClassTest extends PlainTestCase {
      * (OneDayとTwoDayで冗長なロジックがあったら、クラス内のprivateメソッドなどで再利用しましょう (修正前と修正後の実行結果を確認))
      */
     public void test_class_letsFix_refactor_recycle() {
+        // TODO jflute 次回1on1でフォロー (2024/08/15)
         TicketBooth booth = new TicketBooth();
         booth.buyOneDayPassport(10000);
         log(booth.getQuantity(), booth.getSalesProceeds()); // should be same as before-fix
@@ -176,7 +178,6 @@ public class Step05ClassTest extends PlainTestCase {
     }
     //test_class_letsFix_makeMethod_twodayメソッドでエラー。中身を修正。20000のlogはでた。
     //TicketクラスとTicketBuyResultクラスで機能を分けている？
-
 
     /**
      * Now you can use only one in spite of two-day passport, so fix Ticket to be able to handle plural days. <br>
@@ -219,6 +220,7 @@ public class Step05ClassTest extends PlainTestCase {
     //うまくいった。dayCountで判別。
 
     private void showTicketIfNeeds(Ticket ticket) {
+        // TODO tanaryo すでにnightonlyが増えて、このif文に紛れが発生してしまっている by jflute (2024/08/15)
         if (ticket.getDayCount() == 2) {
             log("two-day passport");
         } else {
@@ -254,6 +256,7 @@ public class Step05ClassTest extends PlainTestCase {
         log(nightOnlyTwoDayPassport.getDisplayPrice()); // should be same as two-day price
         log(nightOnlyTwoDayPassport.isAlreadyIn()); // should be false
         nightOnlyTwoDayPassport.setNowTime();
+        // TODO tanaryo [いいね] 現在日時を細工してテストしやすいようにするという発想が素晴らしい by jflute (2024/08/15)
         //nightOnlyTwoDayPassport.nowTime = LocalTime.of(17, 0);
         //nightOnlyTwoDayPassport.nowTime = LocalTime.of(16, 0);
         nightOnlyTwoDayPassport.doInPark(); //1回目入場

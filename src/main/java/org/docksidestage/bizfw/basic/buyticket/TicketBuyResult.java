@@ -4,10 +4,13 @@ package org.docksidestage.bizfw.basic.buyticket;
 
 import java.time.LocalTime;
 
+// TODO tanaryo ↑unusedのimport by jflute (2024/08/15)
+// import文はクラスの登場人物相関図みたいなものなので、コード読む時に役に立つ話
 /**
  * @author tanaryo
  */
 public class TicketBuyResult {
+
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
@@ -30,6 +33,10 @@ public class TicketBuyResult {
     //                                                                            Accessor
     //                                                                            ========
     public Ticket getTicket() {
+        // TODO tanaryo getter(getメソッド)でその場でnewして戻すっていうのは一般的ではない by jflute (2024/08/15)
+        // getterって、そこに置いてあるものをただ取るだけ、のイメージが強いので忘れ去られやすい(管理にしにくい)
+        // 2回呼んではいけないメソッドになっているが、2回呼ばれちゃいそう (別インスタンスになっちゃう)
+        // そもそも業務的にもチケットResultを受け取ったプログラム(お客さん)がチケットを増殖できる。
         return new Ticket(displayPrice, dayCount);
     }
 

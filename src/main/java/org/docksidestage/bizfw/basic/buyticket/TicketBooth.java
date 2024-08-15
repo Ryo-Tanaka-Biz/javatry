@@ -32,9 +32,14 @@ public class TicketBooth {
     private static final int ONE_DAY_PRICE = 7400; // when 2019/06/15
     private static final int TWO_DAY_COUNT = 2;
     private static final int TWO_DAY_PRICE = 13200;
+    // TODO tanaryo static finalの定数は、スネークケースで統一することが多い by jflute (2024/08/15)
     private static final int NightOnlyTWO_DAY_PRICE = 7400;
     private static final int FOUR_DAY_COUNT = 4;
     private static final int FOUR_DAY_PRICE = 22400;
+    
+    // TODO tanaryo TicketBoothは同じboothから複数の人が買うので、night買ったらみんなnightチェック走る by jflute (2024/08/15)
+    // さらに、staticになっているので...複数のTicketBoothで共有されている変数になっている。
+    // 一つのTicketBoothでnightが買われたら、世界中のTicketBoothのTicketでnightチェックが走る。
     public static boolean nightTicket;
 
     // ===================================================================================
@@ -61,6 +66,12 @@ public class TicketBooth {
     // * @throws TicketShortMoneyException 買うのに金額が足りなかったら
     // */
     // done tanaryo javadocでreturnを付けましょう by jflute (2024/08/05)
+    // TODO tanaryo @paramのhandedMoneyが全角空白で別の名前になってしまっている "handedMoney　The" by jflute (2024/08/15)
+    // TODO tanaryo @return, 戻り値はTicketであることがメソッド定義からわかるのでjavadocで明示不要 by jflute (2024/08/15)
+    //  引数は複数ある => 特定しないといけない
+    //  戻り値は一個しかない => 特定する必要はない
+    // (ちなみに、引数も別に型をjavadocで明示しているわけじゃない)
+    // javadocをパースする側の視点で考えると、必要不要がしっくり来る。
     /**
      * Buy one-day passport, method for park guest.
      *
@@ -95,6 +106,10 @@ public class TicketBooth {
     // _/_/_/_/_/_/_/_/_/_/
     
     // done tanaryo javadocの場合は//なくて良いです by jflute (2024/08/05)
+    // TODO tanaryo @returnにも (NotNull) というマークを付けるようにお願いします by jflute (2024/08/15)
+    // もし、nullを許す戻り値であれば (NullAllowed)
+    // 呼び出し側の知りたい情報の代表格として、引数や戻り値がnullがあり得るかどうか？というのがある
+    // TODO tanaryo ここは@returnは入場チケットというよりかは... by jflute (2024/08/15)
     /**
      * 2Dayパスポートを買う、パークゲスト用のメソッド。
      * @param handedMoney パークゲストから手渡しされたお金(金額) (NotNull, NotMinus)
