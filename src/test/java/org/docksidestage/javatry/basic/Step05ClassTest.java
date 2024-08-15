@@ -194,8 +194,9 @@ public class Step05ClassTest extends PlainTestCase {
         log(twoDayPassport.isAlreadyIn()); // should be true
         twoDayPassport.doOutPark(); //2回目退場
         log(twoDayPassport.isAlreadyIn()); // should be true
+        twoDayPassport.doInPark(); //3回目入場
     }
-    // TODO tanaryo [いいね] 自己レビュー素晴らしい by jflute (2024/08/05)
+    // done tanaryo [いいね] 自己レビュー素晴らしい by jflute (2024/08/05)
     //複数日数は連日？それとも間隔開けても問題ない？
     //今回は簡単のため、間隔開けても問題ないとする。
     //日数の制限も実装する。2日用なので、2回利用できるとする
@@ -213,7 +214,6 @@ public class Step05ClassTest extends PlainTestCase {
         Ticket twoDayPassport = buyResult.getTicket();
         showTicketIfNeeds(twoDayPassport);
     }
-
 
     private void showTicketIfNeeds(Ticket ticket) {
         if (ticket.getDayCount() == 2) {
