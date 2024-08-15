@@ -15,6 +15,8 @@
  */
 package org.docksidestage.bizfw.basic.buyticket;
 
+import java.time.LocalTime;
+
 /**
  * @author jflute
  * @author tanaryo
@@ -27,7 +29,8 @@ public class Ticket {
     private final int displayPrice;// written on ticket, park guest can watch this
     private Integer dayCount;//dayCountが0の場合入園できない
     private boolean nowAlreadyIn;// trueは入園中を示す
-
+    public LocalTime nowTime;//現在の時刻
+    private final LocalTime nightStartTime = LocalTime.of(17, 0);//夜チケットの入場開始時間
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
@@ -37,11 +40,21 @@ public class Ticket {
     }
 
     // ===================================================================================
+    //                                                                            Set Time
+    //
+    public void setNowTime() {
+        this.nowTime = LocalTime.now();
+    }
+
+    // ===================================================================================
     //                                                                             In Park
     //                                                                             =======
     public void doInPark() {
         if (dayCount == 0) {
             throw new IllegalStateException("This ticket is unavailable: displayedPrice=" + displayPrice);
+        }
+        if (TicketBooth.nightTicket && nowTime.isBefore(nightStartTime) ) {
+            throw new IllegalStateException("17時より前なので入場できません");
         }
         if (nowAlreadyIn) {
             throw new IllegalStateException("Already in park by this ticket: displayedPrice=" + displayPrice);

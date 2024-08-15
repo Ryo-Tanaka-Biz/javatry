@@ -15,6 +15,8 @@
  */
 package org.docksidestage.javatry.basic;
 
+import java.time.LocalTime;
+
 import org.docksidestage.bizfw.basic.buyticket.TicketBooth;
 import org.docksidestage.bizfw.basic.buyticket.TicketBooth.TicketShortMoneyException;
 import org.docksidestage.bizfw.basic.buyticket.Ticket;
@@ -246,8 +248,21 @@ public class Step05ClassTest extends PlainTestCase {
      * (NightOnlyTwoDayPassport (金額は7400) のチケットも買えるようにしましょう。夜しか使えないようにしましょう)
      */
     public void test_class_moreFix_wonder_night() {
-        // your confirmation code here
+        TicketBooth booth = new TicketBooth();
+        TicketBuyResult buyResult = booth.buyNightOnlyTwoDayPassport(8000);
+        Ticket nightOnlyTwoDayPassport = buyResult.getTicket();
+        log(nightOnlyTwoDayPassport.getDisplayPrice()); // should be same as two-day price
+        log(nightOnlyTwoDayPassport.isAlreadyIn()); // should be false
+        nightOnlyTwoDayPassport.setNowTime();
+        //nightOnlyTwoDayPassport.nowTime = LocalTime.of(17, 0);
+        //nightOnlyTwoDayPassport.nowTime = LocalTime.of(16, 0);
+        nightOnlyTwoDayPassport.doInPark(); //1回目入場
     }
+    //夜しか使えないとは？具体的に時間を指定する必要あり？ディズニーだと17時から入園できるチケットがある
+    //今回は17時以降使えるチケットとする
+    //終日チケットではない場合、時間を確認する。時間確認はどうやる？
+    //17時より前だと入場できない
+    //現在時刻で判別しているが、テストケースとしては時間指定して入場できるかできないかテストしたい->setNowTimeメソッドで時間をセット
 
     /**
      * Refactor if you want to fix (e.g. is it well-balanced name of method and variable?). <br>
