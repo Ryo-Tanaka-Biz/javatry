@@ -31,6 +31,7 @@ public class Ticket {
     private boolean nowAlreadyIn;// trueは入園中を示す
     public LocalTime nowTime;//現在の時刻
     private final LocalTime nightStartTime = LocalTime.of(17, 0);//夜チケットの入場開始時間
+
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
@@ -41,7 +42,7 @@ public class Ticket {
 
     // ===================================================================================
     //                                                                            Set Time
-    //
+    //                                                                           =========
     public void setNowTime() {
         this.nowTime = LocalTime.now();
     }
@@ -53,7 +54,7 @@ public class Ticket {
         if (dayCount == 0) {
             throw new IllegalStateException("This ticket is unavailable: displayedPrice=" + displayPrice);
         }
-        if (TicketBooth.nightTicket && nowTime.isBefore(nightStartTime) ) {
+        if (TicketBooth.nightTicket && nowTime.isBefore(nightStartTime)) {
             throw new IllegalStateException("17時より前なので入場できません");
         }
         if (nowAlreadyIn) {
