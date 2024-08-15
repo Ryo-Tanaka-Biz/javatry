@@ -32,7 +32,8 @@ public class TicketBooth {
     private static final int ONE_DAY_PRICE = 7400; // when 2019/06/15
     private static final int TWO_DAY_COUNT = 2;
     private static final int TWO_DAY_PRICE = 13200;
-
+    private static final int FOUR_DAY_COUNT = 4;
+    private static final int FOUR_DAY_PRICE = 22400;
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
@@ -120,6 +121,30 @@ public class TicketBooth {
     // [ふぉろー] OneDayだけchange戻さない要件になってるけど、これはいいのか？と考えることは大事
     // done tanryo [読み物課題] SIとスタートアップの違いを知ろう by jflute (2024/08/05)
     // https://jflute.hatenadiary.jp/entry/20151007/sista
+
+    /**
+     * 4Dayパスポートを買う、パークゲスト用のメソッド。
+     * @param handedMoney パークゲストから手渡しされたお金(金額) (NotNull, NotMinus)
+     * @return TicketBuyResult 入場チケット
+     * @throws TicketSoldOutException ブース内のチケットが売り切れだったら
+     * @throws TicketShortMoneyException 買うのに金額が足りなかったら
+     */
+    public TicketBuyResult buyFourDayPassport(Integer handedMoney) {
+        if (quantity <= 0) {
+            throw new TicketSoldOutException("Sold out");
+        }
+        if (handedMoney < FOUR_DAY_PRICE) {
+            throw new TicketShortMoneyException("Short money: " + handedMoney);
+        }
+        --quantity;
+        if (salesProceeds != null) { // second or more purchase
+            salesProceeds = salesProceeds + FOUR_DAY_PRICE;
+        } else { // first purchase
+            salesProceeds = FOUR_DAY_PRICE;
+        }
+        int change = handedMoney - FOUR_DAY_PRICE;
+        return new TicketBuyResult(FOUR_DAY_PRICE, change, FOUR_DAY_COUNT);
+    }
 
     public static class TicketSoldOutException extends RuntimeException {
 
