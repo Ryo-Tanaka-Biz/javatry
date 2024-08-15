@@ -40,11 +40,11 @@ public class Ticket {
     //                                                                             In Park
     //                                                                             =======
     public void doInPark() {
-        if (nowAlreadyIn) {
-            throw new IllegalStateException("Already in park by this ticket: displayedPrice=" + displayPrice);
-        }
         if (dayCount == 0) {
             throw new IllegalStateException("This ticket is unavailable: displayedPrice=" + displayPrice);
+        }
+        if (nowAlreadyIn) {
+            throw new IllegalStateException("Already in park by this ticket: displayedPrice=" + displayPrice);
         }
         --dayCount;
         nowAlreadyIn = true;
