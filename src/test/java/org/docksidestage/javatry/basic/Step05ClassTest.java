@@ -194,7 +194,6 @@ public class Step05ClassTest extends PlainTestCase {
         log(twoDayPassport.isAlreadyIn()); // should be true
         twoDayPassport.doOutPark(); //2回目退場
         log(twoDayPassport.isAlreadyIn()); // should be true
-        twoDayPassport.doInPark(); //3回目入場
     }
     // done tanaryo [いいね] 自己レビュー素晴らしい by jflute (2024/08/05)
     //複数日数は連日？それとも間隔開けても問題ない？
@@ -215,6 +214,8 @@ public class Step05ClassTest extends PlainTestCase {
         showTicketIfNeeds(twoDayPassport);
     }
 
+    //うまくいった。dayCountで判別。
+
     private void showTicketIfNeeds(Ticket ticket) {
         if (ticket.getDayCount() == 2) {
             log("two-day passport");
@@ -231,8 +232,14 @@ public class Step05ClassTest extends PlainTestCase {
      * (FourDayPassport (金額は22400) のチケットも買えるようにしましょう)
      */
     public void test_class_moreFix_wonder_four() {
-        // your confirmation code here
+        TicketBooth booth = new TicketBooth();
+        int handedMoney = 30000;
+        TicketBuyResult buyResult = booth.buyFourDayPassport(handedMoney);
+        Ticket fourDayPassport = buyResult.getTicket();
+        int change = buyResult.getChange();
+        log(fourDayPassport.getDisplayPrice() + change); // should be same as money
     }
+    //TwoDayPassportと同様に考えた
 
     /**
      * Fix it to be able to buy night-only two-day passport (price is 7400), which can be used at only night. <br>
