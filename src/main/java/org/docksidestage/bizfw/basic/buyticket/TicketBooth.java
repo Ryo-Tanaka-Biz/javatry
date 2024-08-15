@@ -56,7 +56,7 @@ public class TicketBooth {
     // * @throws TicketSoldOutException ブース内のチケットが売り切れだったら
     // * @throws TicketShortMoneyException 買うのに金額が足りなかったら
     // */
-    // TODO tanaryo javadocでreturnを付けましょう by jflute (2024/08/05)
+    // done tanaryo javadocでreturnを付けましょう by jflute (2024/08/05)
     /**
      * Buy one-day passport, method for park guest.
      *
