@@ -60,7 +60,8 @@ public class TicketBooth {
     /**
      * Buy one-day passport, method for park guest.
      *
-     * @param handedMoney The money (amount) handed over from park guest. (NotNull, NotMinus)
+     * @param handedMoney　The money (amount) handed over from park guest. (NotNull, NotMinus)
+     * @return Ticket 入場チケット //Ticketインスタンスが認識されていない？
      * @throws TicketSoldOutException    When ticket in booth is sold out.
      * @throws TicketShortMoneyException When the specified money is short for purchase.
      */
@@ -93,6 +94,7 @@ public class TicketBooth {
     /**
      * 2Dayパスポートを買う、パークゲスト用のメソッド。
      * @param handedMoney パークゲストから手渡しされたお金(金額) (NotNull, NotMinus)
+     * @return TicketBuyResult 入場チケット
      * @throws TicketSoldOutException ブース内のチケットが売り切れだったら
      * @throws TicketShortMoneyException 買うのに金額が足りなかったら
      */
@@ -116,7 +118,7 @@ public class TicketBooth {
     }
 
     // [ふぉろー] OneDayだけchange戻さない要件になってるけど、これはいいのか？と考えることは大事
-    // TODO tanryo [読み物課題] SIとスタートアップの違いを知ろう by jflute (2024/08/05)
+    // done tanryo [読み物課題] SIとスタートアップの違いを知ろう by jflute (2024/08/05)
     // https://jflute.hatenadiary.jp/entry/20151007/sista
 
     public static class TicketSoldOutException extends RuntimeException {
