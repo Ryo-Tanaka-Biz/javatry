@@ -93,11 +93,10 @@ public class Ticket {
             throw new IllegalStateException("Already out park by this ticket: displayedPrice=" + displayPrice);
         }
         // done tanaryo ifの空白が他のコードと合ってない by jflute (2024/08/05)
-        // TODO tanaryo 実質的に支障はあまり無さそうだが、最終日だけ帰った後nowAlreadyInがtrueのまんまが変というか必要あるか？ by jflute (2024/08/15)
+        // TODO done tanaryo 実質的に支障はあまり無さそうだが、最終日だけ帰った後nowAlreadyInがtrueのまんまが変というか必要あるか？ by jflute (2024/08/15)
         // nowAlreadyInは、現在パーク内に入ってるかどうか？を純粋に表現する変数というイメージで作っていると思うので
-        if(dayCount >= 1) {
-            nowAlreadyIn = false;
-        }
+
+        nowAlreadyIn = false;
     }
 
     // ===================================================================================
