@@ -26,8 +26,8 @@ public class Ticket {
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
-    // TODO tanaryo [いいね] 横の//すらすらコメントで変数の補足が素晴らしい by jflute (2024/08/15)
-    // TODO tanaryo [いいね] 変数の定義順番、わかりやすくていいですね by jflute (2024/08/15)
+    // TODO done tanaryo [いいね] 横の//すらすらコメントで変数の補足が素晴らしい by jflute (2024/08/15)
+    // TODO done tanaryo [いいね] 変数の定義順番、わかりやすくていいですね by jflute (2024/08/15)
     private final int displayPrice;// written on ticket, park guest can watch this
     private Integer dayCount;//dayCountが0の場合入園できない
     private boolean nowAlreadyIn;// trueは入園中を示す
@@ -68,7 +68,7 @@ public class Ticket {
         if (dayCount == 0) {
             throw new IllegalStateException("This ticket is unavailable: displayedPrice=" + displayPrice);
         }
-        // TODO tanaryo [いいね] nightと関係ないチケットではチェック処理走らないように工夫している、これは良い by jflute (2024/08/15)
+        // TODO done tanaryo [いいね] nightと関係ないチケットではチェック処理走らないように工夫している、これは良い by jflute (2024/08/15)
         if (TicketBooth.nightTicket && nowTime.isBefore(nightStartTime)) {
             throw new IllegalStateException("17時より前なので入場できません");
         }
