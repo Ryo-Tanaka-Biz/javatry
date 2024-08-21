@@ -32,8 +32,8 @@ public class TicketBooth {
     private static final int ONE_DAY_PRICE = 7400; // when 2019/06/15
     private static final int TWO_DAY_COUNT = 2;
     private static final int TWO_DAY_PRICE = 13200;
-    // TODO tanaryo static finalの定数は、スネークケースで統一することが多い by jflute (2024/08/15)
-    private static final int NightOnlyTWO_DAY_PRICE = 7400;
+    // TODO done tanaryo static finalの定数は、スネークケースで統一することが多い by jflute (2024/08/15)
+    private static final int NIGHT_ONLY_TWO_DAY_PRICE = 7400;
     private static final int FOUR_DAY_COUNT = 4;
     private static final int FOUR_DAY_PRICE = 22400;
     
@@ -147,20 +147,20 @@ public class TicketBooth {
         if (quantity <= 0) {
             throw new TicketSoldOutException("Sold out");
         }
-        if (handedMoney < NightOnlyTWO_DAY_PRICE) {
+        if (handedMoney < NIGHT_ONLY_TWO_DAY_PRICE) {
             throw new TicketShortMoneyException("Short money: " + handedMoney);
         }
         --quantity;
         if (salesProceeds != null) { // second or more purchase
-            salesProceeds = salesProceeds + NightOnlyTWO_DAY_PRICE;
+            salesProceeds = salesProceeds + NIGHT_ONLY_TWO_DAY_PRICE;
         } else { // first purchase
-            salesProceeds = NightOnlyTWO_DAY_PRICE;
+            salesProceeds = NIGHT_ONLY_TWO_DAY_PRICE;
         }
         // done tanaryo [いいね] 変数でお釣りであることを示してるのがGood by jflute (2024/08/01)
         // (ただし個人差がある: ぼくも強調したいとき、しなくてもいいとき、ケースバイケースではある)
-        int change = handedMoney - NightOnlyTWO_DAY_PRICE;
+        int change = handedMoney - NIGHT_ONLY_TWO_DAY_PRICE;
         nightTicket = true;
-        return new TicketBuyResult(NightOnlyTWO_DAY_PRICE, change, TWO_DAY_COUNT);
+        return new TicketBuyResult(NIGHT_ONLY_TWO_DAY_PRICE, change, TWO_DAY_COUNT);
     }
 
     // [ふぉろー] OneDayだけchange戻さない要件になってるけど、これはいいのか？と考えることは大事
