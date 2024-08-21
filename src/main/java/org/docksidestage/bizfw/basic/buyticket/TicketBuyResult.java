@@ -2,9 +2,7 @@ package org.docksidestage.bizfw.basic.buyticket;
 
 // done tanaryo タグコメントの上 (クラス宣言の直下) に一行空行を by jflute (2024/08/05)
 
-import java.time.LocalTime;
-
-// TODO tanaryo ↑unusedのimport by jflute (2024/08/15)
+// TODO done tanaryo ↑unusedのimport by jflute (2024/08/15)
 // import文はクラスの登場人物相関図みたいなものなので、コード読む時に役に立つ話
 /**
  * @author tanaryo
