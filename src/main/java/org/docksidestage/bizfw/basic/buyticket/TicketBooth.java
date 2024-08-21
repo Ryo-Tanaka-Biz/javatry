@@ -66,8 +66,8 @@ public class TicketBooth {
     // * @throws TicketShortMoneyException 買うのに金額が足りなかったら
     // */
     // done tanaryo javadocでreturnを付けましょう by jflute (2024/08/05)
-    // TODO tanaryo @paramのhandedMoneyが全角空白で別の名前になってしまっている "handedMoney　The" by jflute (2024/08/15)
-    // TODO tanaryo @return, 戻り値はTicketであることがメソッド定義からわかるのでjavadocで明示不要 by jflute (2024/08/15)
+    // TODO done tanaryo @paramのhandedMoneyが全角空白で別の名前になってしまっている "handedMoney　The" by jflute (2024/08/15)
+    // TODO done tanaryo @return, 戻り値はTicketであることがメソッド定義からわかるのでjavadocで明示不要 by jflute (2024/08/15)
     //  引数は複数ある => 特定しないといけない
     //  戻り値は一個しかない => 特定する必要はない
     // (ちなみに、引数も別に型をjavadocで明示しているわけじゃない)
@@ -75,8 +75,8 @@ public class TicketBooth {
     /**
      * Buy one-day passport, method for park guest.
      *
-     * @param handedMoney　The money (amount) handed over from park guest. (NotNull, NotMinus)
-     * @return Ticket 入場チケット //Ticketインスタンスが認識されていない？
+     * @param handedMoney The money (amount) handed over from park guest. (NotNull, NotMinus)
+     * @return 入場チケット
      * @throws TicketSoldOutException    When ticket in booth is sold out.
      * @throws TicketShortMoneyException When the specified money is short for purchase.
      */
@@ -106,14 +106,14 @@ public class TicketBooth {
     // _/_/_/_/_/_/_/_/_/_/
     
     // done tanaryo javadocの場合は//なくて良いです by jflute (2024/08/05)
-    // TODO tanaryo @returnにも (NotNull) というマークを付けるようにお願いします by jflute (2024/08/15)
+    // TODO done tanaryo @returnにも (NotNull) というマークを付けるようにお願いします by jflute (2024/08/15)
     // もし、nullを許す戻り値であれば (NullAllowed)
     // 呼び出し側の知りたい情報の代表格として、引数や戻り値がnullがあり得るかどうか？というのがある
-    // TODO tanaryo ここは@returnは入場チケットというよりかは... by jflute (2024/08/15)
+    // TODO done tanaryo ここは@returnは入場チケットというよりかは... by jflute (2024/08/15)
     /**
      * 2Dayパスポートを買う、パークゲスト用のメソッド。
      * @param handedMoney パークゲストから手渡しされたお金(金額) (NotNull, NotMinus)
-     * @return TicketBuyResult 入場チケット
+     * @return チケット購入後のフロー (NotNull)
      * @throws TicketSoldOutException ブース内のチケットが売り切れだったら
      * @throws TicketShortMoneyException 買うのに金額が足りなかったら
      */
