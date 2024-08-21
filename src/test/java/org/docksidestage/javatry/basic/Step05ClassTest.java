@@ -256,7 +256,7 @@ public class Step05ClassTest extends PlainTestCase {
         log(nightOnlyTwoDayPassport.getDisplayPrice()); // should be same as two-day price
         log(nightOnlyTwoDayPassport.isAlreadyIn()); // should be false
         nightOnlyTwoDayPassport.setNowTime();
-        // TODO tanaryo [いいね] 現在日時を細工してテストしやすいようにするという発想が素晴らしい by jflute (2024/08/15)
+        // TODO done tanaryo [いいね] 現在日時を細工してテストしやすいようにするという発想が素晴らしい by jflute (2024/08/15)
         //nightOnlyTwoDayPassport.nowTime = LocalTime.of(17, 0);
         //nightOnlyTwoDayPassport.nowTime = LocalTime.of(16, 0);
         nightOnlyTwoDayPassport.doInPark(); //1回目入場
