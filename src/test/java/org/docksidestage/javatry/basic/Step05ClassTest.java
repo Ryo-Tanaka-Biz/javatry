@@ -15,8 +15,6 @@
  */
 package org.docksidestage.javatry.basic;
 
-import java.time.LocalTime;
-
 import org.docksidestage.bizfw.basic.buyticket.TicketBooth;
 import org.docksidestage.bizfw.basic.buyticket.TicketBooth.TicketShortMoneyException;
 import org.docksidestage.bizfw.basic.buyticket.Ticket;
