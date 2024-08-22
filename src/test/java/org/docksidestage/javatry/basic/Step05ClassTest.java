@@ -220,8 +220,8 @@ public class Step05ClassTest extends PlainTestCase {
     //うまくいった。dayCountで判別。
 
     private void showTicketIfNeeds(Ticket ticket) {
-        // TODO tanaryo すでにnightonlyが増えて、このif文に紛れが発生してしまっている by jflute (2024/08/15)
-        if (ticket.getDayCount() == 2) {
+        // TODO done tanaryo すでにnightonlyが増えて、このif文に紛れが発生してしまっている by jflute (2024/08/15)
+        if (ticket.getDayCount() == 2 && ticket.getDisplayPrice() == 13200 ) {
             log("two-day passport");
         } else {
             log("other");
