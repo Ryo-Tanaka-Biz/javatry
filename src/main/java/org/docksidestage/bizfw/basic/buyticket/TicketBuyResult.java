@@ -14,28 +14,27 @@ public class TicketBuyResult {
     //                                                                           =========
     // done tanaryo daycountがfinal付いてない理由がない by jflute (2024/08/05)
     // done tanaryo ここではdaycountだけどTicketではdayCountなので一貫性がない by jflute (2024/08/05)
-    private final int displayPrice; // written on ticket, park guest can watch this
     private final int change;
-    private final Integer dayCount;
+    private final Ticket ticket;
 
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
     public TicketBuyResult(int displayPrice, int change, int dayCount) {
-        this.displayPrice = displayPrice;
         this.change = change;
-        this.dayCount = dayCount;
+        this.ticket = new Ticket(displayPrice, dayCount);
     }
 
     // ===================================================================================
     //                                                                            Accessor
     //                                                                            ========
     public Ticket getTicket() {
-        // TODO tanaryo getter(getメソッド)でその場でnewして戻すっていうのは一般的ではない by jflute (2024/08/15)
+        // TODO done tanaryo getter(getメソッド)でその場でnewして戻すっていうのは一般的ではない by jflute (2024/08/15)
         // getterって、そこに置いてあるものをただ取るだけ、のイメージが強いので忘れ去られやすい(管理にしにくい)
         // 2回呼んではいけないメソッドになっているが、2回呼ばれちゃいそう (別インスタンスになっちゃう)
         // そもそも業務的にもチケットResultを受け取ったプログラム(お客さん)がチケットを増殖できる。
-        return new Ticket(displayPrice, dayCount);
+        //[tanaryo] コンストラクタでnewする
+        return ticket;
     }
 
     public int getChange(){
