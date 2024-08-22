@@ -37,10 +37,10 @@ public class TicketBooth {
     private static final int FOUR_DAY_COUNT = 4;
     private static final int FOUR_DAY_PRICE = 22400;
 
+    private final boolean nightTerm ;
     // TODO tanaryo TicketBoothは同じboothから複数の人が買うので、night買ったらみんなnightチェック走る by jflute (2024/08/15)
     // さらに、staticになっているので...複数のTicketBoothで共有されている変数になっている。
     // 一つのTicketBoothでnightが買われたら、世界中のTicketBoothのTicketでnightチェックが走る。
-    public static boolean nightTicket;
 
     // ===================================================================================
     //                                                                           Attribute
@@ -159,7 +159,6 @@ public class TicketBooth {
         // done tanaryo [いいね] 変数でお釣りであることを示してるのがGood by jflute (2024/08/01)
         // (ただし個人差がある: ぼくも強調したいとき、しなくてもいいとき、ケースバイケースではある)
         int change = handedMoney - NIGHT_ONLY_TWO_DAY_PRICE;
-        nightTicket = true;
         return new TicketBuyResult(NIGHT_ONLY_TWO_DAY_PRICE, change, TWO_DAY_COUNT);
     }
 

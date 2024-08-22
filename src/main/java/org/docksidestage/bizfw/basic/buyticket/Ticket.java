@@ -17,6 +17,7 @@ package org.docksidestage.bizfw.basic.buyticket;
 
 import java.time.LocalTime;
 
+
 /**
  * @author jflute
  * @author tanaryo
@@ -31,11 +32,13 @@ public class Ticket {
     private final int displayPrice;// written on ticket, park guest can watch this
     private Integer dayCount;//dayCountが0の場合入園できない
     private boolean nowAlreadyIn;// trueは入園中を示す
+    private boolean nightTerm;//trueは夜限定チケットを示す
     // TODO tanaryo ご自身で思っている通り、唐突にpublicフィールドで公開するのはちょっと危険と思う人が多い by jflute (2024/08/15)
     // テストコード以外の人(mainコード)も、これを使って細工できちゃうので怖い
-    public LocalTime nowTime;//現在の時刻
-    // TODO done tanaryo 固定のオブジェクトなので、これはstatic finalで定義でOK by jflute (2024/08/15)
     private static final LocalTime nightStartTime = LocalTime.of(17, 0);//夜チケットの入場開始時間
+    // TODO done tanaryo 固定のオブジェクトなので、これはstatic finalで定義でOK by jflute (2024/08/15)
+
+    PresentTime presentTime = new DefaultPresentTime();
 
     // ===================================================================================
     //                                                                         Constructor
@@ -43,15 +46,11 @@ public class Ticket {
     public Ticket(int displayPrice, Integer dayCount) {
         this.displayPrice = displayPrice;
         this.dayCount = dayCount;
+        if (displayPrice == 7400 && dayCount == 2) {
+            nightTerm = true;
+        }
     }
 
-    // ===================================================================================
-    //                                                                            Set Time
-    //                                                                           =========
-    public void setNowTime() {
-        this.nowTime = LocalTime.now();
-    }
-    
     // TODO jflute 1on1にて続きフォロー (2024/08/15)
     // [ふぉろー] publicフィールドよりは、まだsetterの方が管理がしやすい by jflute
     // setの呼び出しを管理することができる: 例えば状態をチェックして例外をthrowしたり、処理を挟み込むことができる
@@ -69,7 +68,7 @@ public class Ticket {
             throw new IllegalStateException("This ticket is unavailable: displayedPrice=" + displayPrice);
         }
         // TODO done tanaryo [いいね] nightと関係ないチケットではチェック処理走らないように工夫している、これは良い by jflute (2024/08/15)
-        if (TicketBooth.nightTicket && nowTime.isBefore(nightStartTime)) {
+        if (nightTerm && presentTime.getPresentTime().isBefore(nightStartTime)) {
             throw new IllegalStateException("17時より前なので入場できません");
         }
         if (nowAlreadyIn) {
