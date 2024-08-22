@@ -27,16 +27,19 @@ public class Ticket {
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
-    // TODO done tanaryo [いいね] 横の//すらすらコメントで変数の補足が素晴らしい by jflute (2024/08/15)
-    // TODO done tanaryo [いいね] 変数の定義順番、わかりやすくていいですね by jflute (2024/08/15)
+    // done tanaryo [いいね] 横の//すらすらコメントで変数の補足が素晴らしい by jflute (2024/08/15)
+    // done tanaryo [いいね] 変数の定義順番、わかりやすくていいですね by jflute (2024/08/15)
     private final int displayPrice;// written on ticket, park guest can watch this
     private Integer dayCount;//dayCountが0の場合入園できない
     private boolean nowAlreadyIn;// trueは入園中を示す
     private boolean nightTerm;//trueは夜限定チケットを示す
+
     // TODO tanaryo ご自身で思っている通り、唐突にpublicフィールドで公開するのはちょっと危険と思う人が多い by jflute (2024/08/15)
     // テストコード以外の人(mainコード)も、これを使って細工できちゃうので怖い
+
+    // TODO tanaryo staticなものは Attribute よりも上に定義するのがJavaの慣習になっています by jflute (2024/08/22)
     private static final LocalTime nightStartTime = LocalTime.of(17, 0);//夜チケットの入場開始時間
-    // TODO done tanaryo 固定のオブジェクトなので、これはstatic finalで定義でOK by jflute (2024/08/15)
+    // done tanaryo 固定のオブジェクトなので、これはstatic finalで定義でOK by jflute (2024/08/15)
 
     PresentTime presentTime = new DefaultPresentTime();
 
@@ -67,7 +70,7 @@ public class Ticket {
         if (dayCount == 0) {
             throw new IllegalStateException("This ticket is unavailable: displayedPrice=" + displayPrice);
         }
-        // TODO done tanaryo [いいね] nightと関係ないチケットではチェック処理走らないように工夫している、これは良い by jflute (2024/08/15)
+        // done tanaryo [いいね] nightと関係ないチケットではチェック処理走らないように工夫している、これは良い by jflute (2024/08/15)
         if (nightTerm && presentTime.getPresentTime().isBefore(nightStartTime)) {
             throw new IllegalStateException("17時より前なので入場できません");
         }
@@ -92,7 +95,7 @@ public class Ticket {
             throw new IllegalStateException("Already out park by this ticket: displayedPrice=" + displayPrice);
         }
         // done tanaryo ifの空白が他のコードと合ってない by jflute (2024/08/05)
-        // TODO done tanaryo 実質的に支障はあまり無さそうだが、最終日だけ帰った後nowAlreadyInがtrueのまんまが変というか必要あるか？ by jflute (2024/08/15)
+        // done tanaryo 実質的に支障はあまり無さそうだが、最終日だけ帰った後nowAlreadyInがtrueのまんまが変というか必要あるか？ by jflute (2024/08/15)
         // nowAlreadyInは、現在パーク内に入ってるかどうか？を純粋に表現する変数というイメージで作っていると思うので
 
         nowAlreadyIn = false;
