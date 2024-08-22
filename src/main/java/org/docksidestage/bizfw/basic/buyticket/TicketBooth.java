@@ -37,7 +37,6 @@ public class TicketBooth {
     private static final int FOUR_DAY_COUNT = 4;
     private static final int FOUR_DAY_PRICE = 22400;
 
-    private final boolean nightTerm ;
     // TODO tanaryo TicketBoothは同じboothから複数の人が買うので、night買ったらみんなnightチェック走る by jflute (2024/08/15)
     // さらに、staticになっているので...複数のTicketBoothで共有されている変数になっている。
     // 一つのTicketBoothでnightが買われたら、世界中のTicketBoothのTicketでnightチェックが走る。
