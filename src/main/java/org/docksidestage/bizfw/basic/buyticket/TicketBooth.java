@@ -36,7 +36,7 @@ public class TicketBooth {
     private static final int NIGHT_ONLY_TWO_DAY_PRICE = 7400;
     private static final int FOUR_DAY_COUNT = 4;
     private static final int FOUR_DAY_PRICE = 22400;
-    
+
     // TODO tanaryo TicketBoothは同じboothから複数の人が買うので、night買ったらみんなnightチェック走る by jflute (2024/08/15)
     // さらに、staticになっているので...複数のTicketBoothで共有されている変数になっている。
     // 一つのTicketBoothでnightが買われたら、世界中のTicketBoothのTicketでnightチェックが走る。
@@ -113,7 +113,7 @@ public class TicketBooth {
     /**
      * 2Dayパスポートを買う、パークゲスト用のメソッド。
      * @param handedMoney パークゲストから手渡しされたお金(金額) (NotNull, NotMinus)
-     * @return チケット購入後のフロー (NotNull)
+     * @return チケットとお釣りを渡す (NotNull)
      * @throws TicketSoldOutException ブース内のチケットが売り切れだったら
      * @throws TicketShortMoneyException 買うのに金額が足りなかったら
      */
@@ -139,7 +139,7 @@ public class TicketBooth {
     /**
      * 夜限定2Dayパスポートを買う、パークゲスト用のメソッド。
      * @param handedMoney パークゲストから手渡しされたお金(金額) (NotNull, NotMinus)
-     * @return TicketBuyResult 入場チケット
+     * @return チケットとお釣りを渡す (NotNull)
      * @throws TicketSoldOutException ブース内のチケットが売り切れだったら
      * @throws TicketShortMoneyException 買うのに金額が足りなかったら
      */
@@ -170,7 +170,7 @@ public class TicketBooth {
     /**
      * 4Dayパスポートを買う、パークゲスト用のメソッド。
      * @param handedMoney パークゲストから手渡しされたお金(金額) (NotNull, NotMinus)
-     * @return TicketBuyResult 入場チケット
+     * @return チケットとお釣りを渡す (NotNull)
      * @throws TicketSoldOutException ブース内のチケットが売り切れだったら
      * @throws TicketShortMoneyException 買うのに金額が足りなかったら
      */
