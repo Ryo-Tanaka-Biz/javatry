@@ -32,7 +32,7 @@ public class Ticket {
     private final int displayPrice;// written on ticket, park guest can watch this
     private Integer dayCount;//dayCountが0の場合入園できない
     private LocalTime startTime;//開始時間
-    private final LocalTime endTime;//終了時間
+    private final LocalTime endTime;//終了時間->入退場のどこかで用いる？
     private boolean nowAlreadyIn;// trueは入園中を示す
 
 
