@@ -31,8 +31,10 @@ public class Ticket {
     // done tanaryo [いいね] 変数の定義順番、わかりやすくていいですね by jflute (2024/08/15)
     private final int displayPrice;// written on ticket, park guest can watch this
     private Integer dayCount;//dayCountが0の場合入園できない
+    private LocalTime startTime;//開始時間
+    private final LocalTime endTime;//終了時間
     private boolean nowAlreadyIn;// trueは入園中を示す
-    private boolean nightTerm;//trueは夜限定チケットを示す
+
 
     // TODO tanaryo ご自身で思っている通り、唐突にpublicフィールドで公開するのはちょっと危険と思う人が多い by jflute (2024/08/15)
     // テストコード以外の人(mainコード)も、これを使って細工できちゃうので怖い
@@ -46,12 +48,11 @@ public class Ticket {
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public Ticket(int displayPrice, Integer dayCount) {
+    public Ticket(int displayPrice, Integer dayCount, LocalTime startTime,LocalTime endTime) {
         this.displayPrice = displayPrice;
         this.dayCount = dayCount;
-        if (displayPrice == 7400 && dayCount == 2) {
-            nightTerm = true;
-        }
+        this.startTime = startTime;
+        this.endTime = endTime;
     }
 
     // TODO jflute 1on1にて続きフォロー (2024/08/15)
@@ -71,8 +72,8 @@ public class Ticket {
             throw new IllegalStateException("This ticket is unavailable: displayedPrice=" + displayPrice);
         }
         // done tanaryo [いいね] nightと関係ないチケットではチェック処理走らないように工夫している、これは良い by jflute (2024/08/15)
-        if (nightTerm && presentTime.getPresentTime().isBefore(nightStartTime)) {
-            throw new IllegalStateException("17時より前なので入場できません");
+        if (presentTime.getPresentTime().isBefore(startTime)) {
+            throw new IllegalStateException("入場可能時間より前なので入場できません");
         }
         if (nowAlreadyIn) {
             throw new IllegalStateException("Already in park by this ticket: displayedPrice=" + displayPrice);

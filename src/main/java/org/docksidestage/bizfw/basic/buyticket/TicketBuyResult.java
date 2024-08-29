@@ -20,12 +20,12 @@ public class TicketBuyResult {
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public TicketBuyResult(int displayPrice, int change, int dayCount) {
-        // TODO tanaryo 一般的に、あまりコンストラクターで(小さくても)業務的な処理は入れない慣習がある by jflute (2024/08/22)
+    public TicketBuyResult(int change, Ticket ticket) {
+        // TODO done tanaryo 一般的に、あまりコンストラクターで(小さくても)業務的な処理は入れない慣習がある by jflute (2024/08/22)
         // ここでも悪くはないけど、多くの人がこういう風には実装しない可能性がある。
         // チケットを用意する処理自体もれっきとした業務処理なので、どちらかというとBoothの責任と考える人が多いかも。
         this.change = change;
-        this.ticket = new Ticket(displayPrice, dayCount);
+        this.ticket = ticket;
     }
 
     // ===================================================================================
