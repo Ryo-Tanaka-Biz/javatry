@@ -21,7 +21,7 @@ public class TicketBuyResult {
     //                                                                         Constructor
     //                                                                         ===========
     public TicketBuyResult(int change, Ticket ticket) {
-        // TODO done tanaryo 一般的に、あまりコンストラクターで(小さくても)業務的な処理は入れない慣習がある by jflute (2024/08/22)
+        // done tanaryo 一般的に、あまりコンストラクターで(小さくても)業務的な処理は入れない慣習がある by jflute (2024/08/22)
         // ここでも悪くはないけど、多くの人がこういう風には実装しない可能性がある。
         // チケットを用意する処理自体もれっきとした業務処理なので、どちらかというとBoothの責任と考える人が多いかも。
         this.change = change;
@@ -31,6 +31,7 @@ public class TicketBuyResult {
     // ===================================================================================
     //                                                                            Accessor
     //                                                                            ========
+    // TODO tanaryo change, ticketの順番がベースなのに、ここだけ逆 by jflute (2024/08/29)
     public Ticket getTicket() {
         // done tanaryo getter(getメソッド)でその場でnewして戻すっていうのは一般的ではない by jflute (2024/08/15)
         // getterって、そこに置いてあるものをただ取るだけ、のイメージが強いので忘れ去られやすい(管理にしにくい)
@@ -39,7 +40,7 @@ public class TicketBuyResult {
         //[tanaryo] コンストラクタでnewする
         return ticket;
     }
-
+    
     public int getChange(){
         return change;
     }

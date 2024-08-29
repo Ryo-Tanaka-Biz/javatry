@@ -65,7 +65,7 @@ public class TicketBooth {
     //  戻り値は一個しかない => 特定する必要はない
     // (ちなみに、引数も別に型をjavadocで明示しているわけじゃない)
     // javadocをパースする側の視点で考えると、必要不要がしっくり来る。
-    // TODO done tanaryo 1度指摘されたことは、他で似た箇所がないかどうか確認する習慣を by jflute (2024/08/22)
+    // done tanaryo 1度指摘されたことは、他で似た箇所がないかどうか確認する習慣を by jflute (2024/08/22)
     /**
      * Buy one-day passport, method for park guest.
      *
@@ -75,10 +75,14 @@ public class TicketBooth {
      * @throws TicketShortMoneyException When the specified money is short for purchase.
      */
     public Ticket buyOneDayPassport(Integer handedMoney) {
+        // TODO tanaryo 変数もticketTypeとかぼかしちゃった方が以降の処理がoneDay依存してないことが明示できるかなと by jflute (2024/08/29)
         TicketType oneAllDay= TicketType.ONE_ALL_DAY;
         if (quantity <= 0) {
             throw new TicketSoldOutException("Sold out");
         }
+        // TODO tanaryo priceは変数に出してもいいんじゃないかなと (ショートカットでやってみて) by jflute (2024/08/29)
+        // TODO tanaryo [読み物課題] リファクタリングは思考のツール by jflute (2024/08/29)
+        // https://jflute.hatenadiary.jp/entry/20121202/1354442627
         if (handedMoney < oneAllDay.getPrice()) {
             throw new TicketShortMoneyException("Short money: " + handedMoney);
         }
@@ -105,7 +109,7 @@ public class TicketBooth {
     // もし、nullを許す戻り値であれば (NullAllowed)
     // 呼び出し側の知りたい情報の代表格として、引数や戻り値がnullがあり得るかどうか？というのがある
     // done tanaryo ここは@returnは入場チケットというよりかは... by jflute (2024/08/15)
-    // TODO done tanaryo "チケットとお釣りなどを渡す" とか "e.g. チケット, お釣り" とか項目の個数を断定しない方が長持ちする by jflute (2024/08/22)
+    // done tanaryo "チケットとお釣りなどを渡す" とか "e.g. チケット, お釣り" とか項目の個数を断定しない方が長持ちする by jflute (2024/08/22)
     /**
      * 2Dayパスポートを買う、パークゲスト用のメソッド。
      * @param handedMoney パークゲストから手渡しされたお金(金額) (NotNull, NotMinus)
@@ -191,6 +195,14 @@ public class TicketBooth {
         Ticket ticket = new Ticket(fourAllDay.getPrice(),fourAllDay.getDayCount(),fourAllDay.getStartTime(),fourAllDay.getEndTime());
         return new TicketBuyResult(change, ticket);
     }
+    
+    // _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
+    // [ふぉろー] Ticketのコンストラクターが引数4つで多いかな？という質問に対して... by jflute
+    // 仕方ない時は仕方ないので、引数指定間違いに気をつけながら指定するしかない。
+    // 一方で、今回はTicketTypeの情報を渡しているだけなので、TicketType自体を渡していいんじゃないかと。
+    // Ticket側のコンストラクターで振り分けるってすればマッピング一箇所になってバグの温床が減ることにつながる。
+    // 一方で一方で、TicketType自体を保持しちゃってもいいかと。(dayCountだけ可変なのでSNAPSHOTを保持)
+    // _/_/_/_/_/_/_/_/_/_/
 
     public static class TicketSoldOutException extends RuntimeException {
 

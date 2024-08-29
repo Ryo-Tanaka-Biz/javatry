@@ -29,6 +29,7 @@ public class Ticket {
     //                                                                           =========
     // done tanaryo [いいね] 横の//すらすらコメントで変数の補足が素晴らしい by jflute (2024/08/15)
     // done tanaryo [いいね] 変数の定義順番、わかりやすくていいですね by jflute (2024/08/15)
+    // TODO tanaryo dayCount, "残りの" っていうニュアンスが変数名にあるといいかなと by jflute (2024/08/29)
     private final int displayPrice;// written on ticket, park guest can watch this
     private Integer dayCount;//dayCountが0の場合入園できない
     private LocalTime startTime;//開始時間
@@ -72,7 +73,9 @@ public class Ticket {
             throw new IllegalStateException("This ticket is unavailable: displayedPrice=" + displayPrice);
         }
         // done tanaryo [いいね] nightと関係ないチケットではチェック処理走らないように工夫している、これは良い by jflute (2024/08/15)
+        // ↑night以外でも24時間ってわけじゃないから、一律時間帯をチェックするように変わっている by jflute (2024/08/29)
         if (presentTime.getPresentTime().isBefore(startTime)) {
+            // TODO tanaryo デバッグ情報もあるといいかなと、startTimeとかpresentTimeとか判定に使った情報含めるといいかなと by jflute (2024/08/29)
             throw new IllegalStateException("入場可能時間より前なので入場できません");
         }
         if (nowAlreadyIn) {
