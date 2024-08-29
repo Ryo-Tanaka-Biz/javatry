@@ -71,12 +71,12 @@ public class TicketBooth {
     //  戻り値は一個しかない => 特定する必要はない
     // (ちなみに、引数も別に型をjavadocで明示しているわけじゃない)
     // javadocをパースする側の視点で考えると、必要不要がしっくり来る。
-    // TODO tanaryo 1度指摘されたことは、他で似た箇所がないかどうか確認する習慣を by jflute (2024/08/22)
+    // TODO done tanaryo 1度指摘されたことは、他で似た箇所がないかどうか確認する習慣を by jflute (2024/08/22)
     /**
      * Buy one-day passport, method for park guest.
      *
      * @param handedMoney The money (amount) handed over from park guest. (NotNull, NotMinus)
-     * @return 入場チケット
+     * @return 入場チケット (NotNull)
      * @throws TicketSoldOutException    When ticket in booth is sold out.
      * @throws TicketShortMoneyException When the specified money is short for purchase.
      */
@@ -110,11 +110,11 @@ public class TicketBooth {
     // もし、nullを許す戻り値であれば (NullAllowed)
     // 呼び出し側の知りたい情報の代表格として、引数や戻り値がnullがあり得るかどうか？というのがある
     // done tanaryo ここは@returnは入場チケットというよりかは... by jflute (2024/08/15)
-    // TODO tanaryo "チケットとお釣りなどを渡す" とか "e.g. チケット, お釣り" とか項目の個数を断定しない方が長持ちする by jflute (2024/08/22)
+    // TODO done tanaryo "チケットとお釣りなどを渡す" とか "e.g. チケット, お釣り" とか項目の個数を断定しない方が長持ちする by jflute (2024/08/22)
     /**
      * 2Dayパスポートを買う、パークゲスト用のメソッド。
      * @param handedMoney パークゲストから手渡しされたお金(金額) (NotNull, NotMinus)
-     * @return チケットとお釣りを渡す (NotNull)
+     * @return チケットとお釣りなどを渡す (NotNull)
      * @throws TicketSoldOutException ブース内のチケットが売り切れだったら
      * @throws TicketShortMoneyException 買うのに金額が足りなかったら
      */
@@ -140,7 +140,7 @@ public class TicketBooth {
     /**
      * 夜限定2Dayパスポートを買う、パークゲスト用のメソッド。
      * @param handedMoney パークゲストから手渡しされたお金(金額) (NotNull, NotMinus)
-     * @return チケットとお釣りを渡す (NotNull)
+     * @return チケットとお釣りなどを渡す (NotNull)
      * @throws TicketSoldOutException ブース内のチケットが売り切れだったら
      * @throws TicketShortMoneyException 買うのに金額が足りなかったら
      */
@@ -170,7 +170,7 @@ public class TicketBooth {
     /**
      * 4Dayパスポートを買う、パークゲスト用のメソッド。
      * @param handedMoney パークゲストから手渡しされたお金(金額) (NotNull, NotMinus)
-     * @return チケットとお釣りを渡す (NotNull)
+     * @return チケットとお釣りなどを渡す (NotNull)
      * @throws TicketSoldOutException ブース内のチケットが売り切れだったら
      * @throws TicketShortMoneyException 買うのに金額が足りなかったら
      */
