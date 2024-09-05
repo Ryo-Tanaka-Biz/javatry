@@ -31,7 +31,11 @@ public class TicketBuyResult {
     // ===================================================================================
     //                                                                            Accessor
     //                                                                            ========
-    // TODO tanaryo change, ticketの順番がベースなのに、ここだけ逆 by jflute (2024/08/29)
+    // TODO done tanaryo change, ticketの順番がベースなのに、ここだけ逆 by jflute (2024/08/29)
+    public int getChange(){
+        return change;
+    }
+
     public Ticket getTicket() {
         // done tanaryo getter(getメソッド)でその場でnewして戻すっていうのは一般的ではない by jflute (2024/08/15)
         // getterって、そこに置いてあるものをただ取るだけ、のイメージが強いので忘れ去られやすい(管理にしにくい)
@@ -40,8 +44,5 @@ public class TicketBuyResult {
         //[tanaryo] コンストラクタでnewする
         return ticket;
     }
-    
-    public int getChange(){
-        return change;
-    }
 }
+
