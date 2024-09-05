@@ -221,7 +221,7 @@ public class Step05ClassTest extends PlainTestCase {
         // done tanaryo すでにnightonlyが増えて、このif文に紛れが発生してしまっている by jflute (2024/08/15)
         // TODO tanaryo 価格が変わった時に1箇所だけ修正するだけ済むように (絶対に修正漏れ起こすから) by jflute (2024/08/22)
         // (ふぉろー: TicketBooth.TWO_DAY_PRICEを使う方法はお話した。とはいえユニーク(一意)に識別したいところ)
-        if (ticket.getDayCount() == 2 && ticket.getDisplayPrice() == 13200 ) {
+        if () {
             log("two-day passport");
         } else {
             log("other");

@@ -37,10 +37,10 @@ public class Ticket {
     private boolean nowAlreadyIn;// trueは入園中を示す
 
 
-    // TODO tanaryo ご自身で思っている通り、唐突にpublicフィールドで公開するのはちょっと危険と思う人が多い by jflute (2024/08/15)
+    // TODO done tanaryo ご自身で思っている通り、唐突にpublicフィールドで公開するのはちょっと危険と思う人が多い by jflute (2024/08/15)
     // テストコード以外の人(mainコード)も、これを使って細工できちゃうので怖い
 
-    // TODO tanaryo staticなものは Attribute よりも上に定義するのがJavaの慣習になっています by jflute (2024/08/22)
+    // TODO done tanaryo staticなものは Attribute よりも上に定義するのがJavaの慣習になっています by jflute (2024/08/22)
     private static final LocalTime nightStartTime = LocalTime.of(17, 0);//夜チケットの入場開始時間
     // done tanaryo 固定のオブジェクトなので、これはstatic finalで定義でOK by jflute (2024/08/15)
 

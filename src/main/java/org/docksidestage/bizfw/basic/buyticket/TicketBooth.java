@@ -31,7 +31,7 @@ public class TicketBooth {
 
     // done tanaryo static finalの定数は、スネークケースで統一することが多い by jflute (2024/08/15)
 
-    // TODO tanaryo TicketBoothは同じboothから複数の人が買うので、night買ったらみんなnightチェック走る by jflute (2024/08/15)
+    // TODO done tanaryo TicketBoothは同じboothから複数の人が買うので、night買ったらみんなnightチェック走る by jflute (2024/08/15)
     // さらに、staticになっているので...複数のTicketBoothで共有されている変数になっている。
     // 一つのTicketBoothでnightが買われたら、世界中のTicketBoothのTicketでnightチェックが走る。
 
