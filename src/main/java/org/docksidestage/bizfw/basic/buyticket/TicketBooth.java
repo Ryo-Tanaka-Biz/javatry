@@ -77,20 +77,22 @@ public class TicketBooth {
     public Ticket buyOneDayPassport(Integer handedMoney) {
         // TODO done tanaryo 変数もticketTypeとかぼかしちゃった方が以降の処理がoneDay依存してないことが明示できるかなと by jflute (2024/08/29)
         TicketType ticketType = TicketType.ONE_ALL_DAY;
+        int price = ticketType.getPrice();
         if (quantity <= 0) {
             throw new TicketSoldOutException("Sold out");
         }
-        // TODO tanaryo priceは変数に出してもいいんじゃないかなと (ショートカットでやってみて) by jflute (2024/08/29)
+        // TODO done tanaryo priceは変数に出してもいいんじゃないかなと (ショートカットでやってみて) by jflute (2024/08/29)
         // TODO done tanaryo [読み物課題] リファクタリングは思考のツール by jflute (2024/08/29)
         // https://jflute.hatenadiary.jp/entry/20121202/1354442627
-        if (handedMoney < ticketType.getPrice()) {
+        //重複箇所をうまくまとめたい。このクラスはおつりを返さないしticketBuyResultを返すクラスに代替できる。そうなった場合、差分はチケット種別(TicketType ticketType = TicketType.~)だけ。
+        if (handedMoney < price) {
             throw new TicketShortMoneyException("Short money: " + handedMoney);
         }
         --quantity;
         if (salesProceeds != null) { // second or more purchase
-            salesProceeds = salesProceeds + ticketType.getPrice();
+            salesProceeds = salesProceeds + price;
         } else { // first purchase
-            salesProceeds = ticketType.getPrice();
+            salesProceeds = price;
         }
         return new Ticket(ticketType);
     }
@@ -119,21 +121,22 @@ public class TicketBooth {
      */
     public TicketBuyResult buyTwoDayPassport(Integer handedMoney) {
         TicketType ticketType = TicketType.TWO_ALL_DAY;
+        int price = ticketType.getPrice();
         if (quantity <= 0) {
             throw new TicketSoldOutException("Sold out");
         }
-        if (handedMoney < ticketType.getPrice()) {
+        if (handedMoney < price) {
             throw new TicketShortMoneyException("Short money: " + handedMoney);
         }
         --quantity;
         if (salesProceeds != null) { // second or more purchase
-            salesProceeds = salesProceeds + ticketType.getPrice();
+            salesProceeds = salesProceeds + price;
         } else { // first purchase
-            salesProceeds = ticketType.getPrice();
+            salesProceeds = price;
         }
         // done tanaryo [いいね] 変数でお釣りであることを示してるのがGood by jflute (2024/08/01)
         // (ただし個人差がある: ぼくも強調したいとき、しなくてもいいとき、ケースバイケースではある)
-        int change = handedMoney - ticketType.getPrice();
+        int change = handedMoney - price;
         Ticket ticket = new Ticket(ticketType);
         return new TicketBuyResult(change, ticket);
     }
@@ -147,17 +150,18 @@ public class TicketBooth {
      */
     public TicketBuyResult buyNightOnlyTwoDayPassport(Integer handedMoney) {
         TicketType ticketType = TicketType.TWO_NIGHT_DAY;
+        int price = ticketType.getPrice();
         if (quantity <= 0) {
             throw new TicketSoldOutException("Sold out");
         }
-        if (handedMoney < ticketType.getPrice()) {
+        if (handedMoney < price) {
             throw new TicketShortMoneyException("Short money: " + handedMoney);
         }
         --quantity;
         if (salesProceeds != null) { // second or more purchase
-            salesProceeds = salesProceeds + ticketType.getPrice();
+            salesProceeds = salesProceeds + price;
         } else { // first purchase
-            salesProceeds = ticketType.getPrice();
+            salesProceeds = price;
         }
         // done tanaryo [いいね] 変数でお釣りであることを示してるのがGood by jflute (2024/08/01)
         // (ただし個人差がある: ぼくも強調したいとき、しなくてもいいとき、ケースバイケースではある)
@@ -179,19 +183,20 @@ public class TicketBooth {
      */
     public TicketBuyResult buyFourDayPassport(Integer handedMoney) {
         TicketType ticketType = TicketType.FOUR_ALL_DAY;
+        int price = ticketType.getPrice();
         if (quantity <= 0) {
             throw new TicketSoldOutException("Sold out");
         }
-        if (handedMoney < ticketType.getPrice()) {
+        if (handedMoney < price) {
             throw new TicketShortMoneyException("Short money: " + handedMoney);
         }
         --quantity;
         if (salesProceeds != null) { // second or more purchase
-            salesProceeds = salesProceeds + ticketType.getPrice();
+            salesProceeds = salesProceeds + price;
         } else { // first purchase
-            salesProceeds = ticketType.getPrice();
+            salesProceeds = price;
         }
-        int change = handedMoney - ticketType.getPrice();
+        int change = handedMoney - price;
         Ticket ticket = new Ticket(ticketType);
         return new TicketBuyResult(change, ticket);
     }
