@@ -29,12 +29,11 @@ public class Ticket {
     //                                                                           =========
     // done tanaryo [いいね] 横の//すらすらコメントで変数の補足が素晴らしい by jflute (2024/08/15)
     // done tanaryo [いいね] 変数の定義順番、わかりやすくていいですね by jflute (2024/08/15)
-    // TODO tanaryo dayCount, "残りの" っていうニュアンスが変数名にあるといいかなと by jflute (2024/08/29)
+    // TODO done tanaryo dayCount, "残りの" っていうニュアンスが変数名にあるといいかなと by jflute (2024/08/29)
     private final TicketType ticketType;
     private final int displayPrice;// written on ticket, park guest can watch this
-    private Integer dayCount;//dayCountが0の場合入園できない
-    private LocalTime startTime;//開始時間
-    private final LocalTime endTime;//終了時間->入退場のどこかで用いる？
+    private Integer leftDay;//leftDayが0の場合入園できない
+    private final LocalTime startTime;//開始時間
     private boolean nowAlreadyIn;// trueは入園中を示す
 
 
@@ -52,9 +51,8 @@ public class Ticket {
     public Ticket(TicketType ticketType) {
         this.ticketType = ticketType;
         this.displayPrice = ticketType.getPrice();
-        this.dayCount = ticketType.getDayCount();
+        this.leftDay = ticketType.getDayCount();
         this.startTime = ticketType.getStartTime();
-        this.endTime = ticketType.getEndTime();
     }
 
     // TODO jflute 1on1にて続きフォロー (2024/08/15)
@@ -70,7 +68,7 @@ public class Ticket {
     //                                                                             In Park
     //                                                                             =======
     public void doInPark() {
-        if (dayCount == 0) {
+        if (leftDay == 0) {
             throw new IllegalStateException("This ticket is unavailable: displayedPrice=" + displayPrice);
         }
         // done tanaryo [いいね] nightと関係ないチケットではチェック処理走らないように工夫している、これは良い by jflute (2024/08/15)
@@ -82,7 +80,7 @@ public class Ticket {
         if (nowAlreadyIn) {
             throw new IllegalStateException("Already in park by this ticket: displayedPrice=" + displayPrice);
         }
-        --dayCount;
+        --leftDay;
         nowAlreadyIn = true;
     }
     // done tanaryo 自己レビューでalreadyInの名前がしっくり来ない話 by jflute (2024/08/05)
@@ -117,8 +115,8 @@ public class Ticket {
         return displayPrice;
     }
 
-    public Integer getDayCount() {
-        return dayCount;
+    public Integer getLeftDay() {
+        return leftDay;
     }
 
     public boolean isAlreadyIn() {
