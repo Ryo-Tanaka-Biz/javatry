@@ -122,4 +122,12 @@ public class Ticket {
     public boolean isAlreadyIn() {
         return nowAlreadyIn;
     }
+
+    public LocalTime getPresentTime() {
+        return presentTime.getPresentTime();
+    }
+
+    public void setPresentTime(LocalTime presentTime) {
+        this.presentTime = new VariablePresentTime(presentTime);
+    }
 }

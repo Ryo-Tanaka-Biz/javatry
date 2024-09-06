@@ -15,6 +15,8 @@
  */
 package org.docksidestage.javatry.basic;
 
+import java.time.LocalTime;
+
 import org.docksidestage.bizfw.basic.buyticket.TicketBooth;
 import org.docksidestage.bizfw.basic.buyticket.TicketBooth.TicketShortMoneyException;
 import org.docksidestage.bizfw.basic.buyticket.Ticket;
@@ -259,6 +261,7 @@ public class Step05ClassTest extends PlainTestCase {
         log(nightOnlyTwoDayPassport.getDisplayPrice()); // should be same as two-day price
         log(nightOnlyTwoDayPassport.isAlreadyIn()); // should be false
         // done tanaryo [いいね] 現在日時を細工してテストしやすいようにするという発想が素晴らしい by jflute (2024/08/15)
+        log(nightOnlyTwoDayPassport.getPresentTime());//should be presentTime
         nightOnlyTwoDayPassport.doInPark(); //1回目入場
         
         // TODO tanaryo したら現在日時を細工して動作確認するテストを待っております by jflute (2024/08/22)
@@ -268,6 +271,21 @@ public class Step05ClassTest extends PlainTestCase {
     //終日チケットではない場合、時間を確認する。時間確認はどうやる？
     //17時より前だと入場できない
     //現在時刻で判別しているが、テストケースとしては時間指定して入場できるかできないかテストしたい->setNowTimeメソッドで時間をセット
+
+    public void test_class_moreFix_wonder_night_setPresentTime() {
+        TicketBooth booth = new TicketBooth();
+        TicketBuyResult buyResult = booth.buyNightOnlyTwoDayPassport(8000);
+        Ticket nightOnlyTwoDayPassport = buyResult.getTicket();
+        log(nightOnlyTwoDayPassport.getDisplayPrice()); // should be same as two-day price
+        log(nightOnlyTwoDayPassport.isAlreadyIn()); // should be false
+
+        nightOnlyTwoDayPassport.setPresentTime(LocalTime.of(19, 0));
+        log(nightOnlyTwoDayPassport.getPresentTime());//should be 19:00
+        nightOnlyTwoDayPassport.doInPark(); //1回目入場
+    }
+
+    //現在日時を細工して動作確認するテスト
+    //setPresentTimeメソッドで自分で現在時刻を上書きできる
 
     /**
      * Refactor if you want to fix (e.g. is it well-balanced name of method and variable?). <br>
