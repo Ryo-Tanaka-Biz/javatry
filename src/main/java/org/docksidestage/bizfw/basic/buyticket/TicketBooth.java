@@ -92,7 +92,7 @@ public class TicketBooth {
         } else { // first purchase
             salesProceeds = oneAllDay.getPrice();
         }
-        return new Ticket(oneAllDay.getPrice(),oneAllDay.getDayCount(), oneAllDay.getStartTime(), oneAllDay.getEndTime());
+        return new Ticket(oneAllDay);
     }
 
     // [memo] お釣りにnullという概念もないので、intで問題ない (一方で、Integerでも問題はないけど)
@@ -134,7 +134,7 @@ public class TicketBooth {
         // done tanaryo [いいね] 変数でお釣りであることを示してるのがGood by jflute (2024/08/01)
         // (ただし個人差がある: ぼくも強調したいとき、しなくてもいいとき、ケースバイケースではある)
         int change = handedMoney - twoAllDay.getPrice();
-        Ticket ticket = new Ticket(twoAllDay.getPrice(),twoAllDay.getDayCount(),twoAllDay.getStartTime(),twoAllDay.getEndTime());
+        Ticket ticket = new Ticket(twoAllDay);
         return new TicketBuyResult(change, ticket);
     }
 
@@ -162,7 +162,7 @@ public class TicketBooth {
         // done tanaryo [いいね] 変数でお釣りであることを示してるのがGood by jflute (2024/08/01)
         // (ただし個人差がある: ぼくも強調したいとき、しなくてもいいとき、ケースバイケースではある)
         int change = handedMoney - twoNightDay.getPrice();
-        Ticket ticket = new Ticket(twoNightDay.getPrice(),twoNightDay.getDayCount(),twoNightDay.getStartTime(), twoNightDay.getEndTime());
+        Ticket ticket = new Ticket(twoNightDay);
         return new TicketBuyResult(change, ticket);
     }
 
@@ -192,7 +192,7 @@ public class TicketBooth {
             salesProceeds = fourAllDay.getPrice();
         }
         int change = handedMoney - fourAllDay.getPrice();
-        Ticket ticket = new Ticket(fourAllDay.getPrice(),fourAllDay.getDayCount(),fourAllDay.getStartTime(),fourAllDay.getEndTime());
+        Ticket ticket = new Ticket(fourAllDay);
         return new TicketBuyResult(change, ticket);
     }
     

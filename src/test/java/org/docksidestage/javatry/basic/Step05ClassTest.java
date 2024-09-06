@@ -19,6 +19,7 @@ import org.docksidestage.bizfw.basic.buyticket.TicketBooth;
 import org.docksidestage.bizfw.basic.buyticket.TicketBooth.TicketShortMoneyException;
 import org.docksidestage.bizfw.basic.buyticket.Ticket;
 import org.docksidestage.bizfw.basic.buyticket.TicketBuyResult;
+import org.docksidestage.bizfw.basic.buyticket.TicketType;
 import org.docksidestage.unit.PlainTestCase;
 
 /**
@@ -209,19 +210,19 @@ public class Step05ClassTest extends PlainTestCase {
     public void test_class_moreFix_whetherTicketType() {
         TicketBooth booth = new TicketBooth();
         Ticket oneDayPassport = booth.buyOneDayPassport(10000);
-        showTicketIfNeeds(oneDayPassport);
+        showTicketIfNeeds(oneDayPassport.getTicketType());
         TicketBuyResult buyResult = booth.buyTwoDayPassport(15000);
         Ticket twoDayPassport = buyResult.getTicket();
-        showTicketIfNeeds(twoDayPassport);
+        showTicketIfNeeds(twoDayPassport.getTicketType());
     }
 
     //うまくいった。dayCountで判別。
 
-    private void showTicketIfNeeds(Ticket ticket) {
+    private void showTicketIfNeeds(TicketType ticketType) {
         // done tanaryo すでにnightonlyが増えて、このif文に紛れが発生してしまっている by jflute (2024/08/15)
         // TODO tanaryo 価格が変わった時に1箇所だけ修正するだけ済むように (絶対に修正漏れ起こすから) by jflute (2024/08/22)
         // (ふぉろー: TicketBooth.TWO_DAY_PRICEを使う方法はお話した。とはいえユニーク(一意)に識別したいところ)
-        if () {
+        if (ticketType.equals(TicketType.TWO_ALL_DAY)) {
             log("two-day passport");
         } else {
             log("other");
