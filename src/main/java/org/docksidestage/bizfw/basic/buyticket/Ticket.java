@@ -42,7 +42,6 @@ public class Ticket {
     // テストコード以外の人(mainコード)も、これを使って細工できちゃうので怖い
 
     // TODO done tanaryo staticなものは Attribute よりも上に定義するのがJavaの慣習になっています by jflute (2024/08/22)
-    private static final LocalTime nightStartTime = LocalTime.of(17, 0);//夜チケットの入場開始時間
     // done tanaryo 固定のオブジェクトなので、これはstatic finalで定義でOK by jflute (2024/08/15)
 
     PresentTime presentTime = new DefaultPresentTime();
@@ -77,8 +76,8 @@ public class Ticket {
         // done tanaryo [いいね] nightと関係ないチケットではチェック処理走らないように工夫している、これは良い by jflute (2024/08/15)
         // ↑night以外でも24時間ってわけじゃないから、一律時間帯をチェックするように変わっている by jflute (2024/08/29)
         if (presentTime.getPresentTime().isBefore(startTime)) {
-            // TODO tanaryo デバッグ情報もあるといいかなと、startTimeとかpresentTimeとか判定に使った情報含めるといいかなと by jflute (2024/08/29)
-            throw new IllegalStateException("入場可能時間より前なので入場できません");
+            // TODO done tanaryo デバッグ情報もあるといいかなと、startTimeとかpresentTimeとか判定に使った情報含めるといいかなと by jflute (2024/08/29)
+            throw new IllegalStateException("入場可能時間より前なので入場できません: (presentTime, startTime) = (" + presentTime.getPresentTime() + "," + startTime + ")");
         }
         if (nowAlreadyIn) {
             throw new IllegalStateException("Already in park by this ticket: displayedPrice=" + displayPrice);
