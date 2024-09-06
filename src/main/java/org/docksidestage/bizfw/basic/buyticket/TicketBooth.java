@@ -76,23 +76,23 @@ public class TicketBooth {
      */
     public Ticket buyOneDayPassport(Integer handedMoney) {
         // TODO tanaryo 変数もticketTypeとかぼかしちゃった方が以降の処理がoneDay依存してないことが明示できるかなと by jflute (2024/08/29)
-        TicketType oneAllDay= TicketType.ONE_ALL_DAY;
+        TicketType ticketType = TicketType.ONE_ALL_DAY;
         if (quantity <= 0) {
             throw new TicketSoldOutException("Sold out");
         }
         // TODO tanaryo priceは変数に出してもいいんじゃないかなと (ショートカットでやってみて) by jflute (2024/08/29)
         // TODO tanaryo [読み物課題] リファクタリングは思考のツール by jflute (2024/08/29)
         // https://jflute.hatenadiary.jp/entry/20121202/1354442627
-        if (handedMoney < oneAllDay.getPrice()) {
+        if (handedMoney < ticketType.getPrice()) {
             throw new TicketShortMoneyException("Short money: " + handedMoney);
         }
         --quantity;
         if (salesProceeds != null) { // second or more purchase
-            salesProceeds = salesProceeds + oneAllDay.getPrice();
+            salesProceeds = salesProceeds + ticketType.getPrice();
         } else { // first purchase
-            salesProceeds = oneAllDay.getPrice();
+            salesProceeds = ticketType.getPrice();
         }
-        return new Ticket(oneAllDay);
+        return new Ticket(ticketType);
     }
 
     // [memo] お釣りにnullという概念もないので、intで問題ない (一方で、Integerでも問題はないけど)
@@ -118,23 +118,23 @@ public class TicketBooth {
      * @throws TicketShortMoneyException 買うのに金額が足りなかったら
      */
     public TicketBuyResult buyTwoDayPassport(Integer handedMoney) {
-        TicketType twoAllDay= TicketType.TWO_ALL_DAY;
+        TicketType ticketType = TicketType.TWO_ALL_DAY;
         if (quantity <= 0) {
             throw new TicketSoldOutException("Sold out");
         }
-        if (handedMoney < twoAllDay.getPrice()) {
+        if (handedMoney < ticketType.getPrice()) {
             throw new TicketShortMoneyException("Short money: " + handedMoney);
         }
         --quantity;
         if (salesProceeds != null) { // second or more purchase
-            salesProceeds = salesProceeds + twoAllDay.getPrice();
+            salesProceeds = salesProceeds + ticketType.getPrice();
         } else { // first purchase
-            salesProceeds = twoAllDay.getPrice();
+            salesProceeds = ticketType.getPrice();
         }
         // done tanaryo [いいね] 変数でお釣りであることを示してるのがGood by jflute (2024/08/01)
         // (ただし個人差がある: ぼくも強調したいとき、しなくてもいいとき、ケースバイケースではある)
-        int change = handedMoney - twoAllDay.getPrice();
-        Ticket ticket = new Ticket(twoAllDay);
+        int change = handedMoney - ticketType.getPrice();
+        Ticket ticket = new Ticket(ticketType);
         return new TicketBuyResult(change, ticket);
     }
 
@@ -146,23 +146,23 @@ public class TicketBooth {
      * @throws TicketShortMoneyException 買うのに金額が足りなかったら
      */
     public TicketBuyResult buyNightOnlyTwoDayPassport(Integer handedMoney) {
-        TicketType twoNightDay= TicketType.TWO_NIGHT_DAY;
+        TicketType ticketType = TicketType.TWO_NIGHT_DAY;
         if (quantity <= 0) {
             throw new TicketSoldOutException("Sold out");
         }
-        if (handedMoney < twoNightDay.getPrice()) {
+        if (handedMoney < ticketType.getPrice()) {
             throw new TicketShortMoneyException("Short money: " + handedMoney);
         }
         --quantity;
         if (salesProceeds != null) { // second or more purchase
-            salesProceeds = salesProceeds + twoNightDay.getPrice();
+            salesProceeds = salesProceeds + ticketType.getPrice();
         } else { // first purchase
-            salesProceeds = twoNightDay.getPrice();
+            salesProceeds = ticketType.getPrice();
         }
         // done tanaryo [いいね] 変数でお釣りであることを示してるのがGood by jflute (2024/08/01)
         // (ただし個人差がある: ぼくも強調したいとき、しなくてもいいとき、ケースバイケースではある)
-        int change = handedMoney - twoNightDay.getPrice();
-        Ticket ticket = new Ticket(twoNightDay);
+        int change = handedMoney - ticketType.getPrice();
+        Ticket ticket = new Ticket(ticketType);
         return new TicketBuyResult(change, ticket);
     }
 
@@ -178,21 +178,21 @@ public class TicketBooth {
      * @throws TicketShortMoneyException 買うのに金額が足りなかったら
      */
     public TicketBuyResult buyFourDayPassport(Integer handedMoney) {
-        TicketType fourAllDay= TicketType.FOUR_ALL_DAY;
+        TicketType ticketType = TicketType.FOUR_ALL_DAY;
         if (quantity <= 0) {
             throw new TicketSoldOutException("Sold out");
         }
-        if (handedMoney < fourAllDay.getPrice()) {
+        if (handedMoney < ticketType.getPrice()) {
             throw new TicketShortMoneyException("Short money: " + handedMoney);
         }
         --quantity;
         if (salesProceeds != null) { // second or more purchase
-            salesProceeds = salesProceeds + fourAllDay.getPrice();
+            salesProceeds = salesProceeds + ticketType.getPrice();
         } else { // first purchase
-            salesProceeds = fourAllDay.getPrice();
+            salesProceeds = ticketType.getPrice();
         }
-        int change = handedMoney - fourAllDay.getPrice();
-        Ticket ticket = new Ticket(fourAllDay);
+        int change = handedMoney - ticketType.getPrice();
+        Ticket ticket = new Ticket(ticketType);
         return new TicketBuyResult(change, ticket);
     }
     
