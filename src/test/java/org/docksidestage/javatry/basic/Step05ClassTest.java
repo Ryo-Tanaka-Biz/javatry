@@ -217,6 +217,8 @@ public class Step05ClassTest extends PlainTestCase {
     }
 
     //うまくいった。dayCountで判別。
+    //showTicketIfNeedsメソッドでチケット種別を判定するとして引数はticketTypeが望ましい。ticketクラスでticketTypeを返すようにしよう。
+    //というかticketクラスの引数は全てticketTypeのgetterなので、引数をticketTypeにしてコンストラクタでticketTypeクラスとgetterを定義すればよさそう。
 
     private void showTicketIfNeeds(TicketType ticketType) {
         // done tanaryo すでにnightonlyが増えて、このif文に紛れが発生してしまっている by jflute (2024/08/15)
