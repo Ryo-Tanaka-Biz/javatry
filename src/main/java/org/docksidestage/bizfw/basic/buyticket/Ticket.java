@@ -29,7 +29,11 @@ public class Ticket {
     //                                                                           =========
     // done tanaryo [いいね] 横の//すらすらコメントで変数の補足が素晴らしい by jflute (2024/08/15)
     // done tanaryo [いいね] 変数の定義順番、わかりやすくていいですね by jflute (2024/08/15)
-    // TODO done tanaryo dayCount, "残りの" っていうニュアンスが変数名にあるといいかなと by jflute (2024/08/29)
+    // done tanaryo dayCount, "残りの" っていうニュアンスが変数名にあるといいかなと by jflute (2024/08/29)
+    // TODO tanaryo 日数を表現するとき、daysと複数形にする慣習が世界的にあるかなと by jflute (2024/09/06)
+    // ぜひ、IntelliJのRenameの機能を使ってリファクタリングしてみてください。
+    // TODO tanaryo コメント内に変数名を入れないほうが良い、リファクタリングの追従がされないので by jflute (2024/09/06)
+    // TODO tanaryo このくらいの量なら、finalなものとmutableなもので定義順分けたほうがわかりやすいかも by jflute (2024/09/06)
     private final TicketType ticketType;
     private final int displayPrice;// written on ticket, park guest can watch this
     private Integer leftDay;//leftDayが0の場合入園できない
@@ -37,12 +41,15 @@ public class Ticket {
     private boolean nowAlreadyIn;// trueは入園中を示す
 
 
-    // TODO done tanaryo ご自身で思っている通り、唐突にpublicフィールドで公開するのはちょっと危険と思う人が多い by jflute (2024/08/15)
+    // done tanaryo ご自身で思っている通り、唐突にpublicフィールドで公開するのはちょっと危険と思う人が多い by jflute (2024/08/15)
     // テストコード以外の人(mainコード)も、これを使って細工できちゃうので怖い
 
-    // TODO done tanaryo staticなものは Attribute よりも上に定義するのがJavaの慣習になっています by jflute (2024/08/22)
+    // done tanaryo staticなものは Attribute よりも上に定義するのがJavaの慣習になっています by jflute (2024/08/22)
     // done tanaryo 固定のオブジェクトなので、これはstatic finalで定義でOK by jflute (2024/08/15)
 
+    // TODO tanaryo IntelliJで変数やメソッドの利用箇所を調べるショートカットを調べてみてください by jflute (2024/09/06)
+    
+    // TODO tanaryo もうsetterで変更できるようにしてるんだったら、変数自体はprivateでもいいのかなと by jflute (2024/09/06)
     PresentTime presentTime = new DefaultPresentTime();
 
     // ===================================================================================
@@ -50,9 +57,11 @@ public class Ticket {
     //                                                                         ===========
     public Ticket(TicketType ticketType) {
         this.ticketType = ticketType;
-        this.displayPrice = ticketType.getPrice();
-        this.leftDay = ticketType.getDayCount();
-        this.startTime = ticketType.getStartTime();
+        
+        // [ふぉろー] 変数で持つか？欲しいときにTicketTypeから取得するか？ by jflute
+        this.displayPrice = ticketType.getPrice(); // 別物と捉えることもできるので明示的に持ってもOKかなと
+        this.leftDay = ticketType.getDayCount(); // ここは完全に別物だし用途も違うので詰替えが正解
+        this.startTime = ticketType.getStartTime(); // 意味もほぼ同じなのでなくてもいい？(でも一概にダメではない、主役級だったら持つことも)
     }
 
     // TODO jflute 1on1にて続きフォロー (2024/08/15)
@@ -74,7 +83,8 @@ public class Ticket {
         // done tanaryo [いいね] nightと関係ないチケットではチェック処理走らないように工夫している、これは良い by jflute (2024/08/15)
         // ↑night以外でも24時間ってわけじゃないから、一律時間帯をチェックするように変わっている by jflute (2024/08/29)
         if (presentTime.getPresentTime().isBefore(startTime)) {
-            // TODO done tanaryo デバッグ情報もあるといいかなと、startTimeとかpresentTimeとか判定に使った情報含めるといいかなと by jflute (2024/08/29)
+            // done tanaryo デバッグ情報もあるといいかなと、startTimeとかpresentTimeとか判定に使った情報含めるといいかなと by jflute (2024/08/29)
+            // [ふぉろー] DBFluteの例外メッセージのよもやま話もした
             throw new IllegalStateException("入場可能時間より前なので入場できません: (presentTime, startTime) = (" + presentTime.getPresentTime() + "," + startTime + ")");
         }
         if (nowAlreadyIn) {
@@ -104,6 +114,7 @@ public class Ticket {
         nowAlreadyIn = false;
     }
 
+    // TODO tanaryo Accessor下あたりに、なんか空行ありなしのバランスがちょっと変 by jflute (2024/09/06)
     // ===================================================================================
     //                                                                            Accessor
     //                                                                            ========
@@ -127,6 +138,8 @@ public class Ticket {
         return presentTime.getPresentTime();
     }
 
+    // TODO tanaryo setterでpublicで提供しちゃうと、利用者も変えられちゃう by jflute (2024/09/06)
+    // (まだpackageスコープで少し隠していた方がマシかもしれない)
     public void setPresentTime(LocalTime presentTime) {
         this.presentTime = new VariablePresentTime(presentTime);
     }

@@ -224,7 +224,7 @@ public class Step05ClassTest extends PlainTestCase {
 
     private void showTicketIfNeeds(TicketType ticketType) {
         // done tanaryo すでにnightonlyが増えて、このif文に紛れが発生してしまっている by jflute (2024/08/15)
-        // TODO tanaryo 価格が変わった時に1箇所だけ修正するだけ済むように (絶対に修正漏れ起こすから) by jflute (2024/08/22)
+        // done tanaryo 価格が変わった時に1箇所だけ修正するだけ済むように (絶対に修正漏れ起こすから) by jflute (2024/08/22)
         // (ふぉろー: TicketBooth.TWO_DAY_PRICEを使う方法はお話した。とはいえユニーク(一意)に識別したいところ)
         if (ticketType.equals(TicketType.TWO_ALL_DAY)) {
             log("two-day passport");
@@ -264,7 +264,7 @@ public class Step05ClassTest extends PlainTestCase {
         log(nightOnlyTwoDayPassport.getPresentTime());//should be presentTime
         nightOnlyTwoDayPassport.doInPark(); //1回目入場
         
-        // TODO tanaryo したら現在日時を細工して動作確認するテストを待っております by jflute (2024/08/22)
+        // done tanaryo したら現在日時を細工して動作確認するテストを待っております by jflute (2024/08/22)
     }
     //夜しか使えないとは？具体的に時間を指定する必要あり？ディズニーだと17時から入園できるチケットがある
     //今回は17時以降使えるチケットとする

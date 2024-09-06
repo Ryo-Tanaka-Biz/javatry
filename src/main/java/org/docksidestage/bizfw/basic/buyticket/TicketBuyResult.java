@@ -31,7 +31,7 @@ public class TicketBuyResult {
     // ===================================================================================
     //                                                                            Accessor
     //                                                                            ========
-    // TODO done tanaryo change, ticketの順番がベースなのに、ここだけ逆 by jflute (2024/08/29)
+    // done tanaryo change, ticketの順番がベースなのに、ここだけ逆 by jflute (2024/08/29)
     public int getChange(){
         return change;
     }
