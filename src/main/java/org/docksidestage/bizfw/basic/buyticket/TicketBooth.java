@@ -15,6 +15,13 @@
  */
 package org.docksidestage.bizfw.basic.buyticket;
 
+// [ふぉろー] 質問が来てDBFluteとMySQLの絞り込みの仕組みの話をした by jflute (2024/09/06)
+// INDEXの話も少しした。
+
+// [ふぉろー] 質問が来て勉強の習慣についての話をした (2024/09/06)
+// ガーがいけるときはガーで。ただ、つまみ食いにならないように、得たものをまとめるプロセスが必要。
+// 将来はコツコツ能力が必要になるときはある。
+
 // done tanaryo javadocにauthorの追加をお願いします、せっかくなので自分の名前を刻んでください by jflute (2024/08/01)
 /**
  * @author jflute
