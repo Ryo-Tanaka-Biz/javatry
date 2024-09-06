@@ -4,6 +4,9 @@ import java.time.LocalTime;
 
 import org.apache.tomcat.jni.Local;
 
+// TODO tanaryo ↑unusedのimportが残ってる "org.apache.tomcat.jni.Local" 間違えてLocalを補完しちゃったんだと思う by jflute (2024/09/06)
+// TODO tanaryo classのjavadocコメントおねがいしますー by jflute (2024/09/06)
+
 public enum TicketType {
     ONE_ALL_DAY(1, 7400, LocalTime.of(9, 0), LocalTime.of(22, 0)),
     TWO_ALL_DAY(2, 13200, LocalTime.of(9, 0), LocalTime.of(22, 0)),
@@ -14,7 +17,7 @@ public enum TicketType {
     // TicketTypeのインスタンス自身で比較する、ということもできる。(Enumのequals()が==で実装されている)
     //  e.g. ticketType.equals(TicketType.ONE_ALL_DAY)
     //       (ticketType == TicketType.ONE_ALL_DAY という風に書いても同じ)
-    // TODO done tanaryo [読み物課題] equals()と "==" by jflute (2024/08/29)
+    // done tanaryo [読み物課題] equals()と "==" by jflute (2024/08/29)
     // https://dbflute.seasar.org/ja/manual/topic/programming/java/beginners.html#equalsequal
     
     private final int dayCount;

@@ -75,14 +75,14 @@ public class TicketBooth {
      * @throws TicketShortMoneyException When the specified money is short for purchase.
      */
     public Ticket buyOneDayPassport(Integer handedMoney) {
-        // TODO done tanaryo 変数もticketTypeとかぼかしちゃった方が以降の処理がoneDay依存してないことが明示できるかなと by jflute (2024/08/29)
+        // done tanaryo 変数もticketTypeとかぼかしちゃった方が以降の処理がoneDay依存してないことが明示できるかなと by jflute (2024/08/29)
         TicketType ticketType = TicketType.ONE_ALL_DAY;
         int price = ticketType.getPrice();
         if (quantity <= 0) {
             throw new TicketSoldOutException("Sold out");
         }
-        // TODO done tanaryo priceは変数に出してもいいんじゃないかなと (ショートカットでやってみて) by jflute (2024/08/29)
-        // TODO done tanaryo [読み物課題] リファクタリングは思考のツール by jflute (2024/08/29)
+        // done tanaryo priceは変数に出してもいいんじゃないかなと (ショートカットでやってみて) by jflute (2024/08/29)
+        // done tanaryo [読み物課題] リファクタリングは思考のツール by jflute (2024/08/29)
         // https://jflute.hatenadiary.jp/entry/20121202/1354442627
         //重複箇所をうまくまとめたい。このクラスはおつりを返さないしticketBuyResultを返すクラスに代替できる。そうなった場合、差分はチケット種別(TicketType ticketType = TicketType.~)だけ。
         if (handedMoney < price) {
