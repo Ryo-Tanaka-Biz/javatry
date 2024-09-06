@@ -55,7 +55,7 @@ public class Ticket {
         this.startTime = ticketType.getStartTime();
     }
 
-    // TODO jflute 1on1にて続きフォロー (2024/08/15)
+    // TODO done jflute 1on1にて続きフォロー (2024/08/15)
     // [ふぉろー] publicフィールドよりは、まだsetterの方が管理がしやすい by jflute
     // setの呼び出しを管理することができる: 例えば状態をチェックして例外をthrowしたり、処理を挟み込むことができる
     // publicフィールドは処理の挟み込みが全くできないので、全く無防備

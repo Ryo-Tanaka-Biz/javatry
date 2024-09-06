@@ -75,13 +75,13 @@ public class TicketBooth {
      * @throws TicketShortMoneyException When the specified money is short for purchase.
      */
     public Ticket buyOneDayPassport(Integer handedMoney) {
-        // TODO tanaryo 変数もticketTypeとかぼかしちゃった方が以降の処理がoneDay依存してないことが明示できるかなと by jflute (2024/08/29)
+        // TODO done tanaryo 変数もticketTypeとかぼかしちゃった方が以降の処理がoneDay依存してないことが明示できるかなと by jflute (2024/08/29)
         TicketType ticketType = TicketType.ONE_ALL_DAY;
         if (quantity <= 0) {
             throw new TicketSoldOutException("Sold out");
         }
         // TODO tanaryo priceは変数に出してもいいんじゃないかなと (ショートカットでやってみて) by jflute (2024/08/29)
-        // TODO tanaryo [読み物課題] リファクタリングは思考のツール by jflute (2024/08/29)
+        // TODO done tanaryo [読み物課題] リファクタリングは思考のツール by jflute (2024/08/29)
         // https://jflute.hatenadiary.jp/entry/20121202/1354442627
         if (handedMoney < ticketType.getPrice()) {
             throw new TicketShortMoneyException("Short money: " + handedMoney);

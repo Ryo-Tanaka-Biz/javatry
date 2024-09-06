@@ -14,7 +14,7 @@ public enum TicketType {
     // TicketTypeのインスタンス自身で比較する、ということもできる。(Enumのequals()が==で実装されている)
     //  e.g. ticketType.equals(TicketType.ONE_ALL_DAY)
     //       (ticketType == TicketType.ONE_ALL_DAY という風に書いても同じ)
-    // TODO tanaryo [読み物課題] equals()と "==" by jflute (2024/08/29)
+    // TODO done tanaryo [読み物課題] equals()と "==" by jflute (2024/08/29)
     // https://dbflute.seasar.org/ja/manual/topic/programming/java/beginners.html#equalsequal
     
     private final int dayCount;
