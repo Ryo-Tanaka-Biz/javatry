@@ -30,14 +30,16 @@ public class Ticket {
     // done tanaryo [いいね] 横の//すらすらコメントで変数の補足が素晴らしい by jflute (2024/08/15)
     // done tanaryo [いいね] 変数の定義順番、わかりやすくていいですね by jflute (2024/08/15)
     // done tanaryo dayCount, "残りの" っていうニュアンスが変数名にあるといいかなと by jflute (2024/08/29)
-    // TODO tanaryo 日数を表現するとき、daysと複数形にする慣習が世界的にあるかなと by jflute (2024/09/06)
+    // TODO done tanaryo 日数を表現するとき、daysと複数形にする慣習が世界的にあるかなと by jflute (2024/09/06)
+    // rename機能で一括変換できた！！！
     // ぜひ、IntelliJのRenameの機能を使ってリファクタリングしてみてください。
-    // TODO tanaryo コメント内に変数名を入れないほうが良い、リファクタリングの追従がされないので by jflute (2024/09/06)
-    // TODO tanaryo このくらいの量なら、finalなものとmutableなもので定義順分けたほうがわかりやすいかも by jflute (2024/09/06)
+    // TODO done tanaryo コメント内に変数名を入れないほうが良い、リファクタリングの追従がされないので by jflute (2024/09/06)
+    // TODO done tanaryo このくらいの量なら、finalなものとmutableなもので定義順分けたほうがわかりやすいかも by jflute (2024/09/06)
     private final TicketType ticketType;
     private final int displayPrice;// written on ticket, park guest can watch this
-    private Integer leftDay;//leftDayが0の場合入園できない
     private final LocalTime startTime;//開始時間
+
+    private Integer leftDays;//が0の場合入園できない
     private boolean nowAlreadyIn;// trueは入園中を示す
 
 
@@ -60,7 +62,7 @@ public class Ticket {
         
         // [ふぉろー] 変数で持つか？欲しいときにTicketTypeから取得するか？ by jflute
         this.displayPrice = ticketType.getPrice(); // 別物と捉えることもできるので明示的に持ってもOKかなと
-        this.leftDay = ticketType.getDayCount(); // ここは完全に別物だし用途も違うので詰替えが正解
+        this.leftDays = ticketType.getDayCount(); // ここは完全に別物だし用途も違うので詰替えが正解
         this.startTime = ticketType.getStartTime(); // 意味もほぼ同じなのでなくてもいい？(でも一概にダメではない、主役級だったら持つことも)
     }
 
@@ -77,7 +79,7 @@ public class Ticket {
     //                                                                             In Park
     //                                                                             =======
     public void doInPark() {
-        if (leftDay == 0) {
+        if (leftDays == 0) {
             throw new IllegalStateException("This ticket is unavailable: displayedPrice=" + displayPrice);
         }
         // done tanaryo [いいね] nightと関係ないチケットではチェック処理走らないように工夫している、これは良い by jflute (2024/08/15)
@@ -90,7 +92,7 @@ public class Ticket {
         if (nowAlreadyIn) {
             throw new IllegalStateException("Already in park by this ticket: displayedPrice=" + displayPrice);
         }
-        --leftDay;
+        --leftDays;
         nowAlreadyIn = true;
     }
     // done tanaryo 自己レビューでalreadyInの名前がしっくり来ない話 by jflute (2024/08/05)
@@ -126,8 +128,8 @@ public class Ticket {
         return displayPrice;
     }
 
-    public Integer getLeftDay() {
-        return leftDay;
+    public Integer getLeftDays() {
+        return leftDays;
     }
 
     public boolean isAlreadyIn() {
