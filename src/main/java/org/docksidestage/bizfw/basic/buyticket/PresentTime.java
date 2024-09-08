@@ -7,5 +7,5 @@ import java.time.LocalTime;
  * @author tanaryo
  */
 public interface PresentTime {
-    public LocalTime getPresentTime();
+    LocalTime getPresentTime();
 }
