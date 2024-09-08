@@ -2,9 +2,7 @@ package org.docksidestage.bizfw.basic.buyticket;
 
 import java.time.LocalTime;
 
-import org.apache.tomcat.jni.Local;
-
-// TODO tanaryo ↑unusedのimportが残ってる "org.apache.tomcat.jni.Local" 間違えてLocalを補完しちゃったんだと思う by jflute (2024/09/06)
+// TODO done tanaryo ↑unusedのimportが残ってる "org.apache.tomcat.jni.Local" 間違えてLocalを補完しちゃったんだと思う by jflute (2024/09/06)
 // TODO tanaryo classのjavadocコメントおねがいしますー by jflute (2024/09/06)
 
 public enum TicketType {
