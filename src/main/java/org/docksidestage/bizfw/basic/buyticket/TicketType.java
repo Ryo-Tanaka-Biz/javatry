@@ -5,11 +5,30 @@ import java.time.LocalTime;
 // TODO done tanaryo ↑unusedのimportが残ってる "org.apache.tomcat.jni.Local" 間違えてLocalを補完しちゃったんだと思う by jflute (2024/09/06)
 // TODO tanaryo classのjavadocコメントおねがいしますー by jflute (2024/09/06)
 
+/**
+ * パスポートの種別を持つ、列挙型のクラス。
+ * @author tanaryo
+ */
 public enum TicketType {
+    /**
+     * 終日1デーパスポート
+     */
     ONE_ALL_DAY(1, 7400, LocalTime.of(9, 0), LocalTime.of(22, 0)),
+
+    /**
+     * 終日2デーパスポート
+     */
     TWO_ALL_DAY(2, 13200, LocalTime.of(9, 0), LocalTime.of(22, 0)),
+
+    /**
+     * 夜限定2デーパスポート
+     */
     TWO_NIGHT_DAY(2, 7400, LocalTime.of(18, 0), LocalTime.of(22, 0)),
-    FOUR_ALL_DAY(4, 22400, LocalTime.of(9, 0), LocalTime.of(22, 0)),;
+
+    /**
+     * 終日4デーパスポート
+     */
+    FOUR_ALL_DAY(4, 22400, LocalTime.of(9, 0), LocalTime.of(22, 0));
 
     // [ふぉろー] enumはインスタンスの個数を制限された普通のクラスと思って良い。(+ Enumを継承) by jflute
     // TicketTypeのインスタンス自身で比較する、ということもできる。(Enumのequals()が==で実装されている)
@@ -17,12 +36,18 @@ public enum TicketType {
     //       (ticketType == TicketType.ONE_ALL_DAY という風に書いても同じ)
     // done tanaryo [読み物課題] equals()と "==" by jflute (2024/08/29)
     // https://dbflute.seasar.org/ja/manual/topic/programming/java/beginners.html#equalsequal
-    
-    private final int dayCount;
-    private final int price;
-    private final LocalTime startTime;
-    private final LocalTime endTime;
 
+    // ===================================================================================
+    //                                                                           Attribute
+    //                                                                           =========
+    private final int dayCount;//日数
+    private final int price;//価格
+    private final LocalTime startTime;//入園時間
+    private final LocalTime endTime;//退園時間
+
+    // ===================================================================================
+    //                                                                         Constructor
+    //                                                                         ===========
     TicketType(int dayCount, int price, LocalTime startTime, LocalTime endTime) {
         this.dayCount = dayCount;
         this.price = price;
@@ -30,6 +55,9 @@ public enum TicketType {
         this.endTime = endTime;
     }
 
+    // ===================================================================================
+    //                                                                            Accessor
+    //                                                                            ========
     public int getDayCount() {
         return dayCount;
     }
