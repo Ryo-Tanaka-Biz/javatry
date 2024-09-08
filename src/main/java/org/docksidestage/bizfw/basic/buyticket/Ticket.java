@@ -19,11 +19,11 @@ import java.time.LocalTime;
 
 
 /**
+ * チッケト種別と表示価格を管理するクラス
  * @author jflute
  * @author tanaryo
  */
 public class Ticket {
-
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
@@ -37,10 +37,10 @@ public class Ticket {
     // TODO done tanaryo このくらいの量なら、finalなものとmutableなもので定義順分けたほうがわかりやすいかも by jflute (2024/09/06)
     private final TicketType ticketType;
     private final int displayPrice;// written on ticket, park guest can watch this
-    private final LocalTime startTime;//開始時間
+//    private final LocalTime startTime;//開始時間
 
-    private Integer leftDays;//が0の場合入園できない
-    private boolean nowAlreadyIn;// trueは入園中を示す
+//    private Integer leftDays;//が0の場合入園できない
+//    private boolean nowAlreadyIn;// trueは入園中を示す
 
 
     // done tanaryo ご自身で思っている通り、唐突にpublicフィールドで公開するのはちょっと危険と思う人が多い by jflute (2024/08/15)
@@ -53,18 +53,17 @@ public class Ticket {
     // shift + shift で　findusageと検索
     
     // TODO tanaryo もうsetterで変更できるようにしてるんだったら、変数自体はprivateでもいいのかなと by jflute (2024/09/06)
-    PresentTime presentTime = new DefaultPresentTime();
+//    PresentTime presentTime = new DefaultPresentTime();
 
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
     public Ticket(TicketType ticketType) {
         this.ticketType = ticketType;
-        
         // [ふぉろー] 変数で持つか？欲しいときにTicketTypeから取得するか？ by jflute
         this.displayPrice = ticketType.getPrice(); // 別物と捉えることもできるので明示的に持ってもOKかなと
-        this.leftDays = ticketType.getDayCount(); // ここは完全に別物だし用途も違うので詰替えが正解
-        this.startTime = ticketType.getStartTime(); // 意味もほぼ同じなのでなくてもいい？(でも一概にダメではない、主役級だったら持つことも)
+//        this.leftDays = ticketType.getDayCount(); // ここは完全に別物だし用途も違うので詰替えが正解
+//        this.startTime = ticketType.getStartTime(); // 意味もほぼ同じなのでなくてもいい？(でも一概にダメではない、主役級だったら持つことも)
     }
 
     // done jflute 1on1にて続きフォロー (2024/08/15)
@@ -79,23 +78,23 @@ public class Ticket {
     // ===================================================================================
     //                                                                             In Park
     //                                                                             =======
-    public void doInPark() {
-        if (leftDays == 0) {
-            throw new IllegalStateException("This ticket is unavailable: displayedPrice=" + displayPrice);
-        }
-        // done tanaryo [いいね] nightと関係ないチケットではチェック処理走らないように工夫している、これは良い by jflute (2024/08/15)
-        // ↑night以外でも24時間ってわけじゃないから、一律時間帯をチェックするように変わっている by jflute (2024/08/29)
-        if (presentTime.getPresentTime().isBefore(startTime)) {
-            // done tanaryo デバッグ情報もあるといいかなと、startTimeとかpresentTimeとか判定に使った情報含めるといいかなと by jflute (2024/08/29)
-            // [ふぉろー] DBFluteの例外メッセージのよもやま話もした
-            throw new IllegalStateException("入場可能時間より前なので入場できません: (presentTime, startTime) = (" + presentTime.getPresentTime() + "," + startTime + ")");
-        }
-        if (nowAlreadyIn) {
-            throw new IllegalStateException("Already in park by this ticket: displayedPrice=" + displayPrice);
-        }
-        --leftDays;
-        nowAlreadyIn = true;
-    }
+//    public void doInPark() {
+//        if (leftDays == 0) {
+//            throw new IllegalStateException("This ticket is unavailable: displayedPrice=" + displayPrice);
+//        }
+//        // done tanaryo [いいね] nightと関係ないチケットではチェック処理走らないように工夫している、これは良い by jflute (2024/08/15)
+//        // ↑night以外でも24時間ってわけじゃないから、一律時間帯をチェックするように変わっている by jflute (2024/08/29)
+//        if (presentTime.getPresentTime().isBefore(startTime)) {
+//            // done tanaryo デバッグ情報もあるといいかなと、startTimeとかpresentTimeとか判定に使った情報含めるといいかなと by jflute (2024/08/29)
+//            // [ふぉろー] DBFluteの例外メッセージのよもやま話もした
+//            throw new IllegalStateException("入場可能時間より前なので入場できません: (presentTime, startTime) = (" + presentTime.getPresentTime() + "," + startTime + ")");
+//        }
+//        if (nowAlreadyIn) {
+//            throw new IllegalStateException("Already in park by this ticket: displayedPrice=" + displayPrice);
+//        }
+//        --leftDays;
+//        nowAlreadyIn = true;
+//    }
     // done tanaryo 自己レビューでalreadyInの名前がしっくり来ない話 by jflute (2024/08/05)
     // 現時点では、alreadyInが2つの役割を持っている
     //  o nowIn = true;
@@ -106,16 +105,16 @@ public class Ticket {
     // ===================================================================================
     //                                                                             Out Park
     //                                                                             =======
-    public void doOutPark() {
-        if (!nowAlreadyIn) {
-            throw new IllegalStateException("Already out park by this ticket: displayedPrice=" + displayPrice);
-        }
-        // done tanaryo ifの空白が他のコードと合ってない by jflute (2024/08/05)
-        // done tanaryo 実質的に支障はあまり無さそうだが、最終日だけ帰った後nowAlreadyInがtrueのまんまが変というか必要あるか？ by jflute (2024/08/15)
-        // nowAlreadyInは、現在パーク内に入ってるかどうか？を純粋に表現する変数というイメージで作っていると思うので
-
-        nowAlreadyIn = false;
-    }
+//    public void doOutPark() {
+//        if (!nowAlreadyIn) {
+//            throw new IllegalStateException("Already out park by this ticket: displayedPrice=" + displayPrice);
+//        }
+//        // done tanaryo ifの空白が他のコードと合ってない by jflute (2024/08/05)
+//        // done tanaryo 実質的に支障はあまり無さそうだが、最終日だけ帰った後nowAlreadyInがtrueのまんまが変というか必要あるか？ by jflute (2024/08/15)
+//        // nowAlreadyInは、現在パーク内に入ってるかどうか？を純粋に表現する変数というイメージで作っていると思うので
+//
+//        nowAlreadyIn = false;
+//    }
 
     // TODO  done tanaryo Accessor下あたりに、なんか空行ありなしのバランスがちょっと変 by jflute (2024/09/06)
     // ===================================================================================
@@ -124,25 +123,26 @@ public class Ticket {
     public TicketType getTicketType() {
         return ticketType;
     }
+
     public int getDisplayPrice() {
         return displayPrice;
     }
 
-    public Integer getLeftDays() {
-        return leftDays;
-    }
-
-    public boolean isAlreadyIn() {
-        return nowAlreadyIn;
-    }
-
-    public LocalTime getPresentTime() {
-        return presentTime.getPresentTime();
-    }
+//    public Integer getLeftDays() {
+//        return leftDays;
+//    }
+//
+//    public boolean isAlreadyIn() {
+//        return nowAlreadyIn;
+//    }
+//
+//    public LocalTime getPresentTime() {
+//        return presentTime.getPresentTime();
+//    }
 
     // TODO tanaryo setterでpublicで提供しちゃうと、利用者も変えられちゃう by jflute (2024/09/06)
     // (まだpackageスコープで少し隠していた方がマシかもしれない)
-    public void setPresentTime(LocalTime presentTime) {
-        this.presentTime = new VariablePresentTime(presentTime);
-    }
+//    public void setPresentTime(LocalTime presentTime) {
+//        this.presentTime = new VariablePresentTime(presentTime);
+//    }
 }

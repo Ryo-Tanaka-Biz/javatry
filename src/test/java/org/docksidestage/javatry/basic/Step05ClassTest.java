@@ -17,11 +17,8 @@ package org.docksidestage.javatry.basic;
 
 import java.time.LocalTime;
 
-import org.docksidestage.bizfw.basic.buyticket.TicketBooth;
+import org.docksidestage.bizfw.basic.buyticket.*;
 import org.docksidestage.bizfw.basic.buyticket.TicketBooth.TicketShortMoneyException;
-import org.docksidestage.bizfw.basic.buyticket.Ticket;
-import org.docksidestage.bizfw.basic.buyticket.TicketBuyResult;
-import org.docksidestage.bizfw.basic.buyticket.TicketType;
 import org.docksidestage.unit.PlainTestCase;
 
 /**
@@ -160,9 +157,11 @@ public class Step05ClassTest extends PlainTestCase {
         TicketBuyResult buyResult = booth.buyPassport(TicketType.ONE_ALL_DAY, 10000);
         Ticket oneDayPassport = buyResult.getTicket();
         log(oneDayPassport.getDisplayPrice()); // should be same as one-day price
-        log(oneDayPassport.isAlreadyIn()); // should be false
-        oneDayPassport.doInPark();
-        log(oneDayPassport.isAlreadyIn()); // should be true
+        TicketReader ticketReader = new TicketReader(oneDayPassport.getTicketType());
+        log(ticketReader.isAlreadyIn()); // should be false
+        PresentTime presentTime = new DefaultPresentTime();
+        ticketReader.doInPark(presentTime);
+        log(ticketReader.isAlreadyIn()); // should be true
     }
 
     //うまくいった。displayPriceのイメージが湧かない。価格の書かれたチケットを渡すイメージ？
@@ -191,15 +190,17 @@ public class Step05ClassTest extends PlainTestCase {
         TicketBuyResult buyResult = booth.buyPassport(TicketType.TWO_ALL_DAY, 20000);
         Ticket twoDayPassport = buyResult.getTicket();
         log(twoDayPassport.getDisplayPrice()); // should be same as two-day price
-        log(twoDayPassport.isAlreadyIn()); // should be false
-        twoDayPassport.doInPark(); //1回目入場
-        log(twoDayPassport.isAlreadyIn()); // should be true
-        twoDayPassport.doOutPark(); //1回目退場
-        log(twoDayPassport.isAlreadyIn()); // should be false
-        twoDayPassport.doInPark(); //2回目入場
-        log(twoDayPassport.isAlreadyIn()); // should be true
-        twoDayPassport.doOutPark(); //2回目退場
-        log(twoDayPassport.isAlreadyIn()); // should be true
+
+        TicketReader ticketReader = new TicketReader(twoDayPassport.getTicketType());
+        log(ticketReader.isAlreadyIn()); // should be false
+        ticketReader.doInPark(new DefaultPresentTime()); //1回目入場
+        log(ticketReader.isAlreadyIn()); // should be true
+        ticketReader.doOutPark(new DefaultPresentTime()); //1回目退場
+        log(ticketReader.isAlreadyIn()); // should be false
+        ticketReader.doInPark(new DefaultPresentTime()); //2回目入場
+        log(ticketReader.isAlreadyIn()); // should be true
+       ticketReader.doOutPark(new DefaultPresentTime()); //2回目退場
+        log(ticketReader.isAlreadyIn()); // should be true
     }
     // done tanaryo [いいね] 自己レビュー素晴らしい by jflute (2024/08/05)
     //複数日数は連日？それとも間隔開けても問題ない？
@@ -261,11 +262,14 @@ public class Step05ClassTest extends PlainTestCase {
         TicketBooth booth = new TicketBooth();
         TicketBuyResult buyResult = booth.buyPassport(TicketType.TWO_NIGHT_DAY,8000);
         Ticket nightOnlyTwoDayPassport = buyResult.getTicket();
-        log(nightOnlyTwoDayPassport.getDisplayPrice()); // should be same as two-day price
-        log(nightOnlyTwoDayPassport.isAlreadyIn()); // should be false
+        log(nightOnlyTwoDayPassport.getDisplayPrice());// should be same as two-day price
+
+        TicketReader ticketReader = new TicketReader(nightOnlyTwoDayPassport.getTicketType());
+        log(ticketReader.isAlreadyIn()); // should be false
         // done tanaryo [いいね] 現在日時を細工してテストしやすいようにするという発想が素晴らしい by jflute (2024/08/15)
-        log(nightOnlyTwoDayPassport.getPresentTime());//should be presentTime
-        nightOnlyTwoDayPassport.doInPark(); //1回目入場
+        ticketReader.doInPark(new DefaultPresentTime()); //1回目入場
+        log(ticketReader.getInTime());//should be presentTime
+
         
         // done tanaryo したら現在日時を細工して動作確認するテストを待っております by jflute (2024/08/22)
     }
@@ -275,20 +279,21 @@ public class Step05ClassTest extends PlainTestCase {
     //17時より前だと入場できない
     //現在時刻で判別しているが、テストケースとしては時間指定して入場できるかできないかテストしたい->setNowTimeメソッドで時間をセット
 
+    /**
+     * 現在日時を細工して動作確認するテスト
+     */
     public void test_class_moreFix_wonder_night_setPresentTime() {
         TicketBooth booth = new TicketBooth();
         TicketBuyResult buyResult = booth.buyPassport(TicketType.TWO_NIGHT_DAY, 8000);
         Ticket nightOnlyTwoDayPassport = buyResult.getTicket();
         log(nightOnlyTwoDayPassport.getDisplayPrice()); // should be same as two-day price
-        log(nightOnlyTwoDayPassport.isAlreadyIn()); // should be false
 
-        nightOnlyTwoDayPassport.setPresentTime(LocalTime.of(19, 0));
-        log(nightOnlyTwoDayPassport.getPresentTime());//should be 19:00
-        nightOnlyTwoDayPassport.doInPark(); //1回目入場
+        TicketReader ticketReader = new TicketReader(nightOnlyTwoDayPassport.getTicketType());
+        log(ticketReader.isAlreadyIn()); // should be false
+
+        ticketReader.doInPark(new VariablePresentTime(LocalTime.of(19, 0)));//1回目入場
+        log(ticketReader.getInTime());//should be 19:00
     }
-
-    //現在日時を細工して動作確認するテスト
-    //setPresentTimeメソッドで自分で現在時刻を上書きできる
 
     /**
      * Refactor if you want to fix (e.g. is it well-balanced name of method and variable?). <br>
