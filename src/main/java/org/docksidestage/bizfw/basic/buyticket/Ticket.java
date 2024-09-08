@@ -52,7 +52,8 @@ public class Ticket {
     // TODO done tanaryo IntelliJで変数やメソッドの利用箇所を調べるショートカットを調べてみてください by jflute (2024/09/06)
     // shift + shift で　findusageと検索
     
-    // TODO tanaryo もうsetterで変更できるようにしてるんだったら、変数自体はprivateでもいいのかなと by jflute (2024/09/06)
+    // TODO done tanaryo もうsetterで変更できるようにしてるんだったら、変数自体はprivateでもいいのかなと by jflute (2024/09/06)
+    //入園と退園は別クラスで管理。現在時刻は入園/退園時に引数で指定
 //    PresentTime presentTime = new DefaultPresentTime();
 
     // ===================================================================================
@@ -140,7 +141,8 @@ public class Ticket {
 //        return presentTime.getPresentTime();
 //    }
 
-    // TODO tanaryo setterでpublicで提供しちゃうと、利用者も変えられちゃう by jflute (2024/09/06)
+    // TODO done tanaryo setterでpublicで提供しちゃうと、利用者も変えられちゃう by jflute (2024/09/06)
+    //入園と退園は別クラスで管理。現在時刻は入園/退園時に引数で指定。これでパッケージスコープではあるかな？
     // (まだpackageスコープで少し隠していた方がマシかもしれない)
 //    public void setPresentTime(LocalTime presentTime) {
 //        this.presentTime = new VariablePresentTime(presentTime);
