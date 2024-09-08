@@ -116,11 +116,10 @@ public class Ticket {
         nowAlreadyIn = false;
     }
 
-    // TODO tanaryo Accessor下あたりに、なんか空行ありなしのバランスがちょっと変 by jflute (2024/09/06)
+    // TODO  done tanaryo Accessor下あたりに、なんか空行ありなしのバランスがちょっと変 by jflute (2024/09/06)
     // ===================================================================================
     //                                                                            Accessor
     //                                                                            ========
-
     public TicketType getTicketType() {
         return ticketType;
     }
