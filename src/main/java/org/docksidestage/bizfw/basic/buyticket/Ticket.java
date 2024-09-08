@@ -49,7 +49,8 @@ public class Ticket {
     // done tanaryo staticなものは Attribute よりも上に定義するのがJavaの慣習になっています by jflute (2024/08/22)
     // done tanaryo 固定のオブジェクトなので、これはstatic finalで定義でOK by jflute (2024/08/15)
 
-    // TODO tanaryo IntelliJで変数やメソッドの利用箇所を調べるショートカットを調べてみてください by jflute (2024/09/06)
+    // TODO done tanaryo IntelliJで変数やメソッドの利用箇所を調べるショートカットを調べてみてください by jflute (2024/09/06)
+    // shift + shift で　findusageと検索
     
     // TODO tanaryo もうsetterで変更できるようにしてるんだったら、変数自体はprivateでもいいのかなと by jflute (2024/09/06)
     PresentTime presentTime = new DefaultPresentTime();
