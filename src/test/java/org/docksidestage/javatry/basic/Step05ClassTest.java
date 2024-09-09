@@ -157,7 +157,7 @@ public class Step05ClassTest extends PlainTestCase {
         TicketBuyResult buyResult = booth.buyPassport(TicketType.ONE_ALL_DAY, 10000);
         Ticket oneDayPassport = buyResult.getTicket();
         log(oneDayPassport.getDisplayPrice()); // should be same as one-day price
-        TicketReader ticketReader = new TicketReader(oneDayPassport.getTicketType());
+        TicketReader ticketReader = new TicketReader(oneDayPassport);
         log(ticketReader.isAlreadyIn()); // should be false
         PresentTime presentTime = new DefaultPresentTime();
         ticketReader.doInPark(presentTime);
@@ -191,7 +191,7 @@ public class Step05ClassTest extends PlainTestCase {
         Ticket twoDayPassport = buyResult.getTicket();
         log(twoDayPassport.getDisplayPrice()); // should be same as two-day price
 
-        TicketReader ticketReader = new TicketReader(twoDayPassport.getTicketType());
+        TicketReader ticketReader = new TicketReader(twoDayPassport);
         log(ticketReader.isAlreadyIn()); // should be false
         ticketReader.doInPark(new DefaultPresentTime()); //1回目入場
         log(ticketReader.isAlreadyIn()); // should be true
@@ -264,7 +264,7 @@ public class Step05ClassTest extends PlainTestCase {
         Ticket nightOnlyTwoDayPassport = buyResult.getTicket();
         log(nightOnlyTwoDayPassport.getDisplayPrice());// should be same as two-day price
 
-        TicketReader ticketReader = new TicketReader(nightOnlyTwoDayPassport.getTicketType());
+        TicketReader ticketReader = new TicketReader(nightOnlyTwoDayPassport);
         log(ticketReader.isAlreadyIn()); // should be false
         // done tanaryo [いいね] 現在日時を細工してテストしやすいようにするという発想が素晴らしい by jflute (2024/08/15)
         ticketReader.doInPark(new DefaultPresentTime()); //1回目入場
@@ -288,7 +288,7 @@ public class Step05ClassTest extends PlainTestCase {
         Ticket nightOnlyTwoDayPassport = buyResult.getTicket();
         log(nightOnlyTwoDayPassport.getDisplayPrice()); // should be same as two-day price
 
-        TicketReader ticketReader = new TicketReader(nightOnlyTwoDayPassport.getTicketType());
+        TicketReader ticketReader = new TicketReader(nightOnlyTwoDayPassport);
         log(ticketReader.isAlreadyIn()); // should be false
 
         ticketReader.doInPark(new VariablePresentTime(LocalTime.of(19, 0)));//1回目入場

@@ -23,8 +23,8 @@ public class TicketReader {
     /**
      * 1回目の入園時に作成する
      */
-    public TicketReader(TicketType ticketType) {
-        this.ticketType = ticketType;
+    public TicketReader(Ticket ticket) {
+        this.ticketType = ticket.getTicketType();
         this.leftDays = ticketType.getDayCount();
     }
 
