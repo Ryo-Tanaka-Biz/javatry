@@ -17,7 +17,7 @@ package org.docksidestage.bizfw.basic.buyticket;
 
 import java.time.LocalTime;
 
-
+// TODO tanaryo ↑unusedの警告 by jflute (2024/09/09)
 /**
  * チッケト種別と表示価格を管理するクラス
  * @author jflute
@@ -30,13 +30,16 @@ public class Ticket {
     // done tanaryo [いいね] 横の//すらすらコメントで変数の補足が素晴らしい by jflute (2024/08/15)
     // done tanaryo [いいね] 変数の定義順番、わかりやすくていいですね by jflute (2024/08/15)
     // done tanaryo dayCount, "残りの" っていうニュアンスが変数名にあるといいかなと by jflute (2024/08/29)
-    // TODO done tanaryo 日数を表現するとき、daysと複数形にする慣習が世界的にあるかなと by jflute (2024/09/06)
+    // done tanaryo 日数を表現するとき、daysと複数形にする慣習が世界的にあるかなと by jflute (2024/09/06)
     // rename機能で一括変換できた！！！
     // ぜひ、IntelliJのRenameの機能を使ってリファクタリングしてみてください。
-    // TODO done tanaryo コメント内に変数名を入れないほうが良い、リファクタリングの追従がされないので by jflute (2024/09/06)
-    // TODO done tanaryo このくらいの量なら、finalなものとmutableなもので定義順分けたほうがわかりやすいかも by jflute (2024/09/06)
+    // done tanaryo コメント内に変数名を入れないほうが良い、リファクタリングの追従がされないので by jflute (2024/09/06)
+    // done tanaryo このくらいの量なら、finalなものとmutableなもので定義順分けたほうがわかりやすいかも by jflute (2024/09/06)
     private final TicketType ticketType;
     private final int displayPrice;// written on ticket, park guest can watch this
+    // TODO tanaryo コメントアウトにはコメントを (何のニュアンスで残しているか？) ここだと勉強用とか、思い出とか、以前は、とか by jflute (2024/09/09)
+    // 参考: https://x.com/jflute/status/1421056115983339520
+
 //    private final LocalTime startTime;//開始時間
 
 //    private Integer leftDays;//が0の場合入園できない
@@ -49,10 +52,10 @@ public class Ticket {
     // done tanaryo staticなものは Attribute よりも上に定義するのがJavaの慣習になっています by jflute (2024/08/22)
     // done tanaryo 固定のオブジェクトなので、これはstatic finalで定義でOK by jflute (2024/08/15)
 
-    // TODO done tanaryo IntelliJで変数やメソッドの利用箇所を調べるショートカットを調べてみてください by jflute (2024/09/06)
+    // done tanaryo IntelliJで変数やメソッドの利用箇所を調べるショートカットを調べてみてください by jflute (2024/09/06)
     // shift + shift で　findusageと検索
     
-    // TODO done tanaryo もうsetterで変更できるようにしてるんだったら、変数自体はprivateでもいいのかなと by jflute (2024/09/06)
+    // done tanaryo もうsetterで変更できるようにしてるんだったら、変数自体はprivateでもいいのかなと by jflute (2024/09/06)
     //入園と退園は別クラスで管理。現在時刻は入園/退園時に引数で指定
 //    PresentTime presentTime = new DefaultPresentTime();
 
@@ -117,7 +120,7 @@ public class Ticket {
 //        nowAlreadyIn = false;
 //    }
 
-    // TODO  done tanaryo Accessor下あたりに、なんか空行ありなしのバランスがちょっと変 by jflute (2024/09/06)
+    // done tanaryo Accessor下あたりに、なんか空行ありなしのバランスがちょっと変 by jflute (2024/09/06)
     // ===================================================================================
     //                                                                            Accessor
     //                                                                            ========
@@ -141,7 +144,7 @@ public class Ticket {
 //        return presentTime.getPresentTime();
 //    }
 
-    // TODO done tanaryo setterでpublicで提供しちゃうと、利用者も変えられちゃう by jflute (2024/09/06)
+    // done tanaryo setterでpublicで提供しちゃうと、利用者も変えられちゃう by jflute (2024/09/06)
     //入園と退園は別クラスで管理。現在時刻は入園/退園時に引数で指定。これでパッケージスコープではあるかな？
     // (まだpackageスコープで少し隠していた方がマシかもしれない)
 //    public void setPresentTime(LocalTime presentTime) {

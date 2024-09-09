@@ -2,8 +2,8 @@ package org.docksidestage.bizfw.basic.buyticket;
 
 import java.time.LocalTime;
 
-// TODO done tanaryo ↑unusedのimportが残ってる "org.apache.tomcat.jni.Local" 間違えてLocalを補完しちゃったんだと思う by jflute (2024/09/06)
-// TODO done tanaryo classのjavadocコメントおねがいしますー by jflute (2024/09/06)
+// done tanaryo ↑unusedのimportが残ってる "org.apache.tomcat.jni.Local" 間違えてLocalを補完しちゃったんだと思う by jflute (2024/09/06)
+// done tanaryo classのjavadocコメントおねがいしますー by jflute (2024/09/06)
 
 /**
  * パスポートの種別を持つ、列挙型のクラス。
@@ -40,6 +40,8 @@ public enum TicketType {
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
+    // [ふぉろー] beginTime, endTime話、正解はないけど個人的にはbegin(アルファベット順とかを気にする) by jflute
+    // あと、名前をあえて文字数違うの選んだりとか区別しやすい単語を使っていく話した。
     private final int dayCount;//日数
     private final int price;//価格
     private final LocalTime startTime;//入園時間

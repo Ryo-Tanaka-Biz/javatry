@@ -2,6 +2,7 @@ package org.docksidestage.bizfw.basic.buyticket;
 
 import java.time.LocalTime;
 
+// TODO tanaryo インスタンスの単位や粒度を示す説明がjavadocにあるといいかなと by jflute (2024/09/09)
 /**
  * 入園情報と退園情報を管理するクラス
  * @author tanaryo
@@ -12,6 +13,9 @@ public class TicketReader {
     //                                                                           =========
     private final TicketType ticketType;
 
+    // TODO tanaryo leftDays, ない場合に0を入れてるのであればintでもOK, もしくはIntegerだったら(NotNull)のコメント欲しい by jflute (2024/09/09)
+    // TODO tanaryo inTime, outTime, nullに関する補足があると嬉しい by jflute (2024/09/09)
+    //  e.g. private LocalTime inTime;//は入園した時間を示す (NullAllowed: 入園前)
     private Integer leftDays;//が0の場合入園できない
     private boolean nowAlreadyIn;// trueは入園中を示す
     private LocalTime inTime;//は入園した時間を示す
@@ -20,6 +24,9 @@ public class TicketReader {
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
+    // [ふぉろー] 同じチケットに対して複数のTicketReaderを作ることができちゃうというのはデメリットになるかも by jflute
+    // リファクタリングで得られたものもあれば、失ったものもあるということはよくあるので、その学びになれば良い。
+    // TODO tanaryo ticketの@param書こう (JavaDoc書くからには正しい形式で書こう) by jflute (2024/09/09)
     /**
      * 1回目の入園時に作成する
      */
@@ -31,6 +38,9 @@ public class TicketReader {
     // ===================================================================================
     //                                                                             In Park
     //                                                                             =======
+    // TODO tanaryo 修行++: 結局、インを呼ぶプログラム側が引数で現在日時を細工できてしまう by jflute (2024/09/09)
+    // テストだけじゃなくmainコード側のインを呼ぶプログラムには本来隠蔽したい。
+    // ただ、step6をやってからチャレンジした方が良いかも。(そこは任せます)
     public void doInPark(PresentTime presentTime) {
         if (leftDays == 0) {
             throw new IllegalStateException("This ticket is unavailable: leftDays=" + leftDays);
@@ -38,6 +48,7 @@ public class TicketReader {
         if (presentTime.getPresentTime().isBefore(ticketType.getStartTime())) {
             throw new IllegalStateException("入場可能時間より前なので入場できません: (presentTime, startTime) = (" + presentTime.getPresentTime() + "," + ticketType.getStartTime() + ")");
         }
+        // TODO tanaryo endのチェックは？ by jflute (2024/09/09)
         if (nowAlreadyIn) {
             throw new IllegalStateException("Already in park by this ticket: inTime=" + inTime);
         }

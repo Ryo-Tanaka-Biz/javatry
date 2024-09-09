@@ -10,6 +10,7 @@ public class VariablePresentTime implements PresentTime {
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
+    // TODO tanaryo startという単語はTicketの中で使っているもので、ここは独立領域なので "意図的に変更した" のニュアンスがあるといい by jflute (2024/09/09)
     public final LocalTime startTime;
 
     // ===================================================================================

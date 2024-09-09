@@ -139,7 +139,7 @@ public class Step05ClassTest extends PlainTestCase {
      */
     public void test_class_letsFix_refactor_recycle() {
         // done jflute 次回1on1でフォロー (2024/08/15)
-        // TODO done tanaryo 最後でいいので、"OneDayとTwoDayで冗長なロジック" をprivateメソッド再利用しましょう by jflute (2024/09/06)
+        // done tanaryo 最後でいいので、"OneDayとTwoDayで冗長なロジック" をprivateメソッド再利用しましょう by jflute (2024/09/06)
         TicketBooth booth = new TicketBooth();
         booth.buyPassport(TicketType.ONE_ALL_DAY, 10000);
         log(booth.getQuantity(), booth.getSalesProceeds()); // should be same as before-fix
