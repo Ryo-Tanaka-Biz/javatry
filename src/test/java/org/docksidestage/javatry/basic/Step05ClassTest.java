@@ -293,6 +293,11 @@ public class Step05ClassTest extends PlainTestCase {
 
         ticketReader.doInPark(new VariablePresentTime(LocalTime.of(19, 0)));//1回目入場
         log(ticketReader.getInTime());//should be 19:00
+        log(ticketReader.isAlreadyIn()); // should be true
+
+        ticketReader.doOutPark(new VariablePresentTime(LocalTime.of(21, 0)));//1回目入場
+        log(ticketReader.getOutTime());//should be 19:00
+        log(ticketReader.isAlreadyIn()); // should be false
     }
 
     /**
