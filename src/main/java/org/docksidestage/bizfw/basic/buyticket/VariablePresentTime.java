@@ -7,13 +7,21 @@ import java.time.LocalTime;
  * @author tanaryo
  */
 public class VariablePresentTime implements PresentTime {
-
+    // ===================================================================================
+    //                                                                           Attribute
+    //                                                                           =========
     public final LocalTime startTime;
 
+    // ===================================================================================
+    //                                                                         Constructor
+    //                                                                         ===========
     public VariablePresentTime(LocalTime startTime){
         this.startTime = startTime;
     }
 
+    // ===================================================================================
+    //                                                                            Accessor
+    //                                                                            ========
     @Override
     public LocalTime getPresentTime() {
         return startTime;

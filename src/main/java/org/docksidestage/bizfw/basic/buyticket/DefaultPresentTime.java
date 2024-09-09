@@ -7,6 +7,9 @@ import java.time.LocalTime;
  * @author tanaryo
  */
 public class DefaultPresentTime implements PresentTime {
+    // ===================================================================================
+    //                                                                            Accessor
+    //                                                                            ========
     @Override
     public LocalTime getPresentTime() {
         return LocalTime.now();
