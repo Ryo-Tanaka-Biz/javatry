@@ -1,4 +1,4 @@
-package org.docksidestage.bizfw.basic.buyticket;
+package org.docksidestage.bizfw.basic.buyticket.ticket;
 
 import java.time.LocalTime;
 

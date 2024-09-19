@@ -1,6 +1,8 @@
-package org.docksidestage.bizfw.basic.buyticket;
+package org.docksidestage.bizfw.basic.buyticket.ticket;
 
 import java.time.LocalTime;
+
+import org.docksidestage.bizfw.basic.buyticket.presenttime.PresentTime;
 
 // TODO tanaryo インスタンスの単位や粒度を示す説明がjavadocにあるといいかなと by jflute (2024/09/09)
 /**

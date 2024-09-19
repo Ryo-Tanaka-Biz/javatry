@@ -13,7 +13,7 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.docksidestage.bizfw.basic.buyticket;
+package org.docksidestage.bizfw.basic.buyticket.ticket;
 
 // [ふぉろー] 質問が来てDBFluteとMySQLの絞り込みの仕組みの話をした by jflute (2024/09/06)
 // INDEXの話も少しした。
@@ -23,6 +23,7 @@ package org.docksidestage.bizfw.basic.buyticket;
 // 将来はコツコツ能力が必要になるときはある。
 
 // done tanaryo javadocにauthorの追加をお願いします、せっかくなので自分の名前を刻んでください by jflute (2024/08/01)
+
 /**
  * @author jflute
  * @author tanaryo

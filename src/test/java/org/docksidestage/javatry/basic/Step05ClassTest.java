@@ -17,8 +17,11 @@ package org.docksidestage.javatry.basic;
 
 import java.time.LocalTime;
 
-import org.docksidestage.bizfw.basic.buyticket.*;
-import org.docksidestage.bizfw.basic.buyticket.TicketBooth.TicketShortMoneyException;
+import org.docksidestage.bizfw.basic.buyticket.presenttime.DefaultPresentTime;
+import org.docksidestage.bizfw.basic.buyticket.presenttime.PresentTime;
+import org.docksidestage.bizfw.basic.buyticket.presenttime.VariablePresentTime;
+import org.docksidestage.bizfw.basic.buyticket.ticket.*;
+import org.docksidestage.bizfw.basic.buyticket.ticket.TicketBooth.TicketShortMoneyException;
 import org.docksidestage.unit.PlainTestCase;
 
 /**
