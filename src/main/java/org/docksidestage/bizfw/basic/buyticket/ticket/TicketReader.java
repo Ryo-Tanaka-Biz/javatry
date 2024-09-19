@@ -6,7 +6,7 @@ import org.docksidestage.bizfw.basic.buyticket.presenttime.PresentTime;
 
 // TODO tanaryo インスタンスの単位や粒度を示す説明がjavadocにあるといいかなと by jflute (2024/09/09)
 /**
- * 入園情報と退園情報を管理するクラス
+ * 入園情報と退園情報を管理するクラス。1つのインスタンスで1つのチケットを管理する。
  * @author tanaryo
  */
 public class TicketReader {
@@ -27,6 +27,7 @@ public class TicketReader {
     //                                                                         Constructor
     //                                                                         ===========
     // [ふぉろー] 同じチケットに対して複数のTicketReaderを作ることができちゃうというのはデメリットになるかも by jflute
+    //ファクトリーパターンを考える？？
     // リファクタリングで得られたものもあれば、失ったものもあるということはよくあるので、その学びになれば良い。
     // TODO done tanaryo ticketの@param書こう (JavaDoc書くからには正しい形式で書こう) by jflute (2024/09/09)
     /**
