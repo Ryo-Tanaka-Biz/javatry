@@ -26,9 +26,10 @@ public class TicketReader {
     //                                                                         ===========
     // [ふぉろー] 同じチケットに対して複数のTicketReaderを作ることができちゃうというのはデメリットになるかも by jflute
     // リファクタリングで得られたものもあれば、失ったものもあるということはよくあるので、その学びになれば良い。
-    // TODO tanaryo ticketの@param書こう (JavaDoc書くからには正しい形式で書こう) by jflute (2024/09/09)
+    // TODO done tanaryo ticketの@param書こう (JavaDoc書くからには正しい形式で書こう) by jflute (2024/09/09)
     /**
      * 1回目の入園時に作成する
+     * @param ticket 入場チケット (NotNull)
      */
     public TicketReader(Ticket ticket) {
         this.ticketType = ticket.getTicketType();
