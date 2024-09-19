@@ -46,10 +46,10 @@ public class TicketReader {
         if (leftDays == 0) {
             throw new IllegalStateException("This ticket is unavailable: leftDays=" + leftDays);
         }
-        if (presentTime.getPresentTime().isBefore(ticketType.getStartTime())) {
-            throw new IllegalStateException("入場可能時間より前なので入場できません: (presentTime, startTime) = (" + presentTime.getPresentTime() + "," + ticketType.getStartTime() + ")");
+        if (presentTime.getPresentTime().isBefore(ticketType.getStartTime()) || presentTime.getPresentTime().isAfter(ticketType.getEndTime())) {
+            throw new IllegalStateException("入場可能時間ではないので入場できません: (presentTime, startTime, endTime) = (" + presentTime.getPresentTime() + "," + ticketType.getStartTime() + "," + ticketType.getEndTime()+")");
         }
-        // TODO tanaryo endのチェックは？ by jflute (2024/09/09)
+        // TODO done tanaryo endのチェックは？ by jflute (2024/09/09)
         if (nowAlreadyIn) {
             throw new IllegalStateException("Already in park by this ticket: inTime=" + inTime);
         }
