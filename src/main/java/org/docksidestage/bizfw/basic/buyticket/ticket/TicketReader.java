@@ -4,7 +4,7 @@ import java.time.LocalTime;
 
 import org.docksidestage.bizfw.basic.buyticket.presenttime.PresentTime;
 
-// TODO tanaryo インスタンスの単位や粒度を示す説明がjavadocにあるといいかなと by jflute (2024/09/09)
+// TODO done tanaryo インスタンスの単位や粒度を示す説明がjavadocにあるといいかなと by jflute (2024/09/09)
 /**
  * 入園情報と退園情報を管理するクラス。1つのインスタンスで1つのチケットを管理する。
  * @author tanaryo
