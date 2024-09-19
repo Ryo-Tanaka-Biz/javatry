@@ -16,7 +16,7 @@ public class TicketReader {
     // TODO tanaryo leftDays, ない場合に0を入れてるのであればintでもOK, もしくはIntegerだったら(NotNull)のコメント欲しい by jflute (2024/09/09)
     // TODO tanaryo inTime, outTime, nullに関する補足があると嬉しい by jflute (2024/09/09)
     //  e.g. private LocalTime inTime;//は入園した時間を示す (NullAllowed: 入園前)
-    private Integer leftDays;//が0の場合入園できない
+    private int leftDays;//が0の場合入園できない
     private boolean nowAlreadyIn;// trueは入園中を示す
     private LocalTime inTime;//は入園した時間を示す
     private LocalTime outTime;//は退園した時間を示す
