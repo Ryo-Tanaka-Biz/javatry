@@ -15,7 +15,7 @@
  */
 package org.docksidestage.bizfw.basic.buyticket.ticket;
 
-// TODO done tanaryo ↑unusedの警告 by jflute (2024/09/09)
+// done tanaryo ↑unusedの警告 by jflute (2024/09/09)
 
 /**
  * チッケト種別と表示価格を管理するクラス

@@ -7,5 +7,10 @@ import java.time.LocalTime;
  * @author tanaryo
  */
 public interface PresentTime {
+    // TODO tanaryo interface名とメソッドで戻すものが同じ名前だと概念が区別されてなくて紛らわしい by jflute (2024/09/19)
+    // 概念としてPresentTimeと、値としてのPresentTime(LocalTime)が一緒になっているので会話もしづらさそう。
+    // インタフェースがそのままだとしたら: e.g. getTime(), getPresentLocalTime()
+    // 値(メソッド)がそのままだとしたら: e.g. PresentTimeManager, PresentTimeProvider, PresentProvider
+    // 気に入ったやり方を、IntelliJのrenameの機能を使ってリファクタリングしてみてください。
     LocalTime getPresentTime();
 }

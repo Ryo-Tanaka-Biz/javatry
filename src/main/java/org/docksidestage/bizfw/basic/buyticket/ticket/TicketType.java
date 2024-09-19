@@ -42,6 +42,7 @@ public enum TicketType {
     //                                                                           =========
     // [ふぉろー] beginTime, endTime話、正解はないけど個人的にはbegin(アルファベット順とかを気にする) by jflute
     // あと、名前をあえて文字数違うの選んだりとか区別しやすい単語を使っていく話した。
+    // TODO tanaryo 退園時間は、そのぴったりの時間は入れるのか？入れないのか？境界の仕様をコメントで補足欲しい by jflute (2024/09/19)
     private final int dayCount;//日数
     private final int price;//価格
     private final LocalTime startTime;//入園時間
