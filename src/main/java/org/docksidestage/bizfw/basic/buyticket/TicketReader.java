@@ -18,8 +18,8 @@ public class TicketReader {
     //  e.g. private LocalTime inTime;//は入園した時間を示す (NullAllowed: 入園前)
     private int leftDays;//が0の場合入園できない
     private boolean nowAlreadyIn;// trueは入園中を示す
-    private LocalTime inTime;//は入園した時間を示す
-    private LocalTime outTime;//は退園した時間を示す
+    private LocalTime inTime;//は入園した時間を示す (NullAllowed: 入園前)
+    private LocalTime outTime;//は退園した時間を示す (NullAllowed: 入園前)
 
     // ===================================================================================
     //                                                                         Constructor
