@@ -15,7 +15,12 @@
  */
 package org.docksidestage.javatry.basic;
 
+import org.docksidestage.bizfw.basic.buyticket.presenttime.DefaultPresentTimeManager;
+import org.docksidestage.bizfw.basic.buyticket.presenttime.PresentTimeManager;
+import org.docksidestage.bizfw.basic.buyticket.ticket.Ticket;
 import org.docksidestage.bizfw.basic.buyticket.ticket.TicketBooth;
+import org.docksidestage.bizfw.basic.buyticket.ticket.TicketBuyResult;
+import org.docksidestage.bizfw.basic.buyticket.ticket.TicketReader;
 import org.docksidestage.bizfw.basic.objanimal.Animal;
 import org.docksidestage.bizfw.basic.objanimal.BarkedSound;
 import org.docksidestage.bizfw.basic.objanimal.Cat;
@@ -31,7 +36,7 @@ import org.docksidestage.unit.PlainTestCase;
  * Operate exercise as javadoc. If it's question style, write your answer before test execution. <br>
  * (javadocの通りにエクササイズを実施。質問形式の場合はテストを実行する前に考えて答えを書いてみましょう)
  * @author jflute
- * @author your_name_here
+ * @author tanaryo
  */
 public class Step06ObjectOrientedTest extends PlainTestCase {
 
@@ -72,7 +77,7 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         // [ticket info]
         //
         // simulation: actually these variables should be more wide scope
-        int displayPrice = quantity;
+        int displayPrice = oneDayPrice;//右辺はquantityではなくoneDayPrice
         boolean alreadyIn = false;
 
         // other processes here...
@@ -84,21 +89,21 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         //
         // simulation: actually this process should be called by other trigger
         if (alreadyIn) {
-            throw new IllegalStateException("Already in park by this ticket: displayPrice=" + quantity);
+            throw new IllegalStateException("Already in park by this ticket: displayPrice=" + displayPrice);//quantity -> displayPriceに変更
         }
         alreadyIn = true;
 
         //
         // [final process]
         //
-        saveBuyingHistory(quantity, displayPrice, salesProceeds, alreadyIn);
+        saveBuyingHistory(quantity, salesProceeds, displayPrice, alreadyIn);//引数の順序がおかしい
     }
 
     private void saveBuyingHistory(int quantity, Integer salesProceeds, int displayPrice, boolean alreadyIn) {
         if (alreadyIn) {
             // simulation: only logging here (normally e.g. DB insert)
-            showTicketBooth(displayPrice, salesProceeds);
-            showYourTicket(quantity, alreadyIn);
+            showTicketBooth(quantity, salesProceeds);//引数おかしい
+            showYourTicket(displayPrice, alreadyIn);//引数おかしい
         }
     }
 
@@ -132,7 +137,9 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         // [buy one-day passport]
         //
         // if step05 has been finished, you can use this code by jflute (2019/06/15)
-        //Ticket ticket = booth.buyOneDayPassport(10000);
+        TicketBuyResult ticketBuyResult = booth.buyOneDayPassport(10000);
+        Ticket ticket = ticketBuyResult.getTicket();
+        TicketReader ticketReader = new TicketReader(ticket);
         //booth.buyOneDayPassport(10000); // as temporary, remove if you finished step05
         //Ticket ticket = new Ticket(7400); // also here
 
@@ -157,7 +164,7 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         //
         // [do in park now!!!]
         //
-        //ticket.doInPark();
+        ticketReader.doInPark(new DefaultPresentTimeManager());
 
         // *doInPark() has this process:
         //if (alreadyIn) {
@@ -168,29 +175,29 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         //
         // [final process]
         //
-        //saveBuyingHistory(booth, ticket);
+        saveBuyingHistory(booth, ticket, ticketReader);
     }
 
-//    private void saveBuyingHistory(TicketBooth booth, Ticket ticket) {
-//        if (ticket.isAlreadyIn()) {
-//            // only logging here (normally e.g. DB insert)
-//            doShowTicketBooth(booth);
-//            doShowYourTicket(ticket);
-//        }
-//    }
+    private void saveBuyingHistory(TicketBooth booth, Ticket ticket, TicketReader ticketReader) {
+        if (ticketReader.isAlreadyIn()) {
+            // only logging here (normally e.g. DB insert)
+            doShowTicketBooth(booth);
+            doShowYourTicket(ticket, ticketReader);
+        }
+    }
 
     private void doShowTicketBooth(TicketBooth booth) {
         log("Ticket Booth: quantity={}, salesProceeds={}", booth.getQuantity(), booth.getSalesProceeds());
     }
 
-//    private void doShowYourTicket(Ticket ticket) {
-//        log("Your Ticket: displayPrice={}, alreadyIn={}", ticket.getDisplayPrice(), ticket.isAlreadyIn());
-//    }
+    private void doShowYourTicket(Ticket ticket, TicketReader ticketReader) {
+        log("Your Ticket: displayPrice={}, alreadyIn={}", ticket.getDisplayPrice(), ticketReader.isAlreadyIn());
+    }
 
     // write your memo here:
     // _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
     // what is object?
-    //
+    //特定の状態と振る舞いを持ったまとまりのこと
     // _/_/_/_/_/_/_/_/_/_/
 
     // ===================================================================================
