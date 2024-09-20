@@ -7,7 +7,7 @@ import java.time.LocalTime;
  * 現在時刻を取得するクラス。
  * @author tanaryo
  */
-public class DefaultPresentTime implements PresentTime {
+public class DefaultPresentTimeManager implements PresentTimeManager {
     // ===================================================================================
     //                                                                            Accessor
     //                                                                            ========

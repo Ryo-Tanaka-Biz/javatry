@@ -62,8 +62,8 @@ public class TicketReader {
         }
         // done tanaryo endのチェックは？ by jflute (2024/09/09)
         // TODO tanaryo endTimeぴったりの時間自体は入れちゃうけど、それは良いのか？ (e.g. 22時ぴったり) by jflute (2024/09/19)
-        if (presentTimeManager.getPresentTime().isBefore(ticketType.getStartTime()) || presentTimeManager.getPresentTime().isAfter(ticketType.getEndTime())) {
-            throw new IllegalStateException("入場可能時間ではないので入場できません: (presentTime, startTime, endTime) = (" + presentTimeManager.getPresentTime() + "," + ticketType.getStartTime() + "," + ticketType.getEndTime()+")");
+        if (presentTimeManager.getPresentTime().isBefore(ticketType.getBeginTime()) || presentTimeManager.getPresentTime().isAfter(ticketType.getEndTime())) {
+            throw new IllegalStateException("入場可能時間ではないので入場できません: (presentTime, startTime, endTime) = (" + presentTimeManager.getPresentTime() + "," + ticketType.getBeginTime() + "," + ticketType.getEndTime()+")");
         }
         if (nowAlreadyIn) {
             throw new IllegalStateException("Already in park by this ticket: inTime=" + inTime);

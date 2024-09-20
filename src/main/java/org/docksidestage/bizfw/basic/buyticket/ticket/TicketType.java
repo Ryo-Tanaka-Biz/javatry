@@ -45,16 +45,16 @@ public enum TicketType {
     // TODO tanaryo 退園時間は、そのぴったりの時間は入れるのか？入れないのか？境界の仕様をコメントで補足欲しい by jflute (2024/09/19)
     private final int dayCount;//日数
     private final int price;//価格
-    private final LocalTime startTime;//入園時間
+    private final LocalTime beginTime;//入園時間
     private final LocalTime endTime;//退園時間
 
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    TicketType(int dayCount, int price, LocalTime startTime, LocalTime endTime) {
+    TicketType(int dayCount, int price, LocalTime beginTime, LocalTime endTime) {
         this.dayCount = dayCount;
         this.price = price;
-        this.startTime = startTime;
+        this.beginTime = beginTime;
         this.endTime = endTime;
     }
 
@@ -69,8 +69,8 @@ public enum TicketType {
         return price;
     }
 
-    public LocalTime getStartTime() {
-        return startTime;
+    public LocalTime getBeginTime() {
+        return beginTime;
     }
 
     public LocalTime getEndTime() {
