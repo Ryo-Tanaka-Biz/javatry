@@ -36,9 +36,9 @@ public class Ticket {
     // done tanaryo このくらいの量なら、finalなものとmutableなもので定義順分けたほうがわかりやすいかも by jflute (2024/09/06)
     private final TicketType ticketType;
     private final int displayPrice;// written on ticket, park guest can watch this
-    // TODO tanaryo コメントアウトにはコメントを (何のニュアンスで残しているか？) ここだと勉強用とか、思い出とか、以前は、とか by jflute (2024/09/09)
+    // TODO　done tanaryo コメントアウトにはコメントを (何のニュアンスで残しているか？) ここだと勉強用とか、思い出とか、以前は、とか by jflute (2024/09/09)
     // 参考: https://x.com/jflute/status/1421056115983339520
-
+//勉強用で残している
 //    private final LocalTime startTime;//開始時間
 
 //    private Integer leftDays;//が0の場合入園できない
