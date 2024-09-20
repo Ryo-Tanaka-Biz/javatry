@@ -6,7 +6,7 @@ import java.time.LocalTime;
  * 意図的に変更した現在時刻を取得するクラス。
  * @author tanaryo
  */
-public class VariablePresentTime implements PresentTime {
+public class VariablePresentTimeManager implements PresentTimeManager {
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
@@ -16,7 +16,7 @@ public class VariablePresentTime implements PresentTime {
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public VariablePresentTime(LocalTime intentionalChangedTime){
+    public VariablePresentTimeManager(LocalTime intentionalChangedTime){
         this.intentionalChangedTime = intentionalChangedTime;
     }
 

@@ -2,7 +2,7 @@ package org.docksidestage.bizfw.basic.buyticket.ticket;
 
 import java.time.LocalTime;
 
-import org.docksidestage.bizfw.basic.buyticket.presenttime.PresentTime;
+import org.docksidestage.bizfw.basic.buyticket.presenttime.PresentTimeManager;
 
 // done tanaryo インスタンスの単位や粒度を示す説明がjavadocにあるといいかなと by jflute (2024/09/09)
 /**
@@ -56,27 +56,27 @@ public class TicketReader {
     // TODO tanaryo 修行++: 結局、インを呼ぶプログラム側が引数で現在日時を細工できてしまう by jflute (2024/09/09)
     // テストだけじゃなくmainコード側のインを呼ぶプログラムには本来隠蔽したい。
     // ただ、step6をやってからチャレンジした方が良いかも。(そこは任せます)
-    public void doInPark(PresentTime presentTime) {
+    public void doInPark(PresentTimeManager presentTimeManager) {
         if (leftDays == 0) {
             throw new IllegalStateException("This ticket is unavailable: leftDays=" + leftDays);
         }
         // done tanaryo endのチェックは？ by jflute (2024/09/09)
         // TODO tanaryo endTimeぴったりの時間自体は入れちゃうけど、それは良いのか？ (e.g. 22時ぴったり) by jflute (2024/09/19)
-        if (presentTime.getPresentTime().isBefore(ticketType.getStartTime()) || presentTime.getPresentTime().isAfter(ticketType.getEndTime())) {
-            throw new IllegalStateException("入場可能時間ではないので入場できません: (presentTime, startTime, endTime) = (" + presentTime.getPresentTime() + "," + ticketType.getStartTime() + "," + ticketType.getEndTime()+")");
+        if (presentTimeManager.getPresentTime().isBefore(ticketType.getStartTime()) || presentTimeManager.getPresentTime().isAfter(ticketType.getEndTime())) {
+            throw new IllegalStateException("入場可能時間ではないので入場できません: (presentTime, startTime, endTime) = (" + presentTimeManager.getPresentTime() + "," + ticketType.getStartTime() + "," + ticketType.getEndTime()+")");
         }
         if (nowAlreadyIn) {
             throw new IllegalStateException("Already in park by this ticket: inTime=" + inTime);
         }
         --leftDays;
         nowAlreadyIn = true;
-        inTime = presentTime.getPresentTime();
+        inTime = presentTimeManager.getPresentTime();
     }
 
     // ===================================================================================
     //                                                                             Out Park
     //                                                                             =======
-    public void doOutPark(PresentTime presentTime) {
+    public void doOutPark(PresentTimeManager presentTimeManager) {
         if (!nowAlreadyIn) {
             throw new IllegalStateException("Already out park by this ticket: outTime=" +outTime);
         }
@@ -84,7 +84,7 @@ public class TicketReader {
         // done tanaryo 実質的に支障はあまり無さそうだが、最終日だけ帰った後nowAlreadyInがtrueのまんまが変というか必要あるか？ by jflute (2024/08/15)
         // nowAlreadyInは、現在パーク内に入ってるかどうか？を純粋に表現する変数というイメージで作っていると思うので
         nowAlreadyIn = false;
-        outTime = presentTime.getPresentTime();
+        outTime = presentTimeManager.getPresentTime();
     }
 
     // ===================================================================================

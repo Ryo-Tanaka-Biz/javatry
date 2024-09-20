@@ -17,9 +17,9 @@ package org.docksidestage.javatry.basic;
 
 import java.time.LocalTime;
 
-import org.docksidestage.bizfw.basic.buyticket.presenttime.DefaultPresentTime;
-import org.docksidestage.bizfw.basic.buyticket.presenttime.PresentTime;
-import org.docksidestage.bizfw.basic.buyticket.presenttime.VariablePresentTime;
+import org.docksidestage.bizfw.basic.buyticket.presenttime.DefaultPresentTimeManager;
+import org.docksidestage.bizfw.basic.buyticket.presenttime.PresentTimeManager;
+import org.docksidestage.bizfw.basic.buyticket.presenttime.VariablePresentTimeManager;
 import org.docksidestage.bizfw.basic.buyticket.ticket.*;
 import org.docksidestage.bizfw.basic.buyticket.ticket.TicketBooth.TicketShortMoneyException;
 import org.docksidestage.unit.PlainTestCase;
@@ -162,8 +162,8 @@ public class Step05ClassTest extends PlainTestCase {
         log(oneDayPassport.getDisplayPrice()); // should be same as one-day price
         TicketReader ticketReader = new TicketReader(oneDayPassport);
         log(ticketReader.isAlreadyIn()); // should be false
-        PresentTime presentTime = new DefaultPresentTime();
-        ticketReader.doInPark(presentTime);
+        PresentTimeManager presentTimeManager = new DefaultPresentTimeManager();
+        ticketReader.doInPark(presentTimeManager);
         log(ticketReader.isAlreadyIn()); // should be true
     }
 
@@ -196,13 +196,13 @@ public class Step05ClassTest extends PlainTestCase {
 
         TicketReader ticketReader = new TicketReader(twoDayPassport);
         log(ticketReader.isAlreadyIn()); // should be false
-        ticketReader.doInPark(new DefaultPresentTime()); //1回目入場
+        ticketReader.doInPark(new DefaultPresentTimeManager()); //1回目入場
         log(ticketReader.isAlreadyIn()); // should be true
-        ticketReader.doOutPark(new DefaultPresentTime()); //1回目退場
+        ticketReader.doOutPark(new DefaultPresentTimeManager()); //1回目退場
         log(ticketReader.isAlreadyIn()); // should be false
-        ticketReader.doInPark(new DefaultPresentTime()); //2回目入場
+        ticketReader.doInPark(new DefaultPresentTimeManager()); //2回目入場
         log(ticketReader.isAlreadyIn()); // should be true
-       ticketReader.doOutPark(new DefaultPresentTime()); //2回目退場
+       ticketReader.doOutPark(new DefaultPresentTimeManager()); //2回目退場
         log(ticketReader.isAlreadyIn()); // should be true
     }
     // done tanaryo [いいね] 自己レビュー素晴らしい by jflute (2024/08/05)
@@ -270,7 +270,7 @@ public class Step05ClassTest extends PlainTestCase {
         TicketReader ticketReader = new TicketReader(nightOnlyTwoDayPassport);
         log(ticketReader.isAlreadyIn()); // should be false
         // done tanaryo [いいね] 現在日時を細工してテストしやすいようにするという発想が素晴らしい by jflute (2024/08/15)
-        ticketReader.doInPark(new DefaultPresentTime()); //1回目入場
+        ticketReader.doInPark(new DefaultPresentTimeManager()); //1回目入場
         log(ticketReader.getInTime());//should be presentTime
 
         
@@ -294,11 +294,11 @@ public class Step05ClassTest extends PlainTestCase {
         TicketReader ticketReader = new TicketReader(nightOnlyTwoDayPassport);
         log(ticketReader.isAlreadyIn()); // should be false
 
-        ticketReader.doInPark(new VariablePresentTime(LocalTime.of(19, 0)));//1回目入場
+        ticketReader.doInPark(new VariablePresentTimeManager(LocalTime.of(19, 0)));//1回目入場
         log(ticketReader.getInTime());//should be 19:00
         log(ticketReader.isAlreadyIn()); // should be true
 
-        ticketReader.doOutPark(new VariablePresentTime(LocalTime.of(21, 0)));//1回目入場
+        ticketReader.doOutPark(new VariablePresentTimeManager(LocalTime.of(21, 0)));//1回目入場
         log(ticketReader.getOutTime());//should be 21:00
         log(ticketReader.isAlreadyIn()); // should be false
     }
