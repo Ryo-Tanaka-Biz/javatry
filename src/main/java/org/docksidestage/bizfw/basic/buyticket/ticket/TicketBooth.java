@@ -58,7 +58,7 @@ public class TicketBooth {
     // ===================================================================================
     //                                                                          Buy Ticket
     //                                                                          ==========
-    // TODO tanaryo TicketBoothのインターフェース設計次第で... by jflute (2024/09/09)
+    // TODO done tanaryo TicketBoothのインターフェース設計次第で... by jflute (2024/09/09)
     // メソッドを種別ごとに提供してメソッドを選んでもらう形式の方が呼びやすいと思うか、
     // そんなことは一個のメソッドで引数のenumで選択させるほうが呼びやすいと思うか、それ次第。
     // 一方で、既存コードが種別ごとメソッド方式だったので、変更するとなると多大な影響反映が想定されるので、
@@ -76,7 +76,7 @@ public class TicketBooth {
      * @throws TicketShortMoneyException 買うのに金額が足りなかったら
      */
     //引数のticketTypeでチケット種別を決定
-    public TicketBuyResult buyPassport(TicketType ticketType, int handedMoney) {
+    private TicketBuyResult doBuyPassport(TicketType ticketType, int handedMoney) {
         int price = ticketType.getPrice();
         if (quantity <= 0) {
             throw new TicketSoldOutException("Sold out");
@@ -118,19 +118,18 @@ public class TicketBooth {
      * Buy one-day passport, method for park guest.
      *
      * @param handedMoney The money (amount) handed over from park guest. (NotNull, NotMinus)
-     * @return 入場チケット (NotNull)
+     * @return チケットとお釣りなどを渡す (NotNull)
      * @throws TicketSoldOutException    When ticket in booth is sold out.
      * @throws TicketShortMoneyException When the specified money is short for purchase.
      */
-//    public void buyOneDayPassport(Integer handedMoney) {
-//        // done tanaryo 変数もticketTypeとかぼかしちゃった方が以降の処理がoneDay依存してないことが明示できるかなと by jflute (2024/08/29)
-//        TicketType ticketType = TicketType.ONE_ALL_DAY;
-//        buyPassport(ticketType, handedMoney);
-//        // done tanaryo priceは変数に出してもいいんじゃないかなと (ショートカットでやってみて) by jflute (2024/08/29)
-//        // done tanaryo [読み物課題] リファクタリングは思考のツール by jflute (2024/08/29)
-//        // https://jflute.hatenadiary.jp/entry/20121202/1354442627
-//        //重複箇所をうまくまとめたい。このクラスはおつりを返さないしticketBuyResultを返すクラスに代替できる。そうなった場合、差分はチケット種別(TicketType ticketType = TicketType.~)だけ。
-//    }
+    public TicketBuyResult buyOneDayPassport(Integer handedMoney) {
+        // done tanaryo 変数もticketTypeとかぼかしちゃった方が以降の処理がoneDay依存してないことが明示できるかなと by jflute (2024/08/29)
+        return doBuyPassport(TicketType.ONE_ALL_DAY, handedMoney);
+        // done tanaryo priceは変数に出してもいいんじゃないかなと (ショートカットでやってみて) by jflute (2024/08/29)
+        // done tanaryo [読み物課題] リファクタリングは思考のツール by jflute (2024/08/29)
+        // https://jflute.hatenadiary.jp/entry/20121202/1354442627
+        //重複箇所をうまくまとめたい。このクラスはおつりを返さないしticketBuyResultを返すクラスに代替できる。そうなった場合、差分はチケット種別(TicketType ticketType = TicketType.~)だけ。
+    }
 
     // [memo] お釣りにnullという概念もないので、intで問題ない (一方で、Integerでも問題はないけど)
     // 仮にすでにお釣りのプログラムがそこら中にあって、nullの概念もあってIntegerで広く使われてるなら合わせるとか。
@@ -154,12 +153,11 @@ public class TicketBooth {
      * @throws TicketSoldOutException ブース内のチケットが売り切れだったら
      * @throws TicketShortMoneyException 買うのに金額が足りなかったら
      */
-//    public void buyTwoDayPassport(Integer handedMoney) {
-//        TicketType ticketType = TicketType.TWO_ALL_DAY;
-//        buyPassport(ticketType, handedMoney);
-//        // done tanaryo [いいね] 変数でお釣りであることを示してるのがGood by jflute (2024/08/01)
-//        // (ただし個人差がある: ぼくも強調したいとき、しなくてもいいとき、ケースバイケースではある)
-//    }
+    public TicketBuyResult buyTwoDayPassport(Integer handedMoney) {
+        return doBuyPassport(TicketType.TWO_ALL_DAY, handedMoney);
+        // done tanaryo [いいね] 変数でお釣りであることを示してるのがGood by jflute (2024/08/01)
+        // (ただし個人差がある: ぼくも強調したいとき、しなくてもいいとき、ケースバイケースではある)
+    }
 
     /**
      * 夜限定2Dayパスポートを買う、パークゲスト用のメソッド。
@@ -168,10 +166,9 @@ public class TicketBooth {
      * @throws TicketSoldOutException ブース内のチケットが売り切れだったら
      * @throws TicketShortMoneyException 買うのに金額が足りなかったら
      */
-//    public void buyNightOnlyTwoDayPassport(Integer handedMoney) {
-//        TicketType ticketType = TicketType.TWO_NIGHT_DAY;
-//        buyPassport(ticketType, handedMoney);
-//    }
+    public TicketBuyResult buyNightOnlyTwoDayPassport(Integer handedMoney) {
+        return doBuyPassport(TicketType.TWO_NIGHT_DAY, handedMoney);
+    }
 
     // [ふぉろー] OneDayだけchange戻さない要件になってるけど、これはいいのか？と考えることは大事
     // done tanryo [読み物課題] SIとスタートアップの違いを知ろう by jflute (2024/08/05)
@@ -184,10 +181,9 @@ public class TicketBooth {
      * @throws TicketSoldOutException ブース内のチケットが売り切れだったら
      * @throws TicketShortMoneyException 買うのに金額が足りなかったら
      */
-//    public void buyFourDayPassport(Integer handedMoney) {
-//        TicketType ticketType = TicketType.FOUR_ALL_DAY;
-//        buyPassport(ticketType, handedMoney);
-//    }
+    public TicketBuyResult buyFourDayPassport(Integer handedMoney) {
+       return doBuyPassport(TicketType.FOUR_ALL_DAY, handedMoney);
+    }
 
     // _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
     // [ふぉろー] Ticketのコンストラクターが引数4つで多いかな？という質問に対して... by jflute
