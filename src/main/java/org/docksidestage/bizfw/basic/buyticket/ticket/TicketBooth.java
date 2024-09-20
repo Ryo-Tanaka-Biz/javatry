@@ -67,36 +67,6 @@ public class TicketBooth {
     // テストとか動作確認とかの負担がそれなりに大きくなる可能性があるので、まずは内部に留めるのを第一段階にした方が良いとは思う。
     // [ふぉろー] もし、buyPassport()をprivateにするのであれば、doBuyPassport()というように先頭文字を変えて区別する方法がある。
     // TODO tanaryo 修行++: 在庫を分離する方式に変えると、さあどうなる by jflute (2024/09/09)
-    /**
-     * パスポートを買う、パークゲスト用のメソッド。
-     * @param ticketType パスポートの種別 (NotNull)
-     * @param handedMoney パークゲストから手渡しされたお金(金額) (NotNull, NotMinus)
-     * @return チケットとお釣りなどを渡す (NotNull)
-     * @throws TicketSoldOutException ブース内のチケットが売り切れだったら
-     * @throws TicketShortMoneyException 買うのに金額が足りなかったら
-     */
-    //引数のticketTypeでチケット種別を決定
-    private TicketBuyResult doBuyPassport(TicketType ticketType, int handedMoney) {
-        int price = ticketType.getPrice();
-        if (quantity <= 0) {
-            throw new TicketSoldOutException("Sold out");
-        }
-        if (handedMoney < price) {
-            throw new TicketShortMoneyException("Short money: " + handedMoney);
-        }
-        --quantity;
-        if (salesProceeds != null) { // second or more purchase
-            salesProceeds = salesProceeds + price;
-        } else { // first purchase
-            salesProceeds = price;
-        }
-        // done tanaryo [いいね] 変数でお釣りであることを示してるのがGood by jflute (2024/08/01)
-        // (ただし個人差がある: ぼくも強調したいとき、しなくてもいいとき、ケースバイケースではある)
-        int change = handedMoney - price;
-        Ticket ticket = new Ticket(ticketType);
-        return new TicketBuyResult(change, ticket);
-    }
-
 
     // you can rewrite comments for your own language by jflute
     // e.g. Japanese
@@ -183,6 +153,35 @@ public class TicketBooth {
      */
     public TicketBuyResult buyFourDayPassport(Integer handedMoney) {
        return doBuyPassport(TicketType.FOUR_ALL_DAY, handedMoney);
+    }
+
+    /**
+     * パスポートを買う、パークゲスト用の共通メソッド。
+     * @param ticketType パスポートの種別 (NotNull)
+     * @param handedMoney パークゲストから手渡しされたお金(金額) (NotNull, NotMinus)
+     * @return チケットとお釣りなどを渡す (NotNull)
+     * @throws TicketSoldOutException ブース内のチケットが売り切れだったら
+     * @throws TicketShortMoneyException 買うのに金額が足りなかったら
+     */
+    private TicketBuyResult doBuyPassport(TicketType ticketType, int handedMoney) {
+        int price = ticketType.getPrice();
+        if (quantity <= 0) {
+            throw new TicketSoldOutException("Sold out");
+        }
+        if (handedMoney < price) {
+            throw new TicketShortMoneyException("Short money: " + handedMoney);
+        }
+        --quantity;
+        if (salesProceeds != null) { // second or more purchase
+            salesProceeds = salesProceeds + price;
+        } else { // first purchase
+            salesProceeds = price;
+        }
+        // done tanaryo [いいね] 変数でお釣りであることを示してるのがGood by jflute (2024/08/01)
+        // (ただし個人差がある: ぼくも強調したいとき、しなくてもいいとき、ケースバイケースではある)
+        int change = handedMoney - price;
+        Ticket ticket = new Ticket(ticketType);
+        return new TicketBuyResult(change, ticket);
     }
 
     // _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
