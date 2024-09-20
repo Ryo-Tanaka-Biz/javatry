@@ -61,9 +61,16 @@ public class TicketReader {
             throw new IllegalStateException("This ticket is unavailable: leftDays=" + leftDays);
         }
         // done tanaryo endのチェックは？ by jflute (2024/09/09)
-        // TODO tanaryo endTimeぴったりの時間自体は入れちゃうけど、それは良いのか？ (e.g. 22時ぴったり) by jflute (2024/09/19)
-        if (presentTimeManager.getPresentTime().isBefore(ticketType.getBeginTime()) || presentTimeManager.getPresentTime().isAfter(ticketType.getEndTime())) {
-            throw new IllegalStateException("入場可能時間ではないので入場できません: (presentTime, startTime, endTime) = (" + presentTimeManager.getPresentTime() + "," + ticketType.getBeginTime() + "," + ticketType.getEndTime()+")");
+        // TODO done tanaryo endTimeぴったりの時間自体は入れちゃうけど、それは良いのか？ (e.g. 22時ぴったり) by jflute (2024/09/19)
+        //ピッタリは入れない仕様とする
+
+        LocalTime presentTime = presentTimeManager.getPresentTime();
+        LocalTime beginTime = ticketType.getBeginTime();
+        LocalTime endTime = ticketType.getEndTime();
+
+        if (presentTime.isBefore(beginTime) || presentTime.isAfter(endTime) || presentTime.equals(endTime)) {
+            throw new IllegalStateException("入場可能時間ではないので入場できません: (presentTime, beginTime, endTime) = (" + presentTime + "," + beginTime + "," + endTime
+                    +")");
         }
         if (nowAlreadyIn) {
             throw new IllegalStateException("Already in park by this ticket: inTime=" + inTime);
