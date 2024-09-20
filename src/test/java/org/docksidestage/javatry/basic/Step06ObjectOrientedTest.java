@@ -208,32 +208,37 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
      * (メソッド終了時の変数 sea, land の中身は？)
      */
     public void test_objectOriented_polymorphism_1st_concreteOnly() {
-        Dog dog = new Dog();
+        Dog dog = new Dog(); //サブクラスの型でnew
         BarkedSound sound = dog.bark();
         String sea = sound.getBarkWord();
-        log(sea); // your answer? => 
+        log(sea); // your answer? => wan
         int land = dog.getHitPoint();
-        log(land); // your answer? => 
+        log(land); // your answer? => 7
     }
+
+    //当たった。barkメソッドでdownHitPoint()が3回呼び出されている。
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_objectOriented_polymorphism_2nd_asAbstract() {
         Animal animal = new Dog();
-        BarkedSound sound = animal.bark();
-        String sea = sound.getBarkWord();
-        log(sea); // your answer? => 
+        //スーパークラスでnew。スーパークラスに定義されたメソッドしか呼び出せないが、
+        //サブクラスでオーバーライドされている場合は、サブクラスのメソッドが呼ばれる
+        //@Overrideの役割：メソッドが正しくオーバーライドされているかをコンパイル時にチェックしてくれる
+        BarkedSound sound = animal.bark();//ここはanimalクラスのメソッド
+        String sea = sound.getBarkWord();//ここはdogクラスのメソッド
+        log(sea); // your answer? => wan
         int land = animal.getHitPoint();
-        log(land); // your answer? => 
+        log(land); // your answer? => 7
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_objectOriented_polymorphism_3rd_fromMethod() {
-        Animal animal = createAnyAnimal();
+        Animal animal = createAnyAnimal();//animal型でdogインスタンス作成。以降は前のメソッドと同様。
         BarkedSound sound = animal.bark();
         String sea = sound.getBarkWord();
-        log(sea); // your answer? => 
+        log(sea); // your answer? => wan
         int land = animal.getHitPoint();
-        log(land); // your answer? => 
+        log(land); // your answer? => 7
     }
 
     private Animal createAnyAnimal() {
