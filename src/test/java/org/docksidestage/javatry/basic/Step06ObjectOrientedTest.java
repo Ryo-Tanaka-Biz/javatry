@@ -352,7 +352,8 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         // write your memo here:
         // _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
         // what is difference?
-        //
+        //多重継承できるか(抽象クラス：不可、インターフェース：可）
+        //メソッドの実装を持つか(抽象クラス：持つ、インターフェース：持たない）
         // _/_/_/_/_/_/_/_/_/_/
     }
 
