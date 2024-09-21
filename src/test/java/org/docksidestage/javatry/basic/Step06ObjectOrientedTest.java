@@ -21,11 +21,8 @@ import org.docksidestage.bizfw.basic.buyticket.ticket.Ticket;
 import org.docksidestage.bizfw.basic.buyticket.ticket.TicketBooth;
 import org.docksidestage.bizfw.basic.buyticket.ticket.TicketBuyResult;
 import org.docksidestage.bizfw.basic.buyticket.ticket.TicketReader;
-import org.docksidestage.bizfw.basic.objanimal.Animal;
-import org.docksidestage.bizfw.basic.objanimal.BarkedSound;
-import org.docksidestage.bizfw.basic.objanimal.Cat;
-import org.docksidestage.bizfw.basic.objanimal.Dog;
-import org.docksidestage.bizfw.basic.objanimal.Zombie;
+import org.docksidestage.bizfw.basic.objanimal.*;
+import org.docksidestage.bizfw.basic.objanimal.drink.Drink;
 import org.docksidestage.bizfw.basic.objanimal.loud.AlarmClock;
 import org.docksidestage.bizfw.basic.objanimal.loud.Loudable;
 import org.docksidestage.bizfw.basic.objanimal.runner.FastRunner;
@@ -365,15 +362,28 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
      * (FastRunnerではないAnimalクラスのコンクリートクラスをobjanimalパッケージに作成しましょう (実装はお好きなように))
      */
     public void test_objectOriented_polymorphism_makeConcrete() {
-        // your confirmation code here
+        Animal seaAnimal = new Fish();
+        Animal landAnimal = new Zombie();
+        boolean sea = seaAnimal instanceof FastRunner;
+        log(sea); // your answer? => false
+        boolean land = landAnimal instanceof FastRunner;
+        log(land); // your answer? => false
     }
 
     /**
      * Make interface implemented by part of Animal concrete class in new package under "objanimal" package. (implementation is as you like) <br>
      * (Animalクラスの一部のコンクリートクラスだけがimplementsするインターフェースをobjanimal配下の新しいパッケージに作成しましょう (実装はお好きなように))
      */
+    //コンクリートクラスとは全てのメソッドが実装されているクラス
     public void test_objectOriented_polymorphism_makeInterface() {
-        // your confirmation code here
+        Animal seaAnimal = new Dog();
+        Animal landAnimal = new Zombie();
+        boolean sea = seaAnimal instanceof FastRunner;
+        log(sea); // your answer? => True
+        sea = seaAnimal instanceof Drink;
+        log(sea); // your answer? => True
+        boolean land = landAnimal instanceof FastRunner;
+        log(land); // your answer? => false
     }
 
     // ===================================================================================
