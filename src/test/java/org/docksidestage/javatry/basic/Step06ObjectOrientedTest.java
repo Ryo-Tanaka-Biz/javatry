@@ -301,30 +301,34 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
     //                                                              ======================
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_objectOriented_polymorphism_interface_dispatch() {
-        Loudable loudable = new Zombie();
+        Loudable loudable = new Zombie();//loudable->(implements)->Animal ->(extends)->Zombie
         String sea = loudable.soundLoudly();
-        log(sea); // your answer? => 
+        log(sea); // your answer? => uooo
         String land = ((Zombie) loudable).bark().getBarkWord();
-        log(land); // your answer? => 
+        //Zombie型にキャスト。barkメソッドはインターフェースで定義されていないため、loudable型では呼び出せない。
+        log(land); // your answer? => uooo
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_objectOriented_polymorphism_interface_hierarchy() {
         Loudable loudable = new AlarmClock();
         String sea = loudable.soundLoudly();
-        log(sea); // your answer? => 
+        log(sea); // your answer? => jiri jiri jiri---
         boolean land = loudable instanceof Animal;
-        log(land); // your answer? => 
+        log(land); // your answer? => false
     }
+
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_objectOriented_polymorphism_interface_partImpl() {
-        Animal seaAnimal = new Cat();
+        Animal seaAnimal = new Cat();//Catの元はFastRunner
         Animal landAnimal = new Zombie();
         boolean sea = seaAnimal instanceof FastRunner;
-        log(sea); // your answer? => 
+        //変数が指定したクラスのインスタンスであるかをチェック
+        //または変数が指定したインターフェースを実装したクラスのインスタンスであるかチェック
+        log(sea); // your answer? => true
         boolean land = landAnimal instanceof FastRunner;
-        log(land); // your answer? => 
+        log(land); // your answer? => false
     }
 
     /**
@@ -332,7 +336,12 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
      * (DogもFastRunnerインターフェースをimplementsしてみましょう (メソッドの実装はCatと同じで))
      */
     public void test_objectOriented_polymorphism_interface_runnerImpl() {
-        // your confirmation code here
+        Animal seaAnimal = new Dog();
+        Animal landAnimal = new Zombie();
+        boolean sea = seaAnimal instanceof FastRunner;
+        log(sea); // your answer? => true
+        boolean land = landAnimal instanceof FastRunner;
+        log(land); // your answer? => false
     }
 
     /**
