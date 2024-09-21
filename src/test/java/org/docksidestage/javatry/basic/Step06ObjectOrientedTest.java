@@ -223,6 +223,7 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         Animal animal = new Dog();
         //スーパークラスでnew。スーパークラスに定義されたメソッドしか呼び出せないが、
         //サブクラスでオーバーライドされている場合は、サブクラスのメソッドが呼ばれる
+        //複数存在するサブクラスを同じ型で利用できることがメリット？
         //@Overrideの役割：メソッドが正しくオーバーライドされているかをコンパイル時にチェックしてくれる
         BarkedSound sound = animal.bark();//ここはanimalクラスのメソッド
         String sea = sound.getBarkWord();//ここはdogクラスのメソッド
@@ -249,24 +250,28 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
     public void test_objectOriented_polymorphism_4th_toMethod() {
         Dog dog = new Dog();
         doAnimalSeaLand_for_4th(dog);
+        //サブクラス型をスーパークラス型に代入(アップキャスト)
+        //型はスーパークラスだが、インスタンス自体はサブクラス
     }
 
     private void doAnimalSeaLand_for_4th(Animal animal) {
         BarkedSound sound = animal.bark();
         String sea = sound.getBarkWord();
-        log(sea); // your answer? => 
+        log(sea); // your answer? => wan
         int land = animal.getHitPoint();
-        log(land); // your answer? => 
+        log(land); // your answer? => 7
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_objectOriented_polymorphism_5th_overrideWithSuper() {
         Animal animal = new Cat();
-        BarkedSound sound = animal.bark();
+        BarkedSound sound = animal.bark();//スーパークラスのメソッド
         String sea = sound.getBarkWord();
-        log(sea); // your answer? => 
+        log(sea); // your answer? => nya-
         int land = animal.getHitPoint();
-        log(land); // your answer? => 
+        //downHitPointはcatでオーバーライド。ヒットポイントが偶数ならさらに1引く
+        //１回目で9、2回目で8->7、3回目で6->5
+        log(land); // your answer? => 5
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
@@ -274,11 +279,11 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         Animal animal = new Zombie();
         BarkedSound sound = animal.bark();
         String sea = sound.getBarkWord();
-        log(sea); // your answer? => 
+        log(sea); // your answer? => uooo
         int land = animal.getHitPoint();
-        log(land); // your answer? => 
+        log(land); // your answer? => -1
     }
-
+    //当たった
     /**
      * What is happy if you can assign Dog or Cat instance to Animal variable? <br>
      * (Animal型の変数に、DogやCatなどのインスタンスを代入できると何が嬉しいのでしょう？)
@@ -287,7 +292,7 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         // write your memo here:
         // _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
         // what is happy?
-        //
+        //複数存在するサブクラスを同じ型で利用できる
         // _/_/_/_/_/_/_/_/_/_/
     }
 
