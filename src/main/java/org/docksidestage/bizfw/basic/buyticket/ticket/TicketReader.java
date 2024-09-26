@@ -18,7 +18,7 @@ public class TicketReader {
     // done tanaryo leftDays, ない場合に0を入れてるのであればintでもOK, もしくはIntegerだったら(NotNull)のコメント欲しい by jflute (2024/09/09)
     // done tanaryo inTime, outTime, nullに関する補足があると嬉しい by jflute (2024/09/09)
     //  e.g. private LocalTime inTime;//は入園した時間を示す (NullAllowed: 入園前)
-    // TODO done  tanaryo outTimeの(NullAllowed: 入園前)は退園前の間違い by jflute (2024/09/19)
+    // done  tanaryo outTimeの(NullAllowed: 入園前)は退園前の間違い by jflute (2024/09/19)
     private int leftDays;//が0の場合入園できない
     private boolean nowAlreadyIn;// trueは入園中を示す
     private LocalTime inTime;//は入園した時間を示す (NullAllowed: 入園前)
@@ -61,13 +61,20 @@ public class TicketReader {
             throw new IllegalStateException("This ticket is unavailable: leftDays=" + leftDays);
         }
         // done tanaryo endのチェックは？ by jflute (2024/09/09)
-        // TODO done tanaryo endTimeぴったりの時間自体は入れちゃうけど、それは良いのか？ (e.g. 22時ぴったり) by jflute (2024/09/19)
+        // done tanaryo endTimeぴったりの時間自体は入れちゃうけど、それは良いのか？ (e.g. 22時ぴったり) by jflute (2024/09/19)
         //ピッタリは入れない仕様とする
 
         LocalTime presentTime = presentTimeManager.getPresentTime();
         LocalTime beginTime = ticketType.getBeginTime();
         LocalTime endTime = ticketType.getEndTime();
-
+        
+        // TODO tanaryo さらに、if文の中の構造をパット見で見やすくしてみましょう by jflute (2024/09/26)
+        // ここと話がつながる↓
+        // // リファクタリングは思考のツール - まずはラフスケッチ
+        // https://jflute.hatenadiary.jp/entry/20121202/1354442627
+        // [ふぉろー] privateメソッドは、小さなオブジェクト(概念)を切り出していると言える。
+        // 将来、それが独立オブジェクトになる可能性もある。そういうつもりでprivateメソッドデザインをすると良い。
+        // (単なる行数切り出しではない)
         if (presentTime.isBefore(beginTime) || presentTime.isAfter(endTime) || presentTime.equals(endTime)) {
             throw new IllegalStateException("入場可能時間ではないので入場できません: (presentTime, beginTime, endTime) = (" + presentTime + "," + beginTime + "," + endTime
                     +")");
@@ -79,7 +86,10 @@ public class TicketReader {
         nowAlreadyIn = true;
         inTime = presentTimeManager.getPresentTime();
     }
-
+    
+    // TODO tanaryo [読み物課題] 「ミング」の時間ですよ by jflute (2024/09/26)
+    // https://jflute.hatenadiary.jp/entry/20121016/ming
+    
     // ===================================================================================
     //                                                                             Out Park
     //                                                                             =======

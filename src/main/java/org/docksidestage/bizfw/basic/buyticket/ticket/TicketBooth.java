@@ -58,7 +58,7 @@ public class TicketBooth {
     // ===================================================================================
     //                                                                          Buy Ticket
     //                                                                          ==========
-    // TODO done tanaryo TicketBoothのインターフェース設計次第で... by jflute (2024/09/09)
+    // done tanaryo TicketBoothのインターフェース設計次第で... by jflute (2024/09/09)
     // メソッドを種別ごとに提供してメソッドを選んでもらう形式の方が呼びやすいと思うか、
     // そんなことは一個のメソッドで引数のenumで選択させるほうが呼びやすいと思うか、それ次第。
     // 一方で、既存コードが種別ごとメソッド方式だったので、変更するとなると多大な影響反映が想定されるので、
@@ -164,6 +164,8 @@ public class TicketBooth {
      * @throws TicketShortMoneyException 買うのに金額が足りなかったら
      */
     private TicketBuyResult doBuyPassport(TicketType ticketType, int handedMoney) {
+        // TODO tanaryo さらに、この処理の流れを見通しよくするために、個々の処理をprivate化してみましょう by jflute (2024/09/26)
+        // もちろん、IntelliJのショートカットを使って: option+command+M :: メソッドの抽出
         int price = ticketType.getPrice();
         if (quantity <= 0) {
             throw new TicketSoldOutException("Sold out");

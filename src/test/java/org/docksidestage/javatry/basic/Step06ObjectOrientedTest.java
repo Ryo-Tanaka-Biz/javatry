@@ -31,6 +31,8 @@ import org.docksidestage.javatry.basic.st6.dbms.St6PostgreSql;
 import org.docksidestage.javatry.basic.st6.dbms.st6sql.St6Sql;
 import org.docksidestage.unit.PlainTestCase;
 
+// TODO tanaryo unusedのimportあり↑ by jflute (2024/09/26)
+
 /**
  * The test of object-oriented. <br>
  * Operate exercise as javadoc. If it's question style, write your answer before test execution. <br>
@@ -63,6 +65,7 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         // [buy one-day passport]
         //
         // simulation: actually this money should be from customer
+        // TODO tanaryo このへんに、TicketBoothであった不具合と同じものがある by jflute (2024/09/26)
         int handedMoney = 10000;
         if (quantity <= 0) {
             throw new IllegalStateException("Sold out");
@@ -96,6 +99,15 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         //
         // [final process]
         //
+        // [ふぉろー] プログラマーとして
+        // o できるだけそもそもこういう間違いやすいメソッドを作らない(努力)
+        // o どうしても呼び出さないといけないとき...
+        //  i 危ないなっていう意識を高めて、集中力増して指差し確認
+        //  i 危ないなっていう勘所を知ってることが前提 (これは経験から来るもの)
+        //  i (優秀なひとこそ、なにげに地味なことちゃんとやってる by jflute)
+        // [ふぉろー] オブジェクト指向として
+        // o 情報をバラけて扱うとプログラミングにおいて不都合が発生しやすい
+        // o なのでオブジェクトという概念を見出して、それをプログラミングに反映させている
         saveBuyingHistory(quantity, salesProceeds, displayPrice, alreadyIn);//引数の順序がおかしい
     }
 
@@ -199,7 +211,11 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
     // what is object?
     //特定の状態と振る舞いを持ったまとまりのこと
     // _/_/_/_/_/_/_/_/_/_/
+    // [ふぉろー] オブジェクトとは？の話をした by jflute (2024/09/26)
+    // その「まとまり」をいかに見出すか？がポイントだし難しいこと。
+    // それをきっちり見出してから、継承とかポリモーフィズムとかがあると言って良い。
 
+    // TODO jflute 次回1on1ここから (2024/09/26)
     // ===================================================================================
     //                                                              Polymorphism Beginning
     //                                                              ======================
