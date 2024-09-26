@@ -26,6 +26,9 @@ import org.docksidestage.bizfw.basic.objanimal.drink.Drink;
 import org.docksidestage.bizfw.basic.objanimal.loud.AlarmClock;
 import org.docksidestage.bizfw.basic.objanimal.loud.Loudable;
 import org.docksidestage.bizfw.basic.objanimal.runner.FastRunner;
+import org.docksidestage.javatry.basic.st6.dbms.St6MySql;
+import org.docksidestage.javatry.basic.st6.dbms.St6PostgreSql;
+import org.docksidestage.javatry.basic.st6.dbms.st6sql.St6Sql;
 import org.docksidestage.unit.PlainTestCase;
 
 /**
@@ -393,8 +396,15 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
      * Extract St6MySql, St6PostgreSql (basic.st6.dbms)'s process to abstract class (as super class and sub-class) <br>
      * (St6MySql, St6PostgreSql (basic.st6.dbms) から抽象クラスを抽出してみましょう (スーパークラスとサブクラスの関係に))
      */
+
+
     public void test_objectOriented_writing_generalization_extractToAbstract() {
-        // your confirmation code here
+        St6Sql seaSql = new St6MySql();
+        St6Sql landSql = new St6PostgreSql();
+        String sea = seaSql.buildPagingQuery(10,5);
+        String land = landSql.buildPagingQuery(10,5);
+        log(sea);//should be "limit 40, 10"
+        log(land);//should be "offset 40 limit 10"
     }
 
     /**
