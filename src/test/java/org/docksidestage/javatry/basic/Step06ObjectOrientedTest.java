@@ -64,7 +64,7 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         // [buy one-day passport]
         //
         // simulation: actually this money should be from customer
-        // TODO tanaryo このへんに、TicketBoothであった不具合と同じものがある by jflute (2024/09/26)
+        // TODO done tanaryo このへんに、TicketBoothであった不具合と同じものがある by jflute (2024/09/26)
         int handedMoney = 10000;
         if (quantity <= 0) {
             throw new IllegalStateException("Sold out");
