@@ -164,7 +164,7 @@ public class TicketBooth {
      * @throws TicketShortMoneyException 買うのに金額が足りなかったら
      */
     private TicketBuyResult doBuyPassport(TicketType ticketType, int handedMoney) {
-        // TODO tanaryo さらに、この処理の流れを見通しよくするために、個々の処理をprivate化してみましょう by jflute (2024/09/26)
+        // TODO done tanaryo さらに、この処理の流れを見通しよくするために、個々の処理をprivate化してみましょう by jflute (2024/09/26)
         // もちろん、IntelliJのショートカットを使って: option+command+M :: メソッドの抽出
         int price = ticketType.getPrice();
         validateTicketAvailability();
