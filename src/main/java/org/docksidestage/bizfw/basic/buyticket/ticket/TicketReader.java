@@ -91,7 +91,7 @@ public class TicketReader {
         return presentTime.isBefore(beginTime) || presentTime.isAfter(endTime) || presentTime.equals(endTime);
     }
 
-    // TODO tanaryo [読み物課題] 「ミング」の時間ですよ by jflute (2024/09/26)
+    // TODO done tanaryo [読み物課題] 「ミング」の時間ですよ by jflute (2024/09/26)
     // https://jflute.hatenadiary.jp/entry/20121016/ming
     
     // ===================================================================================
