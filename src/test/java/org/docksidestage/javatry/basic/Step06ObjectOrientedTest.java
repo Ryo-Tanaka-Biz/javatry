@@ -30,7 +30,7 @@ import org.docksidestage.javatry.basic.st6.dbms.St6PostgreSql;
 import org.docksidestage.javatry.basic.st6.dbms.st6sql.St6Sql;
 import org.docksidestage.unit.PlainTestCase;
 
-// TODO done tanaryo unusedのimportあり↑ by jflute (2024/09/26)
+// done tanaryo unusedのimportあり↑ by jflute (2024/09/26)
 
 /**
  * The test of object-oriented. <br>
@@ -64,7 +64,7 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         // [buy one-day passport]
         //
         // simulation: actually this money should be from customer
-        // TODO done tanaryo このへんに、TicketBoothであった不具合と同じものがある by jflute (2024/09/26)
+        // done tanaryo このへんに、TicketBoothであった不具合と同じものがある by jflute (2024/09/26)
         int handedMoney = 10000;
         if (quantity <= 0) {
             throw new IllegalStateException("Sold out");
@@ -214,7 +214,7 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
     // その「まとまり」をいかに見出すか？がポイントだし難しいこと。
     // それをきっちり見出してから、継承とかポリモーフィズムとかがあると言って良い。
 
-    // TODO jflute 次回1on1ここから (2024/09/26)
+    // done jflute 次回1on1ここから (2024/09/26)
     // ===================================================================================
     //                                                              Polymorphism Beginning
     //                                                              ======================
@@ -235,11 +235,16 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_objectOriented_polymorphism_2nd_asAbstract() {
-        Animal animal = new Dog();
-        //スーパークラスでnew。スーパークラスに定義されたメソッドしか呼び出せないが、
+        Animal animal = new Cat();
+        //スーパークラスでnewしたインスタンスを受け取る(扱ってる)。
+        //スーパークラスに定義されたメソッドしか呼び出せないが、
         //サブクラスでオーバーライドされている場合は、サブクラスのメソッドが呼ばれる
         //複数存在するサブクラスを同じ型で利用できることがメリット？
+        // [ふぉろー] ↑現実の世界でたくさん使われてる話 (受付から見た新卒、客から見た店員とか)
+        //
         //@Overrideの役割：メソッドが正しくオーバーライドされているかをコンパイル時にチェックしてくれる
+        // [ふぉろー] @Overrideの挙動と歴史の話をした。他の言語の話も少し。
+        //
         BarkedSound sound = animal.bark();//ここはanimalクラスのメソッド
         String sea = sound.getBarkWord();//ここはdogクラスのメソッド
         log(sea); // your answer? => wan
@@ -308,9 +313,13 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         // _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
         // what is happy?
         //複数存在するサブクラスを同じ型で利用できる
+        // [ふぉろー] yes, つまり利用する側のメリットになる
+        // 利用する側が最低限のことしか知らなくて良い (e.g. 受付から見た新卒)
         // _/_/_/_/_/_/_/_/_/_/
+        // [ふぉろー] プログラミングは論理思考のトレーニングにもつながる (学び方次第で)
     }
 
+    // TODO jflute 次回1on1ここから (2024/10/03)
     // ===================================================================================
     //                                                              Polymorphism Interface
     //                                                              ======================

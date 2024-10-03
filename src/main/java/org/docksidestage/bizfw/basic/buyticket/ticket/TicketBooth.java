@@ -164,7 +164,7 @@ public class TicketBooth {
      * @throws TicketShortMoneyException 買うのに金額が足りなかったら
      */
     private TicketBuyResult doBuyPassport(TicketType ticketType, int handedMoney) {
-        // TODO done tanaryo さらに、この処理の流れを見通しよくするために、個々の処理をprivate化してみましょう by jflute (2024/09/26)
+        // done tanaryo さらに、この処理の流れを見通しよくするために、個々の処理をprivate化してみましょう by jflute (2024/09/26)
         // もちろん、IntelliJのショートカットを使って: option+command+M :: メソッドの抽出
         int price = ticketType.getPrice();
         validateTicketAvailability();
@@ -173,11 +173,18 @@ public class TicketBooth {
         updateSalesProceeds(price);
         // done tanaryo [いいね] 変数でお釣りであることを示してるのがGood by jflute (2024/08/01)
         // (ただし個人差がある: ぼくも強調したいとき、しなくてもいいとき、ケースバイケースではある)
+        // TODO tanaryo ここまで来たら、お釣りを計算する、という抽象度でここも表現した方が粒度合うかなと by jflute (2024/10/03)
+        // かつ、小さな小さなロジックだけど、れっきとした業務ロジックではあるので、privateに切り出しておくというのも十分アリ。
         int change = handedMoney - price;
         Ticket ticket = new Ticket(ticketType);
         return new TicketBuyResult(change, ticket);
     }
 
+    // TODO tanaryo privateメソッドの定義順、できれば呼び出し順に合わせられると直感的かなと by jflute (2024/10/03)
+    // 厳密なルールが世界的にあるわけじゃないけど、何かしらの一貫性がある方が読む人にとってはありがたい。
+    // なので、privateメソッドは呼び出してるメソッドの下、そして、(できるだけ)呼び出し順に沿う、というやり方がオススメ。
+    // 他のメソッドからも呼ばれるprivateメソッドが混じってるとか、2回以上呼ばれるとかある場合は、
+    // 必ずしも素直に呼び出し順になるわけじゃないので、できればって感じで。
     private void updateSalesProceeds(int price) {
         if (salesProceeds != null) { // second or more purchase
             salesProceeds = salesProceeds + price;
@@ -185,11 +192,16 @@ public class TicketBooth {
             salesProceeds = price;
         }
     }
-
+    
     private void decreaseTicketQuantity() {
         --quantity;
     }
 
+    // TODO tanaryo staticになっている(呼び出し側で斜体になっている) by jflute (2024/10/03)
+    // privateでインスタンス変数を使ってないので、確かにstaticでも問題はないといえばないけど...
+    // それはたまたまの紙一重で、あくまでインスタンスに属してる感覚の業務なんであればインスタンスメソッドでいいかなと。
+    // というのは、すぐにオーバーライドしたくなってprotectedにしたり、やっぱりインスタンス変数つかったりも想定されるので。
+    // (staticになってると後の人がそのときに取って良いのかな？って変に迷う可能性あるし)
     private static void validateSufficientMoney(int handedMoney, int price) {
         if (handedMoney < price) {
             throw new TicketShortMoneyException("Short money: " + handedMoney);

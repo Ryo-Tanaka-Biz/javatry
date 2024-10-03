@@ -68,13 +68,15 @@ public class TicketReader {
         LocalTime beginTime = ticketType.getBeginTime();
         LocalTime endTime = ticketType.getEndTime();
         
-        // TODO done tanaryo さらに、if文の中の構造をパット見で見やすくしてみましょう by jflute (2024/09/26)
+        // done tanaryo さらに、if文の中の構造をパット見で見やすくしてみましょう by jflute (2024/09/26)
         // ここと話がつながる↓
         // // リファクタリングは思考のツール - まずはラフスケッチ
         // https://jflute.hatenadiary.jp/entry/20121202/1354442627
         // [ふぉろー] privateメソッドは、小さなオブジェクト(概念)を切り出していると言える。
         // 将来、それが独立オブジェクトになる可能性もある。そういうつもりでprivateメソッドデザインをすると良い。
         // (単なる行数切り出しではない)
+        // TODO tanaryo 名前が逆？canEnterPark()じゃなくてcannotEnterPark()とか by jflute (2024/10/03)
+        // TODO tanaryo メソッド名にtimeのニュアンスが欲しいかも、例外メッセージがtimeのこと言ってるので by jflute (2024/10/03)
         if (canEnterPark(presentTime, beginTime, endTime)) {
             throw new IllegalStateException("入場可能時間ではないので入場できません: (presentTime, beginTime, endTime) = (" + presentTime + "," + beginTime + "," + endTime
                     +")");
@@ -87,11 +89,12 @@ public class TicketReader {
         inTime = presentTimeManager.getPresentTime();
     }
 
+    // TODO tanaryo たぶん、IntelliJのショートカットでメソッド抽出すると、(付けられるときは)static付くのかも？ by jflute (2024/10/03)
     private static boolean canEnterPark(LocalTime presentTime, LocalTime beginTime, LocalTime endTime) {
         return presentTime.isBefore(beginTime) || presentTime.isAfter(endTime) || presentTime.equals(endTime);
     }
 
-    // TODO done tanaryo [読み物課題] 「ミング」の時間ですよ by jflute (2024/09/26)
+    // done tanaryo [読み物課題] 「ミング」の時間ですよ by jflute (2024/09/26)
     // https://jflute.hatenadiary.jp/entry/20121016/ming
     
     // ===================================================================================
