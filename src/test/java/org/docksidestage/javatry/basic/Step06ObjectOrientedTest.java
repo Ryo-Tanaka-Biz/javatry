@@ -16,7 +16,6 @@
 package org.docksidestage.javatry.basic;
 
 import org.docksidestage.bizfw.basic.buyticket.presenttime.DefaultPresentTimeManager;
-import org.docksidestage.bizfw.basic.buyticket.presenttime.PresentTimeManager;
 import org.docksidestage.bizfw.basic.buyticket.ticket.Ticket;
 import org.docksidestage.bizfw.basic.buyticket.ticket.TicketBooth;
 import org.docksidestage.bizfw.basic.buyticket.ticket.TicketBuyResult;
@@ -31,7 +30,7 @@ import org.docksidestage.javatry.basic.st6.dbms.St6PostgreSql;
 import org.docksidestage.javatry.basic.st6.dbms.st6sql.St6Sql;
 import org.docksidestage.unit.PlainTestCase;
 
-// TODO tanaryo unusedのimportあり↑ by jflute (2024/09/26)
+// TODO done tanaryo unusedのimportあり↑ by jflute (2024/09/26)
 
 /**
  * The test of object-oriented. <br>
