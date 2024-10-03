@@ -167,23 +167,39 @@ public class TicketBooth {
         // TODO tanaryo さらに、この処理の流れを見通しよくするために、個々の処理をprivate化してみましょう by jflute (2024/09/26)
         // もちろん、IntelliJのショートカットを使って: option+command+M :: メソッドの抽出
         int price = ticketType.getPrice();
-        if (quantity <= 0) {
-            throw new TicketSoldOutException("Sold out");
-        }
-        if (handedMoney < price) {
-            throw new TicketShortMoneyException("Short money: " + handedMoney);
-        }
-        --quantity;
-        if (salesProceeds != null) { // second or more purchase
-            salesProceeds = salesProceeds + price;
-        } else { // first purchase
-            salesProceeds = price;
-        }
+        validateTicketAvailability();
+        validateSufficientMoney(handedMoney, price);
+        decreaseTicketQuantity();
+        updateSalesProceeds(price);
         // done tanaryo [いいね] 変数でお釣りであることを示してるのがGood by jflute (2024/08/01)
         // (ただし個人差がある: ぼくも強調したいとき、しなくてもいいとき、ケースバイケースではある)
         int change = handedMoney - price;
         Ticket ticket = new Ticket(ticketType);
         return new TicketBuyResult(change, ticket);
+    }
+
+    private void updateSalesProceeds(int price) {
+        if (salesProceeds != null) { // second or more purchase
+            salesProceeds = salesProceeds + price;
+        } else { // first purchase
+            salesProceeds = price;
+        }
+    }
+
+    private void decreaseTicketQuantity() {
+        --quantity;
+    }
+
+    private static void validateSufficientMoney(int handedMoney, int price) {
+        if (handedMoney < price) {
+            throw new TicketShortMoneyException("Short money: " + handedMoney);
+        }
+    }
+
+    private void validateTicketAvailability() {
+        if (quantity <= 0) {
+            throw new TicketSoldOutException("Sold out");
+        }
     }
 
     // _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
