@@ -175,7 +175,7 @@ public class TicketBooth {
         // (ただし個人差がある: ぼくも強調したいとき、しなくてもいいとき、ケースバイケースではある)
         // TODO done tanaryo ここまで来たら、お釣りを計算する、という抽象度でここも表現した方が粒度合うかなと by jflute (2024/10/03)
         // かつ、小さな小さなロジックだけど、れっきとした業務ロジックではあるので、privateに切り出しておくというのも十分アリ。
-        int change = caluculateChange(handedMoney, price);
+        int change = calculateChange(handedMoney, price);
         Ticket ticket = new Ticket(ticketType);
         return new TicketBuyResult(change, ticket);
     }
@@ -220,7 +220,7 @@ public class TicketBooth {
         }
     }
 
-    private int caluculateChange(int handedMoney, int price) {
+    private int calculateChange(int handedMoney, int price) {
         int change = handedMoney - price;
         return change;
     }
