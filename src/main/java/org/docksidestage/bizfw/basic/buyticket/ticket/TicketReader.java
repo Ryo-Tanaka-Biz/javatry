@@ -75,9 +75,9 @@ public class TicketReader {
         // [ふぉろー] privateメソッドは、小さなオブジェクト(概念)を切り出していると言える。
         // 将来、それが独立オブジェクトになる可能性もある。そういうつもりでprivateメソッドデザインをすると良い。
         // (単なる行数切り出しではない)
-        // TODO tanaryo 名前が逆？canEnterPark()じゃなくてcannotEnterPark()とか by jflute (2024/10/03)
-        // TODO tanaryo メソッド名にtimeのニュアンスが欲しいかも、例外メッセージがtimeのこと言ってるので by jflute (2024/10/03)
-        if (canEnterPark(presentTime, beginTime, endTime)) {
+        // TODO done tanaryo 名前が逆？canEnterPark()じゃなくてcannotEnterPark()とか by jflute (2024/10/03)
+        // TODO done tanaryo メソッド名にtimeのニュアンスが欲しいかも、例外メッセージがtimeのこと言ってるので by jflute (2024/10/03)
+        if (assertValidAdmissionTime(presentTime, beginTime, endTime)) {
             throw new IllegalStateException("入場可能時間ではないので入場できません: (presentTime, beginTime, endTime) = (" + presentTime + "," + beginTime + "," + endTime
                     +")");
         }
@@ -90,7 +90,7 @@ public class TicketReader {
     }
 
     // TODO tanaryo たぶん、IntelliJのショートカットでメソッド抽出すると、(付けられるときは)static付くのかも？ by jflute (2024/10/03)
-    private static boolean canEnterPark(LocalTime presentTime, LocalTime beginTime, LocalTime endTime) {
+    private static boolean assertValidAdmissionTime(LocalTime presentTime, LocalTime beginTime, LocalTime endTime) {
         return presentTime.isBefore(beginTime) || presentTime.isAfter(endTime) || presentTime.equals(endTime);
     }
 
