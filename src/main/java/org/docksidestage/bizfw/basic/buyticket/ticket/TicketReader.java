@@ -89,8 +89,8 @@ public class TicketReader {
         inTime = presentTimeManager.getPresentTime();
     }
 
-    // TODO tanaryo たぶん、IntelliJのショートカットでメソッド抽出すると、(付けられるときは)static付くのかも？ by jflute (2024/10/03)
-    private static boolean assertValidAdmissionTime(LocalTime presentTime, LocalTime beginTime, LocalTime endTime) {
+    // TODO  done tanaryo たぶん、IntelliJのショートカットでメソッド抽出すると、(付けられるときは)static付くのかも？ by jflute (2024/10/03)
+    private boolean assertValidAdmissionTime(LocalTime presentTime, LocalTime beginTime, LocalTime endTime) {
         return presentTime.isBefore(beginTime) || presentTime.isAfter(endTime) || presentTime.equals(endTime);
     }
 
