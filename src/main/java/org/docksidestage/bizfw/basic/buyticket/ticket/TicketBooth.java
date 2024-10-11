@@ -189,7 +189,7 @@ public class TicketBooth {
 
 
 
-    // TODO tanaryo staticになっている(呼び出し側で斜体になっている) by jflute (2024/10/03)
+    // TODO done tanaryo staticになっている(呼び出し側で斜体になっている) by jflute (2024/10/03)
     // privateでインスタンス変数を使ってないので、確かにstaticでも問題はないといえばないけど...
     // それはたまたまの紙一重で、あくまでインスタンスに属してる感覚の業務なんであればインスタンスメソッドでいいかなと。
     // というのは、すぐにオーバーライドしたくなってprotectedにしたり、やっぱりインスタンス変数つかったりも想定されるので。
@@ -202,7 +202,7 @@ public class TicketBooth {
         }
     }
 
-    private static void validateSufficientMoney(int handedMoney, int price) {
+    private void validateSufficientMoney(int handedMoney, int price) {
         if (handedMoney < price) {
             throw new TicketShortMoneyException("Short money: " + handedMoney);
         }
