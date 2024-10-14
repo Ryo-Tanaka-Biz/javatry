@@ -173,14 +173,14 @@ public class TicketBooth {
         updateSalesProceeds(price);
         // done tanaryo [いいね] 変数でお釣りであることを示してるのがGood by jflute (2024/08/01)
         // (ただし個人差がある: ぼくも強調したいとき、しなくてもいいとき、ケースバイケースではある)
-        // TODO done tanaryo ここまで来たら、お釣りを計算する、という抽象度でここも表現した方が粒度合うかなと by jflute (2024/10/03)
+        // done tanaryo ここまで来たら、お釣りを計算する、という抽象度でここも表現した方が粒度合うかなと by jflute (2024/10/03)
         // かつ、小さな小さなロジックだけど、れっきとした業務ロジックではあるので、privateに切り出しておくというのも十分アリ。
         int change = calculateChange(handedMoney, price);
         Ticket ticket = new Ticket(ticketType);
         return new TicketBuyResult(change, ticket);
     }
 
-    // TODO done tanaryo privateメソッドの定義順、できれば呼び出し順に合わせられると直感的かなと by jflute (2024/10/03)
+    // done tanaryo privateメソッドの定義順、できれば呼び出し順に合わせられると直感的かなと by jflute (2024/10/03)
     // 厳密なルールが世界的にあるわけじゃないけど、何かしらの一貫性がある方が読む人にとってはありがたい。
     // なので、privateメソッドは呼び出してるメソッドの下、そして、(できるだけ)呼び出し順に沿う、というやり方がオススメ。
     // 他のメソッドからも呼ばれるprivateメソッドが混じってるとか、2回以上呼ばれるとかある場合は、
@@ -189,7 +189,7 @@ public class TicketBooth {
 
 
 
-    // TODO done tanaryo staticになっている(呼び出し側で斜体になっている) by jflute (2024/10/03)
+    // done tanaryo staticになっている(呼び出し側で斜体になっている) by jflute (2024/10/03)
     // privateでインスタンス変数を使ってないので、確かにstaticでも問題はないといえばないけど...
     // それはたまたまの紙一重で、あくまでインスタンスに属してる感覚の業務なんであればインスタンスメソッドでいいかなと。
     // というのは、すぐにオーバーライドしたくなってprotectedにしたり、やっぱりインスタンス変数つかったりも想定されるので。
