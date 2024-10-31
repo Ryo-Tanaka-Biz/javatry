@@ -21,6 +21,7 @@ import org.docksidestage.bizfw.basic.buyticket.ticket.TicketBooth;
 import org.docksidestage.bizfw.basic.buyticket.ticket.TicketBuyResult;
 import org.docksidestage.bizfw.basic.buyticket.ticket.TicketReader;
 import org.docksidestage.bizfw.basic.objanimal.*;
+import org.docksidestage.bizfw.basic.objanimal.barking.BarkedSound;
 import org.docksidestage.bizfw.basic.objanimal.drink.Drink;
 import org.docksidestage.bizfw.basic.objanimal.loud.AlarmClock;
 import org.docksidestage.bizfw.basic.objanimal.loud.Loudable;
@@ -28,6 +29,7 @@ import org.docksidestage.bizfw.basic.objanimal.runner.FastRunner;
 import org.docksidestage.javatry.basic.st6.dbms.St6MySql;
 import org.docksidestage.javatry.basic.st6.dbms.St6PostgreSql;
 import org.docksidestage.javatry.basic.st6.dbms.st6sql.St6Sql;
+import org.docksidestage.javatry.basic.st6.os.St6PathOperationSystem;
 import org.docksidestage.unit.PlainTestCase;
 
 // done tanaryo unusedのimportあり↑ by jflute (2024/09/26)
@@ -319,7 +321,7 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         // [ふぉろー] プログラミングは論理思考のトレーニングにもつながる (学び方次第で)
     }
 
-    // done jflute 次回1on1ここから (2024/10/03)
+    // TODO jflute 次回1on1ここから (2024/10/03)
     // ===================================================================================
     //                                                              Polymorphism Interface
     //                                                              ======================
@@ -341,7 +343,6 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         boolean land = loudable instanceof Animal;
         log(land); // your answer? => false
     }
-
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_objectOriented_polymorphism_interface_partImpl() {
@@ -379,22 +380,8 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         //多重継承できるか(抽象クラス：不可、インターフェース：可）
         //メソッドの実装を持つか(抽象クラス：持つ、インターフェース：持たない）
         // _/_/_/_/_/_/_/_/_/_/
-        // done tanaryo [ふぉろー] Javaは実は完全なオブジェクト指向ではなく多重継承を排除しています。 by jflute (2024/10/14)
-        // 多重継承は複雑になり過ぎて、人の限界を超えてしまって逆に良くないということで。
-        // でもその失ってるものはあるわけで、LoudableやFastRunnerみたいな抽象化ができなくなってしまっています。
-        // それを補完するのがインターフェース、インターフェースのポリモーフィズムっぽいことができる部分をうまく使って。
-        // 厳密にはオブジェクト指向とは無関係の概念ですが、Javaの世界で同居して併用されています。
-        // 元々は別々の概念(哲学)なわけなので、その役割にきっちりと線引きがあるわけでもないので、
-        // すごく近い部分も出てきて紛らわしいこともあるわけですね。(抽象クラスとインターフェースの文法的な違いとか)
-        //
-        // オブジェクト指向とintefaceの使い分けパターン二つ:
-        // o オブジェクトベースか？機能特化ベースか？ (Animalか？Loudableか？)
-        // o Abstractインターフェースパターン (AbstractColorBox implements ColobBox)
-        // それぞれのコンセプトの話もした。
-        // (オブジェクト指向が持ってる外向けのメリットと内向けのメリットの役割分担: 外向けをinterfaceに任せる)
     }
 
-    // TODO jflute 1on1次回ここから (2024/10/25)
     // ===================================================================================
     //                                                                 Polymorphism Making
     //                                                                 ===================
@@ -435,14 +422,11 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
      * (St6MySql, St6PostgreSql (basic.st6.dbms) から抽象クラスを抽出してみましょう (スーパークラスとサブクラスの関係に))
      */
 
-
     public void test_objectOriented_writing_generalization_extractToAbstract() {
-        // TODO tanaryo PostgreSqlがMySqlを継承しているのは、DogがCatを継承しているようなものです by jflute (2024/10/14)
-        // TODO tanaryo たかだか2行ですが「流れ」を再利用したいですね。間に処理が追加されて3行になっても1箇所修正で済むように by jflute (2024/10/14)
         St6Sql seaSql = new St6MySql();
         St6Sql landSql = new St6PostgreSql();
-        String sea = seaSql.buildPagingQuery(10,5);
-        String land = landSql.buildPagingQuery(10,5);
+        String sea = seaSql.buildPagingQuery(10, 5);
+        String land = landSql.buildPagingQuery(10, 5);
         log(sea);//should be "limit 40, 10"
         log(land);//should be "offset 40 limit 10"
     }
@@ -452,8 +436,12 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
      * (St6OperationSystem (basic.st6.os) からコンクリートクラスを抽出してみましょう (スーパークラスとサブクラスの関係に))
      */
     public void test_objectOriented_writing_specialization_extractToConcrete() {
-        // your confirmation code here
+        St6PathOperationSystem seaPath = new St6PathOperationSystem("mac", "0724");
+        String sea = seaPath.buildUserResourcePath("nakata");
+        log(sea);//should be "/Users/0724/nakata"
     }
+    //切り出したprivateメソッドはどっちのクラスにおけば良い？
+    //サブクラス特有の処理ならサブクラス、共通処理ならスーパークラスか
 
     // ===================================================================================
     //                                                                           Good Luck
@@ -465,6 +453,9 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
     public void test_objectOriented_writing_withDelegation() {
         // your confirmation code here
     }
+    //切り出した処理をサブクラスでどう扱うか
+    //downhitpointがbarkのメソッド内に入っている
+    //
 
     /**
      * Put barking-related classes, such as BarkingProcess and BarkedSound, into sub-package. <br>
