@@ -15,10 +15,12 @@
  */
 package org.docksidestage.javatry.basic.st6.dbms;
 
+import org.docksidestage.javatry.basic.st6.dbms.st6sql.St6Sql;
+
 /**
  * @author jflute
  */
-public class St6PostgreSql extends St6MySql {
+public class St6PostgreSql extends St6Sql {
 
     @Override
     public String buildPagingQuery(int pageSize, int pageNumber) {

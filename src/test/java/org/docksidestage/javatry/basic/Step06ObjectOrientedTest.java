@@ -436,7 +436,7 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
      */
 
     public void test_objectOriented_writing_generalization_extractToAbstract() {
-        // TODO tanaryo PostgreSqlがMySqlを継承しているのは、DogがCatを継承しているようなものです by jflute (2024/10/14)
+        // TODO　done tanaryo PostgreSqlがMySqlを継承しているのは、DogがCatを継承しているようなものです by jflute (2024/10/14)
         // TODO tanaryo たかだか2行ですが「流れ」を再利用したいですね。間に処理が追加されて3行になっても1箇所修正で済むように by jflute (2024/10/14)
         St6Sql seaSql = new St6MySql();
         St6Sql landSql = new St6PostgreSql();
