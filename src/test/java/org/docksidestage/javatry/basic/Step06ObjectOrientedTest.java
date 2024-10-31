@@ -470,6 +470,12 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
     }
     //切り出した処理をサブクラスでどう扱うか
     //downhitpointがbarkのメソッド内に入っている
+    //BarkingProcessクラスはインターフェースとして実装？
+    //例えばbreatheInメソッドを切り出した場合、downHitPointはどうやって呼び出す？
+    //protectedをpublicにすればBarkingProcessクラスで呼び出せそう
+    //
+    //構造としては
+
     /**
      * Put barking-related classes, such as BarkingProcess and BarkedSound, into sub-package. <br>
      * (BarkingProcessやBarkedSoundなど、barking関連のクラスをサブパッケージにまとめましょう)
