@@ -1,5 +1,6 @@
 package org.docksidestage.bizfw.basic.objanimal;
 
+// TODO tanaryo javadocお願いします by jflute (2024/10/31)
 public class Fish extends Animal {
     // ===================================================================================
     //                                                                         Constructor

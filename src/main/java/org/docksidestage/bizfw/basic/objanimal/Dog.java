@@ -57,6 +57,7 @@ public class Dog extends Animal implements FastRunner, Drink {
     //                                                                              ======
     @Override
     public void drinkWater() {
+        // TODO tanaryo [いいね] 水を飲むと体力が減る (でも胃に負担を掛けるからね) by jflute (2024/10/31)
         downHitPoint();
     }
 }
