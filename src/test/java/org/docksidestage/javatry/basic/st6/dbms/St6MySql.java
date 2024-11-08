@@ -15,16 +15,16 @@
  */
 package org.docksidestage.javatry.basic.st6.dbms;
 
-import org.docksidestage.javatry.basic.st6.dbms.st6dbms.St6Sql;
+import org.docksidestage.javatry.basic.st6.dbms.st6dbms.St6dbms;
 
 /**
  * @author jflute
  */
-public class St6MySql extends St6Sql {
+public class St6MySql extends St6dbms {
 
     @Override
     public String buildPagingQuery(int pageSize, int pageNumber) {
-        doBuildPagingQuery(pageSize, pageNumber);
+        int offset = doBuildPagingQuery(pageSize, pageNumber);
         return "limit " + offset + ", " + pageSize;
     }
 }

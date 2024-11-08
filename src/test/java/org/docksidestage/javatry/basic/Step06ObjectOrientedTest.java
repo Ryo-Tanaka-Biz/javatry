@@ -27,7 +27,7 @@ import org.docksidestage.bizfw.basic.objanimal.loud.Loudable;
 import org.docksidestage.bizfw.basic.objanimal.runner.FastRunner;
 import org.docksidestage.javatry.basic.st6.dbms.St6MySql;
 import org.docksidestage.javatry.basic.st6.dbms.St6PostgreSql;
-import org.docksidestage.javatry.basic.st6.dbms.st6dbms.St6Sql;
+import org.docksidestage.javatry.basic.st6.dbms.st6dbms.St6dbms;
 import org.docksidestage.javatry.basic.st6.os.St6PathOperationSystem;
 import org.docksidestage.unit.PlainTestCase;
 
@@ -442,8 +442,8 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         // PostgreSqlはMySqlである、と言ってしっくりくるかどうか？
         // TODO tanaryo たかだか2行ですが「流れ」を再利用したいですね。間に処理が追加されて3行になっても1箇所修正で済むように by jflute (2024/10/14)
         // Animalの例を参考に。
-        St6Sql seaSql = new St6MySql();
-        St6Sql landSql = new St6PostgreSql();
+        St6dbms seaSql = new St6MySql();
+        St6dbms landSql = new St6PostgreSql();
         String sea = seaSql.buildPagingQuery(10, 5);
         String land = landSql.buildPagingQuery(10, 5);
         log(sea);//should be "limit 40, 10"
