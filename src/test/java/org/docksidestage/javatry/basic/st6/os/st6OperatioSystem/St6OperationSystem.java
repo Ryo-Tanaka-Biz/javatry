@@ -13,7 +13,7 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.docksidestage.javatry.basic.st6.os;
+package org.docksidestage.javatry.basic.st6.os.st6OperatioSystem;
 
 /**
  * @author jflute
@@ -50,7 +50,7 @@ public class St6OperationSystem {
         String resourcePath = userDirectory + fileSeparator + relativePath;
         return resourcePath.replace("/", fileSeparator);
     }
-
+    //サブクラスまで分けた。中身はこれから。
     protected String getFileSeparator() {
         if (OS_TYPE_MAC.equalsIgnoreCase(osType)) {
             return "/";

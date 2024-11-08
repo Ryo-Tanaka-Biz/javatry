@@ -1,11 +1,13 @@
 package org.docksidestage.javatry.basic.st6.os;
 
-public class St6PathOperationSystem extends St6OperationSystem {
+import org.docksidestage.javatry.basic.st6.os.st6OperatioSystem.St6OperationSystem;
+
+public class St6Mac extends St6OperationSystem {
 
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public St6PathOperationSystem(String osType, String loginId) {
+    public St6Mac(String osType, String loginId) {
         super(osType, loginId);
     }
 
