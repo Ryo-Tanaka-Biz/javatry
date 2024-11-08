@@ -27,7 +27,7 @@ import org.docksidestage.bizfw.basic.objanimal.loud.Loudable;
 import org.docksidestage.bizfw.basic.objanimal.runner.FastRunner;
 import org.docksidestage.javatry.basic.st6.dbms.St6MySql;
 import org.docksidestage.javatry.basic.st6.dbms.St6PostgreSql;
-import org.docksidestage.javatry.basic.st6.dbms.st6sql.St6Sql;
+import org.docksidestage.javatry.basic.st6.dbms.st6dbms.St6Sql;
 import org.docksidestage.javatry.basic.st6.os.St6PathOperationSystem;
 import org.docksidestage.unit.PlainTestCase;
 

@@ -1,12 +1,12 @@
-package org.docksidestage.javatry.basic.st6.dbms.st6sql;
+package org.docksidestage.javatry.basic.st6.dbms.st6dbms;
 
-// TODO tanaryo PostgreSQLはSQLである、MySQLはSQLであるは自然かどうか？ by jflute (2024/10/31)
+// TODO done tanaryo PostgreSQLはSQLである、MySQLはSQLであるは自然かどうか？ by jflute (2024/10/31)
 // tips: いま存在しない新しい具象クラスを想像してみよう。他には？
 // (オブジェクト指向は、"意味" を大切にした考え方である)
 // 
 // Database Management System => DBMS
 //
-public abstract class St6Sql {
+public abstract class St6dbms {
 
     protected int offset;
 

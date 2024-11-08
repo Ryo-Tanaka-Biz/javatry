@@ -15,7 +15,7 @@
  */
 package org.docksidestage.javatry.basic.st6.dbms;
 
-import org.docksidestage.javatry.basic.st6.dbms.st6sql.St6Sql;
+import org.docksidestage.javatry.basic.st6.dbms.st6dbms.St6Sql;
 
 /**
  * @author jflute
