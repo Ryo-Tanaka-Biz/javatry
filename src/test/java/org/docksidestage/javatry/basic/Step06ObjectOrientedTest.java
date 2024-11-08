@@ -394,7 +394,7 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         // (オブジェクト指向が持ってる外向けのメリットと内向けのメリットの役割分担: 外向けをinterfaceに任せる)
     }
 
-    // TODO jflute 1on1次回ここから (2024/10/25)
+    // done jflute 1on1次回ここから (2024/10/25)
     // ===================================================================================
     //                                                                 Polymorphism Making
     //                                                                 ===================
@@ -440,14 +440,16 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         // 継承は、is-aの関係で。Dog is a(n) Animal, 犬は動物である、が自然かどうか？
         // 動物は犬である、これはそうとも限らない。目覚まし時計は犬である、これは詩的な表現。
         // PostgreSqlはMySqlである、と言ってしっくりくるかどうか？
-        // TODO done tanaryo たかだか2行ですが「流れ」を再利用したいですね。間に処理が追加されて3行になっても1箇所修正で済むように by jflute (2024/10/14)
+        // done tanaryo たかだか2行ですが「流れ」を再利用したいですね。間に処理が追加されて3行になっても1箇所修正で済むように by jflute (2024/10/14)
         // Animalの例を参考に。
+        // これはこれでOK。だがしかし、ごめんなさい。↑このレビューは、MySQL/PostgreSQLクラスの中の話でした。
         St6dbms seaSql = new St6MySql();
         do_test_objectOriented_writing_generalization_extractToAbstract(seaSql);//should be "limit 40, 10"
         St6dbms landSql = new St6PostgreSql();
         do_test_objectOriented_writing_generalization_extractToAbstract(landSql);//should be "offset 40 limit 10"
     }
 
+    // しっかりポリモーフィズムしてる！Good!
     private void do_test_objectOriented_writing_generalization_extractToAbstract(St6dbms st6dbms) {
         log(st6dbms.buildPagingQuery(10, 5));
     }
@@ -464,6 +466,8 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
     //切り出したprivateメソッドはどっちのクラスにおけば良い？
     //サブクラス特有の処理ならサブクラス、共通処理ならスーパークラスか
 
+    // TODO tanaryo [宿題] IntelliJでtodoの一覧を表示するやり方を調べてください by jflute (2024/11/08)
+    
     // ===================================================================================
     //                                                                           Good Luck
     //                                                                           =========
@@ -481,6 +485,15 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
     //protectedをpublicにすればBarkingProcessクラスで呼び出せそう
     //
     //構造としては
+    
+    // [1on1でのふぉろー] ↑上記のメモに対して... by jflute (2024/11/08)
+    // o 理想的にはdownhitpoint/breatheInはpublicにはしたくない。(内部をいじることのできるメソッドなので: 簡単にAnimalを壊せてしまう)
+    //  i ここはあくまでリファクタリングなので、リファクタリングのために安全性をロスするのは本末転倒なので。
+    //  i ただ、どうしてもってときは、いったんの成果物としてpublicで実装でもOK、その後でまたレビューがされるということで。
+    //
+    // o エクササイズのコンセプトとしては、bark()の実装を切り出すということなので、BarkingProcessは実装が入らないといけない。
+    //  i なので、少なくともインターフェースではない。
+    //  i 別にインターフェースを導入しちゃいけないってわけじゃないけど、インターフェースだけではいけないってこと。
 
     /**
      * Put barking-related classes, such as BarkingProcess and BarkedSound, into sub-package. <br>

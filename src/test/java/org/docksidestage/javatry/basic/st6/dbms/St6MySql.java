@@ -22,6 +22,9 @@ import org.docksidestage.javatry.basic.st6.dbms.st6dbms.St6dbms;
  */
 public class St6MySql extends St6dbms {
 
+    // TODO tanaryo [再び]たかだか2行ですが「流れ」を再利用したいですね。間に処理が追加されて3行になっても1箇所修正で済むように by jflute (2024/10/14)
+    // Animalの例を参考に。
+
     @Override
     public String buildPagingQuery(int pageSize, int pageNumber) {
         int offset = doBuildPagingQuery(pageSize, pageNumber);
