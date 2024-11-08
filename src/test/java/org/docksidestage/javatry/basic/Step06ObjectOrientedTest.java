@@ -440,7 +440,7 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         // 継承は、is-aの関係で。Dog is a(n) Animal, 犬は動物である、が自然かどうか？
         // 動物は犬である、これはそうとも限らない。目覚まし時計は犬である、これは詩的な表現。
         // PostgreSqlはMySqlである、と言ってしっくりくるかどうか？
-        // TODO tanaryo たかだか2行ですが「流れ」を再利用したいですね。間に処理が追加されて3行になっても1箇所修正で済むように by jflute (2024/10/14)
+        // TODO done tanaryo たかだか2行ですが「流れ」を再利用したいですね。間に処理が追加されて3行になっても1箇所修正で済むように by jflute (2024/10/14)
         // Animalの例を参考に。
         St6dbms seaSql = new St6MySql();
         do_test_objectOriented_writing_generalization_extractToAbstract(seaSql);//should be "limit 40, 10"
