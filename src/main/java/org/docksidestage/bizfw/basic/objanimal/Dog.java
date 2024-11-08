@@ -15,7 +15,7 @@
  */
 package org.docksidestage.bizfw.basic.objanimal;
 
-import org.docksidestage.bizfw.basic.objanimal.drink.Drink;
+import org.docksidestage.bizfw.basic.objanimal.drinking.Drinking;
 import org.docksidestage.bizfw.basic.objanimal.runner.FastRunner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,7 +24,7 @@ import org.slf4j.LoggerFactory;
  * The object for dog(犬).
  * @author jflute
  */
-public class Dog extends Animal implements FastRunner, Drink {
+public class Dog extends Animal implements FastRunner, Drinking {
     // ===================================================================================
     //                                                                          Definition
     //                                                                          ==========

@@ -21,7 +21,7 @@ import org.docksidestage.bizfw.basic.buyticket.ticket.TicketBooth;
 import org.docksidestage.bizfw.basic.buyticket.ticket.TicketBuyResult;
 import org.docksidestage.bizfw.basic.buyticket.ticket.TicketReader;
 import org.docksidestage.bizfw.basic.objanimal.*;
-import org.docksidestage.bizfw.basic.objanimal.drink.Drink;
+import org.docksidestage.bizfw.basic.objanimal.drinking.Drinking;
 import org.docksidestage.bizfw.basic.objanimal.loud.AlarmClock;
 import org.docksidestage.bizfw.basic.objanimal.loud.Loudable;
 import org.docksidestage.bizfw.basic.objanimal.runner.FastRunner;
@@ -421,7 +421,7 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         Animal landAnimal = new Zombie();
         boolean sea = seaAnimal instanceof FastRunner;
         log(sea); // your answer? => True
-        sea = seaAnimal instanceof Drink;
+        sea = seaAnimal instanceof Drinking;
         log(sea); // your answer? => True
         boolean land = landAnimal instanceof FastRunner;
         log(land); // your answer? => false
