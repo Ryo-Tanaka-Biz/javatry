@@ -443,11 +443,13 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         // TODO tanaryo たかだか2行ですが「流れ」を再利用したいですね。間に処理が追加されて3行になっても1箇所修正で済むように by jflute (2024/10/14)
         // Animalの例を参考に。
         St6dbms seaSql = new St6MySql();
+        do_test_objectOriented_writing_generalization_extractToAbstract(seaSql);//should be "limit 40, 10"
         St6dbms landSql = new St6PostgreSql();
-        String sea = seaSql.buildPagingQuery(10, 5);
-        String land = landSql.buildPagingQuery(10, 5);
-        log(sea);//should be "limit 40, 10"
-        log(land);//should be "offset 40 limit 10"
+        do_test_objectOriented_writing_generalization_extractToAbstract(landSql);//should be "offset 40 limit 10"
+    }
+
+    private void do_test_objectOriented_writing_generalization_extractToAbstract(St6dbms st6dbms) {
+        log(st6dbms.buildPagingQuery(10, 5));
     }
 
     /**
