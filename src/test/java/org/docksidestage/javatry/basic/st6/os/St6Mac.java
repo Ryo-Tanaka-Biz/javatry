@@ -9,7 +9,11 @@ public class St6Mac extends St6OperationSystem {
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
-    private final String osType;
+    // TODO tanaryo osTypeズレる問題は？選択肢A,Bを出してもらった、Aの延長のCは？ by jflute (2024/11/15)
+    // A. そもそもコンストラクターで受け取らず、newされたら固定のosTypeを自分でsetする
+    // B. バリデーションでズレチェック
+    // C. "A"の続きで、もうosTypeの唯一の目的であるバリデーションが不要なのでosType自体が不要
+    private final String osType; // for バリデーション？
 
     // ===================================================================================
     //                                                                         Constructor

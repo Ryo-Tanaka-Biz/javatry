@@ -1,5 +1,6 @@
 /*
  * Copyright 2019-2022 the original author or authors.
+ * Copyright 2019-2022 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -465,9 +466,12 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
     }
     //切り出したprivateメソッドはどっちのクラスにおけば良い？
     //サブクラス特有の処理ならサブクラス、共通処理ならスーパークラスか
+    // TODO jflute OSクラスを使って再利用の思考のエクササイズをします↑ (2024/11/15)
 
-    // TODO tanaryo [宿題] IntelliJでtodoの一覧を表示するやり方を調べてください by jflute (2024/11/08)
+    // done tanaryo [宿題] IntelliJでtodoの一覧を表示するやり方を調べてください by jflute (2024/11/08)
     // 表示-> ツールウィンドウ -> TODOで表示可能。ショートカットはありませんでした。
+    // ありがとうー by jflute (2024/11/15)
+    // [1on1でのふぉろー] キーボードショートカットどれだけカスタマイズする話をした (しすぎ注意)
 
     // ===================================================================================
     //                                                                           Good Luck
@@ -479,6 +483,7 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
     public void test_objectOriented_writing_withDelegation() {
         // your confirmation code here
     }
+    // TODO jflute 次回1on1ここから (2024/11/15)
     //切り出した処理をサブクラスでどう扱うか
     //downhitpointがbarkのメソッド内に入っている
     //BarkingProcessクラスはインターフェースとして実装？
