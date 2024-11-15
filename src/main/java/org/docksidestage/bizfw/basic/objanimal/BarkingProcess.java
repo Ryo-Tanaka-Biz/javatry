@@ -35,12 +35,12 @@ public class BarkingProcess {
     }
 
     private void breatheIn() {
-        logger.debug("...Breathing in for barking"); // dummy implementation
+        logger.debug("...Breathing in for barking");
         animal.downHitPoint(); // Animal経由で呼び出す
     }
 
     private void prepareAbdominalMuscle() {
-        logger.debug("...Using my abdominal muscle for barking"); // dummy implementation
+        logger.debug("...Using my abdominal muscle for barking");
         animal.downHitPoint(); // Animal経由で呼び出す
     }
 
