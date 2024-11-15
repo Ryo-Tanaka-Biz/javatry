@@ -1,14 +1,22 @@
 package org.docksidestage.javatry.basic.st6.os;
 
-import org.docksidestage.javatry.basic.st6.os.st6OperatioSystem.St6OperationSystem;
+import org.docksidestage.javatry.basic.st6.os.st6OperationSystem.St6OperationSystem;
 
+/**
+ * @author tanaryo
+ */
 public class St6Mac extends St6OperationSystem {
+    // ===================================================================================
+    //                                                                           Attribute
+    //                                                                           =========
+    private final String osType;
 
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public St6Mac(String osType, String loginId) {
-        super(osType, loginId);
+    public St6Mac(String loginId, String osType) {
+        super(loginId);
+        this.osType = osType;
     }
 
     // ===================================================================================
@@ -18,10 +26,14 @@ public class St6Mac extends St6OperationSystem {
     // なので、todoコメントがある、ひとこと「やりかけ」書くだけでも全然違う (もちろん詳細もあったらいいけど)
     // (高度なお仕事をどんどんしていくうえで、こういう意識は大事になる)
     @Override
-    public String buildUserResourcePath(String relativePath) {
-        String fileSeparator = getFileSeparator();
-        String userDirectory = getUserDirectory();
-        String resourcePath = userDirectory + fileSeparator + relativePath;
-        return resourcePath.replace("/", fileSeparator);
+    protected String getFileSeparator() {
+        validateValue(osType);
+        return "/";
+    }
+
+    @Override
+    protected String getUserDirectory() {
+        validateValue(osType);
+        return "/Users/" + loginId;
     }
 }

@@ -13,13 +13,12 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.docksidestage.javatry.basic.st6.os.st6OperatioSystem;
+package org.docksidestage.javatry.basic.st6.os.st6OperationSystem;
 
 /**
  * @author jflute
  */
-public class St6OperationSystem {
-
+public abstract class St6OperationSystem {
     // ===================================================================================
     //                                                                          Definition
     //                                                                          ==========
@@ -30,14 +29,12 @@ public class St6OperationSystem {
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
-    private final String osType;
-    private final String loginId;
+    protected final String loginId;
 
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public St6OperationSystem(String osType, String loginId) {
-        this.osType = osType;
+    public St6OperationSystem(String loginId) {
         this.loginId = loginId;
     }
 
@@ -57,26 +54,13 @@ public class St6OperationSystem {
     // TODO done tanaryo [いいね] 教訓が活きてて良いです。メモ大事。 by jflute (2024/11/08)
     // TODO done tanaryo 一方で、_todo使って誰が？いつ？の情報が自然と残るようにしましょう by jflute (2024/11/08)
     //サブクラスまで分けた。中身はこれから
-    protected String getFileSeparator() {
-        if (OS_TYPE_MAC.equalsIgnoreCase(osType)) {
-            return "/";
-        } else if (OS_TYPE_WINDOWS.equalsIgnoreCase(osType)) {
-            return "\\";
-        } else if (OS_TYPE_OLD_WINDOWS.equalsIgnoreCase(osType)) {
-            return "\\";
-        } else {
-            throw new IllegalStateException("Unknown osType: " + osType);
-        }
-    }
+    abstract protected String getFileSeparator();
 
-    protected String getUserDirectory() {
-        if (OS_TYPE_MAC.equalsIgnoreCase(osType)) {
-            return "/Users/" + loginId;
-        } else if (OS_TYPE_WINDOWS.equalsIgnoreCase(osType)) {
-            return "/Users/" + loginId;
-        } else if (OS_TYPE_OLD_WINDOWS.equalsIgnoreCase(osType)) {
-            return "/Documents and Settigs/" + loginId;
-        } else {
+    abstract protected String getUserDirectory();
+
+    protected void validateValue(String osType) {
+        if (!OS_TYPE_MAC.equalsIgnoreCase(osType) && !OS_TYPE_WINDOWS.equalsIgnoreCase(osType) && !OS_TYPE_OLD_WINDOWS.equalsIgnoreCase(
+                osType)) {
             throw new IllegalStateException("Unknown osType: " + osType);
         }
     }

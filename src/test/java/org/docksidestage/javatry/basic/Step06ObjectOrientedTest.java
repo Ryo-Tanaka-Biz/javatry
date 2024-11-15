@@ -459,7 +459,7 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
      * (St6OperationSystem (basic.st6.os) からコンクリートクラスを抽出してみましょう (スーパークラスとサブクラスの関係に))
      */
     public void test_objectOriented_writing_specialization_extractToConcrete() {
-        St6Mac seaPath = new St6Mac("mac", "0724");
+        St6Mac seaPath = new St6Mac("0724", "mac");
         String sea = seaPath.buildUserResourcePath("nakata");
         log(sea);//should be "/Users/0724/nakata"
     }
@@ -467,7 +467,7 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
     //サブクラス特有の処理ならサブクラス、共通処理ならスーパークラスか
 
     // TODO tanaryo [宿題] IntelliJでtodoの一覧を表示するやり方を調べてください by jflute (2024/11/08)
-    
+
     // ===================================================================================
     //                                                                           Good Luck
     //                                                                           =========
@@ -485,7 +485,7 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
     //protectedをpublicにすればBarkingProcessクラスで呼び出せそう
     //
     //構造としては
-    
+
     // [1on1でのふぉろー] ↑上記のメモに対して... by jflute (2024/11/08)
     // o 理想的にはdownhitpoint/breatheInはpublicにはしたくない。(内部をいじることのできるメソッドなので: 簡単にAnimalを壊せてしまう)
     //  i ここはあくまでリファクタリングなので、リファクタリングのために安全性をロスするのは本末転倒なので。
