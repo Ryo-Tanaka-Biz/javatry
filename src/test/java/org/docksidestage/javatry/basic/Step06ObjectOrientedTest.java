@@ -467,6 +467,7 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
     //サブクラス特有の処理ならサブクラス、共通処理ならスーパークラスか
 
     // TODO tanaryo [宿題] IntelliJでtodoの一覧を表示するやり方を調べてください by jflute (2024/11/08)
+    // 表示-> ツールウィンドウ -> TODOで表示可能。ショートカットはありませんでした。
 
     // ===================================================================================
     //                                                                           Good Luck
