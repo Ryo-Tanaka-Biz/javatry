@@ -27,7 +27,12 @@ public class St6MySql extends St6dbms {
 
     @Override
     public String buildPagingQuery(int pageSize, int pageNumber) {
-        int offset = doBuildPagingQuery(pageSize, pageNumber);
-        return "limit " + offset + ", " + pageSize;
+        int offset = calculateOffset(pageSize, pageNumber);
+        return generatePagingQuery(offset, pageSize);
+    }
+
+    @Override
+    protected String generatePagingQuery(int offset, int pageSize) {
+        return "limit" + offset + ", " + pageSize;
     }
 }

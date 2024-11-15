@@ -25,7 +25,12 @@ public class St6PostgreSql extends St6dbms {
 
     @Override
     public String buildPagingQuery(int pageSize, int pageNumber) {
-        int offset = doBuildPagingQuery(pageSize, pageNumber);
+        int offset = calculateOffset(pageSize, pageNumber);
+        return generatePagingQuery(offset, pageSize);
+    }
+
+    @Override
+    protected String generatePagingQuery(int offset, int pageSize) {
         return "offset " + offset + " limit " + pageSize;
     }
 }
