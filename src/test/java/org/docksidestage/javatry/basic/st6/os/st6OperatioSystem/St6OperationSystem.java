@@ -50,12 +50,12 @@ public class St6OperationSystem {
         String resourcePath = userDirectory + fileSeparator + relativePath;
         return resourcePath.replace("/", fileSeparator);
     }
-    
+
     // [1on1でのふぉろー] コメント、JavaDocなどやはりコードから読み取れないものを説明してくれてるので、しっかり注目していきましょう。
     // IntelliJだと、メソッド補完時にcontrol+Jを押すとJavaDocが表示される。 by jflute (2024/11/08)
-    
-    // TODO tanaryo [いいね] 教訓が活きてて良いです。メモ大事。 by jflute (2024/11/08)
-    // TODO tanaryo 一方で、_todo使って誰が？いつ？の情報が自然と残るようにしましょう by jflute (2024/11/08)
+
+    // TODO done tanaryo [いいね] 教訓が活きてて良いです。メモ大事。 by jflute (2024/11/08)
+    // TODO done tanaryo 一方で、_todo使って誰が？いつ？の情報が自然と残るようにしましょう by jflute (2024/11/08)
     //サブクラスまで分けた。中身はこれから
     protected String getFileSeparator() {
         if (OS_TYPE_MAC.equalsIgnoreCase(osType)) {
