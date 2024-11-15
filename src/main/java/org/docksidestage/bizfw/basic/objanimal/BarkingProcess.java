@@ -1,0 +1,51 @@
+package org.docksidestage.bizfw.basic.objanimal;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+/**
+ * @author tanaryo
+ */
+public class BarkingProcess {
+    // ===================================================================================
+    //                                                                          Definition
+    //                                                                          ==========
+    private static final Logger logger = LoggerFactory.getLogger(BarkingProcess.class);
+
+    // ===================================================================================
+    //                                                                           Attribute
+    //                                                                           =========
+    private final Animal animal;
+
+    // ===================================================================================
+    //                                                                         Constructor
+    //                                                                         ===========
+    public BarkingProcess(Animal animal) {
+        this.animal = animal;
+    }
+
+    // ===================================================================================
+    //                                                                               Bark
+    //                                                                              ======
+    public BarkedSound bark() {
+        breatheIn();
+        prepareAbdominalMuscle();
+        String barkWord = animal.getBarkWord(); // Animalから取得
+        return doBark(barkWord);
+    }
+
+    private void breatheIn() {
+        logger.debug("...Breathing in for barking"); // dummy implementation
+        animal.downHitPoint(); // Animal経由で呼び出す
+    }
+
+    private void prepareAbdominalMuscle() {
+        logger.debug("...Using my abdominal muscle for barking"); // dummy implementation
+        animal.downHitPoint(); // Animal経由で呼び出す
+    }
+
+    private BarkedSound doBark(String barkWord) {
+        animal.downHitPoint(); // Animal経由で呼び出す
+        return new BarkedSound(barkWord);
+    }
+}

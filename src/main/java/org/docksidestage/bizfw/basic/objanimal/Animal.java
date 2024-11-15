@@ -16,30 +16,24 @@
 package org.docksidestage.bizfw.basic.objanimal;
 
 import org.docksidestage.bizfw.basic.objanimal.loud.Loudable;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * The object for animal(動物).
  * @author jflute
  */
 public abstract class Animal implements Loudable {
-
-    // ===================================================================================
-    //                                                                          Definition
-    //                                                                          ==========
-    private static final Logger logger = LoggerFactory.getLogger(Animal.class);
-
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
     protected int hitPoint; // is HP
+    private final BarkingProcess barkingProcess;
 
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
     public Animal() {
         hitPoint = getInitialHitPoint();
+        barkingProcess = new BarkingProcess(this);
     }
 
     protected int getInitialHitPoint() {
@@ -50,29 +44,10 @@ public abstract class Animal implements Loudable {
     //                                                                               Bark
     //                                                                              ======
     public BarkedSound bark() {
-        breatheIn();
-        prepareAbdominalMuscle();
-        String barkWord = getBarkWord();
-        BarkedSound barkedSound = doBark(barkWord);
-        return barkedSound;
-    }
-
-    protected void breatheIn() { // actually depends on barking
-        logger.debug("...Breathing in for barking"); // dummy implementation
-        downHitPoint();
-    }
-
-    protected void prepareAbdominalMuscle() { // also actually depends on barking
-        logger.debug("...Using my abdominal muscle for barking"); // dummy implementation
-        downHitPoint();
+        return barkingProcess.bark();
     }
 
     protected abstract String getBarkWord();
-
-    protected BarkedSound doBark(String barkWord) {
-        downHitPoint();
-        return new BarkedSound(barkWord);
-    }
 
     // ===================================================================================
     //                                                                           Hit Point
