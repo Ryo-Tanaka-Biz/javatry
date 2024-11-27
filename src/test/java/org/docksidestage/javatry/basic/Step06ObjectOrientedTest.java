@@ -541,7 +541,7 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         // write your memo here:
         // _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
         // is it corrent?
-        //適切ではない。
+        //適切ではない。animalクラスで抽象メソッドや具象メソッドとして定義されていないメソッドがzombieクラスに存在する
         // _/_/_/_/_/_/_/_/_/_/
     }
 }
