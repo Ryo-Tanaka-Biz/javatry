@@ -56,9 +56,9 @@ public abstract class St6OperationSystem {
     //サブクラスまで分けた。中身はこれから
     // TODO tanaryo 細かいですが、可視性を先に書くスタイルの方が若干多いかな？と思うので合わせてもらえればと by jflute (2024/11/15)
     // (少なくともjavatryの他のクラスはそうなので、合わせてもらえれば。そういうの合わせるって気遣いも大切)
-    abstract protected String getFileSeparator();
+    protected abstract String getFileSeparator();
 
-    abstract protected String getUserDirectory();
+    protected abstract String getUserDirectory();
 
     protected void validateValue(String osType) {
         if (!OS_TYPE_MAC.equalsIgnoreCase(osType) && !OS_TYPE_WINDOWS.equalsIgnoreCase(osType) && !OS_TYPE_OLD_WINDOWS.equalsIgnoreCase(
