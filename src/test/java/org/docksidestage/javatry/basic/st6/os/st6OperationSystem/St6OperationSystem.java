@@ -54,7 +54,7 @@ public abstract class St6OperationSystem {
     // done tanaryo [いいね] 教訓が活きてて良いです。メモ大事。 by jflute (2024/11/08)
     // done tanaryo 一方で、_todo使って誰が？いつ？の情報が自然と残るようにしましょう by jflute (2024/11/08)
     //サブクラスまで分けた。中身はこれから
-    // TODO tanaryo 細かいですが、可視性を先に書くスタイルの方が若干多いかな？と思うので合わせてもらえればと by jflute (2024/11/15)
+    // TODO done tanaryo 細かいですが、可視性を先に書くスタイルの方が若干多いかな？と思うので合わせてもらえればと by jflute (2024/11/15)
     // (少なくともjavatryの他のクラスはそうなので、合わせてもらえれば。そういうの合わせるって気遣いも大切)
     protected abstract String getFileSeparator();
 
