@@ -472,8 +472,8 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         String windowsResourcePath = windowsPath.buildUserResourcePath("nakata");
 
         log(macResourcePath);//should be "/Users/0724/nakata"
-        log(oldWindowsResourcePath);//should be "/Users/0724/nakata"
-        log(windowsResourcePath);//should be "/Users/0724/nakata"
+        log(oldWindowsResourcePath);//should be " \Documents and Settigs\0724\nakata"
+        log(windowsResourcePath);//should be "\Users\0724\nakata"
     }
     //切り出したprivateメソッドはどっちのクラスにおけば良い？
     //サブクラス特有の処理ならサブクラス、共通処理ならスーパークラスか
@@ -541,7 +541,7 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         // write your memo here:
         // _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
         // is it corrent?
-        //
+        //適切ではない。
         // _/_/_/_/_/_/_/_/_/_/
     }
 }

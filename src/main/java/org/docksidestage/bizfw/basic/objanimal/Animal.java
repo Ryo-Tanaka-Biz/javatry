@@ -26,7 +26,7 @@ public abstract class Animal implements Loudable {
     //                                                                           Attribute
     //                                                                           =========
     protected int hitPoint; // is HP
-    private final BarkingProcess barkingProcess;
+    protected BarkingProcess barkingProcess;
 
     // ===================================================================================
     //                                                                         Constructor

@@ -34,7 +34,7 @@ public class BarkingProcess {
         return doBark(barkWord);
     }
 
-    private void breatheIn() {
+    protected void breatheIn() {
         logger.debug("...Breathing in for barking");
         animal.downHitPoint(); // Animal経由で呼び出す
     }

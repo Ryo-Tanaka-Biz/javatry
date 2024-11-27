@@ -20,7 +20,6 @@ package org.docksidestage.bizfw.basic.objanimal;
  * @author jflute
  */
 public class Zombie extends Animal {
-
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
@@ -30,6 +29,8 @@ public class Zombie extends Animal {
     //                                                                         Constructor
     //                                                                         ===========
     public Zombie() {
+        hitPoint = getInitialHitPoint();
+        barkingProcess = new BarkingProcessForZombie(this);
     }
 
     @Override
@@ -55,12 +56,6 @@ public class Zombie extends Animal {
     //                                                                              ======
     // TODO tanaryo [ふぉろー] hint1: オブジェクト指向はもっと自由で... by jflute (2024/11/15)
     // 階層構造にしていいオブジェクトは一つ(の概念)だけってわけじゃない。
-    @Override
-    protected void breatheIn() {
-        super.breatheIn();
-        zombieDiary.countBreatheIn();
-    }
-
     @Override
     protected String getBarkWord() {
         return "uooo"; // what in English?
