@@ -20,13 +20,6 @@ package org.docksidestage.javatry.basic.st6.os.st6OperationSystem;
  */
 public abstract class St6OperationSystem {
     // ===================================================================================
-    //                                                                          Definition
-    //                                                                          ==========
-    private static final String OS_TYPE_MAC = "Mac";
-    private static final String OS_TYPE_WINDOWS = "Windows";
-    private static final String OS_TYPE_OLD_WINDOWS = "OldWindows";
-
-    // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
     protected final String loginId;
@@ -59,11 +52,4 @@ public abstract class St6OperationSystem {
     protected abstract String getFileSeparator();
 
     protected abstract String getUserDirectory();
-
-    protected void validateValue(String osType) {
-        if (!OS_TYPE_MAC.equalsIgnoreCase(osType) && !OS_TYPE_WINDOWS.equalsIgnoreCase(osType) && !OS_TYPE_OLD_WINDOWS.equalsIgnoreCase(
-                osType)) {
-            throw new IllegalStateException("Unknown osType: " + osType);
-        }
-    }
 }

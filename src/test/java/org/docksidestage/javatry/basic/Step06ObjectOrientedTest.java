@@ -30,6 +30,9 @@ import org.docksidestage.javatry.basic.st6.dbms.St6MySql;
 import org.docksidestage.javatry.basic.st6.dbms.St6PostgreSql;
 import org.docksidestage.javatry.basic.st6.dbms.st6dbms.St6dbms;
 import org.docksidestage.javatry.basic.st6.os.St6Mac;
+import org.docksidestage.javatry.basic.st6.os.St6OldWindows;
+import org.docksidestage.javatry.basic.st6.os.St6Windows;
+import org.docksidestage.javatry.basic.st6.os.st6OperationSystem.St6OperationSystem;
 import org.docksidestage.unit.PlainTestCase;
 
 // done tanaryo unusedのimportあり↑ by jflute (2024/09/26)
@@ -460,9 +463,17 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
      * (St6OperationSystem (basic.st6.os) からコンクリートクラスを抽出してみましょう (スーパークラスとサブクラスの関係に))
      */
     public void test_objectOriented_writing_specialization_extractToConcrete() {
-        St6Mac seaPath = new St6Mac("0724", "mac");
-        String sea = seaPath.buildUserResourcePath("nakata");
-        log(sea);//should be "/Users/0724/nakata"
+        St6OperationSystem macPath = new St6Mac("0724");
+        St6OperationSystem oldWindowsPath = new St6OldWindows("0724");
+        St6OperationSystem windowsPath = new St6Windows("0724");
+
+        String macResourcePath = macPath.buildUserResourcePath("nakata");
+        String oldWindowsResourcePath = oldWindowsPath.buildUserResourcePath("nakata");
+        String windowsResourcePath = windowsPath.buildUserResourcePath("nakata");
+
+        log(macResourcePath);//should be "/Users/0724/nakata"
+        log(oldWindowsResourcePath);//should be "/Users/0724/nakata"
+        log(windowsResourcePath);//should be "/Users/0724/nakata"
     }
     //切り出したprivateメソッドはどっちのクラスにおけば良い？
     //サブクラス特有の処理ならサブクラス、共通処理ならスーパークラスか

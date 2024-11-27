@@ -22,16 +22,10 @@ import org.docksidestage.javatry.basic.st6.os.st6OperationSystem.St6OperationSys
  */
 public class St6OldWindows extends St6OperationSystem {
     // ===================================================================================
-    //                                                                           Attribute
-    //                                                                           =========
-    private final String osType;
-
-    // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public St6OldWindows(String loginId, String osType) {
+    public St6OldWindows(String loginId) {
         super(loginId);
-        this.osType = osType;
     }
 
     // ===================================================================================
@@ -39,13 +33,11 @@ public class St6OldWindows extends St6OperationSystem {
     //                                                                      ==============
     @Override
     protected String getFileSeparator() {
-        validateValue(osType);
         return "\\";
     }
 
     @Override
     protected String getUserDirectory() {
-        validateValue(osType);
         return "/Documents and Settigs/" + loginId;
     }
 }
