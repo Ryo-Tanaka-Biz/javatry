@@ -20,10 +20,14 @@ public abstract class St6dbms {
     // done tanaryo do使って実処理を表してくれたのはGood, 一方で... by jflute (2024/11/08)
     // ここの処理って「offsetの計算」とズバリ言えるので、そっちの方が良いかなと。
     // (質問されたらこう答えるっていう答えをメソッドの名前にすると良い: それが概要だから)
-    public abstract String buildPagingQuery(int pageSize, int pageNumber);
+    public String buildPagingQuery(int pageSize, int pageNumber) {
+        int offset = calculateOffset(pageSize, pageNumber);
+        return generatePagingQuery(offset, pageSize);
+    }
 
     protected int calculateOffset(int pageSize, int pageNumber) {
         return pageSize * (pageNumber - 1);
     }
+
     protected abstract String generatePagingQuery(int offset, int pageSize);
 }

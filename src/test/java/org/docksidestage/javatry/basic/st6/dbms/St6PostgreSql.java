@@ -22,14 +22,6 @@ import org.docksidestage.javatry.basic.st6.dbms.st6dbms.St6dbms;
  * @author tanaryo
  */
 public class St6PostgreSql extends St6dbms {
-
-    @Override
-    public String buildPagingQuery(int pageSize, int pageNumber) {
-        int offset = calculateOffset(pageSize, pageNumber);
-        System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-        return generatePagingQuery(offset, pageSize);
-    }
-
     @Override
     protected String generatePagingQuery(int offset, int pageSize) {
         return "offset " + offset + " limit " + pageSize;
