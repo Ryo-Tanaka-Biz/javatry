@@ -15,7 +15,7 @@ public class BarkingProcess {
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
-    private final Animal animal;
+    protected final Animal animal;
 
     // ===================================================================================
     //                                                                         Constructor

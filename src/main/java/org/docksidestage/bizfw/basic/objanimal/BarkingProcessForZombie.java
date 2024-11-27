@@ -14,7 +14,7 @@ public class BarkingProcessForZombie extends BarkingProcess {
     //                                                                         ===========
     public BarkingProcessForZombie(Animal animal) {
         super(animal);
-        zombie = (Zombie) animal;
+        zombie = (Zombie) super.animal;
     }
 
     // ===================================================================================
