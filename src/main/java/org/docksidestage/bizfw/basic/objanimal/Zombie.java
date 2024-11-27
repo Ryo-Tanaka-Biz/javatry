@@ -54,7 +54,7 @@ public class Zombie extends Animal {
     // ===================================================================================
     //                                                                               Bark
     //                                                                              ======
-    // TODO tanaryo [ふぉろー] hint1: オブジェクト指向はもっと自由で... by jflute (2024/11/15)
+    // TODO done tanaryo [ふぉろー] hint1: オブジェクト指向はもっと自由で... by jflute (2024/11/15)
     // 階層構造にしていいオブジェクトは一つ(の概念)だけってわけじゃない。
     @Override
     protected String getBarkWord() {
