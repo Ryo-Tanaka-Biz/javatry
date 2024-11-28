@@ -18,6 +18,7 @@ package org.docksidestage.bizfw.basic.objanimal;
 import org.docksidestage.bizfw.basic.objanimal.barking.BarkingProcess;
 import org.docksidestage.bizfw.basic.objanimal.loud.Loudable;
 
+// TODO tanaryo せっかくなので自信もって author を入れて記帳してください^^ by jflute (2024/11/28)
 /**
  * The object for animal(動物).
  * @author jflute
@@ -46,18 +47,24 @@ public abstract class Animal implements Loudable {
         return new BarkingProcess(this).bark();
     }
 
+    // TODO tanaryo こっちだけは簡単にpublicじゃなくprotectedに戻せると思う by jflute (2024/11/28)
     public abstract String getBarkWord();
+    
+    // TODO tanaryo [読み物課題] 比較という点からちょっとこじつけだけど、これ大事なのでぜひ読んでください by jflute (2024/11/28)
+    // // デバッグパターン: うごかない、ほかうごくなら、ただひかく
+    // https://jflute.hatenadiary.jp/entry/20180811/comparingdebug
 
     // ===================================================================================
     //                                                                           Hit Point
     //                                                                           =========
+    // TODO tanaryo 修行++: こっちは、ちょっとpublicをprotectedに戻すのは難しいのでstep8やってからでもいいかも by jflute (2024/11/28)
     public void downHitPoint() {
         --hitPoint;
         if (hitPoint <= 0) {
             throw new IllegalStateException("I'm very tired, so I want to sleep" + getBarkWord());
         }
     }
-
+    
     // ===================================================================================
     //                                                                               Loud
     //                                                                              ======

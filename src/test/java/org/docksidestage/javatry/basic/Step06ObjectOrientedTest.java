@@ -478,6 +478,9 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
     //切り出したprivateメソッドはどっちのクラスにおけば良い？
     //サブクラス特有の処理ならサブクラス、共通処理ならスーパークラスか
     // TODO jflute OSクラスを使って再利用の思考のエクササイズをします↑ (2024/11/15)
+    // [1on1でのふぉろー] まず、UserDirectory が同じ値だけど再利用すべきかどうか？概念的に考えましょう。
+    // の話をした。
+    // → 「再利用は、コードが同じだからするんじゃなく、意味が同じだからする」
 
     // done tanaryo [宿題] IntelliJでtodoの一覧を表示するやり方を調べてください by jflute (2024/11/08)
     // 表示-> ツールウィンドウ -> TODOで表示可能。ショートカットはありませんでした。
@@ -494,7 +497,7 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
     public void test_objectOriented_writing_withDelegation() {
         // your confirmation code here
     }
-    // TODO jflute 次回1on1ここから (2024/11/15)
+    // done jflute 次回1on1ここから (2024/11/15)
     //切り出した処理をサブクラスでどう扱うか
     //downhitpointがbarkのメソッド内に入っている
     //BarkingProcessクラスはインターフェースとして実装？
@@ -542,6 +545,14 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         // _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
         // is it corrent?
         //適切ではない。animalクラスで抽象メソッドや具象メソッドとして定義されていないメソッドがzombieクラスに存在する
+        // TODO tanaryo もしそうだとすると、現状Dogにrun()とかdrink()とか独自メソッドあるのでDogも適切ではないになっちゃう？ by jflute (2024/11/28)
+        // 一応、Dogの方はそれぞれインターフェースのメソッドになっていはいるけど、インターフェースはなくても良いのでやはり同じ話かなと。
+        // 例えば、Dogに「お手」というメソッドがあっても良いだろうか？良さそうだけど、DogはAnimalである、とも言える。
+        // なので、Animalの具象クラスは、別にその具象固有の振る舞いがあっても不自然ではない。
+        //
+        // hint1: 機能や実装で見るのも大事だけど、概念視点でも考えてみてください。
+        // 元々そっちが大事で、オブジェクト指向は概念にフォーカスを当てて整理整頓する術なので、
+        // 概念がしっくりくるか？こないか？が一番重要とも言える。そうそう、is-aの関係か？がどうなのか？
         // _/_/_/_/_/_/_/_/_/_/
     }
 }

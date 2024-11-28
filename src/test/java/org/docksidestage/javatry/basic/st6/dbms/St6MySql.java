@@ -25,7 +25,11 @@ public class St6MySql extends St6dbms {
 
     // done tanaryo [再び]たかだか2行ですが「流れ」を再利用したいですね。間に処理が追加されて3行になっても1箇所修正で済むように by jflute (2024/10/14)
     // Animalの例を参考に。
-    // TODO done tanaryo さらにAnimalのbark()と比較して...流れが抽象になるのか？具象になるのか？ by jflute (2024/11/15)
+    // done tanaryo さらにAnimalのbark()と比較して...流れが抽象になるのか？具象になるのか？ by jflute (2024/11/15)
+    // [1on1でのフォロー] これをGoFのデザインパターンの一つで「テンプレートメソッドパターン」と呼びます。
+    // 伝統的で基礎的なパターン、これをそのまま使われてるケースも多いし、一方で形が変わって似たようなことをしてるケースも多いので、
+    // 差分プログラミングのベースの考え方と捉えていいかなと。(形が変わって、というのはオブジェクト指向じゃないケースも含む)
+    // 考え方はみんな一緒で、流れを再利用したいというのが根本。穴埋めの手段が変わるだけって感じで。
 
     @Override
     protected String generatePagingQuery(int offset, int pageSize) {

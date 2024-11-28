@@ -55,11 +55,14 @@ public class Zombie extends Animal {
     // ===================================================================================
     //                                                                               Bark
     //                                                                              ======
+    // TODO tanaryo オーバーライドの粒度、本当に最低限だけをオーバーライドしたい by jflute (2024/11/28)
+    // 現状だと、bark()の流れをコピーしてきてしまっている。仮にsuperのbark()で処理が追加された場合に追従できない。
+    // (BarkingProcessという切り出しまでやっておいて処理の追加ってしないだろうけど、でもできてしまうのでそれを防ぎたい)
     @Override
     public BarkedSound bark() {
         return new BarkingProcessForZombie(this).bark();
     }
-    // TODO done tanaryo [ふぉろー] hint1: オブジェクト指向はもっと自由で... by jflute (2024/11/15)
+    // done tanaryo [ふぉろー] hint1: オブジェクト指向はもっと自由で... by jflute (2024/11/15)
     // 階層構造にしていいオブジェクトは一つ(の概念)だけってわけじゃない。
     @Override
     public String getBarkWord() {
