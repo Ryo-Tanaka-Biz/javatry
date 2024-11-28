@@ -25,7 +25,7 @@ public class Zombie extends Animal {
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
-    protected final ZombieDiary zombieDiary = new ZombieDiary();
+    private final ZombieDiary zombieDiary = new ZombieDiary();
 
     // ===================================================================================
     //                                                                         Constructor
