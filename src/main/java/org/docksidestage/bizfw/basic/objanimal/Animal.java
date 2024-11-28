@@ -15,6 +15,7 @@
  */
 package org.docksidestage.bizfw.basic.objanimal;
 
+import org.docksidestage.bizfw.basic.objanimal.barking.BarkingProcess;
 import org.docksidestage.bizfw.basic.objanimal.loud.Loudable;
 
 /**
@@ -26,14 +27,12 @@ public abstract class Animal implements Loudable {
     //                                                                           Attribute
     //                                                                           =========
     protected int hitPoint; // is HP
-    protected BarkingProcess barkingProcess;
 
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
     public Animal() {
         hitPoint = getInitialHitPoint();
-        barkingProcess = new BarkingProcess(this);
     }
 
     protected int getInitialHitPoint() {
@@ -44,15 +43,15 @@ public abstract class Animal implements Loudable {
     //                                                                               Bark
     //                                                                              ======
     public BarkedSound bark() {
-        return barkingProcess.bark();
+        return new BarkingProcess(this).bark();
     }
 
-    protected abstract String getBarkWord();
+    public abstract String getBarkWord();
 
     // ===================================================================================
     //                                                                           Hit Point
     //                                                                           =========
-    protected void downHitPoint() {
+    public void downHitPoint() {
         --hitPoint;
         if (hitPoint <= 0) {
             throw new IllegalStateException("I'm very tired, so I want to sleep" + getBarkWord());

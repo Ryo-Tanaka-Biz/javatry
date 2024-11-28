@@ -15,6 +15,8 @@
  */
 package org.docksidestage.bizfw.basic.objanimal;
 
+import org.docksidestage.bizfw.basic.objanimal.barking.BarkingProcessForZombie;
+
 /**
  * The object for zombie(ゾンビ).
  * @author jflute
@@ -29,8 +31,7 @@ public class Zombie extends Animal {
     //                                                                         Constructor
     //                                                                         ===========
     public Zombie() {
-        hitPoint = getInitialHitPoint();
-        barkingProcess = new BarkingProcessForZombie(this);
+        super();
     }
 
     @Override
@@ -54,10 +55,13 @@ public class Zombie extends Animal {
     // ===================================================================================
     //                                                                               Bark
     //                                                                              ======
+    public BarkedSound bark() {
+        return new BarkingProcessForZombie(this).bark();
+    }
     // TODO done tanaryo [ふぉろー] hint1: オブジェクト指向はもっと自由で... by jflute (2024/11/15)
     // 階層構造にしていいオブジェクトは一つ(の概念)だけってわけじゃない。
     @Override
-    protected String getBarkWord() {
+    public String getBarkWord() {
         return "uooo"; // what in English?
     }
 
@@ -65,7 +69,7 @@ public class Zombie extends Animal {
     //                                                                           Hit Point
     //                                                                           =========
     @Override
-    protected void downHitPoint() {
+    public void downHitPoint() {
         // do nothing, infinity hit point
     }
 

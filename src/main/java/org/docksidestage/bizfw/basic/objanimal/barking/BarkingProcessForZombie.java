@@ -1,4 +1,7 @@
-package org.docksidestage.bizfw.basic.objanimal;
+package org.docksidestage.bizfw.basic.objanimal.barking;
+
+import org.docksidestage.bizfw.basic.objanimal.Animal;
+import org.docksidestage.bizfw.basic.objanimal.Zombie;
 
 /**
  * @author tanaryo
@@ -23,6 +26,6 @@ public class BarkingProcessForZombie extends BarkingProcess {
     @Override
     protected void breatheIn() {
         super.breatheIn();
-        zombie.zombieDiary.countBreatheIn();
+        zombie.getZombieDiary().countBreatheIn();
     }
 }
