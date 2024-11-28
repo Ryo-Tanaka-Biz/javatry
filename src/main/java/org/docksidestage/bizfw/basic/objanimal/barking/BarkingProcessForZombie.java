@@ -16,7 +16,7 @@ public class BarkingProcessForZombie extends BarkingProcess {
     //                                                                         Constructor
     //                                                                         ===========
     public BarkingProcessForZombie(Animal animal) {
-        super(animal);
+        super(animal);//animalはZombieインスタンス
         zombie = (Zombie) super.animal;
     }
 
