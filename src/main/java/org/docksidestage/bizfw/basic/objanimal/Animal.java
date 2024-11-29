@@ -15,6 +15,7 @@
  */
 package org.docksidestage.bizfw.basic.objanimal;
 
+import org.docksidestage.bizfw.basic.objanimal.barking.BarkedSound;
 import org.docksidestage.bizfw.basic.objanimal.barking.BarkingProcess;
 import org.docksidestage.bizfw.basic.objanimal.loud.Loudable;
 
@@ -52,8 +53,12 @@ public abstract class Animal implements Loudable {
     protected BarkingProcess executeBarkingProcess() {
         return new BarkingProcess(this);
     }
-    // TODO tanaryo こっちだけは簡単にpublicじゃなくprotectedに戻せると思う by jflute (2024/11/28)
-    public abstract String getBarkWord();
+    // TODO done tanaryo こっちだけは簡単にpublicじゃなくprotectedに戻せると思う by jflute (2024/11/28)
+    protected abstract String getBarkWord();
+
+    public String speak() {
+        return getBarkWord();
+    }
 
     // TODO tanaryo [読み物課題] 比較という点からちょっとこじつけだけど、これ大事なのでぜひ読んでください by jflute (2024/11/28)
     // // デバッグパターン: うごかない、ほかうごくなら、ただひかく

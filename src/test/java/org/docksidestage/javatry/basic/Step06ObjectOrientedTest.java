@@ -22,6 +22,7 @@ import org.docksidestage.bizfw.basic.buyticket.ticket.TicketBooth;
 import org.docksidestage.bizfw.basic.buyticket.ticket.TicketBuyResult;
 import org.docksidestage.bizfw.basic.buyticket.ticket.TicketReader;
 import org.docksidestage.bizfw.basic.objanimal.*;
+import org.docksidestage.bizfw.basic.objanimal.barking.BarkedSound;
 import org.docksidestage.bizfw.basic.objanimal.drinking.Drinking;
 import org.docksidestage.bizfw.basic.objanimal.loud.AlarmClock;
 import org.docksidestage.bizfw.basic.objanimal.loud.Loudable;
