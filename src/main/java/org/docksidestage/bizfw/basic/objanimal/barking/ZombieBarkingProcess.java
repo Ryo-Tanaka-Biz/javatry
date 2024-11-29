@@ -17,7 +17,7 @@ public class ZombieBarkingProcess extends BarkingProcess {
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    // TODO tanaryo もう、Zombie専用のBarkingProcessなので、Zombieしか受け取らないようにした方が安全 by jflute (2024/11/28)
+    // TODO done tanaryo もう、Zombie専用のBarkingProcessなので、Zombieしか受け取らないようにした方が安全 by jflute (2024/11/28)
     // 間違えて new Dog() を引数にしちゃう人もいるかもしれない。すると、ClassCastException が発生する。
     public ZombieBarkingProcess(Zombie zombie) {
         super(zombie);//animalはZombieインスタンス
