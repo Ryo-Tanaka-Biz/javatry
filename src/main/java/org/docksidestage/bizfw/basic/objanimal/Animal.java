@@ -60,7 +60,7 @@ public abstract class Animal implements Loudable {
         return getBarkWord();
     }
 
-    // TODO tanaryo [読み物課題] 比較という点からちょっとこじつけだけど、これ大事なのでぜひ読んでください by jflute (2024/11/28)
+    // TODO done tanaryo [読み物課題] 比較という点からちょっとこじつけだけど、これ大事なのでぜひ読んでください by jflute (2024/11/28)
     // // デバッグパターン: うごかない、ほかうごくなら、ただひかく
     // https://jflute.hatenadiary.jp/entry/20180811/comparingdebug
 
