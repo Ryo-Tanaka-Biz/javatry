@@ -18,7 +18,7 @@ package org.docksidestage.bizfw.basic.objanimal;
 import org.docksidestage.bizfw.basic.objanimal.barking.BarkingProcess;
 import org.docksidestage.bizfw.basic.objanimal.loud.Loudable;
 
-// TODO tanaryo せっかくなので自信もって author を入れて記帳してください^^ by jflute (2024/11/28)
+// TODO donetanaryo せっかくなので自信もって author を入れて記帳してください^^ by jflute (2024/11/28)
 
 /**
  * The object for animal(動物).
