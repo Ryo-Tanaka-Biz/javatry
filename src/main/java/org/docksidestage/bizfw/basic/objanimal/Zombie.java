@@ -15,7 +15,7 @@
  */
 package org.docksidestage.bizfw.basic.objanimal;
 
-import org.docksidestage.bizfw.basic.objanimal.barking.BarkingProcessForZombie;
+import org.docksidestage.bizfw.basic.objanimal.barking.ZombieBarkingProcess;
 
 /**
  * The object for zombie(ゾンビ).
@@ -60,7 +60,7 @@ public class Zombie extends Animal {
     // (BarkingProcessという切り出しまでやっておいて処理の追加ってしないだろうけど、でもできてしまうのでそれを防ぎたい)
     @Override
     public BarkedSound bark() {
-        return new BarkingProcessForZombie(this).bark();
+        return new ZombieBarkingProcess(this).bark();
     }
     // done tanaryo [ふぉろー] hint1: オブジェクト指向はもっと自由で... by jflute (2024/11/15)
     // 階層構造にしていいオブジェクトは一つ(の概念)だけってわけじゃない。
