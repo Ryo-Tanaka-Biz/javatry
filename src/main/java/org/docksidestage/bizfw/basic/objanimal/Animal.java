@@ -46,9 +46,12 @@ public abstract class Animal implements Loudable {
     //                                                                               Bark
     //                                                                              ======
     public BarkedSound bark() {
-        return new BarkingProcess(this).bark();
+        return executeBarkingProcess().bark();
     }
-
+    //overrideはメソッド単位でしか行えないため、メソッドを切り分ける
+    protected BarkingProcess executeBarkingProcess() {
+        return new BarkingProcess(this);
+    }
     // TODO tanaryo こっちだけは簡単にpublicじゃなくprotectedに戻せると思う by jflute (2024/11/28)
     public abstract String getBarkWord();
 
