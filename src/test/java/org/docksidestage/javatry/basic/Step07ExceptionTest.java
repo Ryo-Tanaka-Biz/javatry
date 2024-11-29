@@ -15,6 +15,9 @@
  */
 package org.docksidestage.javatry.basic;
 
+import java.io.File;
+import java.io.IOException;
+
 import org.docksidestage.bizfw.basic.supercar.SupercarClient;
 import org.docksidestage.javatry.basic.st7.St7BasicExceptionThrower;
 import org.docksidestage.javatry.basic.st7.St7ConstructorChallengeException;
@@ -25,7 +28,7 @@ import org.docksidestage.unit.PlainTestCase;
  * Operate as javadoc. If it's question style, write your answer before test execution. <br>
  * (javadocの通りに実施。質問形式の場合はテストを実行する前に考えて答えを書いてみましょう)
  * @author jflute
- * @author your_name_here
+ * @author tanaryo
  */
 public class Step07ExceptionTest extends PlainTestCase {
 
@@ -40,28 +43,30 @@ public class Step07ExceptionTest extends PlainTestCase {
         St7BasicExceptionThrower thrower = new St7BasicExceptionThrower();
         StringBuilder sea = new StringBuilder();
         try {
-            thrower.land();
-            sea.append("dockside");
+            thrower.land();//例外が発生した時点で、処理は中断される。
+            sea.append("dockside");//この処理は実行されない
         } catch (IllegalStateException e) {
             sea.append("hangar");
         } finally {
             sea.append("broadway");
         }
-        log(sea); // your answer? =>
+        log(sea); // your answer? =>hangerbroadway
     }
+    //当たった
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_exception_basic_message() {
         St7BasicExceptionThrower thrower = new St7BasicExceptionThrower();
         String sea = null;
         try {
-            thrower.land();
-            fail("no way here");
+            thrower.land();//ここで例外起きると期待
+            fail("no way here");//起きなかったら、failで失敗
         } catch (IllegalStateException e) {
-            sea = e.getMessage();
+            sea = e.getMessage();//throwerの例外メッセージを表示
         }
-        log(sea); // your answer? =>
+        log(sea); // your answer? =>oneman at showbase
     }
+    //当たった
 
     /**
      * What class name and method name and row number cause the exception? (you can execute and watch logs) <br>
@@ -70,13 +75,14 @@ public class Step07ExceptionTest extends PlainTestCase {
     public void test_exception_basic_stacktrace() {
         St7BasicExceptionThrower thrower = new St7BasicExceptionThrower();
         try {
-            thrower.land();
+            thrower.land();//ここで例外発生
             fail("no way here");
         } catch (IllegalStateException e) {
             log(e);
         }
-        // your answer? => 
+        // your answer? => クラス名:St7BasicExceptionThrower、メソッド名:oneman、40行目
     }
+    //当たった
 
     // ===================================================================================
     //                                                                           Hierarchy
@@ -86,38 +92,41 @@ public class Step07ExceptionTest extends PlainTestCase {
      * (メソッド終了時の変数 sea の中身は？)
      */
     public void test_exception_hierarchy_Runtime_instanceof_RuntimeException() {
-        Object exp = new IllegalStateException("mystic");
-        boolean sea = exp instanceof RuntimeException;
-        log(sea); // your answer? => 
+        Object exp = new IllegalStateException("mystic");//Objectはすべてのスーパークラス、IllegalStateExceptionクラスでnew
+        boolean sea = exp instanceof RuntimeException;//IllegalStateExceptionクラスはRuntimeExceptionクラスのサブクラス。クラスまたはサブクラスに該当すればtrueを返す。
+        log(sea); // your answer? => true
     }
+    //当たった
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_exception_hierarchy_Runtime_instanceof_Exception() {
         Object exp = new IllegalStateException("mystic");
-        boolean sea = exp instanceof Exception;
-        log(sea); // your answer? => 
+        boolean sea = exp instanceof Exception;//Exception -> RuntimeException ->IllegalStateExceptionの関係性
+        log(sea); // your answer? => true
     }
+    //当たった。孫でも同様。
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_exception_hierarchy_Runtime_instanceof_Error() {
         Object exp = new IllegalStateException("mystic");
         boolean sea = exp instanceof Error;
-        log(sea); // your answer? => 
+        log(sea); // your answer? => false、Errorは別
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_exception_hierarchy_Runtime_instanceof_Throwable() {
         Object exp = new IllegalStateException("mystic");
         boolean sea = exp instanceof Throwable;
-        log(sea); // your answer? => 
+        log(sea); // your answer? => true 、 Exception の親なので
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_exception_hierarchy_Throwable_instanceof_Exception() {
         Object exp = new Throwable("mystic");
-        boolean sea = exp instanceof Exception;
-        log(sea); // your answer? => 
+        boolean sea = exp instanceof Exception;//親 of 子はfalse、子 of　親（それ以上）はtrue
+        log(sea); // your answer? => false
     }
+    //当たった
 
     // ===================================================================================
     //                                                                         NullPointer
@@ -129,27 +138,27 @@ public class Step07ExceptionTest extends PlainTestCase {
     public void test_exception_nullpointer_basic() {
         try {
             String sea = "mystic";
-            String land = sea.equals("mystic") ? null : "oneman";
-            String lowerCase = land.toLowerCase();
+            String land = sea.equals("mystic") ? null : "oneman";//trueならnull、falseなら"oneman"返す
+            String lowerCase = land.toLowerCase();//小文字変換しようとしたけどlandがnull
             log(lowerCase);
         } catch (NullPointerException e) {
-            log(e);
+            log(e);//logクラスに例外クラスを入れるとstacktraceを返す
         }
-        // your answer? => 
+        // your answer? => stacktrace
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_exception_nullpointer_headache() {
         try {
             String sea = "mystic";
-            String land = !!!sea.equals("mystic") ? null : "oneman";
-            String piari = !!!sea.equals("mystic") ? "plaza" : null;
-            int sum = land.length() + piari.length();
-            log(sum);
+            String land = !!!sea.equals("mystic") ? null : "oneman";//!１個と一緒。falseなので、oneman
+            String piari = !!!sea.equals("mystic") ? "plaza" : null;//こっちはnull
+            int sum = land.length() + piari.length();//piari.length()でnullぽ
+            log(sum);//出ない
         } catch (NullPointerException e) {
             log(e);
         }
-        // your answer? => 
+        // your answer? => ぬるぽのstacktrace
     }
 
     /**
@@ -161,12 +170,14 @@ public class Step07ExceptionTest extends PlainTestCase {
             String sea = "mystic";
             String land = !!!sea.equals("mystic") ? null : "oneman";
             String piari = !!!sea.equals("mystic") ? "plaza" : null;
-            int sum = land.length() + piari.length();
-            log(sum);
+            int land_length = land.length();
+            int piari_lengthe = piari.length();
+            log(land_length + piari_lengthe);
         } catch (NullPointerException e) {
             log(e);
         }
     }
+    //文字数変換をそれぞれの行で行うことで特定
 
     // ===================================================================================
     //                                                                   Checked Exception
@@ -176,7 +187,16 @@ public class Step07ExceptionTest extends PlainTestCase {
      * (new java.io.File(".") の canonical path を取得してログに表示、I/Oエラーの時はメッセージとスタックトレースを代わりに表示)
      */
     public void test_exception_checkedException_basic() {
+        File file = new File(".");
+        try {
+            String sea = file.getCanonicalPath();
+            log(sea);
+        } catch (IOException e) {
+            log(e.getMessage());
+            log(e.getStackTrace());
+        }
     }
+    //うまくいっている気がする。エラーを起こしたい。
 
     // ===================================================================================
     //                                                                               Cause
