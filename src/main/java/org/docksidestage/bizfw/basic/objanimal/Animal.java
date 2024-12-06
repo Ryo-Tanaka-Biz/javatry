@@ -19,7 +19,7 @@ import org.docksidestage.bizfw.basic.objanimal.barking.BarkedSound;
 import org.docksidestage.bizfw.basic.objanimal.barking.BarkingProcess;
 import org.docksidestage.bizfw.basic.objanimal.loud.Loudable;
 
-// TODO donetanaryo せっかくなので自信もって author を入れて記帳してください^^ by jflute (2024/11/28)
+// done tanaryo せっかくなので自信もって author を入れて記帳してください^^ by jflute (2024/11/28)
 
 /**
  * The object for animal(動物).
@@ -50,17 +50,23 @@ public abstract class Animal implements Loudable {
         return executeBarkingProcess().bark();
     }
     //overrideはメソッド単位でしか行えないため、メソッドを切り分ける
+    // [1on1でのふぉろー] Good. こういうのを「Factoryメソッド」と言います。(インスタンスを生成する工場メソッド)
+    // TODO tanaryo executeは実行するときに使うもの感ある、のでオーソドックスではcreate/prepare by jflute (2024/12/06)
+    // createはインスタンスを作ってるというニュアンスをメソッド名に入れちゃう。
+    // prepareはインスタンスを作ってるかどうかは問わず、単に準備しました、みたいな。(抽象度の違い)
     protected BarkingProcess executeBarkingProcess() {
         return new BarkingProcess(this);
     }
-    // TODO done tanaryo こっちだけは簡単にpublicじゃなくprotectedに戻せると思う by jflute (2024/11/28)
+    // done tanaryo こっちだけは簡単にpublicじゃなくprotectedに戻せると思う by jflute (2024/11/28)
+    // TODO tanaryo 本当にgetBarkWord()の中身も隠蔽した上で実現できます (しかもstep8とか要らない: 基礎文法) by jflute (2024/12/06)
     protected abstract String getBarkWord();
 
+    // [1on1でのフォロー] これはこれで発想としては良い、業務として辻褄合わせてしまうという by jflute
     public String speak() {
         return getBarkWord();
     }
 
-    // TODO done tanaryo [読み物課題] 比較という点からちょっとこじつけだけど、これ大事なのでぜひ読んでください by jflute (2024/11/28)
+    // done tanaryo [読み物課題] 比較という点からちょっとこじつけだけど、これ大事なのでぜひ読んでください by jflute (2024/11/28)
     // // デバッグパターン: うごかない、ほかうごくなら、ただひかく
     // https://jflute.hatenadiary.jp/entry/20180811/comparingdebug
 

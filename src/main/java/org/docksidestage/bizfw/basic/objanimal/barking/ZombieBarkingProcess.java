@@ -2,7 +2,7 @@ package org.docksidestage.bizfw.basic.objanimal.barking;
 
 import org.docksidestage.bizfw.basic.objanimal.Zombie;
 
-// TODO done tanaryo 名前のお作法として、ZombieBarkingProcess がオーソドックスではあるかな by jflute (2024/11/28)
+// done tanaryo 名前のお作法として、ZombieBarkingProcess がオーソドックスではあるかな by jflute (2024/11/28)
 // 「Forなんちゃら」は最終手段みたいな感じかも。
 
 /**
@@ -17,11 +17,11 @@ public class ZombieBarkingProcess extends BarkingProcess {
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    // TODO done tanaryo もう、Zombie専用のBarkingProcessなので、Zombieしか受け取らないようにした方が安全 by jflute (2024/11/28)
+    // done tanaryo もう、Zombie専用のBarkingProcessなので、Zombieしか受け取らないようにした方が安全 by jflute (2024/11/28)
     // 間違えて new Dog() を引数にしちゃう人もいるかもしれない。すると、ClassCastException が発生する。
     public ZombieBarkingProcess(Zombie zombie) {
         super(zombie);//animalはZombieインスタンス
-        // TODO done tanaryo super.じゃ無くていいかな。superに保存したanimalから導出する必要がない、引数のものでOK by jflute (2024/11/28)
+        // done tanaryo super.じゃ無くていいかな。superに保存したanimalから導出する必要がない、引数のものでOK by jflute (2024/11/28)
         this.zombie = zombie;
     }
 

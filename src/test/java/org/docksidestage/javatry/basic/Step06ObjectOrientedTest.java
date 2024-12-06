@@ -536,7 +536,7 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
     public void test_objectOriented_writing_withPackageRefactoring() {
         // your confirmation code here
     }
-
+    
     /**
      * Is Zombie correct as sub-class of Animal? Analyze it in thirty seconds. (thinking only) <br>
      * (ゾンビは動物クラスのサブクラスとして適切でしょうか？30秒だけ考えてみましょう (考えるだけでOK))
@@ -546,7 +546,7 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         // _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
         // is it corrent?
         //適切ではない。animalクラスで抽象メソッドや具象メソッドとして定義されていないメソッドがzombieクラスに存在する
-        // TODO done tanaryo もしそうだとすると、現状Dogにrun()とかdrink()とか独自メソッドあるのでDogも適切ではないになっちゃう？ by jflute (2024/11/28)
+        // done tanaryo もしそうだとすると、現状Dogにrun()とかdrink()とか独自メソッドあるのでDogも適切ではないになっちゃう？ by jflute (2024/11/28)
         // 一応、Dogの方はそれぞれインターフェースのメソッドになっていはいるけど、インターフェースはなくても良いのでやはり同じ話かなと。
         // 例えば、Dogに「お手」というメソッドがあっても良いだろうか？良さそうだけど、DogはAnimalである、とも言える。
         // なので、Animalの具象クラスは、別にその具象固有の振る舞いがあっても不自然ではない。
@@ -554,10 +554,38 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         // hint1: 機能や実装で見るのも大事だけど、概念視点でも考えてみてください。
         // 元々そっちが大事で、オブジェクト指向は概念にフォーカスを当てて整理整頓する術なので、
         // 概念がしっくりくるか？こないか？が一番重要とも言える。そうそう、is-aの関係か？がどうなのか？
+        //
+        // (tanaryoさんより)
         // is-aの関係で考えると犬は動物である。猫は動物である。ゾンビは動物...？となる
         // wikiだとゾンビとは何らかの力で死体のまま蘇った人間の総称
         // 動物の1種というよりかは特定の状態の動物の総称が意味合いとしては近い。
         // なので動物クラスのサブクラスとして、犬と猫と同じ粒度で置くのは違う
+        //
+        // (jfluteより)
+        // 素晴らしい。概念としてしっかり思考できている。
+        // 1on1にて実装の仕方も一緒に考えてもらった: e.g. becomeZombie()
+        // バイオハザードの話をするまでもないけど、した。
+        //
+        // 「概念としてへんな捉え方で実装をしてしまうと、どこかでしわ寄せが来る」 by tanaryo
         // _/_/_/_/_/_/_/_/_/_/
+        
+        // [1on1でのふぉろー] 間違った構造ほどつらいものはない
+        // TODO tanaryo [読み物課題] 理想論は最下位と表裏一体 by jflute (2024/12/06)
+        // https://x.com/jflute/status/1826606471867761055
+        //
+        // ラフスケッチを書くってどんどんやっていい。
+        // ただ、そのためには指が早くないとじゃなくてショートカット活用。
+        // (指が遅くてもショートカット使えば最終的にコード)
+        // 思考を途切れさせないためのショートカット利用。
+        // TODO tanaryo [読み物課題] リファクタリングは思考のツール by jflute (2024/12/06)
+        // https://jflute.hatenadiary.jp/entry/20121202/1354442627
+        //
+        // TODO tanaryo [読み物課題] 別に、プルリクレビューの前にレビューしてもらっていいんだからね by jflute (2024/12/06)
+        // https://jflute.hatenadiary.jp/entry/20170630/reviewbefore
+        //
+        // 紙とペン by tanaryo
+        // フリーハンドの話 by jflute
+        // TODO tanaryo [読み物課題] ホワイトボードを買ってこよう by jflute (2024/12/06)
+        // https://jflute.hatenadiary.jp/entry/20110607/1307440686
     }
 }
