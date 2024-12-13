@@ -59,6 +59,11 @@ public abstract class Animal implements Loudable {
     }
     // done tanaryo こっちだけは簡単にpublicじゃなくprotectedに戻せると思う by jflute (2024/11/28)
     // TODO tanaryo 本当にgetBarkWord()の中身も隠蔽した上で実現できます (しかもstep8とか要らない: 基礎文法) by jflute (2024/12/06)
+    // downHitPointとの違いは？
+    //getBarkWordは単純に文字列を返している
+    //文字列を隠せば良い？
+    //泣き声データを管理するクラスやリソースを作成してBarkingProcessで取ってくる？
+
     protected abstract String getBarkWord();
 
     // [1on1でのフォロー] これはこれで発想としては良い、業務として辻褄合わせてしまうという by jflute

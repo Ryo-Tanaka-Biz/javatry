@@ -536,7 +536,7 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
     public void test_objectOriented_writing_withPackageRefactoring() {
         // your confirmation code here
     }
-    
+
     /**
      * Is Zombie correct as sub-class of Animal? Analyze it in thirty seconds. (thinking only) <br>
      * (ゾンビは動物クラスのサブクラスとして適切でしょうか？30秒だけ考えてみましょう (考えるだけでOK))
@@ -568,24 +568,28 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         //
         // 「概念としてへんな捉え方で実装をしてしまうと、どこかでしわ寄せが来る」 by tanaryo
         // _/_/_/_/_/_/_/_/_/_/
-        
+
         // [1on1でのふぉろー] 間違った構造ほどつらいものはない
-        // TODO tanaryo [読み物課題] 理想論は最下位と表裏一体 by jflute (2024/12/06)
+        // TODO done tanaryo [読み物課題] 理想論は最下位と表裏一体 by jflute (2024/12/06)
         // https://x.com/jflute/status/1826606471867761055
-        //
+        //最悪の選択肢を実行しないために、最善を尽くそうとするマクドナルド理論を思い出しました。(by tanaryo)
+        //最悪な状況起点から考えるという点では似てるかも？
+        //https://marumo-c.com/pages/127/detail=1/b_id=481/r_id=315/
         // ラフスケッチを書くってどんどんやっていい。
         // ただ、そのためには指が早くないとじゃなくてショートカット活用。
         // (指が遅くてもショートカット使えば最終的にコード)
         // 思考を途切れさせないためのショートカット利用。
-        // TODO tanaryo [読み物課題] リファクタリングは思考のツール by jflute (2024/12/06)
+        // TODO done tanaryo [読み物課題] リファクタリングは思考のツール by jflute (2024/12/06)
         // https://jflute.hatenadiary.jp/entry/20121202/1354442627
-        //
-        // TODO tanaryo [読み物課題] 別に、プルリクレビューの前にレビューしてもらっていいんだからね by jflute (2024/12/06)
+        //メモ：操作方法に気を取られて本当にやりたいこと（思考するとか）に集中できないのは勿体無い！（by tanaryo）
+        // TODO done tanaryo [読み物課題] 別に、プルリクレビューの前にレビューしてもらっていいんだからね by jflute (2024/12/06)
         // https://jflute.hatenadiary.jp/entry/20170630/reviewbefore
-        //
+        // 自分が担当しているタスクの進捗が周囲から見てブラックボックス化していると、盛大な手戻りや連携ミスのリスクが発生して良くないなあと
+        // 周囲のタスク状況を把握する役割を与えられてからつくづく感じます。なので自分が作業者の場合、つぶやきレベルでもいいから自分が考えていることオープンな場所にさらすようにしています笑
         // 紙とペン by tanaryo
         // フリーハンドの話 by jflute
-        // TODO tanaryo [読み物課題] ホワイトボードを買ってこよう by jflute (2024/12/06)
+        // TODO done tanaryo [読み物課題] ホワイトボードを買ってこよう by jflute (2024/12/06)
         // https://jflute.hatenadiary.jp/entry/20110607/1307440686
+        // 気軽に消せるという点で紙より有能です（by tanaryo）
     }
 }
