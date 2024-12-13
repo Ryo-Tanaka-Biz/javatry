@@ -63,6 +63,8 @@ public abstract class Animal implements Loudable {
     //getBarkWordは単純に文字列を返している
     //文字列を隠せば良い？
     //泣き声データを管理するクラスやリソースを作成してBarkingProcessで取ってくる？
+    //パッケージ移動とサブクラス以外にあるのか。。。。。
+    //もはやBarkingProcessからアクセスしない？
 
     protected abstract String getBarkWord();
 
