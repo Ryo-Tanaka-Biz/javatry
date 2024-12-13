@@ -47,14 +47,14 @@ public abstract class Animal implements Loudable {
     //                                                                               Bark
     //                                                                              ======
     public BarkedSound bark() {
-        return executeBarkingProcess().bark();
+        return createBarkingProcess().bark();
     }
     //overrideはメソッド単位でしか行えないため、メソッドを切り分ける
     // [1on1でのふぉろー] Good. こういうのを「Factoryメソッド」と言います。(インスタンスを生成する工場メソッド)
-    // TODO tanaryo executeは実行するときに使うもの感ある、のでオーソドックスではcreate/prepare by jflute (2024/12/06)
+    // TODO done tanaryo executeは実行するときに使うもの感ある、のでオーソドックスではcreate/prepare by jflute (2024/12/06)
     // createはインスタンスを作ってるというニュアンスをメソッド名に入れちゃう。
     // prepareはインスタンスを作ってるかどうかは問わず、単に準備しました、みたいな。(抽象度の違い)
-    protected BarkingProcess executeBarkingProcess() {
+    protected BarkingProcess createBarkingProcess() {
         return new BarkingProcess(this);
     }
     // done tanaryo こっちだけは簡単にpublicじゃなくprotectedに戻せると思う by jflute (2024/11/28)

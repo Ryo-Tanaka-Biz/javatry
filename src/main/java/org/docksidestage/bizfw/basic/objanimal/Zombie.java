@@ -60,7 +60,7 @@ public class Zombie extends Animal {
     // 現状だと、bark()の流れをコピーしてきてしまっている。仮にsuperのbark()で処理が追加された場合に追従できない。
     // (BarkingProcessという切り出しまでやっておいて処理の追加ってしないだろうけど、でもできてしまうのでそれを防ぎたい)
     @Override
-    protected BarkingProcess executeBarkingProcess() {
+    protected BarkingProcess createBarkingProcess() {
         return new ZombieBarkingProcess(this);
     }
     // done tanaryo [ふぉろー] hint1: オブジェクト指向はもっと自由で... by jflute (2024/11/15)
