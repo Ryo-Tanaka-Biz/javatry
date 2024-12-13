@@ -51,7 +51,7 @@ public abstract class Animal implements Loudable {
     }
     //overrideはメソッド単位でしか行えないため、メソッドを切り分ける
     // [1on1でのふぉろー] Good. こういうのを「Factoryメソッド」と言います。(インスタンスを生成する工場メソッド)
-    // TODO done tanaryo executeは実行するときに使うもの感ある、のでオーソドックスではcreate/prepare by jflute (2024/12/06)
+    // done tanaryo executeは実行するときに使うもの感ある、のでオーソドックスではcreate/prepare by jflute (2024/12/06)
     // createはインスタンスを作ってるというニュアンスをメソッド名に入れちゃう。
     // prepareはインスタンスを作ってるかどうかは問わず、単に準備しました、みたいな。(抽象度の違い)
     protected BarkingProcess createBarkingProcess() {
@@ -65,6 +65,12 @@ public abstract class Animal implements Loudable {
     //泣き声データを管理するクラスやリソースを作成してBarkingProcessで取ってくる？
     //パッケージ移動とサブクラス以外にあるのか。。。。。
     //もはやBarkingProcessからアクセスしない？
+    // TODO tanaryo hint1: "downHitPointとの違いは？" という問いがとても良い by jflute (2024/12/13)
+    // getBarkWord(): BarkingProcessは、戻ってきた文字列が欲しいだけ (中の処理の実行タイミングは関係ない)
+    // downHitPoint(): BarkingProcessは、downHitPoint()を適所タイミングで実行しないといけない
+    // hint2: 基礎文法と書いたけど、基礎基礎文法でどうにかなる
+    // hint3: 修正しても、全体クラス構造は何にも変わらない
+    // hint4: step4とかくらいの文法知識
 
     protected abstract String getBarkWord();
 
