@@ -17,7 +17,7 @@ public class Fish extends Animal {
     //                                                                               Bark
     //                                                                              ======
     @Override
-    public String getBarkWord() {
+    protected String getBarkWord() {
         return "pitya-"; // mew? in English
     }
 
