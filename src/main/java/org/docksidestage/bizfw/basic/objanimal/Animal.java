@@ -58,14 +58,14 @@ public abstract class Animal implements Loudable {
         return new BarkingProcess(this);
     }
     // done tanaryo こっちだけは簡単にpublicじゃなくprotectedに戻せると思う by jflute (2024/11/28)
-    // TODO tanaryo 本当にgetBarkWord()の中身も隠蔽した上で実現できます (しかもstep8とか要らない: 基礎文法) by jflute (2024/12/06)
+    // TODO done tanaryo 本当にgetBarkWord()の中身も隠蔽した上で実現できます (しかもstep8とか要らない: 基礎文法) by jflute (2024/12/06)
     // downHitPointとの違いは？
     //getBarkWordは単純に文字列を返している
     //文字列を隠せば良い？
     //泣き声データを管理するクラスやリソースを作成してBarkingProcessで取ってくる？
     //パッケージ移動とサブクラス以外にあるのか。。。。。
     //もはやBarkingProcessからアクセスしない？
-    // TODO tanaryo hint1: "downHitPointとの違いは？" という問いがとても良い by jflute (2024/12/13)
+    // TODO done tanaryo hint1: "downHitPointとの違いは？" という問いがとても良い by jflute (2024/12/13)
     // getBarkWord(): BarkingProcessは、戻ってきた文字列が欲しいだけ (中の処理の実行タイミングは関係ない)
     // downHitPoint(): BarkingProcessは、downHitPoint()を適所タイミングで実行しないといけない
     // hint2: 基礎文法と書いたけど、基礎基礎文法でどうにかなる
