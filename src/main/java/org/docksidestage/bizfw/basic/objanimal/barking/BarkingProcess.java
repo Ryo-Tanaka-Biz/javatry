@@ -28,10 +28,9 @@ public class BarkingProcess {
     // ===================================================================================
     //                                                                               Bark
     //                                                                              ======
-    public BarkedSound bark() {
+    public BarkedSound bark(String barkWord) {
         breatheIn();
         prepareAbdominalMuscle();
-        String barkWord = animal.speak(); // Animalから取得
         return doBark(barkWord);
     }
 

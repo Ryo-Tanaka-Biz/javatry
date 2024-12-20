@@ -47,7 +47,7 @@ public abstract class Animal implements Loudable {
     //                                                                               Bark
     //                                                                              ======
     public BarkedSound bark() {
-        return createBarkingProcess().bark();
+        return createBarkingProcess().bark(getBarkWord());
     }
     //overrideはメソッド単位でしか行えないため、メソッドを切り分ける
     // [1on1でのふぉろー] Good. こういうのを「Factoryメソッド」と言います。(インスタンスを生成する工場メソッド)
@@ -75,9 +75,6 @@ public abstract class Animal implements Loudable {
     protected abstract String getBarkWord();
 
     // [1on1でのフォロー] これはこれで発想としては良い、業務として辻褄合わせてしまうという by jflute
-    public String speak() {
-        return getBarkWord();
-    }
 
     // done tanaryo [読み物課題] 比較という点からちょっとこじつけだけど、これ大事なのでぜひ読んでください by jflute (2024/11/28)
     // // デバッグパターン: うごかない、ほかうごくなら、ただひかく
