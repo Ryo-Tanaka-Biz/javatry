@@ -58,19 +58,30 @@ public abstract class Animal implements Loudable {
         return new BarkingProcess(this);
     }
     // done tanaryo こっちだけは簡単にpublicじゃなくprotectedに戻せると思う by jflute (2024/11/28)
-    // TODO done tanaryo 本当にgetBarkWord()の中身も隠蔽した上で実現できます (しかもstep8とか要らない: 基礎文法) by jflute (2024/12/06)
+    // done tanaryo 本当にgetBarkWord()の中身も隠蔽した上で実現できます (しかもstep8とか要らない: 基礎文法) by jflute (2024/12/06)
     // downHitPointとの違いは？
     //getBarkWordは単純に文字列を返している
     //文字列を隠せば良い？
     //泣き声データを管理するクラスやリソースを作成してBarkingProcessで取ってくる？
     //パッケージ移動とサブクラス以外にあるのか。。。。。
     //もはやBarkingProcessからアクセスしない？
-    // TODO done tanaryo hint1: "downHitPointとの違いは？" という問いがとても良い by jflute (2024/12/13)
+    // done tanaryo hint1: "downHitPointとの違いは？" という問いがとても良い by jflute (2024/12/13)
     // getBarkWord(): BarkingProcessは、戻ってきた文字列が欲しいだけ (中の処理の実行タイミングは関係ない)
     // downHitPoint(): BarkingProcessは、downHitPoint()を適所タイミングで実行しないといけない
     // hint2: 基礎文法と書いたけど、基礎基礎文法でどうにかなる
     // hint3: 修正しても、全体クラス構造は何にも変わらない
     // hint4: step4とかくらいの文法知識
+    //
+    // [1on1でのフォロー] 自力で灯台下暗しを発見してくれた！
+    // プログラマー (ITエンジニア) は、こういうの見逃しがち、難しいこと考えすぎなことがよくある。
+    // これをjavatryで体験できたのが良かった良かった。 by jflute
+    //
+    // 質問: どうやって導くか？ by tanaryo
+    // BarkingProcessの欲しいもの整理整頓が基本で、"戻ってきた文字列が欲しいだけ" がわかれば引数につながる。
+    // 引数がつながらないケースは、覚えた文法(武器)が頭の中で整理整頓できてなくて取り出せないのかも。
+    // ゲームでアイテム欄を整理整頓するのと同じく、学んだことを整理整頓して頭に置いておくのが大切。
+    //
+    // いい思い出にしてもらえればと。
 
     protected abstract String getBarkWord();
 

@@ -112,6 +112,9 @@ public class Step07ExceptionTest extends PlainTestCase {
         boolean sea = exp instanceof Error;
         log(sea); // your answer? => false、Errorは別
     }
+    // [1on1でのふぉろー] ErrorとExceptionの違いを話した。
+    // 量子もつれの話が意外にわかりやすかったかも (思いつき)。
+    // 中断イベントとその中身を概念的にしっかり理解することがエラーハンドリングに大切。
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_exception_hierarchy_Runtime_instanceof_Throwable() {
@@ -120,6 +123,7 @@ public class Step07ExceptionTest extends PlainTestCase {
         log(sea); // your answer? => true 、 Exception の親なので
     }
 
+    // TODO jflute 次回1on1ここから (2024/12/20)
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_exception_hierarchy_Throwable_instanceof_Exception() {
         Object exp = new Throwable("mystic");
