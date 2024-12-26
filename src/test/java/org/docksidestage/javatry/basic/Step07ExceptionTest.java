@@ -123,7 +123,10 @@ public class Step07ExceptionTest extends PlainTestCase {
         log(sea); // your answer? => true 、 Exception の親なので
     }
 
-    // TODO jflute 次回1on1ここから (2024/12/20)
+    // done jflute 次回1on1ここから (2024/12/20)
+    // [1on1でのふぉろー] Throwableがインターフェースっぽい名前話
+    // あと、Java標準クラスでis-aじゃない継承ある話、java.sql.Date
+    // それを綺麗に解決している HashSet のお話。
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_exception_hierarchy_Throwable_instanceof_Exception() {
         Object exp = new Throwable("mystic");
@@ -153,6 +156,7 @@ public class Step07ExceptionTest extends PlainTestCase {
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_exception_nullpointer_headache() {
+        // [1on1でのふぉろー] 最近のJavaだと、NullPointerのメッセージでどの変数がnullだったか教えてくれる話
         try {
             String sea = "mystic";
             String land = !!!sea.equals("mystic") ? null : "oneman";//!１個と一緒。falseなので、oneman
@@ -196,11 +200,20 @@ public class Step07ExceptionTest extends PlainTestCase {
             String sea = file.getCanonicalPath();
             log(sea);
         } catch (IOException e) {
+            // TODO tanaryo メッセージとスタックトレース出すときは、log(e)だけでOK by jflute (2024/12/26)
+            // log()メソッドの中で、eが来たら、両方出すように作られているので。(これは知らなくて当然)
             log(e.getMessage());
             log(e.getStackTrace());
         }
+        // [1on1でのふぉろー] チェック例外と非チェック例外のお話少し。
+        // 理想的にはチェック例外は、catchを促してくれる良い文法ではあるが...実際使われていない(ことがほとんど)
+        // ピンポイントで本当にcatchを促したい場面で使うにはいいけど、汎用的に使うとどうでもいいときもコンパイルエラーになりがち。
+        // ...(その他あれこれ話して)
+        // なので、javatryでも1問しか用意してない。
     }
     //うまくいっている気がする。エラーを起こしたい。
+    // [1on1でのふぉろー] まあなかなかIOExceptionは起こせないので...自分でthrowしてcatchさせちゃってください。
+    //  e.g. throw new IOException("aaaaaaaa");
 
     // ===================================================================================
     //                                                                               Cause
@@ -252,7 +265,15 @@ public class Step07ExceptionTest extends PlainTestCase {
             Integer.valueOf("piari");//ここの処理でthrow
         }
     }
+    
+    // [1on1でのふぉろー] 質問: 元の例外を引き継ぐ必要性は？
+    // => 根本原因を知るため by tanaryo
+    // 例外が例外を保持できる理由について話した。
+    
+    // TODO tanaryo [読み物課題] エラーメッセージ読め読め大合唱 by jflute (2024/12/26)
+    // https://jflute.hatenadiary.jp/entry/20130522/errorsinging
 
+    // TODO jflute 次回ここから1on1 (2024/12/26)
     // ===================================================================================
     //                                                                         Translation
     //                                                                         ===========
