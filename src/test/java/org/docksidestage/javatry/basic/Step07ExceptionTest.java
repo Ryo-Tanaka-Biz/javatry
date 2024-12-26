@@ -218,38 +218,38 @@ public class Step07ExceptionTest extends PlainTestCase {
             fail("always exception but none");
         } catch (IllegalStateException e) {
             Throwable cause = e.getCause();
-            sea = cause.getMessage();
+            sea = cause.getMessage();//IllegalStateExceptionが生じた原因の例外なのでIllegalArgumentExceptionのことを指す
             land = cause.getClass().getSimpleName();
-            log(sea); // your answer? => 
-            log(land); // your answer? => 
-            log(e); // your answer? => 
+            log(sea); // your answer? => Failed to call the third help method: symbol=-1
+            log(land); // your answer? => IllegalArgumentException
+            log(e); // your answer? =>最後の例外クラス名はNumberFormatException
         }
     }
 
     private void throwCauseFirstLevel() {
-        int symbol = Integer.MAX_VALUE - 0x7ffffffe;
+        int symbol = Integer.MAX_VALUE - 0x7ffffffe;//1
         try {
             throwCauseSecondLevel(symbol);
-        } catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {//secondで生じたスローをキャッチ
             throw new IllegalStateException("Failed to call the second help method: symbol=" + symbol, e);
         }
     }
 
     private void throwCauseSecondLevel(int symbol) {
         try {
-            --symbol;
-            symbol--;
+            --symbol;//0
+            symbol--;//-1
             if (symbol < 0) {
-                throwCauseThirdLevel(symbol);
+                throwCauseThirdLevel(symbol);//-1でthrow
             }
-        } catch (NumberFormatException e) {
+        } catch (NumberFormatException e) {//不正な文字列を数値型に変換しようとすると生じる例外。thirdで生じた例外をキャッチ
             throw new IllegalArgumentException("Failed to call the third help method: symbol=" + symbol, e);
         }
     }
 
     private void throwCauseThirdLevel(int symbol) {
         if (symbol < 0) {
-            Integer.valueOf("piari");
+            Integer.valueOf("piari");//ここの処理でthrow
         }
     }
 
@@ -262,9 +262,9 @@ public class Step07ExceptionTest extends PlainTestCase {
      */
     public void test_exception_translation_debugChallenge() {
         try {
-            new SupercarClient().buySupercar();
+            new SupercarClient().buySupercar();//SupercarClientクラスをnewして、buySupercarメソッドを実行。.buySupercar()でエラー起きてる
             fail("always exception but none");
-        } catch (RuntimeException e) {
+        } catch (RuntimeException e) {//ざっくり例外だよーと言ってる
             log("*No hint here for training.", e);
             // _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
             // What happens? Write situation and cause here. (何が起きた？状況と原因をここに書いてみましょう)
