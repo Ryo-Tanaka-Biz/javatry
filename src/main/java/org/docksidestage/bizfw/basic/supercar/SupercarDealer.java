@@ -26,11 +26,23 @@ public class SupercarDealer {
     public Supercar orderSupercar(String clientRequirement) {
         SupercarManufacturer supercarManufacturer = createSupercarManufacturer();
         if (clientRequirement.contains("steering wheel is like sea")) {
-            return supercarManufacturer.makeSupercar("piari");
+            try {
+                return supercarManufacturer.makeSupercar("piari");//ここ実行
+            } catch (IllegalStateException e) {
+                throw new IllegalStateException("Failed to make supercar", e);
+            }
         } else if (clientRequirement.contains("steering wheel is useful on land")) {
-            return supercarManufacturer.makeSupercar("land");
+            try {
+                return supercarManufacturer.makeSupercar("land");
+            } catch (IllegalStateException e) {
+                throw new IllegalStateException("Failed to make supercar", e);
+            }
         } else if (clientRequirement.contains("steering wheel has many shop")) {
-            return supercarManufacturer.makeSupercar("piari");
+            try {
+                return supercarManufacturer.makeSupercar("piari");
+            } catch (IllegalStateException e) {
+                throw new IllegalStateException("Failed to make supercar", e);
+            }
         } else {
             throw new IllegalStateException("Cannot understand the client requirement: " + clientRequirement);
         }

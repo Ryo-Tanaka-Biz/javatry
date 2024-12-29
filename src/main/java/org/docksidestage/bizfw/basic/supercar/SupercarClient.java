@@ -29,9 +29,14 @@ public class SupercarClient {
     private final Collection<Supercar> orderedCustomCarCollection = new ArrayList<>();
 
     public void buySupercar() {
-        SupercarDealer dealer = createDealer();
-        String clientRequirement = prepareClientRequirement();
-        Supercar orderedCustomCar = dealer.orderSupercar(clientRequirement);
+        SupercarDealer dealer = createDealer();//ディーラーをnew
+        String clientRequirement = prepareClientRequirement();//要求準備
+        Supercar orderedCustomCar;
+        try {
+            orderedCustomCar = dealer.orderSupercar(clientRequirement);//要求を汲んでスーパーカーをオーダー
+        } catch (IllegalStateException e) {
+            throw new IllegalStateException("Failed to order supercar", e);
+        }
         orderedCustomCarCollection.add(orderedCustomCar);
     }
 

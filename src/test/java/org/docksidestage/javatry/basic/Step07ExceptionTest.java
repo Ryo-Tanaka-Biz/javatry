@@ -265,11 +265,11 @@ public class Step07ExceptionTest extends PlainTestCase {
             Integer.valueOf("piari");//ここの処理でthrow
         }
     }
-    
+
     // [1on1でのふぉろー] 質問: 元の例外を引き継ぐ必要性は？
     // => 根本原因を知るため by tanaryo
     // 例外が例外を保持できる理由について話した。
-    
+
     // TODO tanaryo [読み物課題] エラーメッセージ読め読め大合唱 by jflute (2024/12/26)
     // https://jflute.hatenadiary.jp/entry/20130522/errorsinging
 
@@ -290,9 +290,16 @@ public class Step07ExceptionTest extends PlainTestCase {
             // _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
             // What happens? Write situation and cause here. (何が起きた？状況と原因をここに書いてみましょう)
             // - - - - - - - - - -
+            //例外メッセージから調査する
+            //例外発生箇所は"The kawaii face is already unsupported so we cannot make it."
+            //SpecialScrewManufacturerクラスの２９行目で発生
+            //かわいい顔の（模様をした？）特別なねじはサポート外なので作れない
+            //顧客がスーパーカーを注文するときに、特別なねじの仕様を要求したら、そのねじはサポート外なので作れないとネジ製造業者に言われた？
+            //どこかでねじを指定しているのか
+            //catogoryでpiariを指定したときに、それを元にハンドルIdが指定され、それを元にネジの仕様が決定している
             //
-            //
-            //
+            //状況：顧客は特定のハンドルの仕様を指定して、スーパーカーを購入しようとしたがスーパーカーを購入できなかった。
+            //根本原因：指定した特定のハンドルで使用されるねじがねじ製造業者でサポート外であり、そのねじを製造できなかった。
             // _/_/_/_/_/_/_/_/_/_/
         }
     }
@@ -306,8 +313,8 @@ public class Step07ExceptionTest extends PlainTestCase {
         try {
             new SupercarClient().buySupercar(); // you can fix the classes
             fail("always exception but none");
-        } catch (RuntimeException e) {
-            log("*No hint here for training.", e);
+        } catch (IllegalStateException e) {
+            log("Failed to buy supercar", e);
         }
     }
 
@@ -323,6 +330,7 @@ public class Step07ExceptionTest extends PlainTestCase {
             helpSurprisedYabaiCatch();
         } catch (St7ConstructorChallengeException e) {
             log("Thrown by help method", e); // should show also "Caused-by" information
+            //causeを例外クラスに追加した
         }
     }
 
@@ -330,7 +338,7 @@ public class Step07ExceptionTest extends PlainTestCase {
         try {
             helpThrowIllegalState();
         } catch (IllegalStateException e) {
-            throw new St7ConstructorChallengeException("Failed to do something.");
+            throw new St7ConstructorChallengeException("Failed to do something.", e);
         }
     }
 
@@ -352,9 +360,21 @@ public class Step07ExceptionTest extends PlainTestCase {
         // _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
         // Write here. (ここに書いてみましょう)
         // - - - - - - - - - -
-        //
-        //
+        //Error：動作の継続が期待できない異常
+        //Exception:動作の継続が期待できる異常
         //
         // _/_/_/_/_/_/_/_/_/_/
     }
 }
+
+//例外について
+//Throwableクラス：throw文で投げることができて、catch節で受け止められるクラス
+//--- Error：動作の継続が期待できない
+//--- Exception:動作の継続が期待できる
+
+//コンパイラによってチェックされる例外（DB操作やネットワークといった外部要因による例外？）
+//RuntimeException以外のException
+
+//コンパイラによってチェックされない例外
+//Error（いつどこでも起こりうる）とRuntimeException系（開発者の考えた仕様により生じる例外？）
+//チェックされないのでtrycatchなどは必須ではない。ただなにも対応してないと、例外発生時に原因を辿りづらく保守運用の観点で良くない。
