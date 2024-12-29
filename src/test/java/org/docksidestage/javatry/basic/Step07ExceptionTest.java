@@ -377,4 +377,4 @@ public class Step07ExceptionTest extends PlainTestCase {
 
 //コンパイラによってチェックされない例外
 //Error（いつどこでも起こりうる）とRuntimeException系（開発者の考えた仕様により生じる例外？）
-//チェックされないのでtrycatchなどは必須ではない。ただなにも対応してないと、例外発生時に原因を辿りづらく保守運用の観点で良くない。
+//RuntimeException系に関して、チェックされないのでtrycatchなどは必須ではない。ただなにも対応してないと、例外発生時に原因を辿りづらく保守運用の観点で良くない。
