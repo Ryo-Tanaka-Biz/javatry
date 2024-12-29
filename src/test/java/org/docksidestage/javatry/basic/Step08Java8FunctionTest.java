@@ -52,6 +52,9 @@ public class Step08Java8FunctionTest extends PlainTestCase {
 
         log("...Executing named class callback(!?)");
         helpCallbackConsumer(new St8BasicConsumer(title));
+        // broadway
+        // dogside:over
+        // hangar
 
         log("...Executing anonymous class callback");
         helpCallbackConsumer(new Consumer<String>() {
@@ -59,16 +62,28 @@ public class Step08Java8FunctionTest extends PlainTestCase {
                 log(stage + ": " + title);
             }
         });
+        // 匿名クラスを使用。このとき抽象メソッドは実装しないといけない。new （クラス名）{実装}の形。
+        // broadway
+        // dogside:over
+        // hangar
 
         log("...Executing lambda block style callback");
         helpCallbackConsumer(stage -> {
             log(stage + ": " + title);
         });
+        // ラムダ式を利用。（引数）-> {実装}の形。
+        // 引数の型は指定しなくて良い（今回だとString）。型推論って言葉が存在していた。
+        // メソッド名も明示しなくて良い。関数型インターフェースは１つの抽象メソッドしか持っていないから。
 
         log("...Executing lambda expression style callback");
         helpCallbackConsumer(stage -> log(stage + ": " + title));
+        //実装箇所が１行の場合、{}を省略できる。return文の場合、returnはつけない（つけたらエラー起きた）。
 
-        // your answer? => 
+        // your answer? => yes
+        //関数型インターフェース（抽象メソッドを１つだけ持っている）をどう実装するか
+        // 1.実名クラス
+        // 2.匿名クラス new（クラス名）{実装}
+        // 3.ラムダ式 （引数）-> {実装} 実装１行なら{}省略可能
 
         // cannot reassign because it is used at callback process
         //title = "wave";
@@ -84,7 +99,8 @@ public class Step08Java8FunctionTest extends PlainTestCase {
             log(stage);
         });
         log("lost river");
-        // your answer? => 
+        // your answer? => harbor,broadway,dogside,hangar,lost river
+        //当たった。1個前のテストと実装内容が異なることに注意
     }
 
     private class St8BasicConsumer implements Consumer<String> {
@@ -116,11 +132,13 @@ public class Step08Java8FunctionTest extends PlainTestCase {
         String sea = helpCallbackFunction(number -> {
             return label + ": " + number;
         });
-        log(sea); // your answer? => 
+        log(sea); // your answer? =>number:7
+        //functionインターフェースは入力型Tを受け取り、戻り値型Rを返す。
     }
 
     private String helpCallbackFunction(Function<Integer, String> oneArgLambda) {
         return oneArgLambda.apply(7);
+        //引数をIntegerで受け取り、Stringで返す。
     }
 
     // -----------------------------------------------------
@@ -136,27 +154,35 @@ public class Step08Java8FunctionTest extends PlainTestCase {
      * (このようにコールバックスタイルを変えてみましょう:)
      * <pre>
      * o sea: BlockのLambda式に
-     * o land: ExpressionのLambda式に
+     * o land: ExpressionのLambda式に（{}なし）
      * o piari: BlockのLambda式に
      * </pre>
      */
     public void test_java8_lambda_convertStyle_basic() {
-        helpCallbackSupplier(new Supplier<String>() { // sea
-            public String get() {
-                return "broadway";
-            }
+        //        helpCallbackSupplier(new Supplier<String>() { // sea
+        //            public String get() {
+        //                return "broadway";
+        //            }
+        //        });
+        helpCallbackSupplier(() -> {
+            return "broadway";
         });
 
-        helpCallbackSupplier(() -> { // land
-            return "dockside";
-        });
+        //        helpCallbackSupplier(() -> { // land
+        //            return "dockside";
+        //        });
+        helpCallbackSupplier(() -> "dockside");
+        // return は書かなくて良い
 
-        helpCallbackSupplier(() -> "hangar"); // piari
+        helpCallbackSupplier(() -> {
+            return "hangar";
+        }); // piari
     }
 
     private void helpCallbackSupplier(Supplier<String> oneArgLambda) {
         String supplied = oneArgLambda.get();
         log(supplied);
+        //Supplierインターフェースは引数を受け取らず、値を返す。
     }
 
     // ===================================================================================
@@ -247,9 +273,7 @@ public class Step08Java8FunctionTest extends PlainTestCase {
                 .orElse("*no reason: someone was not present");
 
         int defaultWithdrawalId = -1;
-        Integer miraco = facade.selectMember(2)
-                .flatMap(mb -> mb.getWithdrawal())
-                .map(wdl -> wdl.getWithdrawalId()) // ID here
+        Integer miraco = facade.selectMember(2).flatMap(mb -> mb.getWithdrawal()).map(wdl -> wdl.getWithdrawalId()) // ID here
                 .orElse(defaultWithdrawalId);
 
         log(sea); // your answer? => 
@@ -324,3 +348,7 @@ public class Step08Java8FunctionTest extends PlainTestCase {
 
     // *Stream API will return at Step12 again, it's worth the wait!
 }
+
+//コールバック処理とは
+//特定の処理が終了したときに指定されたメソッドが呼び出される仕組み
+
