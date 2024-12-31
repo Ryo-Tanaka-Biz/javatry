@@ -200,7 +200,7 @@ public class Step07ExceptionTest extends PlainTestCase {
             String sea = file.getCanonicalPath();
             log(sea);
         } catch (IOException e) {
-            // TODO done tanaryo メッセージとスタックトレース出すときは、log(e)だけでOK by jflute (2024/12/26)
+            // done tanaryo メッセージとスタックトレース出すときは、log(e)だけでOK by jflute (2024/12/26)
             // log()メソッドの中で、eが来たら、両方出すように作られているので。(これは知らなくて当然)
             log(e);
         }
@@ -269,7 +269,7 @@ public class Step07ExceptionTest extends PlainTestCase {
     // => 根本原因を知るため by tanaryo
     // 例外が例外を保持できる理由について話した。
 
-    // TODO done tanaryo [読み物課題] エラーメッセージ読め読め大合唱 by jflute (2024/12/26)
+    // done tanaryo [読み物課題] エラーメッセージ読め読め大合唱 by jflute (2024/12/26)
     // https://jflute.hatenadiary.jp/entry/20130522/errorsinging
 
     // TODO jflute 次回ここから1on1 (2024/12/26)
