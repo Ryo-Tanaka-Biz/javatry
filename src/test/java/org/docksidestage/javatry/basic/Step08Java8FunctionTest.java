@@ -62,7 +62,7 @@ public class Step08Java8FunctionTest extends PlainTestCase {
                 log(stage + ": " + title);
             }
         });
-        // 匿名クラスを使用。このとき抽象メソッドは実装しないといけない。new （クラス名）{実装}の形。
+        // 匿名クラスを使用。このとき抽象メソッドは実装しないといけない。new（クラス名()）{実装}の形。
         // broadway
         // dogside:over
         // hangar
@@ -195,14 +195,15 @@ public class Step08Java8FunctionTest extends PlainTestCase {
     public void test_java8_optional_concept() {
         St8Member oldmember = new St8DbFacade().oldselectMember(1);
         if (oldmember != null) {
-            log(oldmember.getMemberId(), oldmember.getMemberName());
+            log(oldmember.getMemberId(), oldmember.getMemberName());//1,broadway
         }
         Optional<St8Member> optMember = new St8DbFacade().selectMember(1);
-        if (optMember.isPresent()) {
-            St8Member member = optMember.get();
-            log(member.getMemberId(), member.getMemberName());
+        if (optMember.isPresent()) {//nullならfalse
+            St8Member member = optMember.get();//getはクラスの持つ値を返す
+            log(member.getMemberId(), member.getMemberName());//1,broadway
         }
-        // your answer? => 
+        // your answer? => Yes。
+        //当たった。Optionalクラスを用いた場合の書き換えをここでは理解
     }
 
     /**
@@ -213,12 +214,30 @@ public class Step08Java8FunctionTest extends PlainTestCase {
         Optional<St8Member> optMember = new St8DbFacade().selectMember(1);
         if (optMember.isPresent()) {
             St8Member member = optMember.get();
-            log(member.getMemberId(), member.getMemberName());
+            log(member.getMemberId(), member.getMemberName());//1,broadway
         }
         optMember.ifPresent(member -> {
             log(member.getMemberId(), member.getMemberName());
         });
-        // your answer? => 
+
+        //{}外してみた
+        optMember.ifPresent(member -> log(member.getMemberId(), member.getMemberName()));
+
+        //匿名クラスで書いてみた
+        optMember.ifPresent(new Consumer<St8Member>() {
+            public void accept(St8Member member) {
+                log(member.getMemberId(), member.getMemberName());
+            }
+        });
+
+        // your answer? =>　yes
+        //２種類のifPresentの書き換えをここでは理解。
+        //前者は引数もたず、true or falseを返す。
+        //後者はconsumer型を引数に持ち、値が存在していたらacceptメソッドを実行する。
+        //引数にラムダ式があったら考えること
+        //引数に関数型インターフェースを使っているな！
+        //インスタンスが生成または再利用されているな！
+        //ここでは抽象メソッドを実装しているな！
     }
 
     /**
@@ -234,7 +253,7 @@ public class Step08Java8FunctionTest extends PlainTestCase {
         if (oldmemberFirst != null) {
             St8Withdrawal withdrawal = oldmemberFirst.oldgetWithdrawal();
             if (withdrawal != null) {
-                sea = withdrawal.oldgetPrimaryReason();
+                sea = withdrawal.oldgetPrimaryReason();//"music"
                 if (sea == null) {
                     sea = "*no reason1: the PrimaryReason was null";
                 }
@@ -249,40 +268,58 @@ public class Step08Java8FunctionTest extends PlainTestCase {
 
         // map style
         String land = optMemberFirst.map(mb -> mb.oldgetWithdrawal())
-                .map(wdl -> wdl.oldgetPrimaryReason())
-                .orElse("*no reason: someone was not present");
+                //functionにて、St8Member型を受け取り、St8Withdrawal型を返す。
+                //mapにてSt8Withdrawal型をoptionalでラップして返す
 
-        // flatMap style
+                .map(wdl -> wdl.oldgetPrimaryReason())
+                //functionにて、St8Withdrawal型を受け取り、String型を返す。
+                //mapにてString型をoptionalでラップする
+
+                .orElse("*no reason: someone was not present");
+        //String型のoptionalがnullだったらotherを返す
+
         String piari = optMemberFirst.flatMap(mb -> mb.getWithdrawal())
+                //functionにて、St8Member型を受け取り、optionalでラップされたSt8Withdrawal型を返す。
+                //flatmapにてoptionalでラップされたSt8Withdrawal型をそのまま返す
+
                 .flatMap(wdl -> wdl.getPrimaryReason())
+                //functionにて、St8Withdrawal型を受け取り、optionalでラップされたString型を返す。
+                //flatmapにてoptionalでラップされたString型をそのまま返す
+
                 .orElse("*no reason: someone was not present");
 
         // flatMap and map style
         String bonvo = optMemberFirst.flatMap(mb -> mb.getWithdrawal())
                 .map(wdl -> wdl.oldgetPrimaryReason())
                 .orElse("*no reason: someone was not present");
+        //これまでと同じ結果
 
         String dstore = facade.selectMember(2)
-                .flatMap(mb -> mb.getWithdrawal())
-                .map(wdl -> wdl.oldgetPrimaryReason())
-                .orElse("*no reason: someone was not present");
+                //2の場合、reasonはnull
+
+                .flatMap(mb -> mb.getWithdrawal()).map(wdl -> wdl.oldgetPrimaryReason()).orElse("*no reason: someone was not present");
+        //otherが入る
 
         String amba = facade.selectMember(3)
                 .flatMap(mb -> mb.getWithdrawal())
                 .flatMap(wdl -> wdl.getPrimaryReason())
                 .orElse("*no reason: someone was not present");
+        //3の場合、withdrawalはnull
+        //St8WithdrawalがnullでStringもnull
 
         int defaultWithdrawalId = -1;
-        Integer miraco = facade.selectMember(2).flatMap(mb -> mb.getWithdrawal()).map(wdl -> wdl.getWithdrawalId()) // ID here
+        Integer miraco = facade.selectMember(2).flatMap(mb -> mb.getWithdrawal()).map(wdl -> wdl.getWithdrawalId()) // ID here //12
                 .orElse(defaultWithdrawalId);
+        //2の場合、reasonはnull
+        //reasonじゃなくてIDに変換
 
-        log(sea); // your answer? => 
-        log(land); // your answer? => 
-        log(piari); // your answer? => 
-        log(bonvo); // your answer? => 
-        log(dstore); // your answer? => 
-        log(amba); // your answer? => 
-        log(miraco); // your answer? => 
+        log(sea); // your answer? => music
+        log(land); // your answer? => music
+        log(piari); // your answer? => music
+        log(bonvo); // your answer? => music
+        log(dstore); // your answer? => *no reason: someone was not present
+        log(amba); // your answer? => *no reason: someone was not present
+        log(miraco); // your answer? => 12
     }
 
     /**
@@ -292,16 +329,23 @@ public class Step08Java8FunctionTest extends PlainTestCase {
     public void test_java8_optional_orElseThrow() {
         Optional<St8Member> optMember = new St8DbFacade().selectMember(2);
         St8Member member = optMember.orElseThrow(() -> new IllegalStateException("over"));
+        //supplierにて、IllegalStateExceptionを返す
+        //orElseThrowにて、IllegalStateExceptionをスローする
+        //orElseThrowはラップ元のオブジェクトを返す。nullなら例外をスローする。
+        //stageIdを4とか5にすると例外発生。
+
         String sea = "the";
         try {
             String reason = member.getWithdrawal().map(wdl -> wdl.oldgetPrimaryReason()).orElseThrow(() -> {
                 return new IllegalStateException("wave");
             });
-            sea = reason;
+            //reasonはnullなので例外がスローされる
+            sea = reason;//ここは実行されない
         } catch (IllegalStateException e) {
             sea = e.getMessage();
         }
-        log(sea); // your answer? => 
+        log(sea); // your answer? => wave
+        //当たった。
     }
 
     // ===================================================================================
@@ -319,15 +363,30 @@ public class Step08Java8FunctionTest extends PlainTestCase {
                 oldfilteredNameList.add(member.getMemberName());
             }
         }
-        String sea = oldfilteredNameList.toString();
-        log(sea); // your answer? => 
+        //各々のメンバーに対して、withdrawalがnullかどうか調べる
+        //nullじゃなかったら、名前を追加。broadwayとdocksideが追加される
 
-        List<String> filteredNameList = memberList.stream() //
-                .filter(mb -> mb.getWithdrawal().isPresent()) //
-                .map(mb -> mb.getMemberName()) //
+        String sea = oldfilteredNameList.toString();
+        //リストをString型に
+        log(sea); // your answer? => [broadway,dockside]
+
+        List<String> filteredNameList = memberList.stream()
+                //リストをストリームに変換
+
+                .filter(mb -> mb.getWithdrawal().isPresent())
+                //Predicateはtrue or falseを返す
+                //filterはtrueとなる要素だけを選択して新しいコレクションとして返す。メンバー1,2の要素を持つストリームが返ってくる
+                //filterの実装箇所はReferencePipeline.java？
+
+                .map(mb -> mb.getMemberName())
+                //functionにて、St8Member型を受け取り、String型を返す。
+                //mapにて各要素に対してfunctionを適用し、新しいストリームに格納して返す。要素はbroadwayとdockside
+
                 .collect(Collectors.toList());
+        //collectにてストリーム内の要素をListに変換して返す
+
         String land = filteredNameList.toString();
-        log(land); // your answer? => 
+        log(land); // your answer? => [broadway,dockside]
     }
 
     /**
@@ -337,13 +396,28 @@ public class Step08Java8FunctionTest extends PlainTestCase {
     public void test_java8_stream_map_flatMap() {
         List<St8Member> memberList = new St8DbFacade().selectMemberListAll();
         int sea = memberList.stream()
+
                 .filter(mb -> mb.getWithdrawal().isPresent())
+                //Id3はnullなので脱落。
+
                 .flatMap(mb -> mb.getPurchaseList().stream())
+                //functionにて、streamに変換
+                //[1,2] -> [(1と2を合わせた購入リスト)]みたいなイメージ？
+                //実際は[(1-1),(1-2),(1-3),(1-4)]みたいな感じか
+                //裏側でどんな処理がされているか
+                //Id
+
                 .filter(pur -> pur.getPurchaseId() > 100)
+                //脱落なし
+
                 .mapToInt(pur -> pur.getPurchasePrice())
+                //[100,200,200,300]のIntStream
+
                 .distinct()
-                .sum();
-        log(sea); // your answer? => 
+                //重複消去。[100,200,300]
+
+                .sum();//600
+        log(sea); // your answer? => 600
     }
 
     // *Stream API will return at Step12 again, it's worth the wait!
@@ -351,4 +425,7 @@ public class Step08Java8FunctionTest extends PlainTestCase {
 
 //コールバック処理とは
 //特定の処理が終了したときに指定されたメソッドが呼び出される仕組み
+
+//Optionalとは
+//nullを上手く扱えるクラス？
 

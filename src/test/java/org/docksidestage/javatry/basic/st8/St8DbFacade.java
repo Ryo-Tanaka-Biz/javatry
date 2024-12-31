@@ -40,7 +40,7 @@ public class St8DbFacade {
     }
 
     public Optional<St8Member> selectMember(Integer stageId) { // Java8 style
-        return Optional.ofNullable(oldselectMember(stageId));
+        return Optional.ofNullable(oldselectMember(stageId));//nullを許容したオブジェクト
     }
 
     // ===================================================================================
@@ -51,15 +51,18 @@ public class St8DbFacade {
         St8Member firstMember = selectMember(firstId).orElseThrow(() -> {
             return new IllegalStateException("not found by firstId:" + firstId);
         });
+
         firstMember.addPurchase(new St8Purchase(111, 100));
         firstMember.addPurchase(new St8Purchase(112, 200));
         firstMember.addPurchase(new St8Purchase(113, 200));
         firstMember.addPurchase(new St8Purchase(114, 300));
+        //Id1の購入リストに４つの要素が存在する
 
         int secondId = 2;
         St8Member secondMember = selectMember(secondId).orElseThrow(() -> {
             return new IllegalStateException("not found by secondId:" + secondId);
         });
+        //Id2の購入リストに要素は存在しない
 
         int thirdId = 3;
         St8Member thirdMember = selectMember(thirdId).orElseThrow(() -> {
@@ -67,11 +70,13 @@ public class St8DbFacade {
         });
         thirdMember.addPurchase(new St8Purchase(131, 700));
         thirdMember.addPurchase(new St8Purchase(132, 800));
+        //Id3の購入リストに2つの要素が存在する
 
         List<St8Member> memberList = new ArrayList<>();
         memberList.add(firstMember);
         memberList.add(secondMember);
         memberList.add(thirdMember);
         return memberList;
+        //メンバーリストには３つの要素が存在する
     }
 }
