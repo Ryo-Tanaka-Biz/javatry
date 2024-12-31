@@ -408,6 +408,7 @@ public class Step08Java8FunctionTest extends PlainTestCase {
                 //Id1に対し、リスト取得、[1,2,3,4]
                 //Id2に対し、リスト取得、[]
                 //リスト結合？[1,2,3,4]？
+                //空配列の扱いは？
 
                 .filter(pur -> pur.getPurchaseId() > 100)
                 //脱落なし
