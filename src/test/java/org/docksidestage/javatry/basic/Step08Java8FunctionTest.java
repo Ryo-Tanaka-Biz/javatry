@@ -454,6 +454,7 @@ public class Step08Java8FunctionTest extends PlainTestCase {
 //コールバック処理とは
 //特定の処理が終了したときに指定されたメソッドが呼び出される仕組み
 
-//Optionalとは
-//nullを上手く扱えるクラス？
-
+//Arraylistクラス
+//要素を追加するたびに自動的にサイズが長くなるコンテナクラス
+//new Arraylist<>() 要素の型や、要素の個数を指定しなくてもOK
+//addメソッドで要素の追加。sizeメソッドで要素の個数を調べる。
