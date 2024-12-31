@@ -300,6 +300,9 @@ public class Step07ExceptionTest extends PlainTestCase {
             //状況：顧客は特定のハンドルの仕様を指定して、スーパーカーを購入しようとしたがスーパーカーを購入できなかった。
             //根本原因：指定した特定のハンドルで使用されるねじがねじ製造業者でサポート外であり、そのねじを製造できなかった。
             // _/_/_/_/_/_/_/_/_/_/
+            // TODO tanaryo [いいね] 根本原因という概念自体をわかってること自体が素晴らしい。 by jflute (2024/12/31)
+            // この時点では、例外メッセージだけではなかなか全体のストーリーを読み取りにくかったかと思います。
+            // 次のエクササイズでそれを完全しましょう。
         }
     }
 
@@ -309,6 +312,14 @@ public class Step07ExceptionTest extends PlainTestCase {
      * できるだけ例外情報だけでその状況が理解できるように、Supercarのクラスたちの例外ハンドリングを改善しましょう。
      */
     public void test_exception_translation_improveChallenge() {
+        // TODO tanaryo 例外の翻訳は段階的でとても良いと思います。ただ、途中のレイヤーが持ってる情報が全く出てないですね by jflute (2024/12/31)
+        // "Failed to make steering wheel" とか、なんかのIDとか実行時の情報があると良いなと。
+        // TODO tanaryo [読み物課題] 例外メッセージ、敬語で満足でもロスロスパターン by jflute (2024/12/31)
+        // https://jflute.hatenadiary.jp/entry/20170804/explossloss
+        // ↑一度、紹介したか忘れてしまいましたが、こういうことですね。
+        //
+        // TODO tanaryo これだけ丁寧に例外翻訳しているので、逆に全部がStateExceptionだとわかりにくさもあるので... by jflute (2024/12/31)
+        // 既存の ScrewCannotMakeBySpecException みたいに、それぞれのレイヤーの例外も固有のものにしてみましょう。
         try {
             new SupercarClient().buySupercar(); // you can fix the classes
             fail("always exception but none");
@@ -330,6 +341,7 @@ public class Step07ExceptionTest extends PlainTestCase {
         } catch (St7ConstructorChallengeException e) {
             log("Thrown by help method", e); // should show also "Caused-by" information
             //causeを例外クラスに追加した
+            // TODO tanaryo いいですね！せっかくなので、例外クラスのクラスJavaDocにauthor追加を(^^ by jflute (2024/12/31)
         }
     }
 
@@ -337,6 +349,7 @@ public class Step07ExceptionTest extends PlainTestCase {
         try {
             helpThrowIllegalState();
         } catch (IllegalStateException e) {
+            // TODO tanaryo [いいね] もうたなりょーさんであれば、既存コードがどれだけヤバかったかわかったことでしょう(^^ by jflute (2024/12/31)
             throw new St7ConstructorChallengeException("Failed to do something.", e);
         }
     }
@@ -365,6 +378,9 @@ public class Step07ExceptionTest extends PlainTestCase {
         // _/_/_/_/_/_/_/_/_/_/
     }
 }
+
+// TODO tanaryo [いいね] 期待できるという表現良いですね。 by jflute (2024/12/31)
+// 実際には継続できないこともありますが可能性があるということですね。
 
 //例外について
 //Throwableクラス：throw文で投げることができて、catch節で受け止められるクラス
