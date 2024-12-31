@@ -405,7 +405,9 @@ public class Step08Java8FunctionTest extends PlainTestCase {
                 //[1,2] -> [(1と2を合わせた購入リスト)]みたいなイメージ？
                 //実際は[(1-1),(1-2),(1-3),(1-4)]みたいな感じか
                 //裏側でどんな処理がされているか
-                //Id
+                //Id1に対し、リスト取得、[1,2,3,4]
+                //Id2に対し、リスト取得、[]
+                //リスト結合？[1,2,3,4]？
 
                 .filter(pur -> pur.getPurchaseId() > 100)
                 //脱落なし
