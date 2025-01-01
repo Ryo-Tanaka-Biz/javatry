@@ -19,6 +19,7 @@ import org.docksidestage.bizfw.basic.screw.ScrewSpec;
 import org.docksidestage.bizfw.basic.screw.SpecialScrew;
 import org.docksidestage.bizfw.basic.screw.SpecialScrewManufacturer;
 import org.docksidestage.bizfw.basic.screw.exception.ScrewCannotMakeBySpecException;
+import org.docksidestage.bizfw.basic.screw.exception.ScrewManufacturingException;
 
 /**
  * The manufacturer(製造業者) of supercar steering wheel(車のハンドル).
@@ -42,7 +43,7 @@ public class SupercarSteeringWheelManufacturer {
         try {
             screw = screwManufacturer.makeSpecialScrew(screwSpec);
         } catch (ScrewCannotMakeBySpecException e) {
-            throw new IllegalStateException("Failed to make SpecialScrew", e);
+            throw new ScrewManufacturingException("Failed to make SpecialScrew. steeringWheelId:" + steeringWheelId, e);
         }
         return new SteeringWheel(screw);
     }

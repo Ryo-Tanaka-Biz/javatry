@@ -16,6 +16,8 @@
 package org.docksidestage.bizfw.basic.supercar;
 
 import org.docksidestage.bizfw.basic.supercar.SupercarManufacturer.Supercar;
+import org.docksidestage.bizfw.basic.supercar.exception.SteeringWheelManufacturingException;
+import org.docksidestage.bizfw.basic.supercar.exception.SupercarManufacturingException;
 
 /**
  * The dealer(販売業者) of supercar.
@@ -28,20 +30,20 @@ public class SupercarDealer {
         if (clientRequirement.contains("steering wheel is like sea")) {
             try {
                 return supercarManufacturer.makeSupercar("piari");//ここ実行
-            } catch (IllegalStateException e) {
-                throw new IllegalStateException("Failed to make supercar", e);
+            } catch (SteeringWheelManufacturingException e) {
+                throw new SupercarManufacturingException("Failed to make supercar. clientRequirement:" + clientRequirement, e);
             }
         } else if (clientRequirement.contains("steering wheel is useful on land")) {
             try {
                 return supercarManufacturer.makeSupercar("land");
-            } catch (IllegalStateException e) {
-                throw new IllegalStateException("Failed to make supercar", e);
+            } catch (SteeringWheelManufacturingException e) {
+                throw new SupercarManufacturingException("Failed to make supercar. clientRequirement:" + clientRequirement, e);
             }
         } else if (clientRequirement.contains("steering wheel has many shop")) {
             try {
                 return supercarManufacturer.makeSupercar("piari");
-            } catch (IllegalStateException e) {
-                throw new IllegalStateException("Failed to make supercar", e);
+            } catch (SteeringWheelManufacturingException e) {
+                throw new SupercarManufacturingException("Failed to make supercar. clientRequirement:" + clientRequirement, e);
             }
         } else {
             throw new IllegalStateException("Cannot understand the client requirement: " + clientRequirement);

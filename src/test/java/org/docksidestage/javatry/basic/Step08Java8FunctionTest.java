@@ -28,13 +28,14 @@ import org.docksidestage.javatry.basic.st8.St8Member;
 import org.docksidestage.javatry.basic.st8.St8Withdrawal;
 import org.docksidestage.unit.PlainTestCase;
 
-// TODO tanaryo javadocのauthorお願いします by jflute (2024/12/31)
+// TODO done tanaryo javadocのauthorお願いします by jflute (2024/12/31)
+
 /**
  * The test of Java8 functions. <br>
  * Operate as javadoc. If it's question style, write your answer before test execution. <br>
  * (javadocの通りに実施。質問形式の場合はテストを実行する前に考えて答えを書いてみましょう)
  * @author jflute
- * @author your_name_here
+ * @author tanaryo
  */
 public class Step08Java8FunctionTest extends PlainTestCase {
 
@@ -51,8 +52,12 @@ public class Step08Java8FunctionTest extends PlainTestCase {
     public void test_java8_lambda_callback_basic() {
         String title = "over";
 
-        // TODO tanaryo [いいね] 一つ一つしっかり理解されているようで素晴らしいです。 by jflute (2024/12/31)
+        // TODO done tanaryo [いいね] 一つ一つしっかり理解されているようで素晴らしいです。 by jflute (2024/12/31)
         // コールバックってこういうことで、ただのクラス引数が「その場定義のクラス引数」になってコールバックになると。
+        // [memo tanaryo]
+        // コールバック関数（Consumer<>のaccept）は親関数（helpCallbackConsumer）の引数として渡される。
+        // このときコールバック関数に関数型インターフェースを用いて、匿名クラスやラムダ式で記述することで「その場定義できる引数」となる
+
         log("...Executing named class callback(!?)");
         helpCallbackConsumer(new St8BasicConsumer(title));
         // broadway
@@ -180,12 +185,13 @@ public class Step08Java8FunctionTest extends PlainTestCase {
         helpCallbackSupplier(() -> {
             return "hangar";
         }); // piari
-        
-        // TODO tanaryo [いいね] 地味ですが、コードの見た目を調整するのにexpression/blockを使い分けたりします by jflute (2024/12/31)
+
+        // TODO done tanaryo [いいね] 地味ですが、コードの見た目を調整するのにexpression/blockを使い分けたりします by jflute (2024/12/31)
         // expressionでいいものであっても、ときにコールバック内のコード量によってはblockにしたりとか。
         // DBFluteのConditionBeanの ExistsReferrer とかはその例:
         // https://dbflute.seasar.org/ja/manual/function/ormapper/conditionbean/query/existsreferrer.html#implflow
         // まあ、そんな頻繁にあるわけじゃないですが。Stream APIとかだったらガンガンexpressionで書きますので。
+        // [memo tanaryo]見た目重視でblockを使うこともある。
     }
 
     private void helpCallbackSupplier(Supplier<String> oneArgLambda) {
@@ -213,7 +219,7 @@ public class Step08Java8FunctionTest extends PlainTestCase {
         }
         // your answer? => Yes。
         //当たった。Optionalクラスを用いた場合の書き換えをここでは理解
-        
+
         // TODO jflute 1on1にてOptionalの概念的な話、あとJavaでの導入のお話 (2024/12/31)
     }
 
@@ -249,7 +255,7 @@ public class Step08Java8FunctionTest extends PlainTestCase {
         //引数に関数型インターフェースを使っているな！
         //インスタンスが生成または再利用されているな！
         //ここでは抽象メソッドを実装しているな！
-        
+
         // TODO tanaryo [読み物課題] Java8 なら OptionalEntity | DBFlute by jflute (2024/12/31)
         // https://dbflute.seasar.org/ja/manual/function/ormapper/behavior/select/selectentity.html#java8
         // ちょっと、アドバンスな話ですが、Optionalの理解を深めるために読んでみてください。
@@ -287,7 +293,7 @@ public class Step08Java8FunctionTest extends PlainTestCase {
         // TODO tanaryo [読み物課題] map() and flatMap() | DBFlute by jflute (2024/12/31)
         // https://dbflute.seasar.org/ja/manual/topic/programming/java/java8/mapandflat.html
         // 読むというか図なんですけど、しっかり細かい挙動まで意識して見ているので、図もすぐに理解できるんじゃないかなと。
-        
+
         // map style
         String land = optMemberFirst.map(mb -> mb.oldgetWithdrawal())
                 //functionにて、St8Member型を受け取り、St8Withdrawal型を返す。
@@ -368,7 +374,7 @@ public class Step08Java8FunctionTest extends PlainTestCase {
         }
         log(sea); // your answer? => wave
         //当たった。
-        
+
         // TODO jflute 1on1にて、orElseThrow() と get() のお話 (2024/12/31)
     }
 
