@@ -17,12 +17,14 @@ public class BarkingProcess {
     //                                                                           Attribute
     //                                                                           =========
     protected final Animal animal;
+    protected final Runnable animalRunnable;
 
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public BarkingProcess(Animal animal) {
+    public BarkingProcess(Animal animal, Runnable animalRunnable) {
         this.animal = animal;
+        this.animalRunnable = animalRunnable;
     }
 
     // ===================================================================================
@@ -36,16 +38,16 @@ public class BarkingProcess {
 
     protected void breatheIn() {
         logger.debug("...Breathing in for barking");
-        animal.downHitPoint(); // Animal経由で呼び出す
+        animalRunnable.run(); // Animal経由で呼び出す
     }
 
     private void prepareAbdominalMuscle() {
         logger.debug("...Using my abdominal muscle for barking");
-        animal.downHitPoint(); // Animal経由で呼び出す
+        animalRunnable.run(); // Animal経由で呼び出す
     }
 
     private BarkedSound doBark(String barkWord) {
-        animal.downHitPoint(); // Animal経由で呼び出す
+        animalRunnable.run(); // Animal経由で呼び出す
         return new BarkedSound(barkWord);
     }
 }

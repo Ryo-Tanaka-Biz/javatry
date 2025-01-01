@@ -61,7 +61,7 @@ public class Zombie extends Animal {
     // (BarkingProcessという切り出しまでやっておいて処理の追加ってしないだろうけど、でもできてしまうのでそれを防ぎたい)
     @Override
     protected BarkingProcess createBarkingProcess() {
-        return new ZombieBarkingProcess(this);
+        return new ZombieBarkingProcess(this, () -> downHitPoint());
     }
     // done tanaryo [ふぉろー] hint1: オブジェクト指向はもっと自由で... by jflute (2024/11/15)
     // 階層構造にしていいオブジェクトは一つ(の概念)だけってわけじゃない。

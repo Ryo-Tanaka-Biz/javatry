@@ -30,7 +30,8 @@ public abstract class Animal implements Loudable {
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
-    protected int hitPoint; // is HP
+    protected int hitPoint;// is HP
+    protected Runnable runnable;
 
     // ===================================================================================
     //                                                                         Constructor
@@ -55,7 +56,7 @@ public abstract class Animal implements Loudable {
     // createはインスタンスを作ってるというニュアンスをメソッド名に入れちゃう。
     // prepareはインスタンスを作ってるかどうかは問わず、単に準備しました、みたいな。(抽象度の違い)
     protected BarkingProcess createBarkingProcess() {
-        return new BarkingProcess(this);
+        return new BarkingProcess(this, () -> downHitPoint());
     }
     // done tanaryo こっちだけは簡単にpublicじゃなくprotectedに戻せると思う by jflute (2024/11/28)
     // done tanaryo 本当にgetBarkWord()の中身も隠蔽した上で実現できます (しかもstep8とか要らない: 基礎文法) by jflute (2024/12/06)
@@ -95,7 +96,7 @@ public abstract class Animal implements Loudable {
     //                                                                           Hit Point
     //                                                                           =========
     // TODO tanaryo 修行++: こっちは、ちょっとpublicをprotectedに戻すのは難しいのでstep8やってからでもいいかも by jflute (2024/11/28)
-    public void downHitPoint() {
+    protected void downHitPoint() {
         --hitPoint;
         if (hitPoint <= 0) {
             throw new IllegalStateException("I'm very tired, so I want to sleep" + getBarkWord());
