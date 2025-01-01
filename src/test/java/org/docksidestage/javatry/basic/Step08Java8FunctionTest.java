@@ -293,6 +293,7 @@ public class Step08Java8FunctionTest extends PlainTestCase {
         // TODO tanaryo [読み物課題] map() and flatMap() | DBFlute by jflute (2024/12/31)
         // https://dbflute.seasar.org/ja/manual/topic/programming/java/java8/mapandflat.html
         // 読むというか図なんですけど、しっかり細かい挙動まで意識して見ているので、図もすぐに理解できるんじゃないかなと。
+        // 後半に記述してある、streamAPIのflatmapについての疑問が解消しました。by tanaryo(2025/01/01)
 
         // map style
         String land = optMemberFirst.map(mb -> mb.oldgetWithdrawal())

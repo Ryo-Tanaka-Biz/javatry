@@ -315,11 +315,12 @@ public class Step07ExceptionTest extends PlainTestCase {
     public void test_exception_translation_improveChallenge() {
         // TODO done tanaryo 例外の翻訳は段階的でとても良いと思います。ただ、途中のレイヤーが持ってる情報が全く出てないですね by jflute (2024/12/31)
         // "Failed to make steering wheel" とか、なんかのIDとか実行時の情報があると良いなと。
-        // TODO tanaryo [読み物課題] 例外メッセージ、敬語で満足でもロスロスパターン by jflute (2024/12/31)
+        // TODO done tanaryo [読み物課題] 例外メッセージ、敬語で満足でもロスロスパターン by jflute (2024/12/31)
         // https://jflute.hatenadiary.jp/entry/20170804/explossloss
         // ↑一度、紹介したか忘れてしまいましたが、こういうことですね。
         //
-        // TODO donetanaryo これだけ丁寧に例外翻訳しているので、逆に全部がStateExceptionだとわかりにくさもあるので... by jflute (2024/12/31)
+        //周辺の変数を出す。。。胸に刻みます by tanaryo(2025/01/01)
+        // TODO done tanaryo これだけ丁寧に例外翻訳しているので、逆に全部がStateExceptionだとわかりにくさもあるので... by jflute (2024/12/31)
         // 既存の ScrewCannotMakeBySpecException みたいに、それぞれのレイヤーの例外も固有のものにしてみましょう。
         // 固有の例外クラスを作成しました by tanaryo 2025/1/1
         try {

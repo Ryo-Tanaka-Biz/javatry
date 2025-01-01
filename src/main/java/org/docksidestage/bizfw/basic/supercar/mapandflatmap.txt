@@ -1,0 +1,168 @@
+e.g. map() and flatMap() view @Java
+
+# ========================================================================================
+#                                                                               List map()
+#                                                                               ==========
+List<Member> memberList = memberBhv.selectList(...);
+List<Integer> memberIdList = memberList.stream()
+                                       .map(mb -> mb.getMemberId()) // returns Integer
+                                       .collect(Collectors.toList());
+
+ +- List<Member> ---+                  |- List<Integer> -----+
+ |                  |                  |                     |
+ |  {1, "sea"}      | ---- map() ----> |       1             |
+ |  {2, "land"}     | mb.getMemberId() |       2             |
+ |  {3, "piary"}    |                  |       3             |
+ |                  |                  |                     |
+ +------------------+                  +---------------------+
+
+ empty list:
+ +- List<Member> ---+                  |- List<Integer> -----+
+ |                  |                  |                     |
+ |  *empty          | ---- map() ----> |     *empty          |
+ |                  | mb.getMemberId() |                     |
+ |                  |                  |                     |
+ +------------------+                  +---------------------+
+
+# ========================================================================================
+#                                                                           List flatMap()
+#                                                                           ==============
+List<Member> memberList = memberBhv.selectList(...);
+memberBhv.loadPurchase(memberList, ...);
+List<Purchase> purchaseList
+        = memberList.stream()
+                    .flatMap(mb -> mb.getPurchaseList().stream()) // returns Stream
+                    .collect(Collectors.toList());
+
+ +- List<Member> ---------------+                      +- List<Purchase> ----+
+ |                              |                      |                     |
+ |  {1, "sea"}                  |                      |   {101, 1, ...}     |
+ |    |-{101, 1, ...}           |                      |   {102, 1, ...}     |
+ |    |-{102, 1, ...}           | ---- flatMap() ----> |   {103, 2, ...}     |
+ |  {2, "land"}                 | mb.getPurchaseList() |   {104, 2, ...}     |
+ |    |-{103, 2, ...}           |   .stream()          |   {105, 3, ...}     |
+ |    |-{104, 2, ...}           |                      |                     |
+ |  {3, "piary"}                |                      +---------------------+
+ |    |-{105, 3, ...}           |
+ |                              |
+ +------------------------------+
+
+ without flat:
+ +- List<Member> ---------------+                      +- List<List<Purchase>> --+
+ |                              |                      |                         |
+ |  {1, "sea"}                  |                      |  +-----------------+    |
+ |    |-{101, 1, ...}           |                      |  | {101, 1, ...}   |    |
+ |    |-{102, 1, ...}           |                      |  | {102, 1, ...}   |    |
+ |  {2, "land"}                 | ------ map() ------> |  +-----------------+    |
+ |    |-{103, 2, ...}           | mb.getPurchaseList() |  | {103, 2, ...}   |    |
+ |    |-{104, 2, ...}           |                      |  | {104, 2, ...}   |    |
+ |  {3, "piary"}                |                      |  +-----------------+    |
+ |    |-{105, 3, ...}           |                      |  | {105, 3, ...}   |    |
+ |                              |                      |  +-----------------+    |
+ +------------------------------+                      +-------------------------+
+
+ empty list:
+ +- List<Member> ---------------+                      +- List<Purchase> ----+
+ |                              |                      |                     |
+ |    *empty                    | ---- flatMap() ----> |   *empty            |
+ |                              | mb.getPurchaseList() |                     |
+ |                              |   .stream()          |                     |
+ +------------------------------+                      +---------------------+
+
+# ========================================================================================
+#                                                                           Optional map()
+#                                                                           ==============
+Optional<Member> optMember = memberBhv.selectEntity(...);
+Optional<Integer> optMemberId = optMember.map(mb -> mb.getMemberId()); // returns Integer
+
+ +- Optional<Member> --+                   +- Optional<Integer> ---+
+ |                     |                   |                       |
+ | {1, "sea"}          | ---- map() -----> |  (1)                  |
+ |                     | mb.getMemberId()  |                       |
+ +---------------------+                   +-----------------------+
+
+ +- Optional<Member> --+                   +- Optional<Integer> ---+
+ |                     |                   |                       |
+ | *empty              | ---- map() -----> | *empty                |
+ |                     | mb.getMemberId()  |                       |
+ +---------------------+                   +-----------------------+
+
+ return null:
+ +- Optional<Member> --+                   +- Optional<Integer> -+
+ |                     |                   |                     |
+ | {null, "sea"}       | ---- map() -----> | *empty              |
+ |                     | mb.getMemberId()  |                     |
+ +---------------------+                   +---------------------+
+
+ detail:
+ +- Optional<Member> --+                                         +- Optional<Integer> ---+
+ |                     |                                         |                       |
+ |                     | ------------ map() -------------------> |                       |
+ |                     |                                         |                       |
+ | {1, "sea"}          | if present:                             |                       |
+ |  or                 |   mb.getMemberId() => (1) ----(wrap)---/`\---> (1)              |
+ | {null, "sea"}       |                    => null              |                       |
+ |  or                 |                          \------+       |       or              |
+ | *empty              | else                            |       |                       |
+ |                     |   *empty-------(cast only)------+----->>|      *empty           |
+ |                     |                                         |                       |
+ +---------------------+                                         +-----------------------+
+
+# ========================================================================================
+#                                                                       Optional flatMap()
+#                                                                       ==================
+Optional<Member> optMember = memberBhv.selectEntity(...);
+Optional<MemberWithdrawal> optWdl = optMember.flatMap(mb -> mb.getMemberWithdrawalAsOne()) // returns Optional
+
+ +- Optional<Member> ---------------------+                               +- Optional<MemberWithdrawal> ----+
+ |                                        |                               |                                 |
+ |  mb:{1, "sea"}                         | -------- flatMap() ---------> |   wdl:{1, 2016/7/20, ...}       |
+ |   |                                    | mb.getMemberWithdrawalAsOne() |                                 |
+ |   |                                    |                               +---------------------------------+
+ |   | +- Optional<MemberWithdrawal> -+   |                                   ^
+ |   +-| wdl:{1, 2016/7/20, ...}      |--/`\-->--->--->--->--->--->--->--->---^
+ |     +------------------------------+   |
+ +----------------------------------------+
+
+ +- Optional<Member> ---------------------+                               +- Optional<MemberWithdrawal> ----+
+ |                                        |                               |                                 |
+ |  mb:{1, "sea"}                         | -------- flatMap() ---------> |   *empty                        |
+ |   |                                    | mb.getMemberWithdrawalAsOne() |                                 |
+ |   |                                    |                               +---------------------------------+
+ |   | +- Optional<MemberWithdrawal> -+   |                                   ^
+ |   +-| *empty                       |--/`\-->--->--->--->--->--->--->--->---^
+ |     +------------------------------+   |
+ +----------------------------------------+
+
+ +- Optional<Member> ---------------------+                               +- Optional<MemberWithdrawal> ----+
+ |                                        |                               |                                 |
+ |  *empty                                | -------- flatMap() ---------> |   *empty                        |
+ |                                        | mb.getMemberWithdrawalAsOne() |                                 |
+ +----------------------------------------+                               +---------------------------------+
+
+ without flat:
+ +- Optional<Member> --------------------+                               +- Optional<Optional<MemberWithdrawal>> -+
+ |                                       |                               |                                        |
+ |  mb:{1, "sea"}                        | ----------- map() ----------> |   +- Optional<MemberWithdrawal> -+     |
+ |   |                                   | mb.getMemberWithdrawalAsOne() |   | {101, 1, ...}                |     |
+ |   |                                   |                               |   +------------------------------+     |
+ |   | +- Optional<MemberWithdrawal> -+  |                               |       ^                                |
+ |   +-| wdl:{1, 2016/7/20, ...}      |-/`\-->--->--->--->--->--->--->--/`\-->---^                                |
+ |     +------------------------------+  |                               |                                        |
+ +---------------------------------------+                               +----------------------------------------+
+
+ detail:
+ +- Optional<Member> -------------+                                             +- Optional<MemberWithdrawal> -+
+ |                                |                                             |                              |
+ |                                | -------------- flatMap() -----------------> |                              |
+ |                                |                                             |                              |
+ | mb:{1, "sea"} - wdl:{101, ...} | if present:                                 |                              |
+ |                                |   mb.getMemberWithdrawalAsOne()             |                              |
+ |  or                            |     => Optional({101, ...})                 |                              |
+ |                                |            \--(non wrap)---(null check)--->>|   {101, ...}                 |
+ | mb:{2, "land"} - *empty        |     => *empty                               |                              |
+ |  or                            |            \------------------+             |    or                        |
+ | *empty                         | else                          |             |                              |
+ |                                |   *empty -------(cast only)---+----------->>|   *empty                     |
+ |                                |                                             |                              |
+ +--------------------------------+                                             +------------------------------+
