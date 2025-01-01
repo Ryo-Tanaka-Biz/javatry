@@ -1,6 +1,5 @@
 package org.docksidestage.bizfw.basic.objanimal.barking;
 
-import org.docksidestage.bizfw.basic.objanimal.Animal;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,14 +15,12 @@ public class BarkingProcess {
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
-    protected final Animal animal;
     protected final Runnable animalRunnable;
 
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public BarkingProcess(Animal animal, Runnable animalRunnable) {
-        this.animal = animal;
+    public BarkingProcess(Runnable animalRunnable) {
         this.animalRunnable = animalRunnable;
     }
 

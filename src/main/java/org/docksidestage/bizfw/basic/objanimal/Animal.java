@@ -56,7 +56,7 @@ public abstract class Animal implements Loudable {
     // createはインスタンスを作ってるというニュアンスをメソッド名に入れちゃう。
     // prepareはインスタンスを作ってるかどうかは問わず、単に準備しました、みたいな。(抽象度の違い)
     protected BarkingProcess createBarkingProcess() {
-        return new BarkingProcess(this, () -> downHitPoint());
+        return new BarkingProcess(() -> downHitPoint());
     }
     // done tanaryo こっちだけは簡単にpublicじゃなくprotectedに戻せると思う by jflute (2024/11/28)
     // done tanaryo 本当にgetBarkWord()の中身も隠蔽した上で実現できます (しかもstep8とか要らない: 基礎文法) by jflute (2024/12/06)
