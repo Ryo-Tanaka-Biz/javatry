@@ -95,7 +95,7 @@ public abstract class Animal implements Loudable {
     // ===================================================================================
     //                                                                           Hit Point
     //                                                                           =========
-    // TODO tanaryo 修行++: こっちは、ちょっとpublicをprotectedに戻すのは難しいのでstep8やってからでもいいかも by jflute (2024/11/28)
+    // TODO done tanaryo 修行++: こっちは、ちょっとpublicをprotectedに戻すのは難しいのでstep8やってからでもいいかも by jflute (2024/11/28)
     protected void downHitPoint() {
         --hitPoint;
         if (hitPoint <= 0) {
