@@ -83,7 +83,7 @@ public abstract class Animal implements Loudable {
     // ゲームでアイテム欄を整理整頓するのと同じく、学んだことを整理整頓して頭に置いておくのが大切。
     //
     // いい思い出にしてもらえればと。
-    //[memo tanaryo]
+    //[memo tanaryo 2025/1/1]
     // animal.downHitPointで呼び出すのはprotectedだとどう頑張っても無理か
     // barkingProcessをnewした時点で、animalクラスから辿る以外でdownHitPointにアクセスできるようにしたい
     // barkingProcessをnewするタイミングで関数型インターフェースでdownHitPointを実行するように定義して引数に渡す
