@@ -38,16 +38,16 @@ public class BarkingProcess {
 
     protected void breatheIn() {
         logger.debug("...Breathing in for barking");
-        animalRunnable.run(); // Animal経由で呼び出す
+        animalRunnable.run();
     }
 
     private void prepareAbdominalMuscle() {
         logger.debug("...Using my abdominal muscle for barking");
-        animalRunnable.run(); // Animal経由で呼び出す
+        animalRunnable.run();
     }
 
     private BarkedSound doBark(String barkWord) {
-        animalRunnable.run(); // Animal経由で呼び出す
+        animalRunnable.run();
         return new BarkedSound(barkWord);
     }
 }
