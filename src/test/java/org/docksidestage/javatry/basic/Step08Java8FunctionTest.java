@@ -256,9 +256,10 @@ public class Step08Java8FunctionTest extends PlainTestCase {
         //インスタンスが生成または再利用されているな！
         //ここでは抽象メソッドを実装しているな！
 
-        // TODO tanaryo [読み物課題] Java8 なら OptionalEntity | DBFlute by jflute (2024/12/31)
+        // TODO done tanaryo [読み物課題] Java8 なら OptionalEntity | DBFlute by jflute (2024/12/31)
         // https://dbflute.seasar.org/ja/manual/function/ormapper/behavior/select/selectentity.html#java8
         // ちょっと、アドバンスな話ですが、Optionalの理解を深めるために読んでみてください。
+        // ざっと読みました。DBFluteのハンズオンもやりつつ理解を深めようと思います。 by tanaryo (2025/01/04)
         // TODO jflute 1on1にて、DBFluteのOptionalと標準のOptionalの違いについて補足 (2024/12/31)
     }
 
@@ -269,8 +270,9 @@ public class Step08Java8FunctionTest extends PlainTestCase {
     public void test_java8_optional_map_flatMap() {
         St8DbFacade facade = new St8DbFacade();
 
-        // TODO tanaryo [tips] DBFluteのJava6版だと、こんな感じで null からもしれない変数を戻します by jflute (2024/12/31)
+        // TODO done tanaryo [tips] DBFluteのJava6版だと、こんな感じで null からもしれない変数を戻します by jflute (2024/12/31)
         // traditional style
+        //Optionalはjava8から使えるもので、それ以前だとこのようにnullを扱っていたのですね。。。。  by tanaryo (2024/01/04)
         St8Member oldmemberFirst = facade.oldselectMember(1);
         String sea;
         if (oldmemberFirst != null) {
@@ -287,10 +289,11 @@ public class Step08Java8FunctionTest extends PlainTestCase {
             sea = "*no reason3: the selected Member was null";
         }
 
-        // TODO tanaryo [tips] DBFluteのJava8版からだと、こんな感じで Optional を戻します by jflute (2024/12/31)
+        // TODO done tanaryo [tips] DBFluteのJava8版からだと、こんな感じで Optional を戻します by jflute (2024/12/31)
+        //DBfluteハンズオンをやるときに思い出すようにしておきます！　by tanaryo (2025/01/04)
         Optional<St8Member> optMemberFirst = facade.selectMember(1);
 
-        // TODO tanaryo [読み物課題] map() and flatMap() | DBFlute by jflute (2024/12/31)
+        // TODO done tanaryo [読み物課題] map() and flatMap() | DBFlute by jflute (2024/12/31)
         // https://dbflute.seasar.org/ja/manual/topic/programming/java/java8/mapandflat.html
         // 読むというか図なんですけど、しっかり細かい挙動まで意識して見ているので、図もすぐに理解できるんじゃないかなと。
         // 後半に記述してある、streamAPIのflatmapについての疑問が解消しました。by tanaryo(2025/01/01)
