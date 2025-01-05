@@ -52,7 +52,7 @@ public class Step08Java8FunctionTest extends PlainTestCase {
     public void test_java8_lambda_callback_basic() {
         String title = "over";
 
-        // TODO done tanaryo [いいね] 一つ一つしっかり理解されているようで素晴らしいです。 by jflute (2024/12/31)
+        // done tanaryo [いいね] 一つ一つしっかり理解されているようで素晴らしいです。 by jflute (2024/12/31)
         // コールバックってこういうことで、ただのクラス引数が「その場定義のクラス引数」になってコールバックになると。
         // [memo tanaryo]
         // コールバック関数（Consumer<>のaccept）は親関数（helpCallbackConsumer）の引数として渡される。
@@ -270,7 +270,7 @@ public class Step08Java8FunctionTest extends PlainTestCase {
     public void test_java8_optional_map_flatMap() {
         St8DbFacade facade = new St8DbFacade();
 
-        // TODO done tanaryo [tips] DBFluteのJava6版だと、こんな感じで null からもしれない変数を戻します by jflute (2024/12/31)
+        // done tanaryo [tips] DBFluteのJava6版だと、こんな感じで null からもしれない変数を戻します by jflute (2024/12/31)
         // traditional style
         //Optionalはjava8から使えるもので、それ以前だとこのようにnullを扱っていたのですね。。。。  by tanaryo (2024/01/04)
         St8Member oldmemberFirst = facade.oldselectMember(1);
@@ -289,11 +289,11 @@ public class Step08Java8FunctionTest extends PlainTestCase {
             sea = "*no reason3: the selected Member was null";
         }
 
-        // TODO done tanaryo [tips] DBFluteのJava8版からだと、こんな感じで Optional を戻します by jflute (2024/12/31)
+        // done tanaryo [tips] DBFluteのJava8版からだと、こんな感じで Optional を戻します by jflute (2024/12/31)
         //DBfluteハンズオンをやるときに思い出すようにしておきます！　by tanaryo (2025/01/04)
         Optional<St8Member> optMemberFirst = facade.selectMember(1);
 
-        // TODO done tanaryo [読み物課題] map() and flatMap() | DBFlute by jflute (2024/12/31)
+        // done tanaryo [読み物課題] map() and flatMap() | DBFlute by jflute (2024/12/31)
         // https://dbflute.seasar.org/ja/manual/topic/programming/java/java8/mapandflat.html
         // 読むというか図なんですけど、しっかり細かい挙動まで意識して見ているので、図もすぐに理解できるんじゃないかなと。
         // 後半に記述してある、streamAPIのflatmapについての疑問が解消しました。by tanaryo(2025/01/01)

@@ -99,7 +99,9 @@ public abstract class Animal implements Loudable {
     // ===================================================================================
     //                                                                           Hit Point
     //                                                                           =========
-    // TODO done tanaryo 修行++: こっちは、ちょっとpublicをprotectedに戻すのは難しいのでstep8やってからでもいいかも by jflute (2024/11/28)
+    // done tanaryo 修行++: こっちは、ちょっとpublicをprotectedに戻すのは難しいのでstep8やってからでもいいかも by jflute (2024/11/28)
+    // TODO tanaryo あっ、完璧にできてる^^) by jflute (2025/01/05)
+    // TODO jflute 1on1にて、オブジェクト指向の構造とコールバックのコラボについて、というかオブジェクト指向の線引きって何だ？話も (2025/01/05)
     protected void downHitPoint() {
         --hitPoint;
         if (hitPoint <= 0) {
