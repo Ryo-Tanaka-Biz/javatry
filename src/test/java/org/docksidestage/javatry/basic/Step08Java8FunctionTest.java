@@ -28,7 +28,7 @@ import org.docksidestage.javatry.basic.st8.St8Member;
 import org.docksidestage.javatry.basic.st8.St8Withdrawal;
 import org.docksidestage.unit.PlainTestCase;
 
-// TODO done tanaryo javadocのauthorお願いします by jflute (2024/12/31)
+// done tanaryo javadocのauthorお願いします by jflute (2024/12/31)
 
 /**
  * The test of Java8 functions. <br>
@@ -186,7 +186,7 @@ public class Step08Java8FunctionTest extends PlainTestCase {
             return "hangar";
         }); // piari
 
-        // TODO done tanaryo [いいね] 地味ですが、コードの見た目を調整するのにexpression/blockを使い分けたりします by jflute (2024/12/31)
+        // done tanaryo [いいね] 地味ですが、コードの見た目を調整するのにexpression/blockを使い分けたりします by jflute (2024/12/31)
         // expressionでいいものであっても、ときにコールバック内のコード量によってはblockにしたりとか。
         // DBFluteのConditionBeanの ExistsReferrer とかはその例:
         // https://dbflute.seasar.org/ja/manual/function/ormapper/conditionbean/query/existsreferrer.html#implflow
@@ -256,7 +256,7 @@ public class Step08Java8FunctionTest extends PlainTestCase {
         //インスタンスが生成または再利用されているな！
         //ここでは抽象メソッドを実装しているな！
 
-        // TODO done tanaryo [読み物課題] Java8 なら OptionalEntity | DBFlute by jflute (2024/12/31)
+        // done tanaryo [読み物課題] Java8 なら OptionalEntity | DBFlute by jflute (2024/12/31)
         // https://dbflute.seasar.org/ja/manual/function/ormapper/behavior/select/selectentity.html#java8
         // ちょっと、アドバンスな話ですが、Optionalの理解を深めるために読んでみてください。
         // ざっと読みました。DBFluteのハンズオンもやりつつ理解を深めようと思います。 by tanaryo (2025/01/04)
@@ -382,7 +382,8 @@ public class Step08Java8FunctionTest extends PlainTestCase {
         // TODO jflute 1on1にて、orElseThrow() と get() のお話 (2024/12/31)
     }
 
-    // TODO jflute 後でレビュー (2024/12/31)
+    // done jflute 後でレビュー (2024/12/31)
+    // TODO jflute Stream APIの理解問題なさそうなので、1on1にてコンセプト的な話を少しする (2025/01/05)
     // ===================================================================================
     //                                                                          Stream API
     //                                                                          ==========
