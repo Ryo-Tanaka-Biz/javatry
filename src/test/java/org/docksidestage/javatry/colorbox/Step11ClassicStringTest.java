@@ -15,13 +15,14 @@
  */
 package org.docksidestage.javatry.colorbox;
 
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.security.Key;
+import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import jdk.internal.org.objectweb.asm.tree.analysis.Value;
 import org.docksidestage.bizfw.colorbox.ColorBox;
 import org.docksidestage.bizfw.colorbox.color.BoxColor;
 import org.docksidestage.bizfw.colorbox.yours.YourPrivateRoom;
@@ -271,6 +272,35 @@ public class Step11ClassicStringTest extends PlainTestCase {
      * (カラーボックスの中に入っているGuardianBoxクラスのtextの長さの合計は？)
      */
     public void test_welcomeToGuardian() {
+        List<ColorBox> colorBoxList = new YourPrivateRoom().getColorBoxList();
+
+        // 6つ目のカラーボックスがGuardian
+        // コンストラクタの引数がtext
+        // getcontentの文字がそれ
+
+        ColorBox sixthColorBox = colorBoxList.get(5);
+
+        List<String> guardianTextList = sixthColorBox.getSpaceList()
+                .stream()
+                .map(boxSpace -> boxSpace.getContent())
+                .map(object -> (YourPrivateRoom.GuardianBox) object)
+                .map(guardianBox -> {
+                    guardianBox.wakeUp();
+                    guardianBox.allowMe();
+                    guardianBox.open();
+                    try {
+                        return guardianBox.getText();
+                    } catch (YourPrivateRoom.GuardianBoxTextNotFoundException e) {
+                        log(e);
+                        return null;//　エラー時のデフォルト値
+                    }
+                })
+                .filter(s -> s != null)
+                .collect(Collectors.toList());
+
+        int totalGuardianTextLength = guardianTextList.stream().map(text -> text.replace(" ", "")).mapToInt(text -> text.length()).sum();
+        log("guardianTextList:" + guardianTextList);
+        log("totalGuardianTextLength:" + totalGuardianTextLength);//スペースは除外
     }
 
     // ===================================================================================
@@ -281,6 +311,26 @@ public class Step11ClassicStringTest extends PlainTestCase {
      * (カラーボックスの中に入っている java.util.Map を "map:{ key = value ; key = value ; ... }" という形式で表示すると？)
      */
     public void test_showMap_flat() {
+        List<ColorBox> colorBoxList = new YourPrivateRoom().getColorBoxList();
+
+        //contentにあるMapのリストを抽出
+        List<Map<Key, Value>> colorBoxSpaceContentMapList = colorBoxList.stream()
+                .flatMap(colorBox -> colorBox.getSpaceList().stream())
+                .map(boxSpace -> boxSpace.getContent())
+                .filter(object -> object instanceof Map)
+                .map(object -> (Map<Key, Value>) object)//ここで警告出てる。instanceofでジェネリクス型を使えないためか
+                .collect(Collectors.toList());
+
+        //Mapを文字列のリストに変換
+        List<String> formattedColorBoxSpaceContentMapList = colorBoxSpaceContentMapList.stream().map(keyValueMap -> {
+            return "map:{ " + keyValueMap.entrySet()
+                    .stream()
+                    .map(entry -> entry.getKey() + "=" + entry.getValue())
+                    .collect(Collectors.joining(" ; ")) + " }";
+        }).collect(Collectors.toList());
+
+        log("colorBoxSpaceContentMapList:" + colorBoxSpaceContentMapList);
+        log("formattedColorBoxSpaceContentMapList:" + formattedColorBoxSpaceContentMapList);
     }
 
     /**
@@ -288,6 +338,35 @@ public class Step11ClassicStringTest extends PlainTestCase {
      * (カラーボックスの中に入っている java.util.Map を "map:{ key = value ; key = map:{ key = value ; ... } ; ... }" という形式で表示すると？)
      */
     public void test_showMap_nested() {
+        //valueがMapの場合の対応
+        List<ColorBox> colorBoxList = new YourPrivateRoom().getColorBoxList();
+
+        List<Map<Key, Value>> colorBoxSpaceContentMapList = colorBoxList.stream()
+                .flatMap(colorBox -> colorBox.getSpaceList().stream())
+                .map(boxSpace -> boxSpace.getContent())
+                .filter(object -> object instanceof Map)
+                .map(object -> (Map<Key, Value>) object)//ここで警告出てる。instanceofでジェネリクス型を使えないためか
+                .collect(Collectors.toList());
+
+        List<String> formattedColorBoxSpaceContentMapList =
+                colorBoxSpaceContentMapList.stream().map(keyValueMap -> formattedKeyValuePair(keyValueMap)).collect(Collectors.toList());
+
+        log("colorBoxSpaceContentMapList:" + colorBoxSpaceContentMapList);
+        log("formattedColorBoxSpaceContentMapList:" + formattedColorBoxSpaceContentMapList);
+    }
+
+    private String formattedKeyValuePair(Map<Key, Value> keyValueMap) {
+        return "map:{" + keyValueMap.entrySet()
+                .stream()
+                .map(entry -> entry.getKey() + "=" + parseMapValue(entry.getValue()))
+                .collect(Collectors.joining(" ; ")) + " } ";
+    }
+
+    private String parseMapValue(Object value) {
+        if (value instanceof Map) {
+            return formattedKeyValuePair((Map<Key, Value>) value);
+        }
+        return value.toString();
     }
 
     // ===================================================================================
@@ -299,6 +378,32 @@ public class Step11ClassicStringTest extends PlainTestCase {
      * (whiteのカラーボックスのupperスペースに入っているSecretBoxクラスのtextをMapに変換してtoString()すると？)
      */
     public void test_parseMap_flat() {
+        List<ColorBox> colorBoxList = new YourPrivateRoom().getColorBoxList();
+
+        //upperは要素0のみ
+        String whiteUpperSpaceText = colorBoxList.stream()
+                .filter(colorBox -> colorBox.getColor().getColorName().equals("white"))
+                .flatMap(colorBox -> colorBox.getSpaceList().stream())
+                .limit(1)
+                .map(boxSpace -> boxSpace.getContent())
+                .filter(object -> object instanceof YourPrivateRoom.SecretBox)
+                .map(object -> (YourPrivateRoom.SecretBox) object)
+                .map(secretBox -> secretBox.getText())
+                .collect(Collectors.toList())
+                .get(0);
+
+        log("whiteUpperSpaceText:" + whiteUpperSpaceText);
+
+        //{}とスペースを除去
+        String extractedWhiteUpperSpaceText =
+                whiteUpperSpaceText.substring(whiteUpperSpaceText.indexOf("{") + 1, whiteUpperSpaceText.indexOf("}")).replace(" ", "");
+        log("extractedWhiteUpperSpaceText:" + extractedWhiteUpperSpaceText);
+
+        //Mapに変換
+        Map<String, String> whiteUpperSpaceMap = Arrays.stream(extractedWhiteUpperSpaceText.split(";"))
+                .map(pair -> pair.split("="))
+                .collect(Collectors.toMap(pair -> pair[0], pair -> pair[1]));
+        log("whiteUpperSpaceMap:" + whiteUpperSpaceMap);
     }
 
     /**
@@ -306,5 +411,68 @@ public class Step11ClassicStringTest extends PlainTestCase {
      * (whiteのカラーボックスのmiddleおよびlowerスペースに入っているSecretBoxクラスのtextをMapに変換してtoString()すると？)
      */
     public void test_parseMap_nested() {
+        //valueがmapのパターン
+        List<ColorBox> colorBoxList = new YourPrivateRoom().getColorBoxList();
+
+        //middleおよび`lowerは要素1,2
+        List<String> whiteMiddleLowerSpaceTextList = colorBoxList.stream()
+                .filter(colorBox -> colorBox.getColor().getColorName().equals("white"))
+                .flatMap(colorBox -> colorBox.getSpaceList().stream())
+                .skip(1)
+                .map(boxSpace -> boxSpace.getContent())
+                .filter(object -> object instanceof YourPrivateRoom.SecretBox)
+                .map(object -> (YourPrivateRoom.SecretBox) object)
+                .map(secretBox -> secretBox.getText())
+                .collect(Collectors.toList());
+        log("whiteMiddleLowerSpaceTextList:" + whiteMiddleLowerSpaceTextList);
+
+        //Mapに変換
+        List<String> whiteMiddleLowerSpaceTextMap =
+                whiteMiddleLowerSpaceTextList.stream().map(text -> parseToMap(text).toString()).collect(Collectors.toList());
+
+        log("whiteMiddleLowerSpaceMap:" + whiteMiddleLowerSpaceTextMap);
+    }
+
+    private Map<String, String> parseToMap(String input) {
+        //(map:){}とスペースを除去
+        String content = input.trim().substring(input.indexOf("{") + 1, input.length() - 1).replace(" ", "");
+
+        //Mapに変換
+        Map<String, String> map = Arrays
+                //入れ子のMapの";"でsplitされるのを防ぐ
+                .stream(parseContent(content).split(";"))
+
+                //入れ子のMapの"="でsplitされるのを一時的に"_"と変換することで防ぐ
+                .map(pair -> parsePair(pair).split("="))
+
+                //一時的に変換した"_"を"="に戻す
+                .collect(Collectors.toMap(pair -> pair[0], pair -> parseValue(pair[1])));
+        return map;
+    }
+
+    private String parseContent(String content) {
+        Matcher matchedContent = Pattern.compile("map:\\{.*?}").matcher(content);
+        if (matchedContent.find()) {
+            return content.replace(matchedContent.group(), parseToMap(matchedContent.group()).toString());
+        }
+        return content;
+    }
+
+    private String parsePair(String pair) {
+        Matcher matchedContent = Pattern.compile("\\{.*?}").matcher(pair);
+        if (matchedContent.find()) {
+            String changedPair = matchedContent.group().replace("=", "_");
+            return pair.replace(matchedContent.group(), changedPair);
+        }
+        return pair;
+    }
+
+    private String parseValue(String value) {
+        Matcher matchedContent = Pattern.compile("\\{.*?}").matcher(value);
+        if (matchedContent.find()) {
+            String changedValue = matchedContent.group().replace("_", "=");
+            return value.replace(matchedContent.group(), changedValue);
+        }
+        return value;
     }
 }
