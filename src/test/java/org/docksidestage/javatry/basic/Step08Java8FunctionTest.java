@@ -16,6 +16,7 @@
 package org.docksidestage.javatry.basic;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Consumer;
@@ -220,7 +221,10 @@ public class Step08Java8FunctionTest extends PlainTestCase {
         // your answer? => Yes。
         //当たった。Optionalクラスを用いた場合の書き換えをここでは理解
 
-        // TODO jflute 1on1にてOptionalの概念的な話、あとJavaでの導入のお話 (2024/12/31)
+        // done jflute 1on1にてOptionalの概念的な話、あとJavaでの導入のお話 (2024/12/31)
+        // DBFluteハンズオンでセクション２のところで一緒に話をしようかな。
+        // 一番のコンセプトだけした。
+        // あと、Java8より前でOptionalが出てこなかった理由は？(推測だけど)のお話。
     }
 
     /**
@@ -383,7 +387,8 @@ public class Step08Java8FunctionTest extends PlainTestCase {
     }
 
     // done jflute 後でレビュー (2024/12/31)
-    // TODO jflute Stream APIの理解問題なさそうなので、1on1にてコンセプト的な話を少しする (2025/01/05)
+    // done jflute Stream APIの理解問題なさそうなので、1on1にてコンセプト的な話を少しする (2025/01/05)
+    // [1on1でのふぉろー] 他の言語のコンセプトとかの話もして、Stream API が全世界承認のものか？の話
     // ===================================================================================
     //                                                                          Stream API
     //                                                                          ==========

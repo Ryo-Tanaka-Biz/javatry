@@ -273,7 +273,7 @@ public class Step07ExceptionTest extends PlainTestCase {
     // done tanaryo [読み物課題] エラーメッセージ読め読め大合唱 by jflute (2024/12/26)
     // https://jflute.hatenadiary.jp/entry/20130522/errorsinging
 
-    // TODO jflute 次回ここから1on1 (2024/12/26)
+    // done jflute 次回ここから1on1 (2024/12/26)
     // ===================================================================================
     //                                                                         Translation
     //                                                                         ===========
