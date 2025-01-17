@@ -26,7 +26,7 @@ import org.docksidestage.bizfw.basic.supercar.exception.SupercarManufacturingExc
 public class SupercarDealer {
 
     public Supercar orderSupercar(String clientRequirement) {
-        // TODO done tanaryo try/catch, if文ごとにやるんじゃなく、if文の外に定義したら一個になるんじゃないかな？ by jflute (2025/01/05)
+        // done tanaryo try/catch, if文ごとにやるんじゃなく、if文の外に定義したら一個になるんじゃないかな？ by jflute (2025/01/05)
         SupercarManufacturer supercarManufacturer = createSupercarManufacturer();
         String catalogKey;
 

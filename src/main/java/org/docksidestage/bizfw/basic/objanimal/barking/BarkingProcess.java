@@ -15,7 +15,7 @@ public class BarkingProcess {
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
-    // TODO done tanaryo 意味がアバウト過ぎてしまっているので、あくまで downHitPoint の処理であることを示しても良いかなと by jflute (2025/01/10)
+    // done tanaryo 意味がアバウト過ぎてしまっているので、あくまで downHitPoint の処理であることを示しても良いかなと by jflute (2025/01/10)
     protected final Runnable downHitPointer;
 
     // ===================================================================================

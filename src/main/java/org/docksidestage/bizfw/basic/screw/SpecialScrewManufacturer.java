@@ -25,7 +25,7 @@ public class SpecialScrewManufacturer {
 
     public SpecialScrew makeSpecialScrew(ScrewSpec screwSpec) {
         if (isKawaiiFaceScrewSpec(screwSpec)) {
-            // TODO done tanaryo 既存コードですが、引数のscrewSpecを例外メッセージに載せたいですね by jflute (2025/01/05)
+            // done tanaryo 既存コードですが、引数のscrewSpecを例外メッセージに載せたいですね by jflute (2025/01/05)
             // makeSteeringWheel()の方のtry/catchでは載せてないですからなおさら。
             String msg = "The kawaii face is already unsupported so we cannot make it. screwSpec:" + screwSpec;
             throw new ScrewCannotMakeBySpecException(msg);
