@@ -15,14 +15,14 @@ public class BarkingProcess {
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
-    // TODO tanaryo 意味がアバウト過ぎてしまっているので、あくまで downHitPoint の処理であることを示しても良いかなと by jflute (2025/01/10)
-    protected final Runnable animalRunnable;
+    // TODO done tanaryo 意味がアバウト過ぎてしまっているので、あくまで downHitPoint の処理であることを示しても良いかなと by jflute (2025/01/10)
+    protected final Runnable downHitPointer;
 
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public BarkingProcess(Runnable animalRunnable) {
-        this.animalRunnable = animalRunnable;
+    public BarkingProcess(Runnable downHitPointer) {
+        this.downHitPointer = downHitPointer;
     }
 
     // ===================================================================================
@@ -36,16 +36,16 @@ public class BarkingProcess {
 
     protected void breatheIn() {
         logger.debug("...Breathing in for barking");
-        animalRunnable.run();
+        downHitPointer.run();
     }
 
     private void prepareAbdominalMuscle() {
         logger.debug("...Using my abdominal muscle for barking");
-        animalRunnable.run();
+        downHitPointer.run();
     }
 
     private BarkedSound doBark(String barkWord) {
-        animalRunnable.run();
+        downHitPointer.run();
         return new BarkedSound(barkWord);
     }
 }

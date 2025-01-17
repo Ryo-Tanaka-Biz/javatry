@@ -26,28 +26,24 @@ import org.docksidestage.bizfw.basic.supercar.exception.SupercarManufacturingExc
 public class SupercarDealer {
 
     public Supercar orderSupercar(String clientRequirement) {
-        // TODO tanaryo try/catch, if文ごとにやるんじゃなく、if文の外に定義したら一個になるんじゃないかな？ by jflute (2025/01/05)
+        // TODO done tanaryo try/catch, if文ごとにやるんじゃなく、if文の外に定義したら一個になるんじゃないかな？ by jflute (2025/01/05)
         SupercarManufacturer supercarManufacturer = createSupercarManufacturer();
+        String catalogKey;
+
         if (clientRequirement.contains("steering wheel is like sea")) {
-            try {
-                return supercarManufacturer.makeSupercar("piari");//ここ実行
-            } catch (SteeringWheelManufacturingException e) {
-                throw new SupercarManufacturingException("Failed to make supercar. clientRequirement:" + clientRequirement, e);
-            }
+            catalogKey = "piari";
         } else if (clientRequirement.contains("steering wheel is useful on land")) {
-            try {
-                return supercarManufacturer.makeSupercar("land");
-            } catch (SteeringWheelManufacturingException e) {
-                throw new SupercarManufacturingException("Failed to make supercar. clientRequirement:" + clientRequirement, e);
-            }
+            catalogKey = "land";
         } else if (clientRequirement.contains("steering wheel has many shop")) {
-            try {
-                return supercarManufacturer.makeSupercar("piari");
-            } catch (SteeringWheelManufacturingException e) {
-                throw new SupercarManufacturingException("Failed to make supercar. clientRequirement:" + clientRequirement, e);
-            }
+            catalogKey = "piari";
         } else {
             throw new IllegalStateException("Cannot understand the client requirement: " + clientRequirement);
+        }
+        //try-catchを外に出す
+        try {
+            return supercarManufacturer.makeSupercar(catalogKey);
+        } catch (SteeringWheelManufacturingException e) {
+            throw new SupercarManufacturingException("Failed to make supercar. clientRequirement:" + clientRequirement, e);
         }
     }
 

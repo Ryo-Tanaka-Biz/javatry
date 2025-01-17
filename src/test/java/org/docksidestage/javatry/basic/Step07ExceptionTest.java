@@ -323,7 +323,7 @@ public class Step07ExceptionTest extends PlainTestCase {
         // done tanaryo これだけ丁寧に例外翻訳しているので、逆に全部がStateExceptionだとわかりにくさもあるので... by jflute (2024/12/31)
         // 既存の ScrewCannotMakeBySpecException みたいに、それぞれのレイヤーの例外も固有のものにしてみましょう。
         // 固有の例外クラスを作成しました by tanaryo 2025/1/1
-        // TODO tanaryo さらに、Supercarのクラスの中にtodoを追加したので、確認してみてください。 by jflute (2025/01/05)
+        // TODO done tanaryo さらに、Supercarのクラスの中にtodoを追加したので、確認してみてください。 by jflute (2025/01/05)
         try {
             new SupercarClient().buySupercar(); // you can fix the classes
             fail("always exception but none");
