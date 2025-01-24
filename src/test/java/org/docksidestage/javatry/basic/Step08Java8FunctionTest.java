@@ -264,7 +264,7 @@ public class Step08Java8FunctionTest extends PlainTestCase {
         // https://dbflute.seasar.org/ja/manual/function/ormapper/behavior/select/selectentity.html#java8
         // ちょっと、アドバンスな話ですが、Optionalの理解を深めるために読んでみてください。
         // ざっと読みました。DBFluteのハンズオンもやりつつ理解を深めようと思います。 by tanaryo (2025/01/04)
-        // TODO jflute 1on1にて、DBFluteのOptionalと標準のOptionalの違いについて補足 (2024/12/31)
+        // done jflute 1on1にて、DBFluteのOptionalと標準のOptionalの違いについて補足 (2024/12/31)
     }
 
     /**
@@ -383,7 +383,7 @@ public class Step08Java8FunctionTest extends PlainTestCase {
         log(sea); // your answer? => wave
         //当たった。
 
-        // TODO jflute 1on1にて、orElseThrow() と get() のお話 (2024/12/31)
+        // done jflute 1on1にて、orElseThrow() と get() のお話 (2024/12/31)
     }
 
     // done jflute 後でレビュー (2024/12/31)
